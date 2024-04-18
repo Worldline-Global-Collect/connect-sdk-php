@@ -58,14 +58,14 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return CreatePaymentResponse
      *
+     * @throws DeclinedPaymentException
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @throws DeclinedPaymentException
      * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/create.html Create payment
      */
     public function create(CreatePaymentRequest $body, CallContext $callContext = null)
@@ -98,9 +98,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return FindPaymentsResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -136,9 +136,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return PaymentResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -176,9 +176,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return CompletePaymentResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -216,9 +216,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return ThirdPartyStatusResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -256,9 +256,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return CreateTokenResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -296,9 +296,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return PaymentResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -337,9 +337,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return PaymentApprovalResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -378,9 +378,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return CaptureResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -418,9 +418,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return CancelApprovalPaymentResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -458,9 +458,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return CapturesResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -498,14 +498,14 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return RefundResponse
      *
+     * @throws DeclinedRefundException
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @throws DeclinedRefundException
      * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/refund.html Create refund
      */
     public function refund($paymentId, RefundRequest $body, CallContext $callContext = null)
@@ -539,9 +539,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return RefundsResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -578,9 +578,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return CancelPaymentResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -619,9 +619,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return DisputeResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -659,9 +659,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return DisputesResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -698,9 +698,9 @@ class PaymentsClient extends ApiResource
      * @param CallContext $callContext
      * @return DeviceFingerprintDetails
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

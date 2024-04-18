@@ -5,6 +5,8 @@
  */
 namespace Worldline\Connect\Sdk\V1;
 
+use Worldline\Connect\Sdk\Domain\DataObject;
+use Worldline\Connect\Sdk\V1\Domain\RefundErrorResponse;
 use Worldline\Connect\Sdk\V1\Domain\RefundResult;
 
 /**
@@ -14,6 +16,28 @@ use Worldline\Connect\Sdk\V1\Domain\RefundResult;
  */
 class DeclinedRefundException extends ResponseException
 {
+    /**
+     * @param int $httpStatusCode
+     * @param DataObject $response
+     * @param string $message
+     */
+    public function __construct($httpStatusCode, DataObject $response, $message = null)
+    {
+        if (is_null($message)) {
+            $message = static::buildMessage($response);
+        }
+        parent::__construct($httpStatusCode, $response, $message);
+    }
+
+    private static function buildMessage(DataObject $response)
+    {
+        if ($response instanceof RefundErrorResponse && $response->refundResult != null) {
+            $refundResult = $response->refundResult;
+            return "declined refund '$refundResult->id' with status '$refundResult->status'";
+        }
+        return 'the Worldline Global Collect platform returned a declined refund response';
+    }
+
     /**
      * @return RefundResult
      */

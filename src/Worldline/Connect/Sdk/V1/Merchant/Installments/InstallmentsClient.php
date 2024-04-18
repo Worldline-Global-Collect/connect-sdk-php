@@ -35,9 +35,9 @@ class InstallmentsClient extends ApiResource
      * @param CallContext $callContext
      * @return InstallmentOptionsResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

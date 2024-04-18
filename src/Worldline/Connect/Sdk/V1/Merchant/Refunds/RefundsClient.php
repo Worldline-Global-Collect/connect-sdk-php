@@ -36,9 +36,9 @@ class RefundsClient extends ApiResource
      * @param CallContext $callContext
      * @return FindRefundsResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -74,9 +74,9 @@ class RefundsClient extends ApiResource
      * @param CallContext $callContext
      * @return RefundResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -114,9 +114,9 @@ class RefundsClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -153,9 +153,9 @@ class RefundsClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -192,9 +192,9 @@ class RefundsClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

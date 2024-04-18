@@ -33,9 +33,9 @@ class FilesClient extends ApiResource
      * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
      * @param CallContext $callContext
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

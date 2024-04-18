@@ -40,9 +40,9 @@ class ServicesClient extends ApiResource
      * @param CallContext $callContext
      * @return ConvertAmount
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -78,9 +78,9 @@ class ServicesClient extends ApiResource
      * @param CallContext $callContext
      * @return BankDetailsResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -117,9 +117,9 @@ class ServicesClient extends ApiResource
      * @param CallContext $callContext
      * @return GetIINDetailsResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -156,9 +156,9 @@ class ServicesClient extends ApiResource
      * @param CallContext $callContext
      * @return GetPrivacyPolicyResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -193,9 +193,9 @@ class ServicesClient extends ApiResource
      * @param CallContext $callContext
      * @return TestConnection
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

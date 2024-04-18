@@ -43,9 +43,9 @@ class ProductsClient extends ApiResource
      * @param CallContext $callContext
      * @return PaymentProducts
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -82,9 +82,9 @@ class ProductsClient extends ApiResource
      * @param CallContext $callContext
      * @return PaymentProductResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -122,9 +122,9 @@ class ProductsClient extends ApiResource
      * @param CallContext $callContext
      * @return Directory
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -162,9 +162,9 @@ class ProductsClient extends ApiResource
      * @param CallContext $callContext
      * @return GetCustomerDetailsResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -203,9 +203,9 @@ class ProductsClient extends ApiResource
      * @param CallContext $callContext
      * @return DeviceFingerprintResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -244,9 +244,9 @@ class ProductsClient extends ApiResource
      * @param CallContext $callContext
      * @return PaymentProductNetworksResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -284,9 +284,9 @@ class ProductsClient extends ApiResource
      * @param CallContext $callContext
      * @return CreatePaymentProductSessionResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

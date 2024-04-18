@@ -38,9 +38,9 @@ class TokensClient extends ApiResource
      * @param CallContext $callContext
      * @return CreateTokenResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -77,9 +77,9 @@ class TokensClient extends ApiResource
      * @param CallContext $callContext
      * @return TokenResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -117,9 +117,9 @@ class TokensClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -157,9 +157,9 @@ class TokensClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -196,9 +196,9 @@ class TokensClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

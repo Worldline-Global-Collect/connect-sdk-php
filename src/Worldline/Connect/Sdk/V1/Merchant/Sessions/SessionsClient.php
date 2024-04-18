@@ -35,9 +35,9 @@ class SessionsClient extends ApiResource
      * @param CallContext $callContext
      * @return SessionResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

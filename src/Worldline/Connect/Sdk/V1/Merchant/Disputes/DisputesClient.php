@@ -35,9 +35,9 @@ class DisputesClient extends ApiResource
      * @param CallContext $callContext
      * @return DisputeResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -74,9 +74,9 @@ class DisputesClient extends ApiResource
      * @param CallContext $callContext
      * @return DisputeResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -114,9 +114,9 @@ class DisputesClient extends ApiResource
      * @param CallContext $callContext
      * @return DisputeResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -155,9 +155,9 @@ class DisputesClient extends ApiResource
      * @param CallContext $callContext
      * @return UploadDisputeFileResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

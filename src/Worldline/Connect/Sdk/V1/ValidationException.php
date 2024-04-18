@@ -5,6 +5,8 @@
  */
 namespace Worldline\Connect\Sdk\V1;
 
+use Worldline\Connect\Sdk\Domain\DataObject;
+
 /**
  * Class ValidationException
  *
@@ -12,4 +14,16 @@ namespace Worldline\Connect\Sdk\V1;
  */
 class ValidationException extends ResponseException
 {
+    /**
+     * @param int $httpStatusCode
+     * @param DataObject $response
+     * @param string $message
+     */
+    public function __construct($httpStatusCode, DataObject $response, $message = null)
+    {
+        if (is_null($message)) {
+            $message = 'the Worldline Global Collect platform returned an incorrect request error response';
+        }
+        parent::__construct($httpStatusCode, $response, $message);
+    }
 }

@@ -5,7 +5,9 @@
  */
 namespace Worldline\Connect\Sdk\V1;
 
+use Worldline\Connect\Sdk\Domain\DataObject;
 use Worldline\Connect\Sdk\V1\Domain\CreatePaymentResult;
+use Worldline\Connect\Sdk\V1\Domain\PaymentErrorResponse;
 
 /**
  * Class DeclinedPaymentException
@@ -14,6 +16,28 @@ use Worldline\Connect\Sdk\V1\Domain\CreatePaymentResult;
  */
 class DeclinedPaymentException extends ResponseException
 {
+    /**
+     * @param int $httpStatusCode
+     * @param DataObject $response
+     * @param string $message
+     */
+    public function __construct($httpStatusCode, DataObject $response, $message = null)
+    {
+        if (is_null($message)) {
+            $message = static::buildMessage($response);
+        }
+        parent::__construct($httpStatusCode, $response, $message);
+    }
+
+    private static function buildMessage(DataObject $response)
+    {
+        if ($response instanceof PaymentErrorResponse && $response->paymentResult != null && $response->paymentResult->payment != null) {
+            $payment = $response->paymentResult->payment;
+            return "declined payment '$payment->id' with status '$payment->status'";
+        }
+        return 'the Worldline Global Collect platform returned a declined payment response';
+    }
+
     /**
      * @return CreatePaymentResult
      */

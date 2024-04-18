@@ -36,9 +36,9 @@ class RiskassessmentsClient extends ApiResource
      * @param CallContext $callContext
      * @return RiskAssessmentResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -75,9 +75,9 @@ class RiskassessmentsClient extends ApiResource
      * @param CallContext $callContext
      * @return RiskAssessmentResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

@@ -36,9 +36,9 @@ class MandatesClient extends ApiResource
      * @param CallContext $callContext
      * @return CreateMandateResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -76,9 +76,9 @@ class MandatesClient extends ApiResource
      * @param CallContext $callContext
      * @return CreateMandateResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -116,9 +116,9 @@ class MandatesClient extends ApiResource
      * @param CallContext $callContext
      * @return GetMandateResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -155,9 +155,9 @@ class MandatesClient extends ApiResource
      * @param CallContext $callContext
      * @return GetMandateResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -195,9 +195,9 @@ class MandatesClient extends ApiResource
      * @param CallContext $callContext
      * @return GetMandateResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -235,9 +235,9 @@ class MandatesClient extends ApiResource
      * @param CallContext $callContext
      * @return GetMandateResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

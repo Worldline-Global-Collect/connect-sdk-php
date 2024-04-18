@@ -36,9 +36,9 @@ class HostedcheckoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return CreateHostedCheckoutResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -75,9 +75,9 @@ class HostedcheckoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return GetHostedCheckoutResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -114,9 +114,9 @@ class HostedcheckoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

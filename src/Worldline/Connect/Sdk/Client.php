@@ -20,7 +20,7 @@ class Client extends ApiResource
     private $clientMetaInfo;
 
     /**
-     * Construct a new Worldline Global Collect platform server-to-server API client.
+     * Construct a new Worldline Global Collect platform API client.
      *
      * @param Communicator $communicator
      * @param string $clientMetaInfo

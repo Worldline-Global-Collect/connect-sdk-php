@@ -37,9 +37,9 @@ class CapturesClient extends ApiResource
      * @param CallContext $callContext
      * @return CaptureResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -77,14 +77,14 @@ class CapturesClient extends ApiResource
      * @param CallContext $callContext
      * @return RefundResponse
      *
+     * @throws DeclinedRefundException
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @throws DeclinedRefundException
      * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/refund.html Create Refund
      */
     public function refund($captureId, RefundRequest $body, CallContext $callContext = null)

@@ -22,7 +22,7 @@ class ExceptionFactory
     const IDEMPOTENCE_ERROR_CODE = '1409';
 
     /**
-     * @param $httpStatusCode
+     * @param int $httpStatusCode
      * @param DataObject $errorObject
      * @param CallContext $callContext
      * @return ResponseException
@@ -41,37 +41,42 @@ class ExceptionFactory
         if ($errorObject instanceof RefundErrorResponse && !is_null($errorObject->refundResult)) {
             return new DeclinedRefundException($httpStatusCode, $errorObject);
         }
-        if ($httpStatusCode == 400) {
+        if ($httpStatusCode === 400) {
             return new ValidationException($httpStatusCode, $errorObject);
         }
-        if ($httpStatusCode == 403) {
+        if ($httpStatusCode === 403) {
             return new AuthorizationException($httpStatusCode, $errorObject);
         }
-        if ($httpStatusCode == 409 && $callContext && strlen($callContext->getIdempotenceKey()) > 0 &&
-            $this->isIdempotenceError($errorObject)
-        ) {
-            return new IdempotenceException(
-                $httpStatusCode,
-                $errorObject,
-                null,
-                $callContext->getIdempotenceKey(),
-                $callContext->getIdempotenceRequestTimestamp()
-            );
+        if ($httpStatusCode === 404) {
+            return new ReferenceException($httpStatusCode, $errorObject);
         }
-
-        $httpClassCode = floor($httpStatusCode / 100);
-        // If a different HTTP status code was sent, then either the user made an error, or the server is in trouble.
-        // If the user made an error, the server will give class 4 response. If the server made an error and realises
-        // this, it will send an appropriate error message with a class 5 response. It should not be sending other
-        // status codes; if it does, we raise an UnexpectedResponseException to signal this.
-        switch ($httpClassCode) {
-            case 4:
-                return new ReferenceException($httpStatusCode, $errorObject);
-            case 5:
-                return new PlatformException($httpStatusCode, $errorObject);
-            default:
-                return new ApiException($httpStatusCode, $errorObject);
+        if ($httpStatusCode === 409) {
+            if ($callContext && strlen($callContext->getIdempotenceKey()) > 0 &&
+                $this->isIdempotenceError($errorObject)
+            ) {
+                return new IdempotenceException(
+                    $httpStatusCode,
+                    $errorObject,
+                    null,
+                    $callContext->getIdempotenceKey(),
+                    $callContext->getIdempotenceRequestTimestamp()
+                );
+            }
+            return new ReferenceException($httpStatusCode, $errorObject);
         }
+        if ($httpStatusCode === 410) {
+            return new ReferenceException($httpStatusCode, $errorObject);
+        }
+        if ($httpStatusCode === 500) {
+            return new PlatformException($httpStatusCode, $errorObject);
+        }
+        if ($httpStatusCode === 502) {
+            return new PlatformException($httpStatusCode, $errorObject);
+        }
+        if ($httpStatusCode === 503) {
+            return new PlatformException($httpStatusCode, $errorObject);
+        }
+        return new ApiException($httpStatusCode, $errorObject);
     }
 
     /**
@@ -85,16 +90,9 @@ class ExceptionFactory
             return false;
         }
         $errors = $errorObjectVariables['errors'];
-        if (!is_array($errors)) {
-            return false;
-        }
-        if (count($errors) != 1) {
-            return false;
-        }
-        $error = $errors[0];
-        if (!$error instanceof APIError) {
-            return false;
-        }
-        return $error->code == static::IDEMPOTENCE_ERROR_CODE;
+        return is_array($errors)
+          && count($errors) === 1
+          && $errors[0] instanceof APIError
+          && $errors[0]->code == static::IDEMPOTENCE_ERROR_CODE;
     }
 }

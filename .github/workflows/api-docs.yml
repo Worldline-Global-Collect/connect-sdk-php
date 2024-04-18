@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: code
           persist-credentials: false
@@ -26,7 +26,7 @@ jobs:
         run: apigen generate -s lib,src -d docs --deprecated --no-source-code  --title 'Worldline Connect PHP SDK'
         working-directory: code
       - name: Checkout pages
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: gh-pages
           path: pages

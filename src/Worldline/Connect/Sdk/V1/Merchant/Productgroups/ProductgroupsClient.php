@@ -37,9 +37,9 @@ class ProductgroupsClient extends ApiResource
      * @param CallContext $callContext
      * @return PaymentProductGroups
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -76,9 +76,9 @@ class ProductgroupsClient extends ApiResource
      * @param CallContext $callContext
      * @return PaymentProductGroupResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -116,9 +116,9 @@ class ProductgroupsClient extends ApiResource
      * @param CallContext $callContext
      * @return DeviceFingerprintResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

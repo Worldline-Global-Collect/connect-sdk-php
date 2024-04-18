@@ -38,14 +38,14 @@ class PayoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return PayoutResponse
      *
+     * @throws DeclinedPayoutException
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @throws DeclinedPayoutException
      * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/create.html Create payout
      */
     public function create(CreatePayoutRequest $body, CallContext $callContext = null)
@@ -78,9 +78,9 @@ class PayoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return FindPayoutsResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -116,9 +116,9 @@ class PayoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return PayoutResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -156,9 +156,9 @@ class PayoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return PayoutResponse
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -196,9 +196,9 @@ class PayoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException
@@ -235,9 +235,9 @@ class PayoutsClient extends ApiResource
      * @param CallContext $callContext
      * @return null
      *
+     * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
-     * @throws IdempotenceException
      * @throws ReferenceException
      * @throws PlatformException
      * @throws ApiException

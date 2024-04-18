@@ -34,6 +34,9 @@ class IdempotenceException extends ResponseException
         $idempotenceKey = '',
         $idempotenceRequestTimestamp = ''
     ) {
+        if ($message == null) {
+            $message = 'the Worldline Global Collect platform returned a duplicate request error response';
+        }
         parent::__construct($httpStatusCode, $response, $message);
         $this->idempotenceKey = $idempotenceKey;
         $this->idempotenceRequestTimestamp = $idempotenceRequestTimestamp;

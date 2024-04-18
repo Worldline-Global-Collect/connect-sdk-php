@@ -32,7 +32,7 @@ class ResponseException extends RuntimeException
     public function __construct($httpStatusCode, DataObject $response, $message = null)
     {
         if (is_null($message)) {
-            $message = 'The server returned an error.';
+            $message = 'the Worldline Global Collect platform returned an error response';
         }
         parent::__construct($message);
         $this->httpStatusCode = $httpStatusCode;
@@ -94,8 +94,8 @@ class ResponseException extends RuntimeException
         if (!is_array($errors)) {
             return array();
         }
-        foreach ($errors as $error) {
-            if (!($error instanceof APIError)) {
+        foreach ($errors as $e) {
+            if (!($e instanceof APIError)) {
                 return array();
             }
         }
