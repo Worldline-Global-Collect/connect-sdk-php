@@ -24,7 +24,7 @@ class DeclinedRefundException extends ResponseException
     public function __construct($httpStatusCode, DataObject $response, $message = null)
     {
         if (is_null($message)) {
-            $message = static::buildMessage($response);
+            $message = DeclinedRefundException::buildMessage($response);
         }
         parent::__construct($httpStatusCode, $response, $message);
     }

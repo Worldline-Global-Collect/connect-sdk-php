@@ -56,6 +56,7 @@ class SignatureValidator
             } else {
                 $res = $expectedSignature ^ $signature;
                 $ret = 0;
+                // @phpstan-ignore-next-line
                 for($i = strlen($res) - 1; $i >= 0; $i--) $ret |= ord($res[$i]);
                 return !$ret;
             }

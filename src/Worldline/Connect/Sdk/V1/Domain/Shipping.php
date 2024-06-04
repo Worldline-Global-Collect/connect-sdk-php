@@ -46,6 +46,11 @@ class Shipping extends DataObject
     /**
      * @var string
      */
+    public $shippedFromZip = null;
+
+    /**
+     * @var string
+     */
     public $trackingNumber = null;
 
     /**
@@ -76,6 +81,9 @@ class Shipping extends DataObject
         }
         if (!is_null($this->isFirstUsage)) {
             $object->isFirstUsage = $this->isFirstUsage;
+        }
+        if (!is_null($this->shippedFromZip)) {
+            $object->shippedFromZip = $this->shippedFromZip;
         }
         if (!is_null($this->trackingNumber)) {
             $object->trackingNumber = $this->trackingNumber;
@@ -115,6 +123,9 @@ class Shipping extends DataObject
         }
         if (property_exists($object, 'isFirstUsage')) {
             $this->isFirstUsage = $object->isFirstUsage;
+        }
+        if (property_exists($object, 'shippedFromZip')) {
+            $this->shippedFromZip = $object->shippedFromZip;
         }
         if (property_exists($object, 'trackingNumber')) {
             $this->trackingNumber = $object->trackingNumber;

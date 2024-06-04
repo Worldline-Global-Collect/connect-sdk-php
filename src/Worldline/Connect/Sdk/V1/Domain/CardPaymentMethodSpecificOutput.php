@@ -33,6 +33,11 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
     public $initialSchemeTransactionId = null;
 
     /**
+     * @var bool
+     */
+    public $networkTokenUsed = null;
+
+    /**
      * @var string
      */
     public $schemeTransactionId = null;
@@ -64,6 +69,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         }
         if (!is_null($this->initialSchemeTransactionId)) {
             $object->initialSchemeTransactionId = $this->initialSchemeTransactionId;
+        }
+        if (!is_null($this->networkTokenUsed)) {
+            $object->networkTokenUsed = $this->networkTokenUsed;
         }
         if (!is_null($this->schemeTransactionId)) {
             $object->schemeTransactionId = $this->schemeTransactionId;
@@ -104,6 +112,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         }
         if (property_exists($object, 'initialSchemeTransactionId')) {
             $this->initialSchemeTransactionId = $object->initialSchemeTransactionId;
+        }
+        if (property_exists($object, 'networkTokenUsed')) {
+            $this->networkTokenUsed = $object->networkTokenUsed;
         }
         if (property_exists($object, 'schemeTransactionId')) {
             $this->schemeTransactionId = $object->schemeTransactionId;

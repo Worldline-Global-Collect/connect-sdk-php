@@ -38,8 +38,8 @@ class CommunicatorTest extends TestCase
         $findParams = new FindProductsParams();
         $findParams->countryCode = 'NL';
         $findParams->currencyCode = 'EUR';
-        $clientHeaders = [];
-        $this->defaultCommunicator->get($this->defaultResponseClassMap, $relativeUri, $clientHeaders, $findParams);
+        $clientMetaInfo = '';
+        $this->defaultCommunicator->get($this->defaultResponseClassMap, $relativeUri, $clientMetaInfo, $findParams);
     }
 
     public function testExceptionInvalidUrl()
@@ -94,8 +94,8 @@ class CommunicatorTest extends TestCase
         $findParams = new FindProductsParams();
         $findParams->countryCode = 'NL';
         $findParams->currencyCode = 'EUR';
-        $clientHeaders = [];
-        $this->defaultCommunicator->getWithBinaryResponse(array($bodyHandler, 'handleBodyPart'), $this->defaultResponseClassMap, $relativeUri, $clientHeaders, $findParams);
+        $clientMetaInfo = '';
+        $this->defaultCommunicator->getWithBinaryResponse(array($bodyHandler, 'handleBodyPart'), $this->defaultResponseClassMap, $relativeUri, $clientMetaInfo, $findParams);
         $this->assertNotEquals('', $bodyHandler->getBody());
         $this->assertStringStartsWith('{', $bodyHandler->getBody());
         $this->assertStringEndsWith('}', $bodyHandler->getBody());

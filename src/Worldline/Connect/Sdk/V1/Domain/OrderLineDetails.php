@@ -31,6 +31,11 @@ class OrderLineDetails extends DataObject
     /**
      * @var string
      */
+    public $naicsCommodityCode = null;
+
+    /**
+     * @var string
+     */
     public $productCategory = null;
 
     /**
@@ -88,6 +93,9 @@ class OrderLineDetails extends DataObject
         if (!is_null($this->lineAmountTotal)) {
             $object->lineAmountTotal = $this->lineAmountTotal;
         }
+        if (!is_null($this->naicsCommodityCode)) {
+            $object->naicsCommodityCode = $this->naicsCommodityCode;
+        }
         if (!is_null($this->productCategory)) {
             $object->productCategory = $this->productCategory;
         }
@@ -134,6 +142,9 @@ class OrderLineDetails extends DataObject
         }
         if (property_exists($object, 'lineAmountTotal')) {
             $this->lineAmountTotal = $object->lineAmountTotal;
+        }
+        if (property_exists($object, 'naicsCommodityCode')) {
+            $this->naicsCommodityCode = $object->naicsCommodityCode;
         }
         if (property_exists($object, 'productCategory')) {
             $this->productCategory = $object->productCategory;

@@ -1,7 +1,7 @@
 <?php
 namespace Worldline\Connect\Sdk\Communication;
 
-use Worldline\Connect\Sdk\TestCase;
+use PHPUnit\Framework\TestCase;
 
 class HttpHeaderHelperTest extends TestCase
 {

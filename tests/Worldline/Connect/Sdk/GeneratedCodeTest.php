@@ -1,6 +1,7 @@
 <?php
 namespace Worldline\Connect\Sdk;
 
+use PHPUnit\Framework\TestCase;
 use Worldline\Connect\Sdk\V1\Domain\APIError;
 use Worldline\Connect\Sdk\V1\Domain\ErrorResponse;
 

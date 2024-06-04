@@ -1,0 +1,25 @@
+parameters:
+  paths:
+    - src
+    - lib
+    - tests
+  level: 5
+
+  treatPhpDocTypesAsCertain: false
+
+  ignoreErrors:
+    - message: '#Method .* should return Worldline\\Connect\\Sdk\\V.*\\Domain\\.* but returns Worldline\\Connect\\Sdk\\Domain\\DataObject\|null\.#'
+      path: */Worldline/Connect/Sdk/*
+    - message: '#Method .* should return Worldline\\Connect\\Sdk\\V.*\\Domain\\.* but returns Worldline\\Connect\\Sdk\\Domain\\DataObject\.#'
+      path: */Worldline/Connect/Sdk/*
+    - message: '#Method .* should return null but returns Worldline\\Connect\\Sdk\\Domain\\DataObject\.#'
+      path: */Worldline/Connect/Sdk/*
+    - message: '#Call to function is_null\(\) with .* will always evaluate to false\.#'
+      path: */Worldline/Connect/Sdk/*
+
+    - message: '#Method .* should return .* but returns PHPUnit[\\_]Framework[\\_]MockObject[\\_]MockObject\.#'
+      path: tests/Worldline/Connect/Sdk/*
+    - message: '#Parameter .* of class Worldline\\Connect\\Sdk\\.* constructor expects Worldline\\Connect\\Sdk\\.*, PHPUnit_Framework_MockObject_MockObject given.#'
+      path: tests/Worldline/Connect/Sdk/*
+    - message: '#Parameter .* of method Worldline\\Connect\\Sdk\\.* expects Worldline\\Connect\\Sdk\\.*, PHPUnit_Framework_MockObject_MockObject given.#'
+      path: tests/Worldline/Connect/Sdk/*

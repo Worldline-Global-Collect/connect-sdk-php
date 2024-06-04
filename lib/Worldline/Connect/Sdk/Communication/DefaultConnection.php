@@ -189,6 +189,7 @@ class DefaultConnection implements Connection
      */
     protected function getCurlHandle()
     {
+        // @phpstan-ignore-next-line
         if (!$curlHandle = curl_init()) {
             throw new ErrorException('Cannot initialize cUrl curlHandle');
         }

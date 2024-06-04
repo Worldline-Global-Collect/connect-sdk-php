@@ -1,7 +1,11 @@
 <?php
 namespace Worldline\Connect\Sdk\V1;
 
-use Worldline\Connect\Sdk\ClientTestCase;
+use Worldline\Connect\Sdk\Client;
+use Worldline\Connect\Sdk\Communication\ConnectionResponse;
+use Worldline\Connect\Sdk\Communicator;
+use Worldline\Connect\Sdk\TestCase;
+use Worldline\Connect\Sdk\TestUtil\TestingConnection;
 use Worldline\Connect\Sdk\V1\Domain\CreatePaymentResult;
 use Worldline\Connect\Sdk\V1\Domain\ErrorResponse;
 use Worldline\Connect\Sdk\V1\Domain\GetIINDetailsRequest;
@@ -14,7 +18,7 @@ use Worldline\Connect\Sdk\V1\Domain\RefundResult;
 /**
  * @group exceptions
  */
-class ExceptionTest extends ClientTestCase
+class ExceptionTest extends TestCase
 {
     public function testExceptionWithoutErrors()
     {
@@ -61,9 +65,30 @@ EOD;
 
     public function testValidationException()
     {
+        $errorResponseJsonString = <<<'EOD'
+{
+    "errorId": "8a41a5dd-7366-4026-a41b-e98c56808edd",
+    "errors": [
+        {
+            "category": "CONNECT_PLATFORM_ERROR",
+            "code": "20000000",
+            "httpStatusCode": 400,
+            "id": "PARAMETER_NOT_FOUND_IN_REQUEST",
+            "message": "The parameter shown above was not found in the request received by connect.",
+            "propertyName": "bin",
+            "requestId": ""
+        }
+    ]
+}
+EOD;
+        $responseHeaders = array('Content-Type' => 'application/json');
+        $connectionResponse = new ConnectionResponse(400, $responseHeaders, $errorResponseJsonString);
+        $communicatorConfiguration = $this->getCommunicatorConfiguration();
+        $communicator = new Communicator($communicatorConfiguration, null, new TestingConnection($connectionResponse));
+        $client = new Client($communicator);
         try {
             $emptyBody = new GetIINDetailsRequest();
-            $this->getClient()->v1()->merchant($this->getMerchantId())->services()->getIINdetails($emptyBody);
+            $client->v1()->merchant($this->getMerchantId())->services()->getIINdetails($emptyBody);
         } catch (ValidationException $e) {
             return;
         }

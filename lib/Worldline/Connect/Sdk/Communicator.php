@@ -259,7 +259,7 @@ class Communicator
      * @param ResponseClassMap $responseClassMap
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
-     * @param DataObject|MultipartDataObject|null $requestBodyObject
+     * @param DataObject|MultipartDataObject|MultipartFormDataObject|null $requestBodyObject
      * @param RequestObject|null $requestParameters
      * @param CallContext $callContext
      * @return DataObject
@@ -319,7 +319,7 @@ class Communicator
      * @param ResponseClassMap $responseClassMap Used for error handling
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
-     * @param DataObject|MultipartDataObject|null $requestBodyObject
+     * @param DataObject|MultipartDataObject|MultipartFormDataObject|null $requestBodyObject
      * @param RequestObject|null $requestParameters
      * @param CallContext $callContext
      * @throws Exception
@@ -381,7 +381,7 @@ class Communicator
      * @param ResponseClassMap $responseClassMap
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
-     * @param DataObject|MultipartDataObject|null $requestBodyObject
+     * @param DataObject|MultipartDataObject|MultipartFormDataObject|null $requestBodyObject
      * @param RequestObject|null $requestParameters
      * @param CallContext $callContext
      * @return DataObject
@@ -441,7 +441,7 @@ class Communicator
      * @param ResponseClassMap $responseClassMap Used for error handling
      * @param string $relativeUriPath
      * @param string $clientMetaInfo
-     * @param DataObject|MultipartDataObject|null $requestBodyObject
+     * @param DataObject|MultipartDataObject|MultipartFormDataObject|null $requestBodyObject
      * @param RequestObject|null $requestParameters
      * @param CallContext $callContext
      * @throws Exception

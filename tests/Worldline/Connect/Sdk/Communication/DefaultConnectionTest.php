@@ -47,8 +47,7 @@ class DefaultConnectionTest extends TestCase
             $responseBuilder->appendBody($data);
         };
 
-        $merchantId = '20000';
-        $relativeUriPath = '/v1/' . $merchantId . '/services/testconnection';
+        $relativeUriPath = '/v1/' . $this->getMerchantId() . '/services/testconnection';
         $requestHeaders = $this->getRequestHeaders('GET', $relativeUriPath);
         $this->connection->get($this->getApiEndpoint() . $relativeUriPath, $requestHeaders, $responseHandler);
         $response = $responseBuilder->getResponse();
