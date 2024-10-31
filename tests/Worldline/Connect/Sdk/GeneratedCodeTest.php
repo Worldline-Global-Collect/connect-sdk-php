@@ -1,7 +1,6 @@
 <?php
 namespace Worldline\Connect\Sdk;
 
-use PHPUnit\Framework\TestCase;
 use Worldline\Connect\Sdk\V1\Domain\APIError;
 use Worldline\Connect\Sdk\V1\Domain\ErrorResponse;
 
@@ -9,7 +8,7 @@ use Worldline\Connect\Sdk\V1\Domain\ErrorResponse;
  * @group generated_code
  *
  */
-class GeneratedCodeTest extends TestCase
+class GeneratedCodeTest extends \PHPUnit\Framework\TestCase
 {
     public function testJsonMarshalling()
     {

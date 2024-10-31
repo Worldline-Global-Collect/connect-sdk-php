@@ -28,11 +28,6 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
     public $paymentProduct809SpecificInput = null;
 
     /**
-     * @var RedirectPaymentProduct816SpecificInput
-     */
-    public $paymentProduct816SpecificInput = null;
-
-    /**
      * @var RedirectPaymentProduct840SpecificInput
      */
     public $paymentProduct840SpecificInput = null;
@@ -83,9 +78,6 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
         if (!is_null($this->paymentProduct809SpecificInput)) {
             $object->paymentProduct809SpecificInput = $this->paymentProduct809SpecificInput->toObject();
         }
-        if (!is_null($this->paymentProduct816SpecificInput)) {
-            $object->paymentProduct816SpecificInput = $this->paymentProduct816SpecificInput->toObject();
-        }
         if (!is_null($this->paymentProduct840SpecificInput)) {
             $object->paymentProduct840SpecificInput = $this->paymentProduct840SpecificInput->toObject();
         }
@@ -134,13 +126,6 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
             }
             $value = new RedirectPaymentProduct809SpecificInput();
             $this->paymentProduct809SpecificInput = $value->fromObject($object->paymentProduct809SpecificInput);
-        }
-        if (property_exists($object, 'paymentProduct816SpecificInput')) {
-            if (!is_object($object->paymentProduct816SpecificInput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct816SpecificInput, true) . '\' is not an object');
-            }
-            $value = new RedirectPaymentProduct816SpecificInput();
-            $this->paymentProduct816SpecificInput = $value->fromObject($object->paymentProduct816SpecificInput);
         }
         if (property_exists($object, 'paymentProduct840SpecificInput')) {
             if (!is_object($object->paymentProduct840SpecificInput)) {

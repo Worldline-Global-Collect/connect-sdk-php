@@ -79,11 +79,11 @@ class CommunicatorConfiguration
     private function validateApiEndpoint($apiEndpoint)
     {
         $url = parse_url($apiEndpoint);
-        if ($url === FALSE) {
+        if ($url === false) {
             throw new UnexpectedValueException('apiEndpoint is not a valid URL');
-        } else if (isset($url['path']) && $url['path'] !== '') {
+        } elseif (isset($url['path']) && $url['path'] !== '') {
             throw new UnexpectedValueException('apiEndpoint should not contain a path');
-        } else if (isset($url['user']) || isset($url['query']) || isset($url['fragment'])) {
+        } elseif (isset($url['user']) || isset($url['query']) || isset($url['fragment'])) {
             throw new UnexpectedValueException('apiEndpoint should not contain user info, query or fragment');
         }
     }

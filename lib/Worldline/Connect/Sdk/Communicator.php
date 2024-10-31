@@ -278,11 +278,11 @@ class Communicator
         if ($requestBodyObject instanceof MultipartFormDataObject) {
             $contentType = $requestBodyObject->getContentType();
             $requestBody = $requestBodyObject;
-        } else if ($requestBodyObject instanceof MultipartDataObject) {
+        } elseif ($requestBodyObject instanceof MultipartDataObject) {
             $multipart = $requestBodyObject->toMultipartFormDataObject();
             $contentType = $multipart->getContentType();
             $requestBody = $multipart;
-        } else if ($requestBodyObject instanceof DataObject || is_null($requestBodyObject)) {
+        } elseif ($requestBodyObject instanceof DataObject || is_null($requestBodyObject)) {
             $contentType = static::MIME_APPLICATION_JSON;
             $requestBody = $requestBodyObject ? $requestBodyObject->toJson() : '';
         } else {
@@ -338,11 +338,11 @@ class Communicator
         if ($requestBodyObject instanceof MultipartFormDataObject) {
             $contentType = $requestBodyObject->getContentType();
             $requestBody = $requestBodyObject;
-        } else if ($requestBodyObject instanceof MultipartDataObject) {
+        } elseif ($requestBodyObject instanceof MultipartDataObject) {
             $multipart = $requestBodyObject->toMultipartFormDataObject();
             $contentType = $multipart->getContentType();
             $requestBody = $multipart;
-        } else if ($requestBodyObject instanceof DataObject || is_null($requestBodyObject)) {
+        } elseif ($requestBodyObject instanceof DataObject || is_null($requestBodyObject)) {
             $contentType = static::MIME_APPLICATION_JSON;
             $requestBody = $requestBodyObject ? $requestBodyObject->toJson() : '';
         } else {
@@ -400,11 +400,11 @@ class Communicator
         if ($requestBodyObject instanceof MultipartFormDataObject) {
             $contentType = $requestBodyObject->getContentType();
             $requestBody = $requestBodyObject;
-        } else if ($requestBodyObject instanceof MultipartDataObject) {
+        } elseif ($requestBodyObject instanceof MultipartDataObject) {
             $multipart = $requestBodyObject->toMultipartFormDataObject();
             $contentType = $multipart->getContentType();
             $requestBody = $multipart;
-        } else if ($requestBodyObject instanceof DataObject || is_null($requestBodyObject)) {
+        } elseif ($requestBodyObject instanceof DataObject || is_null($requestBodyObject)) {
             $contentType = static::MIME_APPLICATION_JSON;
             $requestBody = $requestBodyObject ? $requestBodyObject->toJson() : '';
         } else {
@@ -460,11 +460,11 @@ class Communicator
         if ($requestBodyObject instanceof MultipartFormDataObject) {
             $contentType = $requestBodyObject->getContentType();
             $requestBody = $requestBodyObject;
-        } else if ($requestBodyObject instanceof MultipartDataObject) {
+        } elseif ($requestBodyObject instanceof MultipartDataObject) {
             $multipart = $requestBodyObject->toMultipartFormDataObject();
             $contentType = $multipart->getContentType();
             $requestBody = $multipart;
-        } else if ($requestBodyObject instanceof DataObject || is_null($requestBodyObject)) {
+        } elseif ($requestBodyObject instanceof DataObject || is_null($requestBodyObject)) {
             $contentType = static::MIME_APPLICATION_JSON;
             $requestBody = $requestBodyObject ? $requestBodyObject->toJson() : '';
         } else {

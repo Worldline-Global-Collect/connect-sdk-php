@@ -18,7 +18,7 @@ class BodyHandler
      * @param string $bodyPart
      * @param array $headers
      */
-    public final function handleBodyPart($bodyPart, $headers)
+    final public function handleBodyPart($bodyPart, $headers)
     {
         if (!$this->initialized) {
             $this->initialize($headers);
@@ -31,7 +31,7 @@ class BodyHandler
      * Calls doCleanup, then marks this body handler as not initialized.
      * Afterwards this instance can be reused again.
      */
-    public final function close()
+    final public function close()
     {
         $this->doCleanup();
         $this->initialized = false;

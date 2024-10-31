@@ -16,6 +16,11 @@ class CompanyInformation extends DataObject
     /**
      * @var string
      */
+    public $dateOfIncorporation = null;
+
+    /**
+     * @var string
+     */
     public $name = null;
 
     /**
@@ -29,6 +34,9 @@ class CompanyInformation extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->dateOfIncorporation)) {
+            $object->dateOfIncorporation = $this->dateOfIncorporation;
+        }
         if (!is_null($this->name)) {
             $object->name = $this->name;
         }
@@ -46,6 +54,9 @@ class CompanyInformation extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'dateOfIncorporation')) {
+            $this->dateOfIncorporation = $object->dateOfIncorporation;
+        }
         if (property_exists($object, 'name')) {
             $this->name = $object->name;
         }

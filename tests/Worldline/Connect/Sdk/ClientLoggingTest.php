@@ -1,12 +1,10 @@
 <?php
 namespace Worldline\Connect\Sdk;
 
-use PHPUnit\Framework\TestCase;
-
 /**
  * @group logging
  */
-class ClientLoggingTest extends TestCase
+class ClientLoggingTest extends \PHPUnit\Framework\TestCase
 {
     public function testEnableLoggingCascade()
     {

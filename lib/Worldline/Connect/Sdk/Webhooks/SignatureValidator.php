@@ -51,13 +51,13 @@ class SignatureValidator
             return hash_equals($expectedSignature, $signature);
         } else {
             // copied from http://php.net/manual/en/function.hash-equals.php#115635
-            if(strlen($expectedSignature) != strlen($signature)) {
+            if (strlen($expectedSignature) != strlen($signature)) {
                 return false;
             } else {
                 $res = $expectedSignature ^ $signature;
                 $ret = 0;
                 // @phpstan-ignore-next-line
-                for($i = strlen($res) - 1; $i >= 0; $i--) $ret |= ord($res[$i]);
+                for ($i = strlen($res) - 1; $i >= 0; $i--) $ret |= ord($res[$i]);
                 return !$ret;
             }
         }

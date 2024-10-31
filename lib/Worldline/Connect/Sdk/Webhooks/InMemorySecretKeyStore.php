@@ -29,7 +29,7 @@ class InMemorySecretKeyStore implements SecretKeyStore
     public function getSecretKey($keyId)
     {
         if (!isset($this->secretKeys[$keyId]) || is_null($this->secretKeys[$keyId])) {
-        	throw new SecretKeyNotAvailableException($keyId, "could not find secret key for key id $keyId");
+            throw new SecretKeyNotAvailableException($keyId, "could not find secret key for key id $keyId");
         }
         return $this->secretKeys[$keyId];
     }

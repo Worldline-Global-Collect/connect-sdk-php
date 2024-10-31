@@ -13,7 +13,7 @@ abstract class MultipartDataObject
     /**
      * @return MultipartFormDataObject
      */
-    public abstract function toMultipartFormDataObject();
+    abstract public function toMultipartFormDataObject();
 
     public function __set($name, $value)
     {

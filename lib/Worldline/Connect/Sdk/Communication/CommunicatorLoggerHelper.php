@@ -108,10 +108,10 @@ class CommunicatorLoggerHelper
     public function getEndpoint($requestUri)
     {
         $index = strpos($requestUri, '://');
-        if ($index !== FALSE) {
+        if ($index !== false) {
             $index = strpos($requestUri, '/', $index + 3);
-            // $index === FALSE means there's no / after the host; there is no relative URI
-            return $index !== FALSE ? substr($requestUri, 0, $index) : $requestUri;
+            // $index === false means there's no / after the host; there is no relative URI
+            return $index !== false ? substr($requestUri, 0, $index) : $requestUri;
         } else {
             // not an absolute URI
             return '';
@@ -125,10 +125,10 @@ class CommunicatorLoggerHelper
     public function getRelativeUriPathWithRequestParameters($requestUri)
     {
         $index = strpos($requestUri, '://');
-        if ($index !== FALSE) {
+        if ($index !== false) {
             $index = strpos($requestUri, '/', $index + 3);
-            // $index === FALSE means there's no / after the host; there is no relative URI
-            return $index !== FALSE ? substr($requestUri, $index) : '';
+            // $index === false means there's no / after the host; there is no relative URI
+            return $index !== false ? substr($requestUri, $index) : '';
         } else {
             // not an absolute URI
             return $requestUri;

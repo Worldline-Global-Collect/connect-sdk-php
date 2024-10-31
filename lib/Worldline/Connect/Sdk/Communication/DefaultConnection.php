@@ -312,7 +312,7 @@ class DefaultConnection implements Connection
         if (in_array($httpMethod, array('PUT', 'POST')) && $body) {
             if (is_string($body)) {
                 curl_setopt($curlHandle, CURLOPT_POSTFIELDS, $body);
-            } else if ($body instanceof MultipartFormDataObject) {
+            } elseif ($body instanceof MultipartFormDataObject) {
                 $multipart = new MultipartFormData($body->getBoundary());
                 foreach ($body->getValues() as $name => $value) {
                     $multipart->addValue($name, $value);
@@ -334,7 +334,7 @@ class DefaultConnection implements Connection
             }
         }
 
-        if (count($requestHeaders) > 0) {
+        if (!empty($requestHeaders)) {
             curl_setopt($curlHandle, CURLOPT_HTTPHEADER, HttpHeaderHelper::generateRawHeaders($requestHeaders));
         }
 
@@ -359,7 +359,7 @@ class DefaultConnection implements Connection
         if (is_null($this->multiHandle)) {
             $multiHandle = curl_multi_init();
             if ($multiHandle === false) {
-                throw new Exception('Failed to initialize cURL multi curlHandle');
+                throw new ErrorException('Failed to initialize cURL multi curlHandle');
             }
             $this->multiHandle = $multiHandle;
         }
