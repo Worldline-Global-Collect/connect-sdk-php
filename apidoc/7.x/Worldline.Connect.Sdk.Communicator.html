@@ -1,0 +1,829 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Worldline\Connect\Sdk\Communicator | Worldline Connect PHP SDK API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item active">
+				<a href="namespace-Worldline.html">Worldline</a>
+	<ul>
+			<li class="menuGroup-item active">
+				<a href="namespace-Worldline.Connect.html">Connect</a>
+	<ul>
+			<li class="menuGroup-item active">
+				<a href="namespace-Worldline.Connect.Sdk.html">Sdk</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Authentication.html">Authentication</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Communication.html">Communication</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Domain.html">Domain</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.JSON.html">JSON</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Logging.html">Logging</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.V1.html">V1</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Webhooks.html">Webhooks</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Worldline.Connect.Sdk.ApiResource.html">
+							ApiResource
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.BodyHandler.html">
+							BodyHandler
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.CallContext.html">
+							CallContext
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.Client.html">
+							Client
+						</a>
+					</li>
+					<li class="active">
+						<a href="Worldline.Connect.Sdk.Communicator.html">
+							Communicator
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.CommunicatorConfiguration.html">
+							CommunicatorConfiguration
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.ProxyConfiguration.html">
+							ProxyConfiguration
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Worldline.Connect.Sdk.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Worldline.Connect.Sdk.Communicator.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Worldline.html">Worldline</a>\<a href="namespace-Worldline.Connect.html">Connect</a>\<a href="namespace-Worldline.Connect.Sdk.html">Sdk</a>\<a href="Worldline.Connect.Sdk.Communicator.html">Communicator</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>Class Communicator</p>
+</div>
+		</div>
+
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-lib.Worldline.Connect.Sdk.Communicator.html#27" title="Go to source code">lib/Worldline/Connect/Sdk/Communicator.php</a><br>
+		</div>
+
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="__construct" id="___construct">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#46-60" title="Go to source code">__construct</a>(
+	<span><a href="Worldline.Connect.Sdk.CommunicatorConfiguration.html"><span title="Worldline\Connect\Sdk\CommunicatorConfiguration">CommunicatorConfiguration</span></a> <var>$communicatorConfiguration</var></span>,
+	<span><a href="Worldline.Connect.Sdk.Authentication.Authenticator.html"><span title="Worldline\Connect\Sdk\Authentication\Authenticator">Authenticator</span></a>|null <var>$authenticator</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.Connection.html"><span title="Worldline\Connect\Sdk\Communication\Connection">Connection</span></a>|null <var>$connection</var> = <span class="php-kw">null</span></span>,
+)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#___construct">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="enableLogging" id="_enableLogging">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#62-68" title="Go to source code">enableLogging</a>(<span><a href="Worldline.Connect.Sdk.Logging.CommunicatorLogger.html"><span title="Worldline\Connect\Sdk\Logging\CommunicatorLogger">CommunicatorLogger</span></a> <var>$communicatorLogger</var></span>)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_enableLogging">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="disableLogging" id="_disableLogging">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#70-76" title="Go to source code">disableLogging</a>()</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_disableLogging">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="get" id="_get">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#78-119" title="Go to source code">get</a>(
+	<span><a href="Worldline.Connect.Sdk.Communication.ResponseClassMap.html"><span title="Worldline\Connect\Sdk\Communication\ResponseClassMap">ResponseClassMap</span></a> <var>$responseClassMap</var></span>,
+	<span>string <var>$relativeUriPath</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+): <a href="Worldline.Connect.Sdk.Domain.DataObject.html"><span title="Worldline\Connect\Sdk\Domain\DataObject">DataObject</span></a></code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_get">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getWithBinaryResponse" id="_getWithBinaryResponse">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#121-166" title="Go to source code">getWithBinaryResponse</a>(
+	<span>callable <var>$bodyHandler</var></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.ResponseClassMap.html"><span title="Worldline\Connect\Sdk\Communication\ResponseClassMap">ResponseClassMap</span></a> <var>$responseClassMap</var></span>,
+	<span>string <var>$relativeUriPath</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$bodyHandler</var>&nbsp;&nbsp;</td>
+										<td><p>Callable accepting a response body chunk and the response headers</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$responseClassMap</var>&nbsp;&nbsp;</td>
+										<td><p>Used for error handling</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getWithBinaryResponse">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="delete" id="_delete">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#168-209" title="Go to source code">delete</a>(
+	<span><a href="Worldline.Connect.Sdk.Communication.ResponseClassMap.html"><span title="Worldline\Connect\Sdk\Communication\ResponseClassMap">ResponseClassMap</span></a> <var>$responseClassMap</var></span>,
+	<span>string <var>$relativeUriPath</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+): <a href="Worldline.Connect.Sdk.Domain.DataObject.html"><span title="Worldline\Connect\Sdk\Domain\DataObject">DataObject</span></a></code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_delete">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="deleteWithBinaryResponse" id="_deleteWithBinaryResponse">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#211-256" title="Go to source code">deleteWithBinaryResponse</a>(
+	<span>callable <var>$bodyHandler</var></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.ResponseClassMap.html"><span title="Worldline\Connect\Sdk\Communication\ResponseClassMap">ResponseClassMap</span></a> <var>$responseClassMap</var></span>,
+	<span>string <var>$relativeUriPath</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$bodyHandler</var>&nbsp;&nbsp;</td>
+										<td><p>Callable accepting a response body chunk and the response headers</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$responseClassMap</var>&nbsp;&nbsp;</td>
+										<td><p>Used for error handling</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_deleteWithBinaryResponse">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="post" id="_post">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#258-315" title="Go to source code">post</a>(
+	<span><a href="Worldline.Connect.Sdk.Communication.ResponseClassMap.html"><span title="Worldline\Connect\Sdk\Communication\ResponseClassMap">ResponseClassMap</span></a> <var>$responseClassMap</var></span>,
+	<span>string <var>$relativeUriPath</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Domain.DataObject.html"><span title="Worldline\Connect\Sdk\Domain\DataObject">DataObject</span></a>|<a href="Worldline.Connect.Sdk.Communication.MultipartDataObject.html"><span title="Worldline\Connect\Sdk\Communication\MultipartDataObject">MultipartDataObject</span></a>|<a href="Worldline.Connect.Sdk.Communication.MultipartFormDataObject.html"><span title="Worldline\Connect\Sdk\Communication\MultipartFormDataObject">MultipartFormDataObject</span></a>|null <var>$requestBodyObject</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+): <a href="Worldline.Connect.Sdk.Domain.DataObject.html"><span title="Worldline\Connect\Sdk\Domain\DataObject">DataObject</span></a></code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_post">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="postWithBinaryResponse" id="_postWithBinaryResponse">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#317-378" title="Go to source code">postWithBinaryResponse</a>(
+	<span>callable <var>$bodyHandler</var></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.ResponseClassMap.html"><span title="Worldline\Connect\Sdk\Communication\ResponseClassMap">ResponseClassMap</span></a> <var>$responseClassMap</var></span>,
+	<span>string <var>$relativeUriPath</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Domain.DataObject.html"><span title="Worldline\Connect\Sdk\Domain\DataObject">DataObject</span></a>|<a href="Worldline.Connect.Sdk.Communication.MultipartDataObject.html"><span title="Worldline\Connect\Sdk\Communication\MultipartDataObject">MultipartDataObject</span></a>|<a href="Worldline.Connect.Sdk.Communication.MultipartFormDataObject.html"><span title="Worldline\Connect\Sdk\Communication\MultipartFormDataObject">MultipartFormDataObject</span></a>|null <var>$requestBodyObject</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$bodyHandler</var>&nbsp;&nbsp;</td>
+										<td><p>Callable accepting a response body chunk and the response headers</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$responseClassMap</var>&nbsp;&nbsp;</td>
+										<td><p>Used for error handling</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_postWithBinaryResponse">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="put" id="_put">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#380-437" title="Go to source code">put</a>(
+	<span><a href="Worldline.Connect.Sdk.Communication.ResponseClassMap.html"><span title="Worldline\Connect\Sdk\Communication\ResponseClassMap">ResponseClassMap</span></a> <var>$responseClassMap</var></span>,
+	<span>string <var>$relativeUriPath</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Domain.DataObject.html"><span title="Worldline\Connect\Sdk\Domain\DataObject">DataObject</span></a>|<a href="Worldline.Connect.Sdk.Communication.MultipartDataObject.html"><span title="Worldline\Connect\Sdk\Communication\MultipartDataObject">MultipartDataObject</span></a>|<a href="Worldline.Connect.Sdk.Communication.MultipartFormDataObject.html"><span title="Worldline\Connect\Sdk\Communication\MultipartFormDataObject">MultipartFormDataObject</span></a>|null <var>$requestBodyObject</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+): <a href="Worldline.Connect.Sdk.Domain.DataObject.html"><span title="Worldline\Connect\Sdk\Domain\DataObject">DataObject</span></a></code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_put">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="putWithBinaryResponse" id="_putWithBinaryResponse">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#439-500" title="Go to source code">putWithBinaryResponse</a>(
+	<span>callable <var>$bodyHandler</var></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.ResponseClassMap.html"><span title="Worldline\Connect\Sdk\Communication\ResponseClassMap">ResponseClassMap</span></a> <var>$responseClassMap</var></span>,
+	<span>string <var>$relativeUriPath</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Domain.DataObject.html"><span title="Worldline\Connect\Sdk\Domain\DataObject">DataObject</span></a>|<a href="Worldline.Connect.Sdk.Communication.MultipartDataObject.html"><span title="Worldline\Connect\Sdk\Communication\MultipartDataObject">MultipartDataObject</span></a>|<a href="Worldline.Connect.Sdk.Communication.MultipartFormDataObject.html"><span title="Worldline\Connect\Sdk\Communication\MultipartFormDataObject">MultipartFormDataObject</span></a>|null <var>$requestBodyObject</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+							<h4>Parameters</h4>
+							<table>
+									<tr>
+										<td><var>$bodyHandler</var>&nbsp;&nbsp;</td>
+										<td><p>Callable accepting a response body chunk and the response headers</p>
+</td>
+									</tr>
+									<tr>
+										<td><var>$responseClassMap</var>&nbsp;&nbsp;</td>
+										<td><p>Used for error handling</p>
+</td>
+									</tr>
+							</table>
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_putWithBinaryResponse">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="updateCallContext" id="_updateCallContext">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#502-513" title="Go to source code">updateCallContext</a>(<span><a href="Worldline.Connect.Sdk.Communication.ConnectionResponse.html"><span title="Worldline\Connect\Sdk\Communication\ConnectionResponse">ConnectionResponse</span></a> <var>$response</var></span>, <span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>)</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_updateCallContext">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getRequestUri" id="_getRequestUri">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#515-526" title="Go to source code">getRequestUri</a>(<span><var>$relativeUriPath</var></span>, <span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>): string</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+							<h4>Throws</h4>
+							<table>
+									<tr>
+										<td><code><a href="Exception.html"><span>Exception</span></a></code>&nbsp;</td>
+										<td></td>
+									</tr>
+							</table>
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getRequestUri">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getRequestHeaders" id="_getRequestHeaders">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#528-556" title="Go to source code">getRequestHeaders</a>(
+	<span>string <var>$httpMethod</var></span>,
+	<span>string <var>$relativeUriPathWithRequestParameters</var></span>,
+	<span>string <var>$contentType</var></span>,
+	<span>string <var>$clientMetaInfo</var> = <span class="php-str">''</span></span>,
+	<span><a href="Worldline.Connect.Sdk.CallContext.html"><span title="Worldline\Connect\Sdk\CallContext">CallContext</span></a> <var>$callContext</var> = <span class="php-kw">null</span></span>,
+): string[]</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getRequestHeaders">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getRfc161Date" id="_getRfc161Date">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					static
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#558-564" title="Go to source code">getRfc161Date</a>(): string</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getRfc161Date">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getRelativeUriPathWithRequestParameters" id="_getRelativeUriPathWithRequestParameters">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#566-586" title="Go to source code">getRelativeUriPathWithRequestParameters</a>(<span><var>$relativeUriPath</var></span>, <span><a href="Worldline.Connect.Sdk.Communication.RequestObject.html"><span title="Worldline\Connect\Sdk\Communication\RequestObject">RequestObject</span></a>|null <var>$requestParameters</var> = <span class="php-kw">null</span></span>): string</code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getRelativeUriPathWithRequestParameters">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="getResponseFactory" id="_getResponseFactory">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#588-595" title="Go to source code">getResponseFactory</a>(): <a href="Worldline.Connect.Sdk.Communication.ResponseFactory.html"><span title="Worldline\Connect\Sdk\Communication\ResponseFactory">ResponseFactory</span></a></code>
+
+
+
+	<div class="expandable-expandedView">
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_getResponseFactory">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+		<table class="table" id="constants">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Constants</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="MIME_APPLICATION_JSON" id="MIME_APPLICATION_JSON">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	public
+				</code>
+			</td>
+
+			<td class="table-cell">
+<code><a href="source-lib.Worldline.Connect.Sdk.Communicator.html#29" title="Go to source code">MIME_APPLICATION_JSON</a> = <span class="php-str">'application/json'</span></code>
+
+
+	<div class="expandable-expandedView">
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#MIME_APPLICATION_JSON">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			Worldline Connect PHP SDK API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.4</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>
