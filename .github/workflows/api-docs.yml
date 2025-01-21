@@ -19,11 +19,20 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '5.6'
-      - name: Install apigen
-        run: composer global require apigen/apigen
+          php-version: '7.4'
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v4
+        with:
+            path: vendor
+            key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+            restore-keys: |
+                ${{ runner.os }}-php-
+      - name: Install dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+        working-directory: code
       - name: Build API docs
-        run: apigen generate -s lib,src -d docs --deprecated --no-source-code  --title 'Worldline Connect PHP SDK'
+        run: mkdir -p docs && docker run --rm -v "$GITHUB_WORKSPACE/code:/workspace" -w /workspace -u `id -u`:`id -g` apigen/apigen
         working-directory: code
       - name: Checkout pages
         uses: actions/checkout@v4

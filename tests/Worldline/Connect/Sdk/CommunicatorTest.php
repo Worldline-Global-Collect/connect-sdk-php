@@ -42,7 +42,8 @@ class CommunicatorTest extends TestCase
         $this->defaultCommunicator->get($this->defaultResponseClassMap, $relativeUri, $clientMetaInfo, $findParams);
     }
 
-    public function testExceptionInvalidUrl()
+    // skipped, as Connect now returns a JSON error response for invalid URLs, including non-numeric payment product ids
+    public function skipExceptionInvalidUrl()
     {
         try {
             $relativeUri = sprintf('/v1/%s/foo', $this->getMerchantId());

@@ -11,22 +11,12 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 /**
  * @package Worldline\Connect\Sdk\V1\Domain
  */
-class MicrosoftFraudResults extends DataObject
+class CybersourceDecisionManager extends DataObject
 {
     /**
      * @var string
      */
     public $clauseName = null;
-
-    /**
-     * @var string
-     */
-    public $deviceCountryCode = null;
-
-    /**
-     * @var string
-     */
-    public $deviceId = null;
 
     /**
      * @var int
@@ -44,16 +34,6 @@ class MicrosoftFraudResults extends DataObject
     public $reasonCodes = null;
 
     /**
-     * @var string
-     */
-    public $trueIpAddress = null;
-
-    /**
-     * @var string
-     */
-    public $userDeviceType = null;
-
-    /**
      * @return object
      */
     public function toObject()
@@ -61,12 +41,6 @@ class MicrosoftFraudResults extends DataObject
         $object = parent::toObject();
         if (!is_null($this->clauseName)) {
             $object->clauseName = $this->clauseName;
-        }
-        if (!is_null($this->deviceCountryCode)) {
-            $object->deviceCountryCode = $this->deviceCountryCode;
-        }
-        if (!is_null($this->deviceId)) {
-            $object->deviceId = $this->deviceId;
         }
         if (!is_null($this->fraudScore)) {
             $object->fraudScore = $this->fraudScore;
@@ -82,12 +56,6 @@ class MicrosoftFraudResults extends DataObject
                 }
             }
         }
-        if (!is_null($this->trueIpAddress)) {
-            $object->trueIpAddress = $this->trueIpAddress;
-        }
-        if (!is_null($this->userDeviceType)) {
-            $object->userDeviceType = $this->userDeviceType;
-        }
         return $object;
     }
 
@@ -101,12 +69,6 @@ class MicrosoftFraudResults extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'clauseName')) {
             $this->clauseName = $object->clauseName;
-        }
-        if (property_exists($object, 'deviceCountryCode')) {
-            $this->deviceCountryCode = $object->deviceCountryCode;
-        }
-        if (property_exists($object, 'deviceId')) {
-            $this->deviceId = $object->deviceId;
         }
         if (property_exists($object, 'fraudScore')) {
             $this->fraudScore = $object->fraudScore;
@@ -122,12 +84,6 @@ class MicrosoftFraudResults extends DataObject
             foreach ($object->reasonCodes as $element) {
                 $this->reasonCodes[] = $element;
             }
-        }
-        if (property_exists($object, 'trueIpAddress')) {
-            $this->trueIpAddress = $object->trueIpAddress;
-        }
-        if (property_exists($object, 'userDeviceType')) {
-            $this->userDeviceType = $object->userDeviceType;
         }
         return $this;
     }
