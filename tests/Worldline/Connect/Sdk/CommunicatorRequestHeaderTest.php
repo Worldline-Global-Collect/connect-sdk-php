@@ -22,6 +22,30 @@ class CommunicatorRequestHeaderTest extends TestCase
             );
             $curlHeaders = HttpHeaderHelper::generateRawHeaders($requestHeaders);
 
+            $this->assertCount(3, $curlHeaders);
+
+            $result = false;
+            foreach ($curlHeaders as $curlHeader) {
+                $result |= preg_match(
+                    '/^Authorization: GCS v1HMAC:' . $this->getApiKey() . ':[a-zA-Z0-9+\/]+={0,2}/',
+                    $curlHeader
+                );
+            }
+            $this->assertEquals(true, $result);
+        }
+    }
+
+    public function testV1HMACWithContentType()
+    {
+        foreach (array('POST','PUT') as $httpMethod) {
+            $requestHeaders = $this->getRequestHeaders(
+                $this->getCommunicatorConfiguration(),
+                $httpMethod,
+                '/v1/consumer/ANDR%C3%89E/?q=na%20me',
+                'application/json'
+            );
+            $curlHeaders = HttpHeaderHelper::generateRawHeaders($requestHeaders);
+
             $this->assertCount(4, $curlHeaders);
 
             $result = false;
@@ -44,6 +68,36 @@ class CommunicatorRequestHeaderTest extends TestCase
                 $httpMethod,
                 '/v1/consumer/ANDR%C3%89E/?q=na%20me',
                 '',
+                $clientMetaInfo
+            );
+
+            $this->assertCount(4, $requestHeaders);
+            $result = false;
+            foreach ($requestHeaders as $curlHeader) {
+                $splitHeader = explode(':', $curlHeader);
+                $result |= base64_encode(base64_decode(end($splitHeader))) == end($splitHeader);
+            }
+            if (!$result) {
+                print_r($requestHeaders);
+            }
+            $this->assertEquals(true, $result);
+
+            $xGcsHeaders = array_slice($requestHeaders, 1, 3, true);
+            $xGcsHeadersSorted = $xGcsHeaders;
+            ksort($xGcsHeadersSorted);
+            $this->assertEquals($xGcsHeadersSorted, $xGcsHeaders);
+        }
+    }
+
+    public function testAddHeaderV1HMACAddHeadersWithContentType()
+    {
+        foreach (array('POST','PUT') as $httpMethod) {
+            $clientMetaInfo = base64_encode('{ "test": "test" }');
+            $requestHeaders = $this->getRequestHeaders(
+                $this->getCommunicatorConfiguration(),
+                $httpMethod,
+                '/v1/consumer/ANDR%C3%89E/?q=na%20me',
+                'application/json',
                 $clientMetaInfo
             );
 

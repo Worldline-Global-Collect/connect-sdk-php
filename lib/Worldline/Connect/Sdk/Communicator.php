@@ -94,7 +94,7 @@ class Communicator
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         $requestHeaders =
-            $this->getRequestHeaders('GET', $relativeUriPathWithRequestParameters, static::MIME_APPLICATION_JSON, $clientMetaInfo, $callContext);
+            $this->getRequestHeaders('GET', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder) {
@@ -138,7 +138,7 @@ class Communicator
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         $requestHeaders =
-            $this->getRequestHeaders('GET', $relativeUriPathWithRequestParameters, static::MIME_APPLICATION_JSON, $clientMetaInfo, $callContext);
+            $this->getRequestHeaders('GET', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder, $bodyHandler) {
@@ -184,7 +184,7 @@ class Communicator
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         $requestHeaders =
-            $this->getRequestHeaders('DELETE', $relativeUriPathWithRequestParameters, static::MIME_APPLICATION_JSON, $clientMetaInfo, $callContext);
+            $this->getRequestHeaders('DELETE', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder) {
@@ -228,7 +228,7 @@ class Communicator
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         $requestHeaders =
-            $this->getRequestHeaders('DELETE', $relativeUriPathWithRequestParameters, static::MIME_APPLICATION_JSON, $clientMetaInfo, $callContext);
+            $this->getRequestHeaders('DELETE', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder, $bodyHandler) {
@@ -528,7 +528,7 @@ class Communicator
     /**
      * @param string $httpMethod
      * @param string $relativeUriPathWithRequestParameters
-     * @param string $contentType
+     * @param string|null $contentType
      * @param string $clientMetaInfo
      * @param CallContext $callContext
      * @return string[]
@@ -542,7 +542,9 @@ class Communicator
     ) {
         $rfc2616Date = self::getRfc161Date();
         $requestHeaders = array();
-        $requestHeaders['Content-Type'] = $contentType;
+        if ($contentType) {
+            $requestHeaders['Content-Type'] = $contentType;
+        }
         $requestHeaders['Date'] = $rfc2616Date;
         if ($clientMetaInfo) {
             $requestHeaders['X-GCS-ClientMetaInfo'] = $clientMetaInfo;
