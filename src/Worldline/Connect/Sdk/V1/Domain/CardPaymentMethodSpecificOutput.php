@@ -33,9 +33,19 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
     public $initialSchemeTransactionId = null;
 
     /**
+     * @var NetworkTokenData
+     */
+    public $networkTokenData = null;
+
+    /**
      * @var bool
      */
     public $networkTokenUsed = null;
+
+    /**
+     * @var string
+     */
+    public $paymentAccountReference = null;
 
     /**
      * @var string
@@ -70,8 +80,14 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         if (!is_null($this->initialSchemeTransactionId)) {
             $object->initialSchemeTransactionId = $this->initialSchemeTransactionId;
         }
+        if (!is_null($this->networkTokenData)) {
+            $object->networkTokenData = $this->networkTokenData->toObject();
+        }
         if (!is_null($this->networkTokenUsed)) {
             $object->networkTokenUsed = $this->networkTokenUsed;
+        }
+        if (!is_null($this->paymentAccountReference)) {
+            $object->paymentAccountReference = $this->paymentAccountReference;
         }
         if (!is_null($this->schemeTransactionId)) {
             $object->schemeTransactionId = $this->schemeTransactionId;
@@ -113,8 +129,18 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         if (property_exists($object, 'initialSchemeTransactionId')) {
             $this->initialSchemeTransactionId = $object->initialSchemeTransactionId;
         }
+        if (property_exists($object, 'networkTokenData')) {
+            if (!is_object($object->networkTokenData)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->networkTokenData, true) . '\' is not an object');
+            }
+            $value = new NetworkTokenData();
+            $this->networkTokenData = $value->fromObject($object->networkTokenData);
+        }
         if (property_exists($object, 'networkTokenUsed')) {
             $this->networkTokenUsed = $object->networkTokenUsed;
+        }
+        if (property_exists($object, 'paymentAccountReference')) {
+            $this->paymentAccountReference = $object->paymentAccountReference;
         }
         if (property_exists($object, 'schemeTransactionId')) {
             $this->schemeTransactionId = $object->schemeTransactionId;
