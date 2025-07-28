@@ -14,6 +14,11 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentReferences extends DataObject
 {
     /**
+     * @var string
+     */
+    public $merchantCaptureReference = null;
+
+    /**
      * @var int
      */
     public $merchantOrderId = null;
@@ -54,6 +59,9 @@ class PaymentReferences extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->merchantCaptureReference)) {
+            $object->merchantCaptureReference = $this->merchantCaptureReference;
+        }
         if (!is_null($this->merchantOrderId)) {
             $object->merchantOrderId = $this->merchantOrderId;
         }
@@ -86,6 +94,9 @@ class PaymentReferences extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'merchantCaptureReference')) {
+            $this->merchantCaptureReference = $object->merchantCaptureReference;
+        }
         if (property_exists($object, 'merchantOrderId')) {
             $this->merchantOrderId = $object->merchantOrderId;
         }

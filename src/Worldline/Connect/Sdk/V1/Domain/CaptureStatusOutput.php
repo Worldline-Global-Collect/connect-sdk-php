@@ -16,6 +16,11 @@ class CaptureStatusOutput extends DataObject
     /**
      * @var bool
      */
+    public $isRefundable = null;
+
+    /**
+     * @var bool
+     */
     public $isRetriable = null;
 
     /**
@@ -29,11 +34,19 @@ class CaptureStatusOutput extends DataObject
     public $statusCode = null;
 
     /**
+     * @var string
+     */
+    public $statusCodeChangeDateTime = null;
+
+    /**
      * @return object
      */
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->isRefundable)) {
+            $object->isRefundable = $this->isRefundable;
+        }
         if (!is_null($this->isRetriable)) {
             $object->isRetriable = $this->isRetriable;
         }
@@ -48,6 +61,9 @@ class CaptureStatusOutput extends DataObject
         if (!is_null($this->statusCode)) {
             $object->statusCode = $this->statusCode;
         }
+        if (!is_null($this->statusCodeChangeDateTime)) {
+            $object->statusCodeChangeDateTime = $this->statusCodeChangeDateTime;
+        }
         return $object;
     }
 
@@ -59,6 +75,9 @@ class CaptureStatusOutput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'isRefundable')) {
+            $this->isRefundable = $object->isRefundable;
+        }
         if (property_exists($object, 'isRetriable')) {
             $this->isRetriable = $object->isRetriable;
         }
@@ -74,6 +93,9 @@ class CaptureStatusOutput extends DataObject
         }
         if (property_exists($object, 'statusCode')) {
             $this->statusCode = $object->statusCode;
+        }
+        if (property_exists($object, 'statusCodeChangeDateTime')) {
+            $this->statusCodeChangeDateTime = $object->statusCodeChangeDateTime;
         }
         return $this;
     }

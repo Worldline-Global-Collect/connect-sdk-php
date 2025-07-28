@@ -25,7 +25,8 @@ class TestingConnection extends DefaultConnection
         $body,
         callable $responseHandler,
         ProxyConfiguration $proxyConfiguration = null
-    ) {
+    )
+    {
         if (!is_null($this->exception)) {
             throw $this->exception;
         } else {

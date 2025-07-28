@@ -18,6 +18,11 @@ class RedirectPaymentMethodSpecificInputBase extends AbstractRedirectPaymentMeth
     public $paymentProduct4101SpecificInput = null;
 
     /**
+     * @var RedirectPaymentProduct838SpecificInputBase
+     */
+    public $paymentProduct838SpecificInput = null;
+
+    /**
      * @var RedirectPaymentProduct840SpecificInputBase
      */
     public $paymentProduct840SpecificInput = null;
@@ -30,6 +35,9 @@ class RedirectPaymentMethodSpecificInputBase extends AbstractRedirectPaymentMeth
         $object = parent::toObject();
         if (!is_null($this->paymentProduct4101SpecificInput)) {
             $object->paymentProduct4101SpecificInput = $this->paymentProduct4101SpecificInput->toObject();
+        }
+        if (!is_null($this->paymentProduct838SpecificInput)) {
+            $object->paymentProduct838SpecificInput = $this->paymentProduct838SpecificInput->toObject();
         }
         if (!is_null($this->paymentProduct840SpecificInput)) {
             $object->paymentProduct840SpecificInput = $this->paymentProduct840SpecificInput->toObject();
@@ -51,6 +59,13 @@ class RedirectPaymentMethodSpecificInputBase extends AbstractRedirectPaymentMeth
             }
             $value = new RedirectPaymentProduct4101SpecificInputBase();
             $this->paymentProduct4101SpecificInput = $value->fromObject($object->paymentProduct4101SpecificInput);
+        }
+        if (property_exists($object, 'paymentProduct838SpecificInput')) {
+            if (!is_object($object->paymentProduct838SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct838SpecificInput, true) . '\' is not an object');
+            }
+            $value = new RedirectPaymentProduct838SpecificInputBase();
+            $this->paymentProduct838SpecificInput = $value->fromObject($object->paymentProduct838SpecificInput);
         }
         if (property_exists($object, 'paymentProduct840SpecificInput')) {
             if (!is_object($object->paymentProduct840SpecificInput)) {

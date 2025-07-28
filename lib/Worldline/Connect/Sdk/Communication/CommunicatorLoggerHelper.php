@@ -31,7 +31,8 @@ class CommunicatorLoggerHelper
         $requestUri,
         array $requestHeaders,
         $requestBody = ''
-    ) {
+    )
+    {
         $communicatorLogger->log(sprintf(
             "Outgoing request to %s (requestId='%s')\n%s",
             $this->getEndpoint($requestUri),

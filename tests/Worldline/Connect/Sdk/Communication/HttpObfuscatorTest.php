@@ -22,7 +22,8 @@ class HttpObfuscatorTest extends TestCase
         array $requestHeaders,
         $requestBody,
         $expectedRawObfuscatedRequest
-    ) {
+    )
+    {
         $httpObfuscator = new HttpObfuscator();
         $this->assertEquals(
             $expectedRawObfuscatedRequest,

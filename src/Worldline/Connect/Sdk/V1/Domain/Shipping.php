@@ -26,6 +26,11 @@ class Shipping extends DataObject
     /**
      * @var string
      */
+    public $carrier = null;
+
+    /**
+     * @var string
+     */
     public $comments = null;
 
     /**
@@ -37,6 +42,11 @@ class Shipping extends DataObject
      * @var string
      */
     public $firstUsageDate = null;
+
+    /**
+     * @var string
+     */
+    public $instructions = null;
 
     /**
      * @var bool
@@ -70,6 +80,9 @@ class Shipping extends DataObject
         if (!is_null($this->addressIndicator)) {
             $object->addressIndicator = $this->addressIndicator;
         }
+        if (!is_null($this->carrier)) {
+            $object->carrier = $this->carrier;
+        }
         if (!is_null($this->comments)) {
             $object->comments = $this->comments;
         }
@@ -78,6 +91,9 @@ class Shipping extends DataObject
         }
         if (!is_null($this->firstUsageDate)) {
             $object->firstUsageDate = $this->firstUsageDate;
+        }
+        if (!is_null($this->instructions)) {
+            $object->instructions = $this->instructions;
         }
         if (!is_null($this->isFirstUsage)) {
             $object->isFirstUsage = $this->isFirstUsage;
@@ -112,6 +128,9 @@ class Shipping extends DataObject
         if (property_exists($object, 'addressIndicator')) {
             $this->addressIndicator = $object->addressIndicator;
         }
+        if (property_exists($object, 'carrier')) {
+            $this->carrier = $object->carrier;
+        }
         if (property_exists($object, 'comments')) {
             $this->comments = $object->comments;
         }
@@ -120,6 +139,9 @@ class Shipping extends DataObject
         }
         if (property_exists($object, 'firstUsageDate')) {
             $this->firstUsageDate = $object->firstUsageDate;
+        }
+        if (property_exists($object, 'instructions')) {
+            $this->instructions = $object->instructions;
         }
         if (property_exists($object, 'isFirstUsage')) {
             $this->isFirstUsage = $object->isFirstUsage;

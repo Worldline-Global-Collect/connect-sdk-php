@@ -38,26 +38,6 @@ class CaptureOutput extends OrderOutput
     public $cashPaymentMethodSpecificOutput = null;
 
     /**
-     * @var NonSepaDirectDebitPaymentMethodSpecificOutput
-     */
-    public $directDebitPaymentMethodSpecificOutput = null;
-
-    /**
-     * @var EInvoicePaymentMethodSpecificOutput
-     */
-    public $eInvoicePaymentMethodSpecificOutput = null;
-
-    /**
-     * @var InvoicePaymentMethodSpecificOutput
-     */
-    public $invoicePaymentMethodSpecificOutput = null;
-
-    /**
-     * @var MobilePaymentMethodSpecificOutput
-     */
-    public $mobilePaymentMethodSpecificOutput = null;
-
-    /**
      * @var string
      */
     public $paymentMethod = null;
@@ -97,18 +77,6 @@ class CaptureOutput extends OrderOutput
         }
         if (!is_null($this->cashPaymentMethodSpecificOutput)) {
             $object->cashPaymentMethodSpecificOutput = $this->cashPaymentMethodSpecificOutput->toObject();
-        }
-        if (!is_null($this->directDebitPaymentMethodSpecificOutput)) {
-            $object->directDebitPaymentMethodSpecificOutput = $this->directDebitPaymentMethodSpecificOutput->toObject();
-        }
-        if (!is_null($this->eInvoicePaymentMethodSpecificOutput)) {
-            $object->eInvoicePaymentMethodSpecificOutput = $this->eInvoicePaymentMethodSpecificOutput->toObject();
-        }
-        if (!is_null($this->invoicePaymentMethodSpecificOutput)) {
-            $object->invoicePaymentMethodSpecificOutput = $this->invoicePaymentMethodSpecificOutput->toObject();
-        }
-        if (!is_null($this->mobilePaymentMethodSpecificOutput)) {
-            $object->mobilePaymentMethodSpecificOutput = $this->mobilePaymentMethodSpecificOutput->toObject();
         }
         if (!is_null($this->paymentMethod)) {
             $object->paymentMethod = $this->paymentMethod;
@@ -159,34 +127,6 @@ class CaptureOutput extends OrderOutput
             }
             $value = new CashPaymentMethodSpecificOutput();
             $this->cashPaymentMethodSpecificOutput = $value->fromObject($object->cashPaymentMethodSpecificOutput);
-        }
-        if (property_exists($object, 'directDebitPaymentMethodSpecificOutput')) {
-            if (!is_object($object->directDebitPaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->directDebitPaymentMethodSpecificOutput, true) . '\' is not an object');
-            }
-            $value = new NonSepaDirectDebitPaymentMethodSpecificOutput();
-            $this->directDebitPaymentMethodSpecificOutput = $value->fromObject($object->directDebitPaymentMethodSpecificOutput);
-        }
-        if (property_exists($object, 'eInvoicePaymentMethodSpecificOutput')) {
-            if (!is_object($object->eInvoicePaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->eInvoicePaymentMethodSpecificOutput, true) . '\' is not an object');
-            }
-            $value = new EInvoicePaymentMethodSpecificOutput();
-            $this->eInvoicePaymentMethodSpecificOutput = $value->fromObject($object->eInvoicePaymentMethodSpecificOutput);
-        }
-        if (property_exists($object, 'invoicePaymentMethodSpecificOutput')) {
-            if (!is_object($object->invoicePaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->invoicePaymentMethodSpecificOutput, true) . '\' is not an object');
-            }
-            $value = new InvoicePaymentMethodSpecificOutput();
-            $this->invoicePaymentMethodSpecificOutput = $value->fromObject($object->invoicePaymentMethodSpecificOutput);
-        }
-        if (property_exists($object, 'mobilePaymentMethodSpecificOutput')) {
-            if (!is_object($object->mobilePaymentMethodSpecificOutput)) {
-                throw new UnexpectedValueException('value \'' . print_r($object->mobilePaymentMethodSpecificOutput, true) . '\' is not an object');
-            }
-            $value = new MobilePaymentMethodSpecificOutput();
-            $this->mobilePaymentMethodSpecificOutput = $value->fromObject($object->mobilePaymentMethodSpecificOutput);
         }
         if (property_exists($object, 'paymentMethod')) {
             $this->paymentMethod = $object->paymentMethod;

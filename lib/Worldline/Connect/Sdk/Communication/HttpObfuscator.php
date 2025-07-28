@@ -53,7 +53,8 @@ class HttpObfuscator
         $relativeRequestUri,
         array $requestHeaders,
         $requestBody = ''
-    ) {
+    )
+    {
         $rawObfuscatedRequest = $requestMethod . ' ' . $relativeRequestUri . ' ' . static::HTTP_VERSION;
         if ($requestHeaders) {
             $rawObfuscatedRequest .= PHP_EOL . implode(PHP_EOL, HttpHeaderHelper::generateRawHeaders(

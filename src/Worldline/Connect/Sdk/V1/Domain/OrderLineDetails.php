@@ -46,6 +46,11 @@ class OrderLineDetails extends DataObject
     /**
      * @var string
      */
+    public $productImageUrl = null;
+
+    /**
+     * @var string
+     */
     public $productName = null;
 
     /**
@@ -62,6 +67,11 @@ class OrderLineDetails extends DataObject
      * @var string
      */
     public $productType = null;
+
+    /**
+     * @var string
+     */
+    public $productUrl = null;
 
     /**
      * @var int
@@ -102,6 +112,9 @@ class OrderLineDetails extends DataObject
         if (!is_null($this->productCode)) {
             $object->productCode = $this->productCode;
         }
+        if (!is_null($this->productImageUrl)) {
+            $object->productImageUrl = $this->productImageUrl;
+        }
         if (!is_null($this->productName)) {
             $object->productName = $this->productName;
         }
@@ -113,6 +126,9 @@ class OrderLineDetails extends DataObject
         }
         if (!is_null($this->productType)) {
             $object->productType = $this->productType;
+        }
+        if (!is_null($this->productUrl)) {
+            $object->productUrl = $this->productUrl;
         }
         if (!is_null($this->quantity)) {
             $object->quantity = $this->quantity;
@@ -152,6 +168,9 @@ class OrderLineDetails extends DataObject
         if (property_exists($object, 'productCode')) {
             $this->productCode = $object->productCode;
         }
+        if (property_exists($object, 'productImageUrl')) {
+            $this->productImageUrl = $object->productImageUrl;
+        }
         if (property_exists($object, 'productName')) {
             $this->productName = $object->productName;
         }
@@ -163,6 +182,9 @@ class OrderLineDetails extends DataObject
         }
         if (property_exists($object, 'productType')) {
             $this->productType = $object->productType;
+        }
+        if (property_exists($object, 'productUrl')) {
+            $this->productUrl = $object->productUrl;
         }
         if (property_exists($object, 'quantity')) {
             $this->quantity = $object->quantity;

@@ -16,7 +16,8 @@ class HeaderObfuscatorTest extends TestCase
     public function testHeaderObfuscator(
         $headers,
         $obfuscatedHeaders
-    ) {
+    )
+    {
         $headerObfuscator = new HeaderObfuscator();
         $this->assertEquals($obfuscatedHeaders, $headerObfuscator->obfuscateHeaders($headers));
     }
@@ -64,7 +65,8 @@ class HeaderObfuscatorTest extends TestCase
     public function testCustomHeaderObfuscator(
         $headers,
         $obfuscatedHeaders
-    ) {
+    )
+    {
         $headerObfuscator = new HeaderObfuscator();
         $headerObfuscator->setCustomRule('content-type', function ($value, $valueObfuscator) {
             return $valueObfuscator->obfuscateAll($value);

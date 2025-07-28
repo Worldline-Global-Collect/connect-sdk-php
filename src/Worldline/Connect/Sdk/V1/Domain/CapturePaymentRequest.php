@@ -24,6 +24,11 @@ class CapturePaymentRequest extends DataObject
     public $isFinal = null;
 
     /**
+     * @var CapturePaymentOrder
+     */
+    public $order = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -34,6 +39,9 @@ class CapturePaymentRequest extends DataObject
         }
         if (!is_null($this->isFinal)) {
             $object->isFinal = $this->isFinal;
+        }
+        if (!is_null($this->order)) {
+            $object->order = $this->order->toObject();
         }
         return $object;
     }
@@ -51,6 +59,13 @@ class CapturePaymentRequest extends DataObject
         }
         if (property_exists($object, 'isFinal')) {
             $this->isFinal = $object->isFinal;
+        }
+        if (property_exists($object, 'order')) {
+            if (!is_object($object->order)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->order, true) . '\' is not an object');
+            }
+            $value = new CapturePaymentOrder();
+            $this->order = $value->fromObject($object->order);
         }
         return $this;
     }

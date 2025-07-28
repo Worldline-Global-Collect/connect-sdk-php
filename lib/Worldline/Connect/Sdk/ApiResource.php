@@ -19,7 +19,7 @@ class ApiResource
     protected $context = array();
 
     /**
-     * Creates a new proxy object for a API resource.
+     * Creates a new proxy object for an API resource.
      *
      * @param ApiResource $parent The parent resource.
      * @param array $context An associative array that maps URI parameters to values.

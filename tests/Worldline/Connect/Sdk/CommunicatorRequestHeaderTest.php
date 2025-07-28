@@ -251,7 +251,8 @@ class CommunicatorRequestHeaderTest extends TestCase
         $relativeUri,
         $contentType = '',
         $clientMetaInfo = ''
-    ) {
+    )
+    {
         $communicator = new Communicator($communicatorConfiguration);
         $method = new ReflectionMethod($communicator, 'getRequestHeaders');
         $method->setAccessible(true);

@@ -21,6 +21,8 @@ class RiskAssessmentTest extends ClientTestCase
      */
     public function testRiskAssessBankAccount()
     {
+        $this->markTestSkipped("Risk assessments are not available for pre-prod sandbox accounts");
+
         $client = $this->getClient();
         $merchantId = $this->getMerchantId();
 

@@ -52,7 +52,8 @@ class Communicator
         CommunicatorConfiguration $communicatorConfiguration,
         Authenticator $authenticator = null,
         Connection $connection = null
-    ) {
+    )
+    {
         $this->apiEndpoint = $communicatorConfiguration->getApiEndpoint();
         $this->connection = $connection != null ? $connection : new DefaultConnection($communicatorConfiguration);
         $this->authenticator = $authenticator != null ? $authenticator : new V1HMACAuthenticator($communicatorConfiguration);
@@ -90,7 +91,8 @@ class Communicator
         $clientMetaInfo = '',
         RequestObject $requestParameters = null,
         CallContext $callContext = null
-    ) {
+    )
+    {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         $requestHeaders =
@@ -134,7 +136,8 @@ class Communicator
         $clientMetaInfo = '',
         RequestObject $requestParameters = null,
         CallContext $callContext = null
-    ) {
+    )
+    {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         $requestHeaders =
@@ -180,7 +183,8 @@ class Communicator
         $clientMetaInfo = '',
         RequestObject $requestParameters = null,
         CallContext $callContext = null
-    ) {
+    )
+    {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         $requestHeaders =
@@ -224,7 +228,8 @@ class Communicator
         $clientMetaInfo = '',
         RequestObject $requestParameters = null,
         CallContext $callContext = null
-    ) {
+    )
+    {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         $requestHeaders =
@@ -272,7 +277,8 @@ class Communicator
         $requestBodyObject = null,
         RequestObject $requestParameters = null,
         CallContext $callContext = null
-    ) {
+    )
+    {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         if ($requestBodyObject instanceof MultipartFormDataObject) {
@@ -332,7 +338,8 @@ class Communicator
         $requestBodyObject = null,
         RequestObject $requestParameters = null,
         CallContext $callContext = null
-    ) {
+    )
+    {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         if ($requestBodyObject instanceof MultipartFormDataObject) {
@@ -394,7 +401,8 @@ class Communicator
         $requestBodyObject = null,
         RequestObject $requestParameters = null,
         CallContext $callContext = null
-    ) {
+    )
+    {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         if ($requestBodyObject instanceof MultipartFormDataObject) {
@@ -454,7 +462,8 @@ class Communicator
         $requestBodyObject = null,
         RequestObject $requestParameters = null,
         CallContext $callContext = null
-    ) {
+    )
+    {
         $relativeUriPathWithRequestParameters =
             $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         if ($requestBodyObject instanceof MultipartFormDataObject) {
@@ -539,7 +548,8 @@ class Communicator
         $contentType,
         $clientMetaInfo = '',
         CallContext $callContext = null
-    ) {
+    )
+    {
         $rfc2616Date = self::getRfc161Date();
         $requestHeaders = array();
         if ($contentType) {
@@ -573,7 +583,8 @@ class Communicator
     protected function getRelativeUriPathWithRequestParameters(
         $relativeUriPath,
         RequestObject $requestParameters = null
-    ) {
+    )
+    {
         if (is_null($requestParameters)) {
             return $relativeUriPath;
         }
@@ -582,7 +593,7 @@ class Communicator
             return $relativeUriPath;
         }
         $httpQuery = http_build_query($requestParameterObjectVars);
-        // remove [0], [1] etc that are added if properties are arrays
+        // remove [0], [1] etc. that are added if properties are arrays
         $httpQuery = preg_replace('/%5B[0-9]+%5D/simU', '', $httpQuery);
         return $relativeUriPath . '?' . $httpQuery;
     }

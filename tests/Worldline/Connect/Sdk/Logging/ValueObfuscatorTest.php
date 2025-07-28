@@ -24,7 +24,8 @@ class ValueObfuscatorTest extends TestCase
         $valueEndObfuscated,
         $valueAllObfuscated,
         $obfuscatedFixedLength
-    ) {
+    )
+    {
         $valueObfuscator = new ValueObfuscator();
         $this->assertEquals($valueStartObfuscated, $valueObfuscator->obfuscateAllKeepEnd($value, $obfuscationLength));
         $this->assertEquals($valueEndObfuscated, $valueObfuscator->obfuscateAllKeepStart($value, $obfuscationLength));
