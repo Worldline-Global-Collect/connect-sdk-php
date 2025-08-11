@@ -12,7 +12,7 @@ use Worldline\Connect\Sdk\Domain\ShoppingCartExtension;
  */
 class MetadataProvider
 {
-    const SDK_VERSION = '7.5.0';
+    const SDK_VERSION = '7.6.0';
 
     /** @var string */
     private $integrator;
