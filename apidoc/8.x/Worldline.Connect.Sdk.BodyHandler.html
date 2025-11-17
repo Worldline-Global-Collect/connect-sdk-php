@@ -1,0 +1,346 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>Class Worldline\Connect\Sdk\BodyHandler | Worldline Connect PHP SDK API</title>
+	<link rel="stylesheet" href="assets/main.css">
+	<script src="assets/main.js" defer></script>
+</head>
+
+<body class="layout">
+	<div class="layout-aside">
+	<div class="menu">
+			<div class="menu-section">
+				<h3>Namespaces</h3>
+	<ul>
+			<li class="menuGroup-item active">
+				<a href="namespace-Worldline.html">Worldline</a>
+	<ul>
+			<li class="menuGroup-item active">
+				<a href="namespace-Worldline.Connect.html">Connect</a>
+	<ul>
+			<li class="menuGroup-item active">
+				<a href="namespace-Worldline.Connect.Sdk.html">Sdk</a>
+	<ul>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Authentication.html">Authentication</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Communication.html">Communication</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Domain.html">Domain</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.JSON.html">JSON</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Logging.html">Logging</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.V1.html">V1</a>
+			</li>
+			<li class="menuGroup-item">
+				<a href="namespace-Worldline.Connect.Sdk.Webhooks.html">Webhooks</a>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</li>
+	</ul>
+			</div>
+
+		<div class="menu-section">
+			<h3>Classes</h3>
+			<ul>
+					<li>
+						<a href="Worldline.Connect.Sdk.ApiResource.html">
+							ApiResource
+						</a>
+					</li>
+					<li class="active">
+						<a href="Worldline.Connect.Sdk.BodyHandler.html">
+							BodyHandler
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.CallContext.html">
+							CallContext
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.Client.html">
+							Client
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.Communicator.html">
+							Communicator
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.CommunicatorConfiguration.html">
+							CommunicatorConfiguration
+						</a>
+					</li>
+					<li>
+						<a href="Worldline.Connect.Sdk.ProxyConfiguration.html">
+							ProxyConfiguration
+						</a>
+					</li>
+			</ul>
+		</div>
+
+
+
+
+
+	</div>
+	</div>
+
+	<div class="layout-main">
+		<div class="layout-navbar">
+	<nav class="navbar">
+		<div class="navbar-left">
+			<ul class="navbar-links">
+				<li>
+					<a href="index.html">Overview</a>
+				</li>
+				<li>
+					
+						<a href="namespace-Worldline.Connect.Sdk.html">Namespace</a>
+					
+				</li>
+<li class="active"><a href="Worldline.Connect.Sdk.BodyHandler.html">Class</a></li>				<li>
+					<a href="tree.html">Tree</a>
+				</li>
+			</ul>
+		</div>
+		<div class="navbar-right">
+	<div class="search" data-elements="assets/elements.js">
+		<input class="search-input" placeholder="Search class, function or namespace" autofocus>
+		<ul class="search-results"></ul>
+	</div>
+		</div>
+	</nav>
+		</div>
+
+		<div class="layout-content">
+		<h1>
+			Class <a href="namespace-Worldline.html">Worldline</a>\<a href="namespace-Worldline.Connect.html">Connect</a>\<a href="namespace-Worldline.Connect.Sdk.html">Sdk</a>\<a href="Worldline.Connect.Sdk.BodyHandler.html">BodyHandler</a>
+		</h1>
+
+
+	<table class="classLikeSignatureTable">
+
+
+
+
+	</table>
+		<div class="classLikeDescription">
+	<div class="description"><p>Class BodyHandler
+A utility class that can be used to support binary responses. Its handleBodyPart method can be used as
+callback to methods that require a body handler callable.</p>
+</div>
+		</div>
+
+
+		<div class="classLikeSection">
+			<b>Located at</b> <a href="source-lib.Worldline.Connect.Sdk.BodyHandler.html#11" title="Go to source code">lib/Worldline/Connect/Sdk/BodyHandler.php</a><br>
+		</div>
+
+
+
+		<table class="table" id="methods">
+			<tr>
+				<th class="table-heading sortable" colspan="3" title="Switch between natural and alphabetical order">Methods</th>
+			</tr>
+
+	<tr class="expandable collapsed" data-order="handleBodyPart" id="_handleBodyPart">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					final
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.BodyHandler.html#16-28" title="Go to source code">handleBodyPart</a>(<span>string <var>$bodyPart</var></span>, <span>array <var>$headers</var></span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Initializes this body handler if not done yet, then calls doHandleBodyPart.
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Initializes this body handler if not done yet, then calls doHandleBodyPart.</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_handleBodyPart">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="close" id="_close">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					final
+	public
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.BodyHandler.html#30-38" title="Go to source code">close</a>()</code>
+
+
+	<div class="expandable-collapsedView">
+		Calls doCleanup, then marks this body handler as not initialized.
+Afterwards this instance can be reused again.
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Calls doCleanup, then marks this body handler as not initialized.
+Afterwards this instance can be reused again.</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_close">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="initialize" id="_initialize">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.BodyHandler.html#40-47" title="Go to source code">initialize</a>(<span>array <var>$headers</var></span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Can be used to initialize this body handler based on the given headers.
+The default implementation does nothing.
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Can be used to initialize this body handler based on the given headers.
+The default implementation does nothing.</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_initialize">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="doHandleBodyPart" id="_doHandleBodyPart">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.BodyHandler.html#49-56" title="Go to source code">doHandleBodyPart</a>(<span>string <var>$bodyPart</var></span>)</code>
+
+
+	<div class="expandable-collapsedView">
+		Can be used to handle a single body part.
+The default implementation does nothing.
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Can be used to handle a single body part.
+The default implementation does nothing.</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_doHandleBodyPart">#</a>
+		</td>
+	</tr>
+	<tr class="expandable collapsed" data-order="doCleanup" id="_doCleanup">
+			<td class="table-cell table-shrink">
+				<code class="nowrap">
+					
+	protected
+					
+					
+				</code>
+			</td>
+
+			<td class="table-cell">
+				<code><a href="source-lib.Worldline.Connect.Sdk.BodyHandler.html#58-64" title="Go to source code">doCleanup</a>()</code>
+
+
+	<div class="expandable-collapsedView">
+		Can be used to do cleanup resources allocated by this body handler.
+The default implementation does nothing.
+	</div>
+
+	<div class="expandable-expandedView">
+	<div class="description"><p>Can be used to do cleanup resources allocated by this body handler.
+The default implementation does nothing.</p>
+</div>
+
+
+
+
+	</div>
+			</td>
+		<td class="table-anchor">
+			<a href="#_doCleanup">#</a>
+		</td>
+	</tr>
+		</table>
+
+
+
+
+
+
+
+
+		</div>
+
+		<div class="layout-footer">
+			Worldline Connect PHP SDK API documentation generated by <a href="https://www.apigen.org">ApiGen v7.0.0-alpha.4</a>
+		</div>
+	</div>
+
+	<div class="layout-rest">
+		<div class="navbar"></div>
+	</div>
+</body>
+</html>
