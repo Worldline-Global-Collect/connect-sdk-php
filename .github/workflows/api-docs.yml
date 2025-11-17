@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           path: code
           persist-credentials: false
@@ -35,7 +35,7 @@ jobs:
         run: mkdir -p docs && docker run --rm -v "$GITHUB_WORKSPACE/code:/workspace" -w /workspace -u `id -u`:`id -g` apigen/apigen
         working-directory: code
       - name: Checkout pages
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           ref: gh-pages
           path: pages

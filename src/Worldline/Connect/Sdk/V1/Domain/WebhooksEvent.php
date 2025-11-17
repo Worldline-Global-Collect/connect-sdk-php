@@ -19,6 +19,11 @@ class WebhooksEvent extends DataObject
     public $apiVersion = null;
 
     /**
+     * @var CaptureResponse
+     */
+    public $capture = null;
+
+    /**
      * @var string
      */
     public $created = null;
@@ -72,6 +77,9 @@ class WebhooksEvent extends DataObject
         if (!is_null($this->apiVersion)) {
             $object->apiVersion = $this->apiVersion;
         }
+        if (!is_null($this->capture)) {
+            $object->capture = $this->capture->toObject();
+        }
         if (!is_null($this->created)) {
             $object->created = $this->created;
         }
@@ -112,6 +120,13 @@ class WebhooksEvent extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'apiVersion')) {
             $this->apiVersion = $object->apiVersion;
+        }
+        if (property_exists($object, 'capture')) {
+            if (!is_object($object->capture)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->capture, true) . '\' is not an object');
+            }
+            $value = new CaptureResponse();
+            $this->capture = $value->fromObject($object->capture);
         }
         if (property_exists($object, 'created')) {
             $this->created = $object->created;

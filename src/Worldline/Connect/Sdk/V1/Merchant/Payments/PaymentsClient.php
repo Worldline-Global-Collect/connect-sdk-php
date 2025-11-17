@@ -133,6 +133,7 @@ class PaymentsClient extends ApiResource
      * Resource /{merchantId}/payments/{paymentId} - Get payment
      *
      * @param string $paymentId
+     * @param GetPaymentParams $query
      * @param CallContext $callContext
      * @return PaymentResponse
      *
@@ -145,7 +146,7 @@ class PaymentsClient extends ApiResource
      * @throws InvalidResponseException
      * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/get.html Get payment
      */
-    public function get($paymentId, CallContext $callContext = null)
+    public function get($paymentId, GetPaymentParams $query, CallContext $callContext = null)
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -156,7 +157,7 @@ class PaymentsClient extends ApiResource
                 $responseClassMap,
                 $this->instantiateUri('/v1/{merchantId}/payments/{paymentId}'),
                 $this->getClientMetaInfo(),
-                null,
+                $query,
                 $callContext
             );
         } catch (ErrorResponseException $e) {

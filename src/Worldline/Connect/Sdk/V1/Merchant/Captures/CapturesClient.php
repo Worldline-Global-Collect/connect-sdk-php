@@ -14,6 +14,9 @@ use Worldline\Connect\Sdk\V1\ApiException;
 use Worldline\Connect\Sdk\V1\AuthorizationException;
 use Worldline\Connect\Sdk\V1\DeclinedRefundException;
 use Worldline\Connect\Sdk\V1\Domain\CaptureResponse;
+use Worldline\Connect\Sdk\V1\Domain\CreateDisputeRequest;
+use Worldline\Connect\Sdk\V1\Domain\DisputeResponse;
+use Worldline\Connect\Sdk\V1\Domain\DisputesResponse;
 use Worldline\Connect\Sdk\V1\Domain\RefundRequest;
 use Worldline\Connect\Sdk\V1\Domain\RefundResponse;
 use Worldline\Connect\Sdk\V1\ExceptionFactory;
@@ -97,6 +100,86 @@ class CapturesClient extends ApiResource
             return $this->getCommunicator()->post(
                 $responseClassMap,
                 $this->instantiateUri('/v1/{merchantId}/captures/{captureId}/refund'),
+                $this->getClientMetaInfo(),
+                $body,
+                null,
+                $callContext
+            );
+        } catch (ErrorResponseException $e) {
+            throw $this->getResponseExceptionFactory()->createException(
+                $e->getHttpStatusCode(),
+                $e->getErrorResponse(),
+                $callContext
+            );
+        }
+    }
+
+    /**
+     * Resource /{merchantId}/captures/{captureId}/disputes - Get disputes
+     *
+     * @param string $captureId
+     * @param CallContext $callContext
+     * @return DisputesResponse
+     *
+     * @throws IdempotenceException
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws ReferenceException
+     * @throws PlatformException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/disputes.html Get disputes
+     */
+    public function disputes($captureId, CallContext $callContext = null)
+    {
+        $this->context['captureId'] = $captureId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\DisputesResponse';
+        $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
+        try {
+            return $this->getCommunicator()->get(
+                $responseClassMap,
+                $this->instantiateUri('/v1/{merchantId}/captures/{captureId}/disputes'),
+                $this->getClientMetaInfo(),
+                null,
+                $callContext
+            );
+        } catch (ErrorResponseException $e) {
+            throw $this->getResponseExceptionFactory()->createException(
+                $e->getHttpStatusCode(),
+                $e->getErrorResponse(),
+                $callContext
+            );
+        }
+    }
+
+    /**
+     * Resource /{merchantId}/captures/{captureId}/dispute - Create dispute
+     *
+     * @param string $captureId
+     * @param CreateDisputeRequest $body
+     * @param CallContext $callContext
+     * @return DisputeResponse
+     *
+     * @throws IdempotenceException
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws ReferenceException
+     * @throws PlatformException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/dispute.html Create dispute
+     */
+    public function dispute($captureId, CreateDisputeRequest $body, CallContext $callContext = null)
+    {
+        $this->context['captureId'] = $captureId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\DisputeResponse';
+        $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
+        try {
+            return $this->getCommunicator()->post(
+                $responseClassMap,
+                $this->instantiateUri('/v1/{merchantId}/captures/{captureId}/dispute'),
                 $this->getClientMetaInfo(),
                 $body,
                 null,

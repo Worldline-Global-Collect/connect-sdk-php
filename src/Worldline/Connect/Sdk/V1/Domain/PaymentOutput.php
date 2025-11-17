@@ -15,7 +15,27 @@ class PaymentOutput extends OrderOutput
     /**
      * @var int
      */
+    public $amountCaptureRequested = null;
+
+    /**
+     * @var int
+     */
+    public $amountCaptured = null;
+
+    /**
+     * @var int
+     */
     public $amountPaid = null;
+
+    /**
+     * @var int
+     */
+    public $amountRefundRequested = null;
+
+    /**
+     * @var int
+     */
+    public $amountRefunded = null;
 
     /**
      * @var int
@@ -58,6 +78,11 @@ class PaymentOutput extends OrderOutput
     public $mobilePaymentMethodSpecificOutput = null;
 
     /**
+     * @var PaymentOperation[]
+     */
+    public $operations = null;
+
+    /**
      * @var string
      */
     public $paymentMethod = null;
@@ -83,8 +108,20 @@ class PaymentOutput extends OrderOutput
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->amountCaptureRequested)) {
+            $object->amountCaptureRequested = $this->amountCaptureRequested;
+        }
+        if (!is_null($this->amountCaptured)) {
+            $object->amountCaptured = $this->amountCaptured;
+        }
         if (!is_null($this->amountPaid)) {
             $object->amountPaid = $this->amountPaid;
+        }
+        if (!is_null($this->amountRefundRequested)) {
+            $object->amountRefundRequested = $this->amountRefundRequested;
+        }
+        if (!is_null($this->amountRefunded)) {
+            $object->amountRefunded = $this->amountRefunded;
         }
         if (!is_null($this->amountReversed)) {
             $object->amountReversed = $this->amountReversed;
@@ -110,6 +147,14 @@ class PaymentOutput extends OrderOutput
         if (!is_null($this->mobilePaymentMethodSpecificOutput)) {
             $object->mobilePaymentMethodSpecificOutput = $this->mobilePaymentMethodSpecificOutput->toObject();
         }
+        if (!is_null($this->operations)) {
+            $object->operations = [];
+            foreach ($this->operations as $element) {
+                if (!is_null($element)) {
+                    $object->operations[] = $element->toObject();
+                }
+            }
+        }
         if (!is_null($this->paymentMethod)) {
             $object->paymentMethod = $this->paymentMethod;
         }
@@ -133,8 +178,20 @@ class PaymentOutput extends OrderOutput
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'amountCaptureRequested')) {
+            $this->amountCaptureRequested = $object->amountCaptureRequested;
+        }
+        if (property_exists($object, 'amountCaptured')) {
+            $this->amountCaptured = $object->amountCaptured;
+        }
         if (property_exists($object, 'amountPaid')) {
             $this->amountPaid = $object->amountPaid;
+        }
+        if (property_exists($object, 'amountRefundRequested')) {
+            $this->amountRefundRequested = $object->amountRefundRequested;
+        }
+        if (property_exists($object, 'amountRefunded')) {
+            $this->amountRefunded = $object->amountRefunded;
         }
         if (property_exists($object, 'amountReversed')) {
             $this->amountReversed = $object->amountReversed;
@@ -187,6 +244,16 @@ class PaymentOutput extends OrderOutput
             }
             $value = new MobilePaymentMethodSpecificOutput();
             $this->mobilePaymentMethodSpecificOutput = $value->fromObject($object->mobilePaymentMethodSpecificOutput);
+        }
+        if (property_exists($object, 'operations')) {
+            if (!is_array($object->operations) && !is_object($object->operations)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->operations, true) . '\' is not an array or object');
+            }
+            $this->operations = [];
+            foreach ($object->operations as $element) {
+                $value = new PaymentOperation();
+                $this->operations[] = $value->fromObject($element);
+            }
         }
         if (property_exists($object, 'paymentMethod')) {
             $this->paymentMethod = $object->paymentMethod;

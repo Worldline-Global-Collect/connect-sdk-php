@@ -14,6 +14,11 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Dispute extends DataObject
 {
     /**
+     * @var string
+     */
+    public $captureId = null;
+
+    /**
      * @var DisputeOutput
      */
     public $disputeOutput = null;
@@ -44,6 +49,9 @@ class Dispute extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->captureId)) {
+            $object->captureId = $this->captureId;
+        }
         if (!is_null($this->disputeOutput)) {
             $object->disputeOutput = $this->disputeOutput->toObject();
         }
@@ -70,6 +78,9 @@ class Dispute extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'captureId')) {
+            $this->captureId = $object->captureId;
+        }
         if (property_exists($object, 'disputeOutput')) {
             if (!is_object($object->disputeOutput)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->disputeOutput, true) . '\' is not an object');
