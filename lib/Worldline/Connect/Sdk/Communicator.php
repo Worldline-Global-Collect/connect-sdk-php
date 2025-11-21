@@ -593,6 +593,9 @@ class Communicator
             return $relativeUriPath;
         }
         $httpQuery = http_build_query($requestParameterObjectVars);
+        if ($httpQuery === '') {
+            return $relativeUriPath;
+        }
         // remove [0], [1] etc. that are added if properties are arrays
         $httpQuery = preg_replace('/%5B[0-9]+%5D/simU', '', $httpQuery);
         return $relativeUriPath . '?' . $httpQuery;
