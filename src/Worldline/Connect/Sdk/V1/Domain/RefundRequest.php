@@ -34,6 +34,11 @@ class RefundRequest extends DataObject
     public $refundDate = null;
 
     /**
+     * @var string
+     */
+    public $refundReason = null;
+
+    /**
      * @var RefundReferences
      */
     public $refundReferences = null;
@@ -55,6 +60,9 @@ class RefundRequest extends DataObject
         }
         if (!is_null($this->refundDate)) {
             $object->refundDate = $this->refundDate;
+        }
+        if (!is_null($this->refundReason)) {
+            $object->refundReason = $this->refundReason;
         }
         if (!is_null($this->refundReferences)) {
             $object->refundReferences = $this->refundReferences->toObject();
@@ -93,6 +101,9 @@ class RefundRequest extends DataObject
         }
         if (property_exists($object, 'refundDate')) {
             $this->refundDate = $object->refundDate;
+        }
+        if (property_exists($object, 'refundReason')) {
+            $this->refundReason = $object->refundReason;
         }
         if (property_exists($object, 'refundReferences')) {
             if (!is_object($object->refundReferences)) {

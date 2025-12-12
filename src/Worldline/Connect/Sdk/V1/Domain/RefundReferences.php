@@ -16,6 +16,11 @@ class RefundReferences extends DataObject
     /**
      * @var string
      */
+    public $descriptor = null;
+
+    /**
+     * @var string
+     */
     public $merchantReference = null;
 
     /**
@@ -24,6 +29,9 @@ class RefundReferences extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->descriptor)) {
+            $object->descriptor = $this->descriptor;
+        }
         if (!is_null($this->merchantReference)) {
             $object->merchantReference = $this->merchantReference;
         }
@@ -38,6 +46,9 @@ class RefundReferences extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'descriptor')) {
+            $this->descriptor = $object->descriptor;
+        }
         if (property_exists($object, 'merchantReference')) {
             $this->merchantReference = $object->merchantReference;
         }

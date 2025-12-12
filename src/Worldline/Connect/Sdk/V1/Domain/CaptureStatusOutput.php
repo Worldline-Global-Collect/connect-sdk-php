@@ -16,6 +16,11 @@ class CaptureStatusOutput extends DataObject
     /**
      * @var bool
      */
+    public $isFinal = null;
+
+    /**
+     * @var bool
+     */
     public $isRefundable = null;
 
     /**
@@ -44,6 +49,9 @@ class CaptureStatusOutput extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->isFinal)) {
+            $object->isFinal = $this->isFinal;
+        }
         if (!is_null($this->isRefundable)) {
             $object->isRefundable = $this->isRefundable;
         }
@@ -75,6 +83,9 @@ class CaptureStatusOutput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'isFinal')) {
+            $this->isFinal = $object->isFinal;
+        }
         if (property_exists($object, 'isRefundable')) {
             $this->isRefundable = $object->isRefundable;
         }
