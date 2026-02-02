@@ -14,9 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RecurringPaymentsData extends DataObject
 {
     /**
+     * @var PaymentProduct302SpecificInput
+     */
+    public $paymentProduct302SpecificInput = null;
+
+    /**
+     * @var string
+     */
+    public $recurringEndDate = null;
+
+    /**
      * @var Frequency
      */
     public $recurringInterval = null;
+
+    /**
+     * @var string
+     */
+    public $recurringStartDate = null;
 
     /**
      * @var TrialInformation
@@ -29,8 +44,17 @@ class RecurringPaymentsData extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->paymentProduct302SpecificInput)) {
+            $object->paymentProduct302SpecificInput = $this->paymentProduct302SpecificInput->toObject();
+        }
+        if (!is_null($this->recurringEndDate)) {
+            $object->recurringEndDate = $this->recurringEndDate;
+        }
         if (!is_null($this->recurringInterval)) {
             $object->recurringInterval = $this->recurringInterval->toObject();
+        }
+        if (!is_null($this->recurringStartDate)) {
+            $object->recurringStartDate = $this->recurringStartDate;
         }
         if (!is_null($this->trialInformation)) {
             $object->trialInformation = $this->trialInformation->toObject();
@@ -46,12 +70,25 @@ class RecurringPaymentsData extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'paymentProduct302SpecificInput')) {
+            if (!is_object($object->paymentProduct302SpecificInput)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->paymentProduct302SpecificInput, true) . '\' is not an object');
+            }
+            $value = new PaymentProduct302SpecificInput();
+            $this->paymentProduct302SpecificInput = $value->fromObject($object->paymentProduct302SpecificInput);
+        }
+        if (property_exists($object, 'recurringEndDate')) {
+            $this->recurringEndDate = $object->recurringEndDate;
+        }
         if (property_exists($object, 'recurringInterval')) {
             if (!is_object($object->recurringInterval)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->recurringInterval, true) . '\' is not an object');
             }
             $value = new Frequency();
             $this->recurringInterval = $value->fromObject($object->recurringInterval);
+        }
+        if (property_exists($object, 'recurringStartDate')) {
+            $this->recurringStartDate = $object->recurringStartDate;
         }
         if (property_exists($object, 'trialInformation')) {
             if (!is_object($object->trialInformation)) {

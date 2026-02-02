@@ -29,6 +29,11 @@ class TrialInformation extends DataObject
     public $isRecurring = null;
 
     /**
+     * @var string
+     */
+    public $startDate = null;
+
+    /**
      * @var TrialPeriod
      */
     public $trialPeriod = null;
@@ -52,6 +57,9 @@ class TrialInformation extends DataObject
         }
         if (!is_null($this->isRecurring)) {
             $object->isRecurring = $this->isRecurring;
+        }
+        if (!is_null($this->startDate)) {
+            $object->startDate = $this->startDate;
         }
         if (!is_null($this->trialPeriod)) {
             $object->trialPeriod = $this->trialPeriod->toObject();
@@ -82,6 +90,9 @@ class TrialInformation extends DataObject
         }
         if (property_exists($object, 'isRecurring')) {
             $this->isRecurring = $object->isRecurring;
+        }
+        if (property_exists($object, 'startDate')) {
+            $this->startDate = $object->startDate;
         }
         if (property_exists($object, 'trialPeriod')) {
             if (!is_object($object->trialPeriod)) {

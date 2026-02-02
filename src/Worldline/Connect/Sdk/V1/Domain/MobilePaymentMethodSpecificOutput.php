@@ -25,6 +25,11 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
     /**
      * @var string
      */
+    public $initialSchemeTransactionId = null;
+
+    /**
+     * @var string
+     */
     public $network = null;
 
     /**
@@ -33,9 +38,19 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
     public $paymentData = null;
 
     /**
+     * @var string
+     */
+    public $schemeTransactionId = null;
+
+    /**
      * @var ThreeDSecureResults
      */
     public $threeDSecureResults = null;
+
+    /**
+     * @var string
+     */
+    public $token = null;
 
     /**
      * @return object
@@ -49,14 +64,23 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
         if (!is_null($this->fraudResults)) {
             $object->fraudResults = $this->fraudResults->toObject();
         }
+        if (!is_null($this->initialSchemeTransactionId)) {
+            $object->initialSchemeTransactionId = $this->initialSchemeTransactionId;
+        }
         if (!is_null($this->network)) {
             $object->network = $this->network;
         }
         if (!is_null($this->paymentData)) {
             $object->paymentData = $this->paymentData->toObject();
         }
+        if (!is_null($this->schemeTransactionId)) {
+            $object->schemeTransactionId = $this->schemeTransactionId;
+        }
         if (!is_null($this->threeDSecureResults)) {
             $object->threeDSecureResults = $this->threeDSecureResults->toObject();
+        }
+        if (!is_null($this->token)) {
+            $object->token = $this->token;
         }
         return $object;
     }
@@ -79,6 +103,9 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
             $value = new CardFraudResults();
             $this->fraudResults = $value->fromObject($object->fraudResults);
         }
+        if (property_exists($object, 'initialSchemeTransactionId')) {
+            $this->initialSchemeTransactionId = $object->initialSchemeTransactionId;
+        }
         if (property_exists($object, 'network')) {
             $this->network = $object->network;
         }
@@ -89,12 +116,18 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
             $value = new MobilePaymentData();
             $this->paymentData = $value->fromObject($object->paymentData);
         }
+        if (property_exists($object, 'schemeTransactionId')) {
+            $this->schemeTransactionId = $object->schemeTransactionId;
+        }
         if (property_exists($object, 'threeDSecureResults')) {
             if (!is_object($object->threeDSecureResults)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->threeDSecureResults, true) . '\' is not an object');
             }
             $value = new ThreeDSecureResults();
             $this->threeDSecureResults = $value->fromObject($object->threeDSecureResults);
+        }
+        if (property_exists($object, 'token')) {
+            $this->token = $object->token;
         }
         return $this;
     }
