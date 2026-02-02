@@ -21,6 +21,8 @@ class TokenTest extends ClientTestCase
      */
     public function test()
     {
+        $expiryDate = date('my', strtotime('+6 months'));
+
         $billingAddress = new Address();
         $billingAddress->countryCode = "NL";
 
@@ -31,7 +33,7 @@ class TokenTest extends ClientTestCase
         $cardWithoutCvv->cardholderName = "Jan";
         $cardWithoutCvv->issueNumber = "12";
         $cardWithoutCvv->cardNumber = "4567350000427977";
-        $cardWithoutCvv->expiryDate = "1225";
+        $cardWithoutCvv->expiryDate = $expiryDate;
 
         $mandate = new TokenCardData();
         $mandate->cardWithoutCvv = $cardWithoutCvv;
