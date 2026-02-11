@@ -21,7 +21,17 @@ class PaymentProductGroup extends DataObject
     /**
      * @var bool
      */
+    public $allowsClickToPay = null;
+
+    /**
+     * @var bool
+     */
     public $allowsInstallments = null;
+
+    /**
+     * @var ClickToPayConfiguration
+     */
+    public $clickToPayConfiguration = null;
 
     /**
      * @var bool
@@ -57,8 +67,14 @@ class PaymentProductGroup extends DataObject
                 }
             }
         }
+        if (!is_null($this->allowsClickToPay)) {
+            $object->allowsClickToPay = $this->allowsClickToPay;
+        }
         if (!is_null($this->allowsInstallments)) {
             $object->allowsInstallments = $this->allowsInstallments;
+        }
+        if (!is_null($this->clickToPayConfiguration)) {
+            $object->clickToPayConfiguration = $this->clickToPayConfiguration->toObject();
         }
         if (!is_null($this->deviceFingerprintEnabled)) {
             $object->deviceFingerprintEnabled = $this->deviceFingerprintEnabled;
@@ -98,8 +114,18 @@ class PaymentProductGroup extends DataObject
                 $this->accountsOnFile[] = $value->fromObject($element);
             }
         }
+        if (property_exists($object, 'allowsClickToPay')) {
+            $this->allowsClickToPay = $object->allowsClickToPay;
+        }
         if (property_exists($object, 'allowsInstallments')) {
             $this->allowsInstallments = $object->allowsInstallments;
+        }
+        if (property_exists($object, 'clickToPayConfiguration')) {
+            if (!is_object($object->clickToPayConfiguration)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->clickToPayConfiguration, true) . '\' is not an object');
+            }
+            $value = new ClickToPayConfiguration();
+            $this->clickToPayConfiguration = $value->fromObject($object->clickToPayConfiguration);
         }
         if (property_exists($object, 'deviceFingerprintEnabled')) {
             $this->deviceFingerprintEnabled = $object->deviceFingerprintEnabled;

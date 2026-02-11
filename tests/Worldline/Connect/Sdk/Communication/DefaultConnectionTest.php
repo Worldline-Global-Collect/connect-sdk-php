@@ -25,7 +25,7 @@ class DefaultConnectionTest extends TestCase
         $this->connection->setHeaderObfuscator(new HeaderObfuscator());
     }
 
-    public function test404WithBareApiEndpoint()
+    public function testNonJson404()
     {
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder) {
@@ -34,7 +34,7 @@ class DefaultConnectionTest extends TestCase
             $responseBuilder->appendBody($data);
         };
 
-        $this->connection->get($this->getApiEndpoint(), [], $responseHandler);
+        $this->connection->get($this->getHttpBinUrl() . '/status/404', [], $responseHandler);
         $this->assertEquals(404, $responseBuilder->getResponse()->getHttpStatusCode());
     }
 

@@ -13,6 +13,11 @@ use UnexpectedValueException;
 class DeferredBillingDetails extends BaseBillingDetails
 {
     /**
+     * @var int
+     */
+    public $deferredPaymentAmount = null;
+
+    /**
      * @var string
      */
     public $deferredPaymentDate = null;
@@ -33,6 +38,9 @@ class DeferredBillingDetails extends BaseBillingDetails
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->deferredPaymentAmount)) {
+            $object->deferredPaymentAmount = $this->deferredPaymentAmount;
+        }
         if (!is_null($this->deferredPaymentDate)) {
             $object->deferredPaymentDate = $this->deferredPaymentDate;
         }
@@ -53,6 +61,9 @@ class DeferredBillingDetails extends BaseBillingDetails
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'deferredPaymentAmount')) {
+            $this->deferredPaymentAmount = $object->deferredPaymentAmount;
+        }
         if (property_exists($object, 'deferredPaymentDate')) {
             $this->deferredPaymentDate = $object->deferredPaymentDate;
         }
