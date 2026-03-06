@@ -14,6 +14,11 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ClickToPayConfiguration extends DataObject
 {
     /**
+     * @var ClickToPayDisplayHints
+     */
+    public $displayHints = null;
+
+    /**
      * @var ClickToPayConfigurationMastercard
      */
     public $mastercard = null;
@@ -29,6 +34,9 @@ class ClickToPayConfiguration extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->displayHints)) {
+            $object->displayHints = $this->displayHints->toObject();
+        }
         if (!is_null($this->mastercard)) {
             $object->mastercard = $this->mastercard->toObject();
         }
@@ -46,6 +54,13 @@ class ClickToPayConfiguration extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'displayHints')) {
+            if (!is_object($object->displayHints)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->displayHints, true) . '\' is not an object');
+            }
+            $value = new ClickToPayDisplayHints();
+            $this->displayHints = $value->fromObject($object->displayHints);
+        }
         if (property_exists($object, 'mastercard')) {
             if (!is_object($object->mastercard)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->mastercard, true) . '\' is not an object');
