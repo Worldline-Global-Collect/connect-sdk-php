@@ -413,6 +413,46 @@ class PaymentsClient extends ApiResource
     }
 
     /**
+     * Resource /{merchantId}/payments/{paymentId}/finalizecapture - Finalize capture
+     *
+     * @param string $paymentId
+     * @param CallContext $callContext
+     * @return PaymentResponse
+     *
+     * @throws IdempotenceException
+     * @throws ValidationException
+     * @throws AuthorizationException
+     * @throws ReferenceException
+     * @throws PlatformException
+     * @throws ApiException
+     * @throws InvalidResponseException
+     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/finalizecapture.html Finalize capture
+     */
+    public function finalizecapture($paymentId, CallContext $callContext = null)
+    {
+        $this->context['paymentId'] = $paymentId;
+        $responseClassMap = new ResponseClassMap();
+        $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\PaymentResponse';
+        $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
+        try {
+            return $this->getCommunicator()->post(
+                $responseClassMap,
+                $this->instantiateUri('/v1/{merchantId}/payments/{paymentId}/finalizecapture'),
+                $this->getClientMetaInfo(),
+                null,
+                null,
+                $callContext
+            );
+        } catch (ErrorResponseException $e) {
+            throw $this->getResponseExceptionFactory()->createException(
+                $e->getHttpStatusCode(),
+                $e->getErrorResponse(),
+                $callContext
+            );
+        }
+    }
+
+    /**
      * Resource /{merchantId}/payments/{paymentId}/cancelapproval - Undo capture payment
      *
      * @param string $paymentId
