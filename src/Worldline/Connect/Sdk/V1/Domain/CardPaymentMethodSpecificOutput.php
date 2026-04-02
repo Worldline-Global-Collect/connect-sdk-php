@@ -23,6 +23,11 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
     public $card = null;
 
     /**
+     * @var bool
+     */
+    public $clickToPayUsed = null;
+
+    /**
      * @var CardFraudResults
      */
     public $fraudResults = null;
@@ -74,6 +79,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         if (!is_null($this->card)) {
             $object->card = $this->card->toObject();
         }
+        if (!is_null($this->clickToPayUsed)) {
+            $object->clickToPayUsed = $this->clickToPayUsed;
+        }
         if (!is_null($this->fraudResults)) {
             $object->fraudResults = $this->fraudResults->toObject();
         }
@@ -118,6 +126,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
             }
             $value = new CardEssentials();
             $this->card = $value->fromObject($object->card);
+        }
+        if (property_exists($object, 'clickToPayUsed')) {
+            $this->clickToPayUsed = $object->clickToPayUsed;
         }
         if (property_exists($object, 'fraudResults')) {
             if (!is_object($object->fraudResults)) {

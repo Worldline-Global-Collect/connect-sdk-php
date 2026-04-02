@@ -18,6 +18,11 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
     public $card = null;
 
     /**
+     * @var ClickToPayInput
+     */
+    public $clickToPay = null;
+
+    /**
      * @var ExternalCardholderAuthenticationData
      * @deprecated Use threeDSecure.externalCardholderAuthenticationData instead
      */
@@ -58,6 +63,9 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
         if (!is_null($this->card)) {
             $object->card = $this->card->toObject();
         }
+        if (!is_null($this->clickToPay)) {
+            $object->clickToPay = $this->clickToPay->toObject();
+        }
         if (!is_null($this->externalCardholderAuthenticationData)) {
             $object->externalCardholderAuthenticationData = $this->externalCardholderAuthenticationData->toObject();
         }
@@ -93,6 +101,13 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
             }
             $value = new Card();
             $this->card = $value->fromObject($object->card);
+        }
+        if (property_exists($object, 'clickToPay')) {
+            if (!is_object($object->clickToPay)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->clickToPay, true) . '\' is not an object');
+            }
+            $value = new ClickToPayInput();
+            $this->clickToPay = $value->fromObject($object->clickToPay);
         }
         if (property_exists($object, 'externalCardholderAuthenticationData')) {
             if (!is_object($object->externalCardholderAuthenticationData)) {

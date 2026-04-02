@@ -11,17 +11,12 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 /**
  * @package Worldline\Connect\Sdk\V1\Domain
  */
-class ClickToPaySchemeConfigurationBase extends DataObject
+class ClickToPayInput extends DataObject
 {
     /**
      * @var string
      */
-    public $srcInitiatorId = null;
-
-    /**
-     * @var string
-     */
-    public $srciDpaId = null;
+    public $checkoutResponseSignature = null;
 
     /**
      * @return object
@@ -29,11 +24,8 @@ class ClickToPaySchemeConfigurationBase extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
-        if (!is_null($this->srcInitiatorId)) {
-            $object->srcInitiatorId = $this->srcInitiatorId;
-        }
-        if (!is_null($this->srciDpaId)) {
-            $object->srciDpaId = $this->srciDpaId;
+        if (!is_null($this->checkoutResponseSignature)) {
+            $object->checkoutResponseSignature = $this->checkoutResponseSignature;
         }
         return $object;
     }
@@ -46,11 +38,8 @@ class ClickToPaySchemeConfigurationBase extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
-        if (property_exists($object, 'srcInitiatorId')) {
-            $this->srcInitiatorId = $object->srcInitiatorId;
-        }
-        if (property_exists($object, 'srciDpaId')) {
-            $this->srciDpaId = $object->srciDpaId;
+        if (property_exists($object, 'checkoutResponseSignature')) {
+            $this->checkoutResponseSignature = $object->checkoutResponseSignature;
         }
         return $this;
     }

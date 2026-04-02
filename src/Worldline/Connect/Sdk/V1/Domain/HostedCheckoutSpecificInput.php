@@ -16,6 +16,11 @@ class HostedCheckoutSpecificInput extends DataObject
     /**
      * @var bool
      */
+    public $allowClickToPay = null;
+
+    /**
+     * @var bool
+     */
     public $isRecurring = null;
 
     /**
@@ -69,6 +74,9 @@ class HostedCheckoutSpecificInput extends DataObject
     public function toObject()
     {
         $object = parent::toObject();
+        if (!is_null($this->allowClickToPay)) {
+            $object->allowClickToPay = $this->allowClickToPay;
+        }
         if (!is_null($this->isRecurring)) {
             $object->isRecurring = $this->isRecurring;
         }
@@ -110,6 +118,9 @@ class HostedCheckoutSpecificInput extends DataObject
     public function fromObject($object)
     {
         parent::fromObject($object);
+        if (property_exists($object, 'allowClickToPay')) {
+            $this->allowClickToPay = $object->allowClickToPay;
+        }
         if (property_exists($object, 'isRecurring')) {
             $this->isRecurring = $object->isRecurring;
         }
