@@ -36,6 +36,11 @@ class PaymentProduct extends DataObject
     /**
      * @var bool
      */
+    public $allowsMultiplePartialCaptures = null;
+
+    /**
+     * @var bool
+     */
     public $allowsRecurring = null;
 
     /**
@@ -171,6 +176,9 @@ class PaymentProduct extends DataObject
         if (!is_null($this->allowsInstallments)) {
             $object->allowsInstallments = $this->allowsInstallments;
         }
+        if (!is_null($this->allowsMultiplePartialCaptures)) {
+            $object->allowsMultiplePartialCaptures = $this->allowsMultiplePartialCaptures;
+        }
         if (!is_null($this->allowsRecurring)) {
             $object->allowsRecurring = $this->allowsRecurring;
         }
@@ -274,6 +282,9 @@ class PaymentProduct extends DataObject
         }
         if (property_exists($object, 'allowsInstallments')) {
             $this->allowsInstallments = $object->allowsInstallments;
+        }
+        if (property_exists($object, 'allowsMultiplePartialCaptures')) {
+            $this->allowsMultiplePartialCaptures = $object->allowsMultiplePartialCaptures;
         }
         if (property_exists($object, 'allowsRecurring')) {
             $this->allowsRecurring = $object->allowsRecurring;

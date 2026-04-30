@@ -24,6 +24,11 @@ class CapturePaymentOrder extends DataObject
     public $references = null;
 
     /**
+     * @var Shipping
+     */
+    public $shipping = null;
+
+    /**
      * @return object
      */
     public function toObject()
@@ -34,6 +39,9 @@ class CapturePaymentOrder extends DataObject
         }
         if (!is_null($this->references)) {
             $object->references = $this->references->toObject();
+        }
+        if (!is_null($this->shipping)) {
+            $object->shipping = $this->shipping->toObject();
         }
         return $object;
     }
@@ -59,6 +67,13 @@ class CapturePaymentOrder extends DataObject
             }
             $value = new CapturePaymentOrderReferences();
             $this->references = $value->fromObject($object->references);
+        }
+        if (property_exists($object, 'shipping')) {
+            if (!is_object($object->shipping)) {
+                throw new UnexpectedValueException('value \'' . print_r($object->shipping, true) . '\' is not an object');
+            }
+            $value = new Shipping();
+            $this->shipping = $value->fromObject($object->shipping);
         }
         return $this;
     }
