@@ -15,7 +15,7 @@ class BankTransferPaymentMethodSpecificInputBase extends AbstractBankTransferPay
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         return $object;
@@ -23,10 +23,11 @@ class BankTransferPaymentMethodSpecificInputBase extends AbstractBankTransferPay
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BankTransferPaymentMethodSpecificInputBase
     {
         parent::fromObject($object);
         return $this;

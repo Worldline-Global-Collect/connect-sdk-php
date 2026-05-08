@@ -121,10 +121,7 @@ EOD;
         } catch (IdempotenceException $exception) {
             $this->assertEquals($callContext->getIdempotenceKey(), $exception->getIdempotenceKey());
             $this->assertNotEmpty($exception->getIdempotenceRequestTimestamp());
-            $this->assertEquals(
-                $callContext->getIdempotenceRequestTimestamp(),
-                $exception->getIdempotenceRequestTimestamp()
-                );
+            $this->assertEquals($callContext->getIdempotenceRequestTimestamp(), $exception->getIdempotenceRequestTimestamp());
         }
     }
 
@@ -159,7 +156,8 @@ EOD;
         $this->assertInstanceOf('\Worldline\Connect\Sdk\V1\ReferenceException', $exception);
     }
 
-    private function getRequestHeaders(CallContext $context) {
+    private function getRequestHeaders(CallContext $context)
+    {
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
         $communicator = new Communicator($communicatorConfiguration);
         $method = new ReflectionMethod($communicator, 'getRequestHeaders');

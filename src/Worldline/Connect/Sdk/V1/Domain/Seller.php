@@ -14,69 +14,69 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Seller extends DataObject
 {
     /**
-     * @var Address
+     * @var Address|null
      */
-    public $address = null;
+    public ?Address $address = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $channelCode = null;
+    public ?string $channelCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $description = null;
+    public ?string $description = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $externalReferenceId = null;
+    public ?string $externalReferenceId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $geocode = null;
+    public ?string $geocode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $invoiceNumber = null;
+    public ?string $invoiceNumber = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isForeignRetailer = null;
+    public ?bool $isForeignRetailer = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $mcc = null;
+    public ?string $mcc = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $name = null;
+    public ?string $name = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $phoneNumber = null;
+    public ?string $phoneNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $type = null;
+    public ?string $type = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->address)) {
@@ -120,10 +120,11 @@ class Seller extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Seller
     {
         parent::fromObject($object);
         if (property_exists($object, 'address')) {

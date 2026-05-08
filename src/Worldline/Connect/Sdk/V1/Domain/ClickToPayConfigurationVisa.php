@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class ClickToPayConfigurationVisa extends ClickToPaySchemeConfigurationBase
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $encryptionKey = null;
+    public ?string $encryptionKey = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $nModulus = null;
+    public ?string $nModulus = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->encryptionKey)) {
@@ -39,10 +39,11 @@ class ClickToPayConfigurationVisa extends ClickToPaySchemeConfigurationBase
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ClickToPayConfigurationVisa
     {
         parent::fromObject($object);
         if (property_exists($object, 'encryptionKey')) {

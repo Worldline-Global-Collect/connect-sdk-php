@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PersonalNameBase extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $firstName = null;
+    public ?string $firstName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $surname = null;
+    public ?string $surname = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $surnamePrefix = null;
+    public ?string $surnamePrefix = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->firstName)) {
@@ -48,10 +48,11 @@ class PersonalNameBase extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PersonalNameBase
     {
         parent::fromObject($object);
         if (property_exists($object, 'firstName')) {

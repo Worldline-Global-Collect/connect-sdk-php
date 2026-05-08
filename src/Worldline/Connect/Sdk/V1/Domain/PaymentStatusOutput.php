@@ -13,24 +13,24 @@ use UnexpectedValueException;
 class PaymentStatusOutput extends OrderStatusOutput
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isAuthorized = null;
+    public ?bool $isAuthorized = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRefundable = null;
+    public ?bool $isRefundable = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $threeDSecureStatus = null;
+    public ?string $threeDSecureStatus = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->isAuthorized)) {
@@ -47,10 +47,11 @@ class PaymentStatusOutput extends OrderStatusOutput
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentStatusOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'isAuthorized')) {

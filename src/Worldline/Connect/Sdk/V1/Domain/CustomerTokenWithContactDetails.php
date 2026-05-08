@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class CustomerTokenWithContactDetails extends CustomerToken
 {
     /**
-     * @var ContactDetailsToken
+     * @var ContactDetailsToken|null
      */
-    public $contactDetails = null;
+    public ?ContactDetailsToken $contactDetails = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->contactDetails)) {
@@ -31,10 +31,11 @@ class CustomerTokenWithContactDetails extends CustomerToken
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CustomerTokenWithContactDetails
     {
         parent::fromObject($object);
         if (property_exists($object, 'contactDetails')) {

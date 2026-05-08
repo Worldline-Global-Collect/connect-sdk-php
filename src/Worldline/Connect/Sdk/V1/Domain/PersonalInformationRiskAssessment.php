@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PersonalInformationRiskAssessment extends DataObject
 {
     /**
-     * @var PersonalNameRiskAssessment
+     * @var PersonalNameRiskAssessment|null
      */
-    public $name = null;
+    public ?PersonalNameRiskAssessment $name = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->name)) {
@@ -32,10 +32,11 @@ class PersonalInformationRiskAssessment extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PersonalInformationRiskAssessment
     {
         parent::fromObject($object);
         if (property_exists($object, 'name')) {

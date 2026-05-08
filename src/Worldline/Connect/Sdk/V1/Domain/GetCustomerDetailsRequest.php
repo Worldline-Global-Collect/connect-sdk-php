@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class GetCustomerDetailsRequest extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode = null;
+    public ?string $countryCode = null;
 
     /**
-     * @var KeyValuePair[]
+     * @var KeyValuePair[]|null
      */
-    public $values = null;
+    public ?array $values = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->countryCode)) {
@@ -45,10 +45,11 @@ class GetCustomerDetailsRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): GetCustomerDetailsRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'countryCode')) {

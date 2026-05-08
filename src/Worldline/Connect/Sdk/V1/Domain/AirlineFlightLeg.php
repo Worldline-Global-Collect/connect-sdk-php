@@ -14,110 +14,111 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AirlineFlightLeg extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $airlineClass = null;
+    public ?string $airlineClass = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $arrivalAirport = null;
+    public ?string $arrivalAirport = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $arrivalTime = null;
+    public ?string $arrivalTime = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $carrierCode = null;
+    public ?string $carrierCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $conjunctionTicket = null;
+    public ?string $conjunctionTicket = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $couponNumber = null;
+    public ?string $couponNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $date = null;
+    public ?string $date = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $departureTime = null;
+    public ?string $departureTime = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $endorsementOrRestriction = null;
+    public ?string $endorsementOrRestriction = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $exchangeTicket = null;
+    public ?string $exchangeTicket = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fare = null;
+    public ?string $fare = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fareBasis = null;
+    public ?string $fareBasis = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $fee = null;
+    public ?int $fee = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $flightNumber = null;
+    public ?string $flightNumber = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $number = null;
+    public ?int $number = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $originAirport = null;
+    public ?string $originAirport = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $passengerClass = null;
+    public ?string $passengerClass = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use passengerClass instead
      */
-    public $serviceClass = null;
+    public ?string $serviceClass = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $stopoverCode = null;
+    public ?string $stopoverCode = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $taxes = null;
+    public ?int $taxes = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->airlineClass)) {
@@ -185,10 +186,11 @@ class AirlineFlightLeg extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AirlineFlightLeg
     {
         parent::fromObject($object);
         if (property_exists($object, 'airlineClass')) {

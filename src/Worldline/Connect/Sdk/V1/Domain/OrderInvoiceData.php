@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class OrderInvoiceData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $additionalData = null;
+    public ?string $additionalData = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $invoiceDate = null;
+    public ?string $invoiceDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $invoiceNumber = null;
+    public ?string $invoiceNumber = null;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $textQualifiers = null;
+    public ?array $textQualifiers = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalData)) {
@@ -61,10 +61,11 @@ class OrderInvoiceData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): OrderInvoiceData
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalData')) {

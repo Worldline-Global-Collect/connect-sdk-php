@@ -14,39 +14,39 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class TrialInformation extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoneyAfterTrial = null;
+    public ?AmountOfMoney $amountOfMoneyAfterTrial = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $endDate = null;
+    public ?string $endDate = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $startDate = null;
+    public ?string $startDate = null;
 
     /**
-     * @var TrialPeriod
+     * @var TrialPeriod|null
      */
-    public $trialPeriod = null;
+    public ?TrialPeriod $trialPeriod = null;
 
     /**
-     * @var Frequency
+     * @var Frequency|null
      */
-    public $trialPeriodRecurring = null;
+    public ?Frequency $trialPeriodRecurring = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoneyAfterTrial)) {
@@ -72,10 +72,11 @@ class TrialInformation extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): TrialInformation
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoneyAfterTrial')) {

@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MobilePaymentProduct302SpecificInputHostedCheckout extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $businessName = null;
+    public ?string $businessName = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->businessName)) {
@@ -32,10 +32,11 @@ class MobilePaymentProduct302SpecificInputHostedCheckout extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MobilePaymentProduct302SpecificInputHostedCheckout
     {
         parent::fromObject($object);
         if (property_exists($object, 'businessName')) {

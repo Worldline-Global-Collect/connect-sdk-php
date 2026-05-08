@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class TokenSepaDirectDebitWithoutCreditor extends AbstractToken
 {
     /**
-     * @var CustomerTokenWithContactDetails
+     * @var CustomerTokenWithContactDetails|null
      */
-    public $customer = null;
+    public ?CustomerTokenWithContactDetails $customer = null;
 
     /**
-     * @var MandateSepaDirectDebitWithoutCreditor
+     * @var MandateSepaDirectDebitWithoutCreditor|null
      */
-    public $mandate = null;
+    public ?MandateSepaDirectDebitWithoutCreditor $mandate = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->customer)) {
@@ -39,10 +39,11 @@ class TokenSepaDirectDebitWithoutCreditor extends AbstractToken
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): TokenSepaDirectDebitWithoutCreditor
     {
         parent::fromObject($object);
         if (property_exists($object, 'customer')) {

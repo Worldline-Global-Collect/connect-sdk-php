@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class DirectoryEntry extends DataObject
 {
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $countryNames = null;
+    public ?array $countryNames = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $issuerId = null;
+    public ?string $issuerId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $issuerList = null;
+    public ?string $issuerList = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $issuerName = null;
+    public ?string $issuerName = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->countryNames)) {
@@ -61,10 +61,11 @@ class DirectoryEntry extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DirectoryEntry
     {
         parent::fromObject($object);
         if (property_exists($object, 'countryNames')) {

@@ -13,51 +13,53 @@ use UnexpectedValueException;
 class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificInput
 {
     /**
-     * @var Card
+     * @var Card|null
      */
-    public $card = null;
+    public ?Card $card = null;
 
     /**
-     * @var ClickToPayInput
+     * @var ClickToPayInput|null
      */
-    public $clickToPay = null;
+    public ?ClickToPayInput $clickToPay = null;
 
     /**
-     * @var ExternalCardholderAuthenticationData
+     * @var ExternalCardholderAuthenticationData|null
+     *
      * @deprecated Use threeDSecure.externalCardholderAuthenticationData instead
      */
-    public $externalCardholderAuthenticationData = null;
+    public ?ExternalCardholderAuthenticationData $externalCardholderAuthenticationData = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantInitiatedReasonIndicator = null;
+    public ?string $merchantInitiatedReasonIndicator = null;
 
     /**
-     * @var SchemeTokenData
+     * @var SchemeTokenData|null
      */
-    public $networkTokenData = null;
+    public ?SchemeTokenData $networkTokenData = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use threeDSecure.redirectionData.returnUrl instead
      */
-    public $returnUrl = null;
+    public ?string $returnUrl = null;
 
     /**
-     * @var ThreeDSecure
+     * @var ThreeDSecure|null
      */
-    public $threeDSecure = null;
+    public ?ThreeDSecure $threeDSecure = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->card)) {
@@ -89,10 +91,11 @@ class CardPaymentMethodSpecificInput extends AbstractCardPaymentMethodSpecificIn
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CardPaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'card')) {

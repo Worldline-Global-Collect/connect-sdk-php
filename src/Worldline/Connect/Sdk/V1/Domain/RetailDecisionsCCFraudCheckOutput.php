@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RetailDecisionsCCFraudCheckOutput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $fraudCode = null;
+    public ?string $fraudCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fraudNeural = null;
+    public ?string $fraudNeural = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fraudRCF = null;
+    public ?string $fraudRCF = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->fraudCode)) {
@@ -48,10 +48,11 @@ class RetailDecisionsCCFraudCheckOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RetailDecisionsCCFraudCheckOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'fraudCode')) {

@@ -3,8 +3,9 @@
 .project
 .settings
 *.pyc
-doc
+docs
 /composer.lock
 /phpunit.xml
+/.phpunit.result.cache
 /tests/config.json
 /vendor/

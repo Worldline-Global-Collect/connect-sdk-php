@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class UploadDisputeFileResponse extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $disputeId = null;
+    public ?string $disputeId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fileId = null;
+    public ?string $fileId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->disputeId)) {
@@ -40,10 +40,11 @@ class UploadDisputeFileResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): UploadDisputeFileResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'disputeId')) {

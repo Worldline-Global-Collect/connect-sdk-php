@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class RiskAssessmentCard extends RiskAssessment
 {
     /**
-     * @var Card
+     * @var Card|null
      */
-    public $card = null;
+    public ?Card $card = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->card)) {
@@ -31,10 +31,11 @@ class RiskAssessmentCard extends RiskAssessment
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RiskAssessmentCard
     {
         parent::fromObject($object);
         if (property_exists($object, 'card')) {

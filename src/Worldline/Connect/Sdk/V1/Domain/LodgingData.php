@@ -14,89 +14,89 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class LodgingData extends DataObject
 {
     /**
-     * @var LodgingCharge[]
+     * @var LodgingCharge[]|null
      */
-    public $charges = null;
+    public ?array $charges = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $checkInDate = null;
+    public ?string $checkInDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $checkOutDate = null;
+    public ?string $checkOutDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $folioNumber = null;
+    public ?string $folioNumber = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isConfirmedReservation = null;
+    public ?bool $isConfirmedReservation = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isFacilityFireSafetyConform = null;
+    public ?bool $isFacilityFireSafetyConform = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isNoShow = null;
+    public ?bool $isNoShow = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isPreferenceSmokingRoom = null;
+    public ?bool $isPreferenceSmokingRoom = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfAdults = null;
+    public ?int $numberOfAdults = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfNights = null;
+    public ?int $numberOfNights = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfRooms = null;
+    public ?int $numberOfRooms = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $programCode = null;
+    public ?string $programCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $propertyCustomerServicePhoneNumber = null;
+    public ?string $propertyCustomerServicePhoneNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $propertyPhoneNumber = null;
+    public ?string $propertyPhoneNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $renterName = null;
+    public ?string $renterName = null;
 
     /**
-     * @var LodgingRoom[]
+     * @var LodgingRoom[]|null
      */
-    public $rooms = null;
+    public ?array $rooms = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->charges)) {
@@ -162,10 +162,11 @@ class LodgingData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): LodgingData
     {
         parent::fromObject($object);
         if (property_exists($object, 'charges')) {

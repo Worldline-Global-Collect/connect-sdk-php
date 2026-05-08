@@ -17,11 +17,11 @@ use Worldline\Connect\Sdk\V1\Domain\PayoutResult;
 class DeclinedPayoutException extends ResponseException
 {
     /**
-     * @param int $httpStatusCode
-     * @param DataObject $response
-     * @param string $message
+     * @param int         $httpStatusCode
+     * @param DataObject  $response
+     * @param string|null $message
      */
-    public function __construct($httpStatusCode, DataObject $response, $message = null)
+    public function __construct(int $httpStatusCode, DataObject $response, ?string $message = null)
     {
         if (is_null($message)) {
             $message = DeclinedPayoutException::buildMessage($response);
@@ -29,7 +29,7 @@ class DeclinedPayoutException extends ResponseException
         parent::__construct($httpStatusCode, $response, $message);
     }
 
-    private static function buildMessage(DataObject $response)
+    private static function buildMessage(DataObject $response): string
     {
         if ($response instanceof PayoutErrorResponse && $response->payoutResult != null) {
             $payoutResult = $response->payoutResult;
@@ -41,7 +41,7 @@ class DeclinedPayoutException extends ResponseException
     /**
      * @return PayoutResult
      */
-    public function getPayoutResult()
+    public function getPayoutResult(): PayoutResult
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('payoutResult', $responseVariables)) {

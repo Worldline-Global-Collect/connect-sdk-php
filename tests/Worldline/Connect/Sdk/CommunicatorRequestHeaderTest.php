@@ -31,7 +31,7 @@ class CommunicatorRequestHeaderTest extends TestCase
                     $curlHeader
                 );
             }
-            $this->assertEquals(true, $result);
+            $this->assertEquals(1, $result);
         }
     }
 
@@ -55,7 +55,7 @@ class CommunicatorRequestHeaderTest extends TestCase
                     $curlHeader
                 );
             }
-            $this->assertEquals(true, $result);
+            $this->assertEquals(1, $result);
         }
     }
 
@@ -80,7 +80,7 @@ class CommunicatorRequestHeaderTest extends TestCase
             if (!$result) {
                 print_r($requestHeaders);
             }
-            $this->assertEquals(true, $result);
+            $this->assertEquals(1, $result);
 
             $xGcsHeaders = array_slice($requestHeaders, 1, 3, true);
             $xGcsHeadersSorted = $xGcsHeaders;
@@ -110,7 +110,7 @@ class CommunicatorRequestHeaderTest extends TestCase
             if (!$result) {
                 print_r($requestHeaders);
             }
-            $this->assertEquals(true, $result);
+            $this->assertEquals(1, $result);
 
             $xGcsHeaders = array_slice($requestHeaders, 1, 3, true);
             $xGcsHeadersSorted = $xGcsHeaders;
@@ -137,20 +137,20 @@ class CommunicatorRequestHeaderTest extends TestCase
         $serverMetaInfo = json_decode(base64_decode($serverMetaInfoJson));
         $this->assertInstanceOf('\stdClass', $serverMetaInfo);
 
-        $this->assertObjectHasAttribute('platformIdentifier', $serverMetaInfo);
-        $this->assertContains(php_uname(), $serverMetaInfo->platformIdentifier);
-        $this->assertContains(phpversion(), $serverMetaInfo->platformIdentifier);
+        $this->assertObjectHasProperty('platformIdentifier', $serverMetaInfo);
+        $this->assertStringContainsString(php_uname(), $serverMetaInfo->platformIdentifier);
+        $this->assertStringContainsString(phpversion(), $serverMetaInfo->platformIdentifier);
 
-        $this->assertObjectHasAttribute('sdkIdentifier', $serverMetaInfo);
+        $this->assertObjectHasProperty('sdkIdentifier', $serverMetaInfo);
         $this->assertEquals('PHPServerSDK/v' . MetadataProvider::SDK_VERSION, $serverMetaInfo->sdkIdentifier);
 
-        $this->assertObjectHasAttribute('sdkCreator', $serverMetaInfo);
+        $this->assertObjectHasProperty('sdkCreator', $serverMetaInfo);
         $this->assertEquals('Worldline', $serverMetaInfo->sdkCreator);
 
-        $this->assertObjectHasAttribute('integrator', $serverMetaInfo);
+        $this->assertObjectHasProperty('integrator', $serverMetaInfo);
         $this->assertEquals('Worldline', $serverMetaInfo->integrator);
 
-        $this->assertObjectNotHasAttribute('shoppingCartExtension', $serverMetaInfo);
+        $this->assertObjectNotHasProperty('shoppingCartExtension', $serverMetaInfo);
     }
 
     public function testServerMetaInfoHeaderFull()
@@ -173,29 +173,29 @@ class CommunicatorRequestHeaderTest extends TestCase
         $serverMetaInfo = json_decode(base64_decode($serverMetaInfoJson));
         $this->assertInstanceOf('\stdClass', $serverMetaInfo);
 
-        $this->assertObjectHasAttribute('platformIdentifier', $serverMetaInfo);
-        $this->assertContains(php_uname(), $serverMetaInfo->platformIdentifier);
-        $this->assertContains(phpversion(), $serverMetaInfo->platformIdentifier);
+        $this->assertObjectHasProperty('platformIdentifier', $serverMetaInfo);
+        $this->assertStringContainsString(php_uname(), $serverMetaInfo->platformIdentifier);
+        $this->assertStringContainsString(phpversion(), $serverMetaInfo->platformIdentifier);
 
-        $this->assertObjectHasAttribute('sdkIdentifier', $serverMetaInfo);
+        $this->assertObjectHasProperty('sdkIdentifier', $serverMetaInfo);
         $this->assertEquals('PHPServerSDK/v' . MetadataProvider::SDK_VERSION, $serverMetaInfo->sdkIdentifier);
 
-        $this->assertObjectHasAttribute('sdkCreator', $serverMetaInfo);
+        $this->assertObjectHasProperty('sdkCreator', $serverMetaInfo);
         $this->assertEquals('Worldline', $serverMetaInfo->sdkCreator);
 
-        $this->assertObjectHasAttribute('integrator', $serverMetaInfo);
+        $this->assertObjectHasProperty('integrator', $serverMetaInfo);
         $this->assertEquals('Worldline.Integrator', $serverMetaInfo->integrator);
 
-        $this->assertObjectHasAttribute('shoppingCartExtension', $serverMetaInfo);
+        $this->assertObjectHasProperty('shoppingCartExtension', $serverMetaInfo);
         $this->assertInstanceOf('\stdClass', $serverMetaInfo->shoppingCartExtension);
 
-        $this->assertObjectHasAttribute('extensionId', $serverMetaInfo->shoppingCartExtension);
+        $this->assertObjectHasProperty('extensionId', $serverMetaInfo->shoppingCartExtension);
         $this->assertEquals('ExtensionId', $serverMetaInfo->shoppingCartExtension->extensionId);
-        $this->assertObjectHasAttribute('creator', $serverMetaInfo->shoppingCartExtension);
+        $this->assertObjectHasProperty('creator', $serverMetaInfo->shoppingCartExtension);
         $this->assertEquals('Worldline.Creator', $serverMetaInfo->shoppingCartExtension->creator);
-        $this->assertObjectHasAttribute('name', $serverMetaInfo->shoppingCartExtension);
+        $this->assertObjectHasProperty('name', $serverMetaInfo->shoppingCartExtension);
         $this->assertEquals('Extension', $serverMetaInfo->shoppingCartExtension->name);
-        $this->assertObjectHasAttribute('version', $serverMetaInfo->shoppingCartExtension);
+        $this->assertObjectHasProperty('version', $serverMetaInfo->shoppingCartExtension);
         $this->assertEquals('1.0', $serverMetaInfo->shoppingCartExtension->version);
     }
 
@@ -213,46 +213,44 @@ class CommunicatorRequestHeaderTest extends TestCase
         $requestHeaders = $this->getRequestHeaders(
             $communicatorConfiguration,
             'GET',
-            '/v1/consumer/ANDR%C3%89E/?q=na%20me',
-            ''
+            '/v1/consumer/ANDR%C3%89E/?q=na%20me'
         );
         $serverMetaInfoJson = $requestHeaders['X-GCS-ServerMetaInfo'];
         $serverMetaInfo = json_decode(base64_decode($serverMetaInfoJson));
         $this->assertInstanceOf('\stdClass', $serverMetaInfo);
 
-        $this->assertObjectHasAttribute('platformIdentifier', $serverMetaInfo);
-        $this->assertContains(php_uname(), $serverMetaInfo->platformIdentifier);
-        $this->assertContains(phpversion(), $serverMetaInfo->platformIdentifier);
+        $this->assertObjectHasProperty('platformIdentifier', $serverMetaInfo);
+        $this->assertStringContainsString(php_uname(), $serverMetaInfo->platformIdentifier);
+        $this->assertStringContainsString(phpversion(), $serverMetaInfo->platformIdentifier);
 
-        $this->assertObjectHasAttribute('sdkIdentifier', $serverMetaInfo);
+        $this->assertObjectHasProperty('sdkIdentifier', $serverMetaInfo);
         $this->assertEquals('PHPServerSDK/v' . MetadataProvider::SDK_VERSION, $serverMetaInfo->sdkIdentifier);
 
-        $this->assertObjectHasAttribute('sdkCreator', $serverMetaInfo);
+        $this->assertObjectHasProperty('sdkCreator', $serverMetaInfo);
         $this->assertEquals('Worldline', $serverMetaInfo->sdkCreator);
 
-        $this->assertObjectHasAttribute('integrator', $serverMetaInfo);
+        $this->assertObjectHasProperty('integrator', $serverMetaInfo);
         $this->assertEquals('Worldline.Integrator', $serverMetaInfo->integrator);
 
-        $this->assertObjectHasAttribute('shoppingCartExtension', $serverMetaInfo);
+        $this->assertObjectHasProperty('shoppingCartExtension', $serverMetaInfo);
         $this->assertInstanceOf('\stdClass', $serverMetaInfo->shoppingCartExtension);
 
-        $this->assertObjectNotHasAttribute('extensionId', $serverMetaInfo->shoppingCartExtension);
-        $this->assertObjectHasAttribute('creator', $serverMetaInfo->shoppingCartExtension);
+        $this->assertObjectNotHasProperty('extensionId', $serverMetaInfo->shoppingCartExtension);
+        $this->assertObjectHasProperty('creator', $serverMetaInfo->shoppingCartExtension);
         $this->assertEquals('Worldline.Creator', $serverMetaInfo->shoppingCartExtension->creator);
-        $this->assertObjectHasAttribute('name', $serverMetaInfo->shoppingCartExtension);
+        $this->assertObjectHasProperty('name', $serverMetaInfo->shoppingCartExtension);
         $this->assertEquals('Extension', $serverMetaInfo->shoppingCartExtension->name);
-        $this->assertObjectHasAttribute('version', $serverMetaInfo->shoppingCartExtension);
+        $this->assertObjectHasProperty('version', $serverMetaInfo->shoppingCartExtension);
         $this->assertEquals('1.0', $serverMetaInfo->shoppingCartExtension->version);
     }
 
     private function getRequestHeaders(
         CommunicatorConfiguration $communicatorConfiguration,
-        $httpMethod,
-        $relativeUri,
-        $contentType = '',
-        $clientMetaInfo = ''
-    )
-    {
+        string                    $httpMethod,
+        string                    $relativeUri,
+        string                    $contentType = '',
+        string                    $clientMetaInfo = ''
+    ): array {
         $communicator = new Communicator($communicatorConfiguration);
         $method = new ReflectionMethod($communicator, 'getRequestHeaders');
         $method->setAccessible(true);

@@ -14,54 +14,54 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AbstractThreeDSecure extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $authenticationAmount = null;
+    public ?AmountOfMoney $authenticationAmount = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $authenticationFlow = null;
+    public ?string $authenticationFlow = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $challengeCanvasSize = null;
+    public ?string $challengeCanvasSize = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $challengeIndicator = null;
+    public ?string $challengeIndicator = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $exemptionRequest = null;
+    public ?string $exemptionRequest = null;
 
     /**
-     * @var ThreeDSecureData
+     * @var ThreeDSecureData|null
      */
-    public $priorThreeDSecureData = null;
+    public ?ThreeDSecureData $priorThreeDSecureData = null;
 
     /**
-     * @var SdkDataInput
+     * @var SdkDataInput|null
      */
-    public $sdkData = null;
+    public ?SdkDataInput $sdkData = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $skipAuthentication = null;
+    public ?bool $skipAuthentication = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $transactionRiskLevel = null;
+    public ?string $transactionRiskLevel = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->authenticationAmount)) {
@@ -96,10 +96,11 @@ class AbstractThreeDSecure extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractThreeDSecure
     {
         parent::fromObject($object);
         if (property_exists($object, 'authenticationAmount')) {

@@ -14,135 +14,136 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AirlineData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $agentNumericCode = null;
+    public ?string $agentNumericCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $code = null;
+    public ?string $code = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $flightDate = null;
+    public ?string $flightDate = null;
 
     /**
-     * @var AirlineFlightLeg[]
+     * @var AirlineFlightLeg[]|null
      */
-    public $flightLegs = null;
+    public ?array $flightLegs = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $invoiceNumber = null;
+    public ?string $invoiceNumber = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isETicket = null;
+    public ?bool $isETicket = null;
 
     /**
-     * @var bool
+     * @var bool|null
+     *
      * @deprecated Use Order.customer.accountType instead
      */
-    public $isRegisteredCustomer = null;
+    public ?bool $isRegisteredCustomer = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRestrictedTicket = null;
+    public ?bool $isRestrictedTicket = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isThirdParty = null;
+    public ?bool $isThirdParty = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $issueDate = null;
+    public ?string $issueDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantCustomerId = null;
+    public ?string $merchantCustomerId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $name = null;
+    public ?string $name = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberInParty = null;
+    public ?int $numberInParty = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $passengerName = null;
+    public ?string $passengerName = null;
 
     /**
-     * @var AirlinePassenger[]
+     * @var AirlinePassenger[]|null
      */
-    public $passengers = null;
+    public ?array $passengers = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $placeOfIssue = null;
+    public ?string $placeOfIssue = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $pnr = null;
+    public ?string $pnr = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $pointOfSale = null;
+    public ?string $pointOfSale = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $posCityCode = null;
+    public ?string $posCityCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $ticketDeliveryMethod = null;
+    public ?string $ticketDeliveryMethod = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $ticketNumber = null;
+    public ?string $ticketNumber = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $totalFare = null;
+    public ?int $totalFare = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $totalFee = null;
+    public ?int $totalFee = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $totalTaxes = null;
+    public ?int $totalTaxes = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $travelAgencyName = null;
+    public ?string $travelAgencyName = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->agentNumericCode)) {
@@ -235,10 +236,11 @@ class AirlineData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AirlineData
     {
         parent::fromObject($object);
         if (property_exists($object, 'agentNumericCode')) {

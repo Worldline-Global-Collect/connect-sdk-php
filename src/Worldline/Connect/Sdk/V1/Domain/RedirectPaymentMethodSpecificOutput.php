@@ -13,54 +13,54 @@ use UnexpectedValueException;
 class RedirectPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
-     * @var BankAccountBban
+     * @var BankAccountBban|null
      */
-    public $bankAccountBban = null;
+    public ?BankAccountBban $bankAccountBban = null;
 
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $bic = null;
+    public ?string $bic = null;
 
     /**
-     * @var FraudResults
+     * @var FraudResults|null
      */
-    public $fraudResults = null;
+    public ?FraudResults $fraudResults = null;
 
     /**
-     * @var PaymentProduct3201SpecificOutput
+     * @var PaymentProduct3201SpecificOutput|null
      */
-    public $paymentProduct3201SpecificOutput = null;
+    public ?PaymentProduct3201SpecificOutput $paymentProduct3201SpecificOutput = null;
 
     /**
-     * @var PaymentProduct806SpecificOutput
+     * @var PaymentProduct806SpecificOutput|null
      */
-    public $paymentProduct806SpecificOutput = null;
+    public ?PaymentProduct806SpecificOutput $paymentProduct806SpecificOutput = null;
 
     /**
-     * @var PaymentProduct840SpecificOutput
+     * @var PaymentProduct840SpecificOutput|null
      */
-    public $paymentProduct840SpecificOutput = null;
+    public ?PaymentProduct840SpecificOutput $paymentProduct840SpecificOutput = null;
 
     /**
-     * @var PaymentProduct866SpecificOutput
+     * @var PaymentProduct866SpecificOutput|null
      */
-    public $paymentProduct866SpecificOutput = null;
+    public ?PaymentProduct866SpecificOutput $paymentProduct866SpecificOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountBban)) {
@@ -95,10 +95,11 @@ class RedirectPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificO
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RedirectPaymentMethodSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountBban')) {

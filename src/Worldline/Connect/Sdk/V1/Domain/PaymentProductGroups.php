@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductGroups extends DataObject
 {
     /**
-     * @var PaymentProductGroup[]
+     * @var PaymentProductGroup[]|null
      */
-    public $paymentProductGroups = null;
+    public ?array $paymentProductGroups = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProductGroups)) {
@@ -37,10 +37,11 @@ class PaymentProductGroups extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductGroups
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProductGroups')) {

@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class BankAccountIban extends BankAccount
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $iban = null;
+    public ?string $iban = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->iban)) {
@@ -31,10 +31,11 @@ class BankAccountIban extends BankAccount
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BankAccountIban
     {
         parent::fromObject($object);
         if (property_exists($object, 'iban')) {

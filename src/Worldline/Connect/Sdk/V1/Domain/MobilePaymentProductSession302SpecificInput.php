@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MobilePaymentProductSession302SpecificInput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $displayName = null;
+    public ?string $displayName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $domainName = null;
+    public ?string $domainName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $validationUrl = null;
+    public ?string $validationUrl = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayName)) {
@@ -48,10 +48,11 @@ class MobilePaymentProductSession302SpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MobilePaymentProductSession302SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayName')) {

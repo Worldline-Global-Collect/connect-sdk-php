@@ -14,25 +14,26 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class DeviceRenderOptions extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $sdkInterface = null;
+    public ?string $sdkInterface = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use deviceRenderOptions.sdkUiTypes instead
      */
-    public $sdkUiType = null;
+    public ?string $sdkUiType = null;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $sdkUiTypes = null;
+    public ?array $sdkUiTypes = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->sdkInterface)) {
@@ -54,10 +55,11 @@ class DeviceRenderOptions extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DeviceRenderOptions
     {
         parent::fromObject($object);
         if (property_exists($object, 'sdkInterface')) {

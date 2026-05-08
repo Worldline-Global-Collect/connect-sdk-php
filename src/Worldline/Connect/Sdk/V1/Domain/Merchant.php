@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Merchant extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $configurationId = null;
+    public ?string $configurationId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $contactWebsiteUrl = null;
+    public ?string $contactWebsiteUrl = null;
 
     /**
-     * @var Seller
+     * @var Seller|null
      */
-    public $seller = null;
+    public ?Seller $seller = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $websiteUrl = null;
+    public ?string $websiteUrl = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->configurationId)) {
@@ -56,10 +56,11 @@ class Merchant extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Merchant
     {
         parent::fromObject($object);
         if (property_exists($object, 'configurationId')) {

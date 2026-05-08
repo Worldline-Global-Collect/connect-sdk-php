@@ -14,15 +14,16 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AbstractSepaDirectDebitPaymentProduct771SpecificInput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use existingUniqueMandateReference or mandate.uniqueMandateReference instead
      */
-    public $mandateReference = null;
+    public ?string $mandateReference = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->mandateReference)) {
@@ -33,10 +34,11 @@ class AbstractSepaDirectDebitPaymentProduct771SpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractSepaDirectDebitPaymentProduct771SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'mandateReference')) {

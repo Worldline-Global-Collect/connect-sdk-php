@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ErrorResponse extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $errorId = null;
+    public ?string $errorId = null;
 
     /**
-     * @var APIError[]
+     * @var APIError[]|null
      */
-    public $errors = null;
+    public ?array $errors = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->errorId)) {
@@ -45,10 +45,11 @@ class ErrorResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ErrorResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'errorId')) {

@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CancelPaymentResponse extends DataObject
 {
     /**
-     * @var CancelPaymentCardPaymentMethodSpecificOutput
+     * @var CancelPaymentCardPaymentMethodSpecificOutput|null
      */
-    public $cardPaymentMethodSpecificOutput = null;
+    public ?CancelPaymentCardPaymentMethodSpecificOutput $cardPaymentMethodSpecificOutput = null;
 
     /**
-     * @var CancelPaymentMobilePaymentMethodSpecificOutput
+     * @var CancelPaymentMobilePaymentMethodSpecificOutput|null
      */
-    public $mobilePaymentMethodSpecificOutput = null;
+    public ?CancelPaymentMobilePaymentMethodSpecificOutput $mobilePaymentMethodSpecificOutput = null;
 
     /**
-     * @var Payment
+     * @var Payment|null
      */
-    public $payment = null;
+    public ?Payment $payment = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->cardPaymentMethodSpecificOutput)) {
@@ -48,10 +48,11 @@ class CancelPaymentResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CancelPaymentResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'cardPaymentMethodSpecificOutput')) {

@@ -12,11 +12,15 @@ class BodyObfuscator
 {
     const MIME_APPLICATION_JSON = 'application/json';
 
-    /** @var  ValueObfuscator */
-    protected $valueObfuscator;
+    /**
+     * @var ValueObfuscator
+     */
+    protected ValueObfuscator $valueObfuscator;
 
-    /** @var array<string, callable> */
-    private $customRules = array();
+    /**
+     * @var array<string, callable>
+     */
+    private array $customRules = array();
 
     public function __construct()
     {
@@ -26,9 +30,10 @@ class BodyObfuscator
     /**
      * @param string $contentType
      * @param string $body
+     *
      * @return string
      */
-    public function obfuscateBody($contentType, $body)
+    public function obfuscateBody(string $contentType, string $body): string
     {
         if (!$this->isJsonContentType($contentType)) {
             return $body;
@@ -40,13 +45,15 @@ class BodyObfuscator
         return json_encode($this->obfuscateDecodedJsonPart($decodedJsonBody), JSON_PRETTY_PRINT);
     }
 
-    private function isJsonContentType($contentType) {
+    private function isJsonContentType(string $contentType): bool
+    {
         return $contentType === static::MIME_APPLICATION_JSON
             || substr($contentType, 0, strlen(static::MIME_APPLICATION_JSON)) === static::MIME_APPLICATION_JSON;
     }
 
     /**
-     * @param $value
+     * @param mixed $value
+     *
      * @return mixed
      */
     protected function obfuscateDecodedJsonPart($value)
@@ -68,22 +75,22 @@ class BodyObfuscator
                     $elementValue = $this->obfuscateDecodedJsonPart($elementValue);
                 }
             }
-
         }
         return $value;
     }
 
     /**
-     * @param $key
-     * @param $value
+     * @param string $key
+     * @param scalar $value
+     *
      * @return string
      */
-    protected function obfuscateScalarValue($key, $value)
+    protected function obfuscateScalarValue(string $key, $value): string
     {
         if (!is_scalar($value)) {
             throw new UnexpectedValueException('scalar value expected');
         }
-        $lowerKey = mb_strtolower(strval($key), 'UTF-8');
+        $lowerKey = mb_strtolower($key, 'UTF-8');
         if (isset($this->customRules[$lowerKey])) {
             return call_user_func($this->customRules[$lowerKey], $value, $this->valueObfuscator);
         }
@@ -114,12 +121,14 @@ class BodyObfuscator
     }
 
     /**
-     * @param $propertyName
+     * @param string   $propertyName
      * @param callable $customRule
+     *
+     * @return void
      */
-    public function setCustomRule($propertyName, callable $customRule)
+    public function setCustomRule(string $propertyName, callable $customRule): void
     {
-        $lowerName = mb_strtolower(strval($propertyName), 'UTF-8');
+        $lowerName = mb_strtolower($propertyName, 'UTF-8');
         $this->customRules[$lowerName] = $customRule;
     }
 }

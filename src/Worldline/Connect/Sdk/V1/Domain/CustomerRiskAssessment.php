@@ -14,55 +14,56 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CustomerRiskAssessment extends DataObject
 {
     /**
-     * @var CustomerAccountRiskAssessment
+     * @var CustomerAccountRiskAssessment|null
      */
-    public $account = null;
+    public ?CustomerAccountRiskAssessment $account = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $accountType = null;
+    public ?string $accountType = null;
 
     /**
-     * @var Address
+     * @var Address|null
      */
-    public $billingAddress = null;
+    public ?Address $billingAddress = null;
 
     /**
-     * @var ContactDetailsRiskAssessment
+     * @var ContactDetailsRiskAssessment|null
      */
-    public $contactDetails = null;
+    public ?ContactDetailsRiskAssessment $contactDetails = null;
 
     /**
-     * @var CustomerDeviceRiskAssessment
+     * @var CustomerDeviceRiskAssessment|null
      */
-    public $device = null;
+    public ?CustomerDeviceRiskAssessment $device = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isPreviousCustomer = null;
+    public ?bool $isPreviousCustomer = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $locale = null;
+    public ?string $locale = null;
 
     /**
-     * @var PersonalInformationRiskAssessment
+     * @var PersonalInformationRiskAssessment|null
      */
-    public $personalInformation = null;
+    public ?PersonalInformationRiskAssessment $personalInformation = null;
 
     /**
-     * @var AddressPersonal
+     * @var AddressPersonal|null
+     *
      * @deprecated Use Order.shipping.address instead
      */
-    public $shippingAddress = null;
+    public ?AddressPersonal $shippingAddress = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->account)) {
@@ -97,10 +98,11 @@ class CustomerRiskAssessment extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CustomerRiskAssessment
     {
         parent::fromObject($object);
         if (property_exists($object, 'account')) {

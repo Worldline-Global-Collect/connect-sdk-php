@@ -10,22 +10,21 @@ class ValueObfuscatorTest extends TestCase
 {
     /**
      * @dataProvider valueObfuscatorProvider
-     * @param $value
-     * @param $obfuscationLength
-     * @param $valueStartObfuscated
-     * @param $valueEndObfuscated
-     * @param $valueAllObfuscated
-     * @param $obfuscatedFixedLength
+     * @param string $value
+     * @param int $obfuscationLength
+     * @param string $valueStartObfuscated
+     * @param string $valueEndObfuscated
+     * @param string $valueAllObfuscated
+     * @param string $obfuscatedFixedLength
      */
     public function testValueObfuscators(
-        $value,
-        $obfuscationLength,
-        $valueStartObfuscated,
-        $valueEndObfuscated,
-        $valueAllObfuscated,
-        $obfuscatedFixedLength
-    )
-    {
+        string $value,
+        int    $obfuscationLength,
+        string $valueStartObfuscated,
+        string $valueEndObfuscated,
+        string $valueAllObfuscated,
+        string $obfuscatedFixedLength
+    ) {
         $valueObfuscator = new ValueObfuscator();
         $this->assertEquals($valueStartObfuscated, $valueObfuscator->obfuscateAllKeepEnd($value, $obfuscationLength));
         $this->assertEquals($valueEndObfuscated, $valueObfuscator->obfuscateAllKeepStart($value, $obfuscationLength));
@@ -33,7 +32,7 @@ class ValueObfuscatorTest extends TestCase
         $this->assertEquals($obfuscatedFixedLength, $valueObfuscator->obfuscateFixedLength($obfuscationLength));
     }
 
-    public function valueObfuscatorProvider()
+    public function valueObfuscatorProvider(): array
     {
         return array(
             array('', 0, '', '', '', ''),

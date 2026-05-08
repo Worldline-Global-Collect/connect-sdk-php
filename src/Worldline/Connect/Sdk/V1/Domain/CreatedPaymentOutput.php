@@ -14,45 +14,46 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreatedPaymentOutput extends DataObject
 {
     /**
-     * @var DisplayedData
+     * @var DisplayedData|null
      */
-    public $displayedData = null;
+    public ?DisplayedData $displayedData = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isCheckedRememberMe = null;
+    public ?bool $isCheckedRememberMe = null;
 
     /**
-     * @var Payment
+     * @var Payment|null
      */
-    public $payment = null;
+    public ?Payment $payment = null;
 
     /**
-     * @var PaymentCreationReferences
+     * @var PaymentCreationReferences|null
      */
-    public $paymentCreationReferences = null;
+    public ?PaymentCreationReferences $paymentCreationReferences = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use Payment.statusOutput.statusCategory instead
      */
-    public $paymentStatusCategory = null;
+    public ?string $paymentStatusCategory = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $tokenizationSucceeded = null;
+    public ?bool $tokenizationSucceeded = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $tokens = null;
+    public ?string $tokens = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayedData)) {
@@ -81,10 +82,11 @@ class CreatedPaymentOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreatedPaymentOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayedData')) {

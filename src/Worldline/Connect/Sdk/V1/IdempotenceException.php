@@ -14,25 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
  */
 class IdempotenceException extends ResponseException
 {
-    /** @var string */
-    private $idempotenceKey;
-
-    /** @var string */
-    private $idempotenceRequestTimestamp;
+    /**
+     * @var string
+     */
+    private string $idempotenceKey;
 
     /**
-     * @param int $httpStatusCode
-     * @param DataObject $response
-     * @param string $message
-     * @param string $idempotenceKey
-     * @param string $idempotenceRequestTimestamp;
+     * @var string
+     */
+    private string $idempotenceRequestTimestamp;
+
+    /**
+     * @param int         $httpStatusCode
+     * @param DataObject  $response
+     * @param string|null $message
+     * @param string      $idempotenceKey
+     * @param string      $idempotenceRequestTimestamp
      */
     public function __construct(
-        $httpStatusCode,
+        int        $httpStatusCode,
         DataObject $response,
-        $message = null,
-        $idempotenceKey = '',
-        $idempotenceRequestTimestamp = ''
+        ?string    $message = null,
+        string     $idempotenceKey = '',
+        string     $idempotenceRequestTimestamp = ''
     ) {
         if ($message == null) {
             $message = 'the Worldline Global Collect platform returned a duplicate request error response';
@@ -45,7 +49,7 @@ class IdempotenceException extends ResponseException
     /**
      * @return string
      */
-    public function getIdempotenceKey()
+    public function getIdempotenceKey(): string
     {
         return $this->idempotenceKey;
     }
@@ -53,7 +57,7 @@ class IdempotenceException extends ResponseException
     /**
      * @return string
      */
-    public function getIdempotenceRequestTimestamp()
+    public function getIdempotenceRequestTimestamp(): string
     {
         return $this->idempotenceRequestTimestamp;
     }

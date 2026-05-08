@@ -14,59 +14,59 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Swift extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $bic = null;
+    public ?string $bic = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $category = null;
+    public ?string $category = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $chipsUID = null;
+    public ?string $chipsUID = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $extraInfo = null;
+    public ?string $extraInfo = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $poBoxCountry = null;
+    public ?string $poBoxCountry = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $poBoxLocation = null;
+    public ?string $poBoxLocation = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $poBoxNumber = null;
+    public ?string $poBoxNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $poBoxZip = null;
+    public ?string $poBoxZip = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $routingBic = null;
+    public ?string $routingBic = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $services = null;
+    public ?string $services = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bic)) {
@@ -104,10 +104,11 @@ class Swift extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Swift
     {
         parent::fromObject($object);
         if (property_exists($object, 'bic')) {

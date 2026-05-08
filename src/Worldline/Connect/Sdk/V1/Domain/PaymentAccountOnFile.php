@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentAccountOnFile extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $createDate = null;
+    public ?string $createDate = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfCardOnFileCreationAttemptsLast24Hours = null;
+    public ?int $numberOfCardOnFileCreationAttemptsLast24Hours = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->createDate)) {
@@ -40,10 +40,11 @@ class PaymentAccountOnFile extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentAccountOnFile
     {
         parent::fromObject($object);
         if (property_exists($object, 'createDate')) {

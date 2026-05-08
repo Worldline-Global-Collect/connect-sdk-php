@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AbstractIndicator extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $name = null;
+    public ?string $name = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $value = null;
+    public ?string $value = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->name)) {
@@ -40,10 +40,11 @@ class AbstractIndicator extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractIndicator
     {
         parent::fromObject($object);
         if (property_exists($object, 'name')) {

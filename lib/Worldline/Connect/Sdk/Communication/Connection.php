@@ -11,42 +11,54 @@ use Worldline\Connect\Sdk\Logging\CommunicatorLogger;
 interface Connection
 {
     /**
-     * @param string $requestUri
+     * @param string   $requestUri
      * @param string[] $requestHeaders
      * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     *
+     * @return void
      */
-    public function get($requestUri, $requestHeaders, callable $responseHandler);
+    public function get(string $requestUri, array $requestHeaders, callable $responseHandler): void;
 
     /**
-     * @param string $requestUri
+     * @param string   $requestUri
      * @param string[] $requestHeaders
      * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     *
+     * @return void
      */
-    public function delete($requestUri, $requestHeaders, callable $responseHandler);
+    public function delete(string $requestUri, array $requestHeaders, callable $responseHandler): void;
 
     /**
-     * @param string $requestUri
-     * @param string[] $requestHeaders
+     * @param string                         $requestUri
+     * @param string[]                       $requestHeaders
      * @param string|MultipartFormDataObject $body
-     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     * @param callable                       $responseHandler Callable accepting the response status code,
+     *                                                        a response body chunk and the response headers
+     *
+     * @return void
      */
-    public function post($requestUri, $requestHeaders, $body, callable $responseHandler);
+    public function post(string $requestUri, array $requestHeaders, $body, callable $responseHandler): void;
 
     /**
-     * @param string $requestUri
-     * @param string[] $requestHeaders
+     * @param string                         $requestUri
+     * @param string[]                       $requestHeaders
      * @param string|MultipartFormDataObject $body
-     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     * @param callable                       $responseHandler Callable accepting the response status code,
+     *                                                        a response body chunk and the response headers
+     *
+     * @return void
      */
-    public function put($requestUri, $requestHeaders, $body, callable $responseHandler);
+    public function put(string $requestUri, array $requestHeaders, $body, callable $responseHandler): void;
 
     /**
      * @param CommunicatorLogger $communicatorLogger
+     *
+     * @return void
      */
-    public function enableLogging(CommunicatorLogger $communicatorLogger);
+    public function enableLogging(CommunicatorLogger $communicatorLogger): void;
 
     /**
-     *
+     * @return void
      */
-    public function disableLogging();
+    public function disableLogging(): void;
 }

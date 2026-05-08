@@ -14,74 +14,74 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ThreeDSecureResults extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $acsTransactionId = null;
+    public ?string $acsTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $appliedExemption = null;
+    public ?string $appliedExemption = null;
 
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $authenticationAmount = null;
+    public ?AmountOfMoney $authenticationAmount = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $cavv = null;
+    public ?string $cavv = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $directoryServerTransactionId = null;
+    public ?string $directoryServerTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $eci = null;
+    public ?string $eci = null;
 
     /**
-     * @var ExemptionOutput
+     * @var ExemptionOutput|null
      */
-    public $exemptionOutput = null;
+    public ?ExemptionOutput $exemptionOutput = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $schemeRiskScore = null;
+    public ?int $schemeRiskScore = null;
 
     /**
-     * @var SdkDataOutput
+     * @var SdkDataOutput|null
      */
-    public $sdkData = null;
+    public ?SdkDataOutput $sdkData = null;
 
     /**
-     * @var ThreeDSecureData
+     * @var ThreeDSecureData|null
      */
-    public $threeDSecureData = null;
+    public ?ThreeDSecureData $threeDSecureData = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $threeDSecureVersion = null;
+    public ?string $threeDSecureVersion = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $threeDServerTransactionId = null;
+    public ?string $threeDServerTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $xid = null;
+    public ?string $xid = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->acsTransactionId)) {
@@ -128,10 +128,11 @@ class ThreeDSecureResults extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ThreeDSecureResults
     {
         parent::fromObject($object);
         if (property_exists($object, 'acsTransactionId')) {

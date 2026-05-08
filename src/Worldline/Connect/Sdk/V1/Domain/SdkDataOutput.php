@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class SdkDataOutput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $sdkTransactionId = null;
+    public ?string $sdkTransactionId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->sdkTransactionId)) {
@@ -32,10 +32,11 @@ class SdkDataOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): SdkDataOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'sdkTransactionId')) {

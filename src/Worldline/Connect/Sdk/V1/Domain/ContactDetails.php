@@ -13,29 +13,29 @@ use UnexpectedValueException;
 class ContactDetails extends ContactDetailsBase
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $faxNumber = null;
+    public ?string $faxNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $mobilePhoneNumber = null;
+    public ?string $mobilePhoneNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $phoneNumber = null;
+    public ?string $phoneNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $workPhoneNumber = null;
+    public ?string $workPhoneNumber = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->faxNumber)) {
@@ -55,10 +55,11 @@ class ContactDetails extends ContactDetailsBase
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ContactDetails
     {
         parent::fromObject($object);
         if (property_exists($object, 'faxNumber')) {

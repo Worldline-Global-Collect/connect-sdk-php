@@ -10,20 +10,19 @@ class HttpObfuscatorTest extends TestCase
 {
     /**
      * @dataProvider rawObfuscatedRequestProvider
-     * @param $requestMethod
-     * @param $relativeRequestUri
+     * @param string $requestMethod
+     * @param string $relativeRequestUri
      * @param array $requestHeaders
      * @param string $requestBody
      * @param string $expectedRawObfuscatedRequest
      */
     public function testRawObfuscatedRequest(
-        $requestMethod,
-        $relativeRequestUri,
-        array $requestHeaders,
-        $requestBody,
-        $expectedRawObfuscatedRequest
-    )
-    {
+        string $requestMethod,
+        string $relativeRequestUri,
+        array  $requestHeaders,
+        string $requestBody,
+        string $expectedRawObfuscatedRequest
+    ) {
         $httpObfuscator = new HttpObfuscator();
         $this->assertEquals(
             $expectedRawObfuscatedRequest,
@@ -34,7 +33,7 @@ class HttpObfuscatorTest extends TestCase
     /**
      * @return array
      */
-    public function rawObfuscatedRequestProvider()
+    public function rawObfuscatedRequestProvider(): array
     {
         return array(
             array(
@@ -83,7 +82,7 @@ class HttpObfuscatorTest extends TestCase
      * @param ConnectionResponse $response
      * @param string $expectedRawObfuscatedResponse
      */
-    public function testRawObfuscatedResponse(ConnectionResponse $response, $expectedRawObfuscatedResponse)
+    public function testRawObfuscatedResponse(ConnectionResponse $response, string $expectedRawObfuscatedResponse)
     {
         $httpObfuscator = new HttpObfuscator();
         $this->assertEquals(
@@ -95,7 +94,7 @@ class HttpObfuscatorTest extends TestCase
     /**
      * @return array
      */
-    public function rawObfuscatedResponseProvider()
+    public function rawObfuscatedResponseProvider(): array
     {
         return array(
             array(

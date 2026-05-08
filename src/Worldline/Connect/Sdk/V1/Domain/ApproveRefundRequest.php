@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ApproveRefundRequest extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $amount = null;
+    public ?int $amount = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amount)) {
@@ -32,10 +32,11 @@ class ApproveRefundRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ApproveRefundRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'amount')) {

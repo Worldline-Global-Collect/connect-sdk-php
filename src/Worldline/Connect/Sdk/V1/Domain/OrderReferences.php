@@ -14,39 +14,39 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class OrderReferences extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $descriptor = null;
+    public ?string $descriptor = null;
 
     /**
-     * @var OrderInvoiceData
+     * @var OrderInvoiceData|null
      */
-    public $invoiceData = null;
+    public ?OrderInvoiceData $invoiceData = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $merchantOrderId = null;
+    public ?int $merchantOrderId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantReference = null;
+    public ?string $merchantReference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $providerId = null;
+    public ?string $providerId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $providerMerchantId = null;
+    public ?string $providerMerchantId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->descriptor)) {
@@ -72,10 +72,11 @@ class OrderReferences extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): OrderReferences
     {
         parent::fromObject($object);
         if (property_exists($object, 'descriptor')) {

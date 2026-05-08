@@ -13,24 +13,24 @@ use UnexpectedValueException;
 class Capture extends AbstractOrderStatus
 {
     /**
-     * @var CaptureOutput
+     * @var CaptureOutput|null
      */
-    public $captureOutput = null;
+    public ?CaptureOutput $captureOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $status = null;
+    public ?string $status = null;
 
     /**
-     * @var CaptureStatusOutput
+     * @var CaptureStatusOutput|null
      */
-    public $statusOutput = null;
+    public ?CaptureStatusOutput $statusOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->captureOutput)) {
@@ -47,10 +47,11 @@ class Capture extends AbstractOrderStatus
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Capture
     {
         parent::fromObject($object);
         if (property_exists($object, 'captureOutput')) {

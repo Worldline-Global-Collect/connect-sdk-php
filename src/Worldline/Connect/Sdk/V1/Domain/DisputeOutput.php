@@ -14,54 +14,54 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class DisputeOutput extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $contactPerson = null;
+    public ?string $contactPerson = null;
 
     /**
-     * @var DisputeCreationDetail
+     * @var DisputeCreationDetail|null
      */
-    public $creationDetails = null;
+    public ?DisputeCreationDetail $creationDetails = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $emailAddress = null;
+    public ?string $emailAddress = null;
 
     /**
-     * @var HostedFile[]
+     * @var HostedFile[]|null
      */
-    public $files = null;
+    public ?array $files = null;
 
     /**
-     * @var DisputeReference
+     * @var DisputeReference|null
      */
-    public $reference = null;
+    public ?DisputeReference $reference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $replyTo = null;
+    public ?string $replyTo = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $requestMessage = null;
+    public ?string $requestMessage = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $responseMessage = null;
+    public ?string $responseMessage = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoney)) {
@@ -101,10 +101,11 @@ class DisputeOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DisputeOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {

@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class RefundEWalletMethodSpecificOutput extends RefundMethodSpecificOutput
 {
     /**
-     * @var RefundPaymentProduct840SpecificOutput
+     * @var RefundPaymentProduct840SpecificOutput|null
      */
-    public $paymentProduct840SpecificOutput = null;
+    public ?RefundPaymentProduct840SpecificOutput $paymentProduct840SpecificOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProduct840SpecificOutput)) {
@@ -31,10 +31,11 @@ class RefundEWalletMethodSpecificOutput extends RefundMethodSpecificOutput
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundEWalletMethodSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProduct840SpecificOutput')) {

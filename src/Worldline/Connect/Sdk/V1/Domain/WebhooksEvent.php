@@ -14,64 +14,64 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class WebhooksEvent extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $apiVersion = null;
+    public ?string $apiVersion = null;
 
     /**
-     * @var CaptureResponse
+     * @var CaptureResponse|null
      */
-    public $capture = null;
+    public ?CaptureResponse $capture = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $created = null;
+    public ?string $created = null;
 
     /**
-     * @var DisputeResponse
+     * @var DisputeResponse|null
      */
-    public $dispute = null;
+    public ?DisputeResponse $dispute = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantId = null;
+    public ?string $merchantId = null;
 
     /**
-     * @var PaymentResponse
+     * @var PaymentResponse|null
      */
-    public $payment = null;
+    public ?PaymentResponse $payment = null;
 
     /**
-     * @var PayoutResponse
+     * @var PayoutResponse|null
      */
-    public $payout = null;
+    public ?PayoutResponse $payout = null;
 
     /**
-     * @var RefundResponse
+     * @var RefundResponse|null
      */
-    public $refund = null;
+    public ?RefundResponse $refund = null;
 
     /**
-     * @var TokenResponse
+     * @var TokenResponse|null
      */
-    public $token = null;
+    public ?TokenResponse $token = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $type = null;
+    public ?string $type = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->apiVersion)) {
@@ -112,10 +112,11 @@ class WebhooksEvent extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): WebhooksEvent
     {
         parent::fromObject($object);
         if (property_exists($object, 'apiVersion')) {

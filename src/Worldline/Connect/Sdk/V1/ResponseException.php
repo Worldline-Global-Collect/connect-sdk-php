@@ -16,20 +16,22 @@ use Worldline\Connect\Sdk\V1\Domain\APIError;
  */
 class ResponseException extends RuntimeException
 {
-    /** @var int */
-    private $httpStatusCode;
+    /**
+     * @var int
+     */
+    private int $httpStatusCode;
 
     /**
      * @var DataObject
      */
-    private $response;
+    private DataObject $response;
 
     /**
-     * @param int $httpStatusCode
-     * @param DataObject $response
-     * @param string $message
+     * @param int         $httpStatusCode
+     * @param DataObject  $response
+     * @param string|null $message
      */
-    public function __construct($httpStatusCode, DataObject $response, $message = null)
+    public function __construct(int $httpStatusCode, DataObject $response, ?string $message = null)
     {
         if (is_null($message)) {
             $message = 'the Worldline Global Collect platform returned an error response';
@@ -39,7 +41,7 @@ class ResponseException extends RuntimeException
         $this->response = $response;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return sprintf(
             "exception '%s' with message '%s'. in %s:%d\nHTTP status code: %s\nResponse:\n%s\nStack trace:\n%s",
@@ -56,7 +58,7 @@ class ResponseException extends RuntimeException
     /**
      * @return int
      */
-    public function getHttpStatusCode()
+    public function getHttpStatusCode(): int
     {
         return $this->httpStatusCode;
     }
@@ -64,15 +66,15 @@ class ResponseException extends RuntimeException
     /**
      * @return DataObject
      */
-    public function getResponse()
+    public function getResponse(): DataObject
     {
         return $this->response;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getErrorId()
+    public function getErrorId(): ?string
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('errorId', $responseVariables)) {
@@ -84,7 +86,7 @@ class ResponseException extends RuntimeException
     /**
      * @return APIError[]
      */
-    public function getErrors()
+    public function getErrors(): array
     {
         $responseVariables = get_object_vars($this->getResponse());
         if (!array_key_exists('errors', $responseVariables)) {

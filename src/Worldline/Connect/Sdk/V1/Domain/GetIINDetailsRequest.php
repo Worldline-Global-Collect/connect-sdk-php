@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class GetIINDetailsRequest extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $bin = null;
+    public ?string $bin = null;
 
     /**
-     * @var PaymentContext
+     * @var PaymentContext|null
      */
-    public $paymentContext = null;
+    public ?PaymentContext $paymentContext = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bin)) {
@@ -40,10 +40,11 @@ class GetIINDetailsRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): GetIINDetailsRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'bin')) {

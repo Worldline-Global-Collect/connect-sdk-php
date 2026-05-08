@@ -14,44 +14,44 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class APIError extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $category = null;
+    public ?string $category = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $code = null;
+    public ?string $code = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $httpStatusCode = null;
+    public ?int $httpStatusCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $message = null;
+    public ?string $message = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $propertyName = null;
+    public ?string $propertyName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $requestId = null;
+    public ?string $requestId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->category)) {
@@ -80,10 +80,11 @@ class APIError extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): APIError
     {
         parent::fromObject($object);
         if (property_exists($object, 'category')) {

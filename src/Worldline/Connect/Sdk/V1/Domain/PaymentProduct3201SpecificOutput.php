@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProduct3201SpecificOutput extends DataObject
 {
     /**
-     * @var CardEssentials
+     * @var CardEssentials|null
      */
-    public $card = null;
+    public ?CardEssentials $card = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->card)) {
@@ -32,10 +32,11 @@ class PaymentProduct3201SpecificOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProduct3201SpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'card')) {

@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class AccountOnFileAttribute extends KeyValuePair
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $mustWriteReason = null;
+    public ?string $mustWriteReason = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $status = null;
+    public ?string $status = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->mustWriteReason)) {
@@ -39,10 +39,11 @@ class AccountOnFileAttribute extends KeyValuePair
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AccountOnFileAttribute
     {
         parent::fromObject($object);
         if (property_exists($object, 'mustWriteReason')) {

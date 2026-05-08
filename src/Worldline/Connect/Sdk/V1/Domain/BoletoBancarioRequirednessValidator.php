@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class BoletoBancarioRequirednessValidator extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $fiscalNumberLength = null;
+    public ?int $fiscalNumberLength = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->fiscalNumberLength)) {
@@ -32,10 +32,11 @@ class BoletoBancarioRequirednessValidator extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BoletoBancarioRequirednessValidator
     {
         parent::fromObject($object);
         if (property_exists($object, 'fiscalNumberLength')) {

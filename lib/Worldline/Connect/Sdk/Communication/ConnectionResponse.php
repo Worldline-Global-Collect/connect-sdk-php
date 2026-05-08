@@ -8,24 +8,32 @@ namespace Worldline\Connect\Sdk\Communication;
  */
 class ConnectionResponse
 {
-    /** @var int */
-    private $httpStatusCode;
-
-    /** @var array */
-    private $headers;
-
-    /** @var array */
-    private $lowerCasedHeaderKeyMap;
-
-    /** @var string */
-    private $body;
+    /**
+     * @var int
+     */
+    private int $httpStatusCode;
 
     /**
-     * @param int $httpStatusCode
-     * @param array $headers
+     * @var array
+     */
+    private array $headers;
+
+    /**
+     * @var array
+     */
+    private array $lowerCasedHeaderKeyMap;
+
+    /**
+     * @var string
+     */
+    private string $body;
+
+    /**
+     * @param int    $httpStatusCode
+     * @param array  $headers
      * @param string $body
      */
-    public function __construct($httpStatusCode, array $headers, $body)
+    public function __construct(int $httpStatusCode, array $headers, string $body)
     {
         $this->httpStatusCode = $httpStatusCode;
         $this->headers = $headers;
@@ -39,7 +47,7 @@ class ConnectionResponse
     /**
      * @return int
      */
-    public function getHttpStatusCode()
+    public function getHttpStatusCode(): int
     {
         return $this->httpStatusCode;
     }
@@ -47,16 +55,17 @@ class ConnectionResponse
     /**
      * @return array
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         return $this->headers;
     }
 
     /**
      * @param string $name
+     *
      * @return string|array
      */
-    public function getHeaderValue($name)
+    public function getHeaderValue(string $name)
     {
         $lowerCasedName = strtolower($name);
         if (array_key_exists($lowerCasedName, $this->lowerCasedHeaderKeyMap)) {
@@ -68,21 +77,21 @@ class ConnectionResponse
     /**
      * @return string
      */
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }
 
     /**
      * @param array $headers
+     *
      * @return string|null The value of the filename parameter of the Content-Disposition header from the given headers,
      *                     or null if there was no such header or parameter.
      */
-    public static function getDispositionFilename($headers)
+    public static function getDispositionFilename(array $headers): ?string
     {
         $headerValue = null;
-        foreach ($headers as $key => $value)
-        {
+        foreach ($headers as $key => $value) {
             if (strtolower($key) === 'content-disposition') {
                 $headerValue = $value;
                 break;
@@ -98,13 +107,15 @@ class ConnectionResponse
         return null;
     }
 
-    private static function trimQuotes($filename) {
+    private static function trimQuotes(string $filename): string
+    {
         $len = strlen($filename);
         if ($len < 2) {
             return $filename;
         }
         if ((strrpos($filename, '"', -$len) === 0 && strpos($filename, '"', $len - 1) === $len - 1)
-            || (strrpos($filename, "'", -$len) === 0 && strpos($filename, "'", $len - 1) === $len - 1)) {
+            || (strrpos($filename, "'", -$len) === 0 && strpos($filename, "'", $len - 1) === $len - 1)
+        ) {
             return substr($filename, 1, $len - 2);
         }
         return $filename;

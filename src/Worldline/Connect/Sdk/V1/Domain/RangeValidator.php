@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RangeValidator extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $maxValue = null;
+    public ?int $maxValue = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $minValue = null;
+    public ?int $minValue = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->maxValue)) {
@@ -40,10 +40,11 @@ class RangeValidator extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RangeValidator
     {
         parent::fromObject($object);
         if (property_exists($object, 'maxValue')) {

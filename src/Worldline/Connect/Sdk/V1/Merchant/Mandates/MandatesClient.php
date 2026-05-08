@@ -23,19 +23,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Mandates client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Mandates
  */
 class MandatesClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/mandates - Create mandate
      *
      * @param CreateMandateRequest $body
-     * @param CallContext $callContext
-     * @return CreateMandateResponse
+     * @param CallContext|null     $callContext
      *
+     * @return CreateMandateResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -43,9 +47,9 @@ class MandatesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/create.html Create mandate
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/create.html Create mandate
      */
-    public function create(CreateMandateRequest $body, CallContext $callContext = null)
+    public function create(CreateMandateRequest $body, ?CallContext $callContext = null): CreateMandateResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\CreateMandateResponse';
@@ -71,11 +75,11 @@ class MandatesClient extends ApiResource
     /**
      * Resource /{merchantId}/mandates/{uniqueMandateReference} - Create mandate with mandatereference
      *
-     * @param string $uniqueMandateReference
+     * @param string               $uniqueMandateReference
      * @param CreateMandateRequest $body
-     * @param CallContext $callContext
-     * @return CreateMandateResponse
+     * @param CallContext|null     $callContext
      *
+     * @return CreateMandateResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -83,9 +87,9 @@ class MandatesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/createWithMandateReference.html Create mandate with mandatereference
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/createWithMandateReference.html Create mandate with mandatereference
      */
-    public function createWithMandateReference($uniqueMandateReference, CreateMandateRequest $body, CallContext $callContext = null)
+    public function createWithMandateReference(string $uniqueMandateReference, CreateMandateRequest $body, ?CallContext $callContext = null): CreateMandateResponse
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
@@ -112,10 +116,10 @@ class MandatesClient extends ApiResource
     /**
      * Resource /{merchantId}/mandates/{uniqueMandateReference} - Get mandate
      *
-     * @param string $uniqueMandateReference
-     * @param CallContext $callContext
-     * @return GetMandateResponse
+     * @param string           $uniqueMandateReference
+     * @param CallContext|null $callContext
      *
+     * @return GetMandateResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -123,9 +127,9 @@ class MandatesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/get.html Get mandate
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/get.html Get mandate
      */
-    public function get($uniqueMandateReference, CallContext $callContext = null)
+    public function get(string $uniqueMandateReference, ?CallContext $callContext = null): GetMandateResponse
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
@@ -151,10 +155,10 @@ class MandatesClient extends ApiResource
     /**
      * Resource /{merchantId}/mandates/{uniqueMandateReference}/block - Block mandate
      *
-     * @param string $uniqueMandateReference
-     * @param CallContext $callContext
-     * @return GetMandateResponse
+     * @param string           $uniqueMandateReference
+     * @param CallContext|null $callContext
      *
+     * @return GetMandateResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -162,9 +166,9 @@ class MandatesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/block.html Block mandate
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/block.html Block mandate
      */
-    public function block($uniqueMandateReference, CallContext $callContext = null)
+    public function block(string $uniqueMandateReference, ?CallContext $callContext = null): GetMandateResponse
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
@@ -191,10 +195,10 @@ class MandatesClient extends ApiResource
     /**
      * Resource /{merchantId}/mandates/{uniqueMandateReference}/unblock - Unblock mandate
      *
-     * @param string $uniqueMandateReference
-     * @param CallContext $callContext
-     * @return GetMandateResponse
+     * @param string           $uniqueMandateReference
+     * @param CallContext|null $callContext
      *
+     * @return GetMandateResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -202,9 +206,9 @@ class MandatesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/unblock.html Unblock mandate
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/unblock.html Unblock mandate
      */
-    public function unblock($uniqueMandateReference, CallContext $callContext = null)
+    public function unblock(string $uniqueMandateReference, ?CallContext $callContext = null): GetMandateResponse
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
@@ -231,10 +235,10 @@ class MandatesClient extends ApiResource
     /**
      * Resource /{merchantId}/mandates/{uniqueMandateReference}/revoke - Revoke mandate
      *
-     * @param string $uniqueMandateReference
-     * @param CallContext $callContext
-     * @return GetMandateResponse
+     * @param string           $uniqueMandateReference
+     * @param CallContext|null $callContext
      *
+     * @return GetMandateResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -242,9 +246,9 @@ class MandatesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/revoke.html Revoke mandate
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/mandates/revoke.html Revoke mandate
      */
-    public function revoke($uniqueMandateReference, CallContext $callContext = null)
+    public function revoke(string $uniqueMandateReference, ?CallContext $callContext = null): GetMandateResponse
     {
         $this->context['uniqueMandateReference'] = $uniqueMandateReference;
         $responseClassMap = new ResponseClassMap();
@@ -268,8 +272,10 @@ class MandatesClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

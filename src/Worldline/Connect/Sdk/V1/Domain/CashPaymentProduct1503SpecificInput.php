@@ -10,20 +10,22 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 
 /**
  * @package Worldline\Connect\Sdk\V1\Domain
+ *
  * @deprecated No replacement
  */
 class CashPaymentProduct1503SpecificInput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated No replacement, since Boleto Bancario no longer needs a return URL
      */
-    public $returnUrl = null;
+    public ?string $returnUrl = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->returnUrl)) {
@@ -34,10 +36,11 @@ class CashPaymentProduct1503SpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CashPaymentProduct1503SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'returnUrl')) {

@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProduct863SpecificData extends DataObject
 {
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $integrationTypes = null;
+    public ?array $integrationTypes = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->integrationTypes)) {
@@ -37,10 +37,11 @@ class PaymentProduct863SpecificData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProduct863SpecificData
     {
         parent::fromObject($object);
         if (property_exists($object, 'integrationTypes')) {

@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class DisputeStatusOutput extends DataObject
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isCancellable = null;
+    public ?bool $isCancellable = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $statusCategory = null;
+    public ?string $statusCategory = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $statusCode = null;
+    public ?int $statusCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $statusCodeChangeDateTime = null;
+    public ?string $statusCodeChangeDateTime = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->isCancellable)) {
@@ -56,10 +56,11 @@ class DisputeStatusOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DisputeStatusOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'isCancellable')) {

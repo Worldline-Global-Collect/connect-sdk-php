@@ -14,59 +14,59 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProduct840CustomerAccount extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $accountId = null;
+    public ?string $accountId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $billingAgreementId = null;
+    public ?string $billingAgreementId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $companyName = null;
+    public ?string $companyName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $contactPhone = null;
+    public ?string $contactPhone = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode = null;
+    public ?string $countryCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerAccountStatus = null;
+    public ?string $customerAccountStatus = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerAddressStatus = null;
+    public ?string $customerAddressStatus = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $firstName = null;
+    public ?string $firstName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $payerId = null;
+    public ?string $payerId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $surname = null;
+    public ?string $surname = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->accountId)) {
@@ -104,10 +104,11 @@ class PaymentProduct840CustomerAccount extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProduct840CustomerAccount
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountId')) {

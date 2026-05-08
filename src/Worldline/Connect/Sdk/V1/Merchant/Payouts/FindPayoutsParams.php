@@ -11,27 +11,27 @@ use Worldline\Connect\Sdk\Communication\RequestObject;
  * Query parameters for Find payouts
  *
  * @package Worldline\Connect\Sdk\V1\Merchant\Payouts
- * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/find.html Find payouts
+ * @link    https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/find.html Find payouts
  */
 class FindPayoutsParams extends RequestObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantReference;
+    public ?string $merchantReference;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $merchantOrderId;
+    public ?int $merchantOrderId;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $offset;
+    public ?int $offset;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $limit;
+    public ?int $limit;
 }

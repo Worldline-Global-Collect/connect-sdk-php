@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Frequency extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $interval = null;
+    public ?string $interval = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $intervalFrequency = null;
+    public ?int $intervalFrequency = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->interval)) {
@@ -40,10 +40,11 @@ class Frequency extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Frequency
     {
         parent::fromObject($object);
         if (property_exists($object, 'interval')) {

@@ -14,74 +14,74 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreatePaymentRequest extends DataObject
 {
     /**
-     * @var BankTransferPaymentMethodSpecificInput
+     * @var BankTransferPaymentMethodSpecificInput|null
      */
-    public $bankTransferPaymentMethodSpecificInput = null;
+    public ?BankTransferPaymentMethodSpecificInput $bankTransferPaymentMethodSpecificInput = null;
 
     /**
-     * @var CardPaymentMethodSpecificInput
+     * @var CardPaymentMethodSpecificInput|null
      */
-    public $cardPaymentMethodSpecificInput = null;
+    public ?CardPaymentMethodSpecificInput $cardPaymentMethodSpecificInput = null;
 
     /**
-     * @var CashPaymentMethodSpecificInput
+     * @var CashPaymentMethodSpecificInput|null
      */
-    public $cashPaymentMethodSpecificInput = null;
+    public ?CashPaymentMethodSpecificInput $cashPaymentMethodSpecificInput = null;
 
     /**
-     * @var NonSepaDirectDebitPaymentMethodSpecificInput
+     * @var NonSepaDirectDebitPaymentMethodSpecificInput|null
      */
-    public $directDebitPaymentMethodSpecificInput = null;
+    public ?NonSepaDirectDebitPaymentMethodSpecificInput $directDebitPaymentMethodSpecificInput = null;
 
     /**
-     * @var EInvoicePaymentMethodSpecificInput
+     * @var EInvoicePaymentMethodSpecificInput|null
      */
-    public $eInvoicePaymentMethodSpecificInput = null;
+    public ?EInvoicePaymentMethodSpecificInput $eInvoicePaymentMethodSpecificInput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $encryptedCustomerInput = null;
+    public ?string $encryptedCustomerInput = null;
 
     /**
-     * @var FraudFields
+     * @var FraudFields|null
      */
-    public $fraudFields = null;
+    public ?FraudFields $fraudFields = null;
 
     /**
-     * @var InvoicePaymentMethodSpecificInput
+     * @var InvoicePaymentMethodSpecificInput|null
      */
-    public $invoicePaymentMethodSpecificInput = null;
+    public ?InvoicePaymentMethodSpecificInput $invoicePaymentMethodSpecificInput = null;
 
     /**
-     * @var Merchant
+     * @var Merchant|null
      */
-    public $merchant = null;
+    public ?Merchant $merchant = null;
 
     /**
-     * @var MobilePaymentMethodSpecificInput
+     * @var MobilePaymentMethodSpecificInput|null
      */
-    public $mobilePaymentMethodSpecificInput = null;
+    public ?MobilePaymentMethodSpecificInput $mobilePaymentMethodSpecificInput = null;
 
     /**
-     * @var Order
+     * @var Order|null
      */
-    public $order = null;
+    public ?Order $order = null;
 
     /**
-     * @var RedirectPaymentMethodSpecificInput
+     * @var RedirectPaymentMethodSpecificInput|null
      */
-    public $redirectPaymentMethodSpecificInput = null;
+    public ?RedirectPaymentMethodSpecificInput $redirectPaymentMethodSpecificInput = null;
 
     /**
-     * @var SepaDirectDebitPaymentMethodSpecificInput
+     * @var SepaDirectDebitPaymentMethodSpecificInput|null
      */
-    public $sepaDirectDebitPaymentMethodSpecificInput = null;
+    public ?SepaDirectDebitPaymentMethodSpecificInput $sepaDirectDebitPaymentMethodSpecificInput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankTransferPaymentMethodSpecificInput)) {
@@ -128,10 +128,11 @@ class CreatePaymentRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreatePaymentRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankTransferPaymentMethodSpecificInput')) {

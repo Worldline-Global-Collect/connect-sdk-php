@@ -22,19 +22,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Sessions client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Sessions
  */
 class SessionsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/sessions - Create session
      *
-     * @param SessionRequest $body
-     * @param CallContext $callContext
-     * @return SessionResponse
+     * @param SessionRequest   $body
+     * @param CallContext|null $callContext
      *
+     * @return SessionResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -42,9 +46,9 @@ class SessionsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/sessions/create.html Create session
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/sessions/create.html Create session
      */
-    public function create(SessionRequest $body, CallContext $callContext = null)
+    public function create(SessionRequest $body, ?CallContext $callContext = null): SessionResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\SessionResponse';
@@ -67,8 +71,10 @@ class SessionsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

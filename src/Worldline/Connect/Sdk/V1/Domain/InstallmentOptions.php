@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class InstallmentOptions extends DataObject
 {
     /**
-     * @var InstallmentDisplayHints
+     * @var InstallmentDisplayHints|null
      */
-    public $displayHints = null;
+    public ?InstallmentDisplayHints $displayHints = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
-     * @var Installments[]
+     * @var Installments[]|null
      */
-    public $installmentPlans = null;
+    public ?array $installmentPlans = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayHints)) {
@@ -53,10 +53,11 @@ class InstallmentOptions extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): InstallmentOptions
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayHints')) {

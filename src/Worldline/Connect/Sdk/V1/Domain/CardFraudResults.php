@@ -13,29 +13,29 @@ use UnexpectedValueException;
 class CardFraudResults extends FraudResults
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $avsResult = null;
+    public ?string $avsResult = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $cvvResult = null;
+    public ?string $cvvResult = null;
 
     /**
-     * @var FraugsterResults
+     * @var FraugsterResults|null
      */
-    public $fraugster = null;
+    public ?FraugsterResults $fraugster = null;
 
     /**
-     * @var FraudResultsRetailDecisions
+     * @var FraudResultsRetailDecisions|null
      */
-    public $retailDecisions = null;
+    public ?FraudResultsRetailDecisions $retailDecisions = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->avsResult)) {
@@ -55,10 +55,11 @@ class CardFraudResults extends FraudResults
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CardFraudResults
     {
         parent::fromObject($object);
         if (property_exists($object, 'avsResult')) {

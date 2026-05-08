@@ -14,149 +14,149 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProduct extends DataObject
 {
     /**
-     * @var AccountOnFile[]
+     * @var AccountOnFile[]|null
      */
-    public $accountsOnFile = null;
+    public ?array $accountsOnFile = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $acquirerCountry = null;
+    public ?string $acquirerCountry = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $allowsClickToPay = null;
+    public ?bool $allowsClickToPay = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $allowsInstallments = null;
+    public ?bool $allowsInstallments = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $allowsMultiplePartialCaptures = null;
+    public ?bool $allowsMultiplePartialCaptures = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $allowsRecurring = null;
+    public ?bool $allowsRecurring = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $allowsTokenization = null;
+    public ?bool $allowsTokenization = null;
 
     /**
-     * @var AuthenticationIndicator
+     * @var AuthenticationIndicator|null
      */
-    public $authenticationIndicator = null;
+    public ?AuthenticationIndicator $authenticationIndicator = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $autoTokenized = null;
+    public ?bool $autoTokenized = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $canBeIframed = null;
+    public ?bool $canBeIframed = null;
 
     /**
-     * @var ClickToPayConfiguration
+     * @var ClickToPayConfiguration|null
      */
-    public $clickToPayConfiguration = null;
+    public ?ClickToPayConfiguration $clickToPayConfiguration = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $deviceFingerprintEnabled = null;
+    public ?bool $deviceFingerprintEnabled = null;
 
     /**
-     * @var PaymentProductDisplayHints
+     * @var PaymentProductDisplayHints|null
      */
-    public $displayHints = null;
+    public ?PaymentProductDisplayHints $displayHints = null;
 
     /**
-     * @var PaymentProductField[]
+     * @var PaymentProductField[]|null
      */
-    public $fields = null;
+    public ?array $fields = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fieldsWarning = null;
+    public ?string $fieldsWarning = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $id = null;
+    public ?int $id = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isAuthenticationSupported = null;
+    public ?bool $isAuthenticationSupported = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isJavaScriptRequired = null;
+    public ?bool $isJavaScriptRequired = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $maxAmount = null;
+    public ?int $maxAmount = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $minAmount = null;
+    public ?int $minAmount = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $mobileIntegrationLevel = null;
+    public ?string $mobileIntegrationLevel = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentMethod = null;
+    public ?string $paymentMethod = null;
 
     /**
-     * @var PaymentProduct302SpecificData
+     * @var PaymentProduct302SpecificData|null
      */
-    public $paymentProduct302SpecificData = null;
+    public ?PaymentProduct302SpecificData $paymentProduct302SpecificData = null;
 
     /**
-     * @var PaymentProduct320SpecificData
+     * @var PaymentProduct320SpecificData|null
      */
-    public $paymentProduct320SpecificData = null;
+    public ?PaymentProduct320SpecificData $paymentProduct320SpecificData = null;
 
     /**
-     * @var PaymentProduct863SpecificData
+     * @var PaymentProduct863SpecificData|null
      */
-    public $paymentProduct863SpecificData = null;
+    public ?PaymentProduct863SpecificData $paymentProduct863SpecificData = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentProductGroup = null;
+    public ?string $paymentProductGroup = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $supportsMandates = null;
+    public ?bool $supportsMandates = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $usesRedirectionTo3rdParty = null;
+    public ?bool $usesRedirectionTo3rdParty = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->accountsOnFile)) {
@@ -258,10 +258,11 @@ class PaymentProduct extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProduct
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountsOnFile')) {

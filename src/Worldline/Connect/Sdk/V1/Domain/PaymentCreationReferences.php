@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentCreationReferences extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $additionalReference = null;
+    public ?string $additionalReference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $externalReference = null;
+    public ?string $externalReference = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalReference)) {
@@ -40,10 +40,11 @@ class PaymentCreationReferences extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentCreationReferences
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalReference')) {

@@ -14,10 +14,9 @@ class HeaderObfuscatorTest extends TestCase
      * @param string[] $obfuscatedHeaders
      */
     public function testHeaderObfuscator(
-        $headers,
-        $obfuscatedHeaders
-    )
-    {
+        array $headers,
+        array $obfuscatedHeaders
+    ) {
         $headerObfuscator = new HeaderObfuscator();
         $this->assertEquals($obfuscatedHeaders, $headerObfuscator->obfuscateHeaders($headers));
     }
@@ -25,7 +24,7 @@ class HeaderObfuscatorTest extends TestCase
     /**
      * @return array
      */
-    public function headerObfuscatorProvider()
+    public function headerObfuscatorProvider(): array
     {
         return array(
             array(
@@ -63,24 +62,29 @@ class HeaderObfuscatorTest extends TestCase
      * @param string[] $obfuscatedHeaders
      */
     public function testCustomHeaderObfuscator(
-        $headers,
-        $obfuscatedHeaders
-    )
-    {
+        array $headers,
+        array $obfuscatedHeaders
+    ) {
         $headerObfuscator = new HeaderObfuscator();
-        $headerObfuscator->setCustomRule('content-type', function ($value, $valueObfuscator) {
-            return $valueObfuscator->obfuscateAll($value);
-        });
-        $headerObfuscator->setCustomRule('authorization', function ($value) {
-            return '*****';
-        });
+        $headerObfuscator->setCustomRule(
+            'content-type',
+            function ($value, $valueObfuscator) {
+                return $valueObfuscator->obfuscateAll($value);
+            }
+        );
+        $headerObfuscator->setCustomRule(
+            'authorization',
+            function ($value) {
+                return '*****';
+            }
+        );
         $this->assertEquals($obfuscatedHeaders, $headerObfuscator->obfuscateHeaders($headers));
     }
 
     /**
      * @return array
      */
-    public function customHeaderObfuscatorProvider()
+    public function customHeaderObfuscatorProvider(): array
     {
         return array(
             array(

@@ -13,29 +13,29 @@ use UnexpectedValueException;
 class CardPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
 {
     /**
-     * @var Card
+     * @var Card|null
      */
-    public $card = null;
+    public ?Card $card = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $paymentProductId = null;
+    public ?int $paymentProductId = null;
 
     /**
-     * @var PayoutRecipient
+     * @var PayoutRecipient|null
      */
-    public $recipient = null;
+    public ?PayoutRecipient $recipient = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->card)) {
@@ -55,10 +55,11 @@ class CardPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CardPayoutMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'card')) {

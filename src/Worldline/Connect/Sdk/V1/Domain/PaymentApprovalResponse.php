@@ -14,30 +14,31 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentApprovalResponse extends DataObject
 {
     /**
-     * @var ApprovePaymentCardPaymentMethodSpecificOutput
+     * @var ApprovePaymentCardPaymentMethodSpecificOutput|null
      */
-    public $cardPaymentMethodSpecificOutput = null;
+    public ?ApprovePaymentCardPaymentMethodSpecificOutput $cardPaymentMethodSpecificOutput = null;
 
     /**
-     * @var ApprovePaymentMobilePaymentMethodSpecificOutput
+     * @var ApprovePaymentMobilePaymentMethodSpecificOutput|null
      */
-    public $mobilePaymentMethodSpecificOutput = null;
+    public ?ApprovePaymentMobilePaymentMethodSpecificOutput $mobilePaymentMethodSpecificOutput = null;
 
     /**
-     * @var Payment
+     * @var Payment|null
      */
-    public $payment = null;
+    public ?Payment $payment = null;
 
     /**
-     * @var ApprovePaymentCardPaymentMethodSpecificOutput
+     * @var ApprovePaymentCardPaymentMethodSpecificOutput|null
+     *
      * @deprecated Use cardPaymentMethodSpecificOutput instead
      */
-    public $paymentMethodSpecificOutput = null;
+    public ?ApprovePaymentCardPaymentMethodSpecificOutput $paymentMethodSpecificOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->cardPaymentMethodSpecificOutput)) {
@@ -57,10 +58,11 @@ class PaymentApprovalResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentApprovalResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'cardPaymentMethodSpecificOutput')) {

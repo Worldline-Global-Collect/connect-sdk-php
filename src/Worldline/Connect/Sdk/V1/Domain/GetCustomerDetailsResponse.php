@@ -14,59 +14,59 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class GetCustomerDetailsResponse extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $city = null;
+    public ?string $city = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $country = null;
+    public ?string $country = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $emailAddress = null;
+    public ?string $emailAddress = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $firstName = null;
+    public ?string $firstName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fiscalNumber = null;
+    public ?string $fiscalNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $languageCode = null;
+    public ?string $languageCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $phoneNumber = null;
+    public ?string $phoneNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $street = null;
+    public ?string $street = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $surname = null;
+    public ?string $surname = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $zip = null;
+    public ?string $zip = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->city)) {
@@ -104,10 +104,11 @@ class GetCustomerDetailsResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): GetCustomerDetailsResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'city')) {

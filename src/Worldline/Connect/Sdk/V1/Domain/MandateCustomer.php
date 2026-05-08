@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MandateCustomer extends DataObject
 {
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $companyName = null;
+    public ?string $companyName = null;
 
     /**
-     * @var MandateContactDetails
+     * @var MandateContactDetails|null
      */
-    public $contactDetails = null;
+    public ?MandateContactDetails $contactDetails = null;
 
     /**
-     * @var MandateAddress
+     * @var MandateAddress|null
      */
-    public $mandateAddress = null;
+    public ?MandateAddress $mandateAddress = null;
 
     /**
-     * @var MandatePersonalInformation
+     * @var MandatePersonalInformation|null
      */
-    public $personalInformation = null;
+    public ?MandatePersonalInformation $personalInformation = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountIban)) {
@@ -64,10 +64,11 @@ class MandateCustomer extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MandateCustomer
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountIban')) {

@@ -14,49 +14,49 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductGroup extends DataObject
 {
     /**
-     * @var AccountOnFile[]
+     * @var AccountOnFile[]|null
      */
-    public $accountsOnFile = null;
+    public ?array $accountsOnFile = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $allowsClickToPay = null;
+    public ?bool $allowsClickToPay = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $allowsInstallments = null;
+    public ?bool $allowsInstallments = null;
 
     /**
-     * @var ClickToPayConfiguration
+     * @var ClickToPayConfiguration|null
      */
-    public $clickToPayConfiguration = null;
+    public ?ClickToPayConfiguration $clickToPayConfiguration = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $deviceFingerprintEnabled = null;
+    public ?bool $deviceFingerprintEnabled = null;
 
     /**
-     * @var PaymentProductDisplayHints
+     * @var PaymentProductDisplayHints|null
      */
-    public $displayHints = null;
+    public ?PaymentProductDisplayHints $displayHints = null;
 
     /**
-     * @var PaymentProductField[]
+     * @var PaymentProductField[]|null
      */
-    public $fields = null;
+    public ?array $fields = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->accountsOnFile)) {
@@ -98,10 +98,11 @@ class PaymentProductGroup extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductGroup
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountsOnFile')) {

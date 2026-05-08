@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ContactDetailsBase extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $emailAddress = null;
+    public ?string $emailAddress = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $emailMessageType = null;
+    public ?string $emailMessageType = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->emailAddress)) {
@@ -40,10 +40,11 @@ class ContactDetailsBase extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ContactDetailsBase
     {
         parent::fromObject($object);
         if (property_exists($object, 'emailAddress')) {

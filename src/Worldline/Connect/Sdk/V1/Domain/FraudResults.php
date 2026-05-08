@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class FraudResults extends DataObject
 {
     /**
-     * @var CybersourceDecisionManager
+     * @var CybersourceDecisionManager|null
      */
-    public $cybersourceDecisionManager = null;
+    public ?CybersourceDecisionManager $cybersourceDecisionManager = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fraudServiceResult = null;
+    public ?string $fraudServiceResult = null;
 
     /**
-     * @var InAuth
+     * @var InAuth|null
      */
-    public $inAuth = null;
+    public ?InAuth $inAuth = null;
 
     /**
-     * @var MicrosoftFraudResults
+     * @var MicrosoftFraudResults|null
      */
-    public $microsoftFraudProtection = null;
+    public ?MicrosoftFraudResults $microsoftFraudProtection = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->cybersourceDecisionManager)) {
@@ -56,10 +56,11 @@ class FraudResults extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): FraudResults
     {
         parent::fromObject($object);
         if (property_exists($object, 'cybersourceDecisionManager')) {

@@ -14,39 +14,39 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RefundRequest extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var BankRefundMethodSpecificInput
+     * @var BankRefundMethodSpecificInput|null
      */
-    public $bankRefundMethodSpecificInput = null;
+    public ?BankRefundMethodSpecificInput $bankRefundMethodSpecificInput = null;
 
     /**
-     * @var RefundCustomer
+     * @var RefundCustomer|null
      */
-    public $customer = null;
+    public ?RefundCustomer $customer = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $refundDate = null;
+    public ?string $refundDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $refundReason = null;
+    public ?string $refundReason = null;
 
     /**
-     * @var RefundReferences
+     * @var RefundReferences|null
      */
-    public $refundReferences = null;
+    public ?RefundReferences $refundReferences = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoney)) {
@@ -72,10 +72,11 @@ class RefundRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {

@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class SchemeTokenData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $cardholderName = null;
+    public ?string $cardholderName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $cryptogram = null;
+    public ?string $cryptogram = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $eci = null;
+    public ?string $eci = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $networkToken = null;
+    public ?string $networkToken = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $tokenExpiryDate = null;
+    public ?string $tokenExpiryDate = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->cardholderName)) {
@@ -64,10 +64,11 @@ class SchemeTokenData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): SchemeTokenData
     {
         parent::fromObject($object);
         if (property_exists($object, 'cardholderName')) {

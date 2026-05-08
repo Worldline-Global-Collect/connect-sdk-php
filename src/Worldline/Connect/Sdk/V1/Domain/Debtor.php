@@ -14,64 +14,64 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Debtor extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $additionalAddressInfo = null;
+    public ?string $additionalAddressInfo = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $city = null;
+    public ?string $city = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode = null;
+    public ?string $countryCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $firstName = null;
+    public ?string $firstName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $houseNumber = null;
+    public ?string $houseNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $state = null;
+    public ?string $state = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $stateCode = null;
+    public ?string $stateCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $street = null;
+    public ?string $street = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $surname = null;
+    public ?string $surname = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $surnamePrefix = null;
+    public ?string $surnamePrefix = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $zip = null;
+    public ?string $zip = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalAddressInfo)) {
@@ -112,10 +112,11 @@ class Debtor extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Debtor
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalAddressInfo')) {

@@ -18,28 +18,40 @@ use Worldline\Connect\Sdk\ProxyConfiguration;
  */
 class DefaultConnection implements Connection
 {
-    /** @var null|resource */
+    /**
+     * @var resource|null
+     */
     protected $multiHandle = null;
 
-    /** @var CommunicatorLogger|null */
-    protected $communicatorLogger = null;
-
-    /** @var CommunicatorLoggerHelper|null */
-    private $communicatorLoggerHelper = null;
-
-    /** @var int */
-    private $connectTimeout = -1;
-
-    /** @var int */
-    private $readTimeout = -1;
-
-    /** @var ProxyConfiguration */
-    private $proxyConfiguration = null;
+    /**
+     * @var CommunicatorLogger|null
+     */
+    protected ?CommunicatorLogger $communicatorLogger = null;
 
     /**
-     * @param CommunicatorConfiguration $communicatorConfiguration
+     * @var CommunicatorLoggerHelper|null
      */
-    public function __construct(CommunicatorConfiguration $communicatorConfiguration = null)
+    private ?CommunicatorLoggerHelper $communicatorLoggerHelper = null;
+
+    /**
+     * @var int
+     */
+    private int $connectTimeout = -1;
+
+    /**
+     * @var int
+     */
+    private int $readTimeout = -1;
+
+    /**
+     * @var ProxyConfiguration|null
+     */
+    private ?ProxyConfiguration $proxyConfiguration = null;
+
+    /**
+     * @param CommunicatorConfiguration|null $communicatorConfiguration
+     */
+    public function __construct(?CommunicatorConfiguration $communicatorConfiguration = null)
     {
         if ($communicatorConfiguration) {
             $this->connectTimeout = $communicatorConfiguration->getConnectTimeout();
@@ -48,9 +60,6 @@ class DefaultConnection implements Connection
         }
     }
 
-    /**
-     *
-     */
     public function __destruct()
     {
         if (!is_null($this->multiHandle)) {
@@ -60,11 +69,13 @@ class DefaultConnection implements Connection
     }
 
     /**
-     * @param string $requestUri
+     * @param string   $requestUri
      * @param string[] $requestHeaders
      * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     *
+     * @return void
      */
-    public function get($requestUri, $requestHeaders, callable $responseHandler)
+    public function get(string $requestUri, array $requestHeaders, callable $responseHandler): void
     {
         $requestId = UuidGenerator::generatedUuid();
         $this->logRequest($requestId, 'GET', $requestUri, $requestHeaders);
@@ -80,11 +91,13 @@ class DefaultConnection implements Connection
     }
 
     /**
-     * @param string $requestUri
+     * @param string   $requestUri
      * @param string[] $requestHeaders
      * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     *
+     * @return void
      */
-    public function delete($requestUri, $requestHeaders, callable $responseHandler)
+    public function delete(string $requestUri, array $requestHeaders, callable $responseHandler): void
     {
         $requestId = UuidGenerator::generatedUuid();
         $this->logRequest($requestId, 'DELETE', $requestUri, $requestHeaders);
@@ -100,12 +113,15 @@ class DefaultConnection implements Connection
     }
 
     /**
-     * @param string $requestUri
-     * @param string[] $requestHeaders
+     * @param string                         $requestUri
+     * @param string[]                       $requestHeaders
      * @param string|MultipartFormDataObject $body
-     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     * @param callable                       $responseHandler Callable accepting the response status code,
+     *                                                        a response body chunk and the response headers
+     *
+     * @return void
      */
-    public function post($requestUri, $requestHeaders, $body, callable $responseHandler)
+    public function post(string $requestUri, array $requestHeaders, $body, callable $responseHandler): void
     {
         $requestId = UuidGenerator::generatedUuid();
         $bodyToLog = is_string($body) ? $body : '<binary content>';
@@ -122,12 +138,15 @@ class DefaultConnection implements Connection
     }
 
     /**
-     * @param string $requestUri
-     * @param string[] $requestHeaders
-     * @param string $body
-     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     * @param string                         $requestUri
+     * @param string[]                       $requestHeaders
+     * @param string|MultipartFormDataObject $body
+     * @param callable                       $responseHandler Callable accepting the response status code,
+     *                                                        a response body chunk and the response headers
+     *
+     * @return void
      */
-    public function put($requestUri, $requestHeaders, $body, callable $responseHandler)
+    public function put(string $requestUri, array $requestHeaders, $body, callable $responseHandler): void
     {
         $requestId = UuidGenerator::generatedUuid();
         $bodyToLog = is_string($body) ? $body : '<binary content>';
@@ -145,36 +164,40 @@ class DefaultConnection implements Connection
 
     /**
      * @param CommunicatorLogger $communicatorLogger
+     *
+     * @return void
      */
-    public function enableLogging(CommunicatorLogger $communicatorLogger)
+    public function enableLogging(CommunicatorLogger $communicatorLogger): void
     {
         $this->communicatorLogger = $communicatorLogger;
     }
 
     /**
-     *
+     * @return void
      */
-    public function disableLogging()
+    public function disableLogging(): void
     {
         $this->communicatorLogger = null;
     }
 
     /**
-     * @param string $httpMethod
-     * @param string $requestUri
-     * @param string[] $requestHeaders
+     * @param string                         $httpMethod
+     * @param string                         $requestUri
+     * @param string[]                       $requestHeaders
      * @param string|MultipartFormDataObject $body
-     * @param callable $responseHandler Callable accepting the response status code, a response body chunk and the response headers
+     * @param callable                       $responseHandler Callable accepting the response status code,
+     *                                                        a response body chunk and the response headers
+     *
+     * @return ConnectionResponse|null
      * @throws ErrorException
      */
     protected function executeRequest(
-        $httpMethod,
-        $requestUri,
-        $requestHeaders,
+        string   $httpMethod,
+        string   $requestUri,
+        array    $requestHeaders,
         $body,
         callable $responseHandler
-    )
-    {
+    ): ?ConnectionResponse {
         if (!in_array($httpMethod, array('GET', 'DELETE', 'POST', 'PUT'))) {
             throw new UnexpectedValueException(sprintf('Http method \'%s\' is not supported', $httpMethod));
         }
@@ -189,7 +212,6 @@ class DefaultConnection implements Connection
      */
     protected function getCurlHandle()
     {
-        // @phpstan-ignore-next-line
         if (!$curlHandle = curl_init()) {
             throw new ErrorException('Cannot initialize cUrl curlHandle');
         }
@@ -198,10 +220,11 @@ class DefaultConnection implements Connection
 
     /**
      * @param resource $multiHandle
-     * @param resource $curlHandle
+     *
+     * @return void
      * @throws ErrorException
      */
-    private function executeCurlHandleShared($multiHandle, $curlHandle)
+    private function executeCurlHandleShared($multiHandle): void
     {
         $running = 0;
         do {
@@ -228,10 +251,11 @@ class DefaultConnection implements Connection
     /**
      * @param resource $curlHandle
      * @param callable $responseHandler
+     *
      * @return ConnectionResponse|null
      * @throws Exception
      */
-    private function executeCurlHandle($curlHandle, callable $responseHandler)
+    private function executeCurlHandle($curlHandle, callable $responseHandler): ?ConnectionResponse
     {
         $multiHandle = $this->getCurlMultiHandle();
         curl_multi_add_handle($multiHandle, $curlHandle);
@@ -263,7 +287,7 @@ class DefaultConnection implements Connection
         curl_setopt($curlHandle, CURLOPT_WRITEFUNCTION, $writeFunction);
 
         try {
-            $this->executeCurlHandleShared($multiHandle, $curlHandle);
+            $this->executeCurlHandleShared($multiHandle);
 
             // always emit an empty chunk, to make sure that the status code and headers are sent,
             // even if there is no response body
@@ -280,23 +304,21 @@ class DefaultConnection implements Connection
     }
 
     /**
-     * @param resource $curlHandle
-     * @param string $httpMethod
-     * @param string $requestUri
-     * @param string[] $requestHeaders
+     * @param resource                       $curlHandle
+     * @param string                         $httpMethod
+     * @param string                         $requestUri
+     * @param string[]                       $requestHeaders
      * @param string|MultipartFormDataObject $body
+     *
+     * @return void
      */
     protected function setCurlOptions(
         $curlHandle,
-        $httpMethod,
-        $requestUri,
-        $requestHeaders,
+        string $httpMethod,
+        string $requestUri,
+        array $requestHeaders,
         $body
-    )
-    {
-        if (!is_array($requestHeaders)) {
-            throw new UnexpectedValueException('Invalid request headers; expected array');
-        }
+    ): void {
         curl_setopt($curlHandle, CURLOPT_HEADER, false);
         curl_setopt($curlHandle, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curlHandle, CURLOPT_CUSTOMREQUEST, $httpMethod);
@@ -358,6 +380,8 @@ class DefaultConnection implements Connection
     {
         if (is_null($this->multiHandle)) {
             $multiHandle = curl_multi_init();
+            // In PHP 7 the result is not CurlHandle but resource or FALSE
+            // @phpstan-ignore identical.alwaysFalse
             if ($multiHandle === false) {
                 throw new ErrorException('Failed to initialize cURL multi curlHandle');
             }
@@ -367,9 +391,11 @@ class DefaultConnection implements Connection
     }
 
     /**
+     * @param ResponseHeaderBuilder $headerBuilder
+     *
      * @return bool
      */
-    private function isBinaryResponse($headerBuilder)
+    private function isBinaryResponse(ResponseHeaderBuilder $headerBuilder): bool
     {
         $contentType = $headerBuilder->getContentType();
         return $contentType
@@ -385,11 +411,18 @@ class DefaultConnection implements Connection
      * @param string $requestId
      * @param string $requestMethod
      * @param string $requestUri
-     * @param array $requestHeaders
+     * @param array  $requestHeaders
      * @param string $requestBody
+     *
+     * @return void
      */
-    protected function logRequest($requestId, $requestMethod, $requestUri, array $requestHeaders, $requestBody = '')
-    {
+    protected function logRequest(
+        string $requestId,
+        string $requestMethod,
+        string $requestUri,
+        array  $requestHeaders,
+        string $requestBody = ''
+    ): void {
         if ($this->communicatorLogger) {
             $this->getCommunicatorLoggerHelper()->logRequest(
                 $this->communicatorLogger,
@@ -403,12 +436,17 @@ class DefaultConnection implements Connection
     }
 
     /**
-     * @param string $requestId
-     * @param string $requestUri
+     * @param string             $requestId
+     * @param string             $requestUri
      * @param ConnectionResponse $response
+     *
+     * @return void
      */
-    protected function logResponse($requestId, $requestUri, ConnectionResponse $response)
-    {
+    protected function logResponse(
+        string             $requestId,
+        string             $requestUri,
+        ConnectionResponse $response
+    ): void {
         if ($this->communicatorLogger) {
             $this->getCommunicatorLoggerHelper()->logResponse(
                 $this->communicatorLogger,
@@ -420,12 +458,17 @@ class DefaultConnection implements Connection
     }
 
     /**
-     * @param string $requestId
-     * @param string $requestUri
+     * @param string    $requestId
+     * @param string    $requestUri
      * @param Exception $exception
+     *
+     * @return void
      */
-    protected function logException($requestId, $requestUri, Exception $exception)
-    {
+    protected function logException(
+        string    $requestId,
+        string    $requestUri,
+        Exception $exception
+    ): void {
         if ($this->communicatorLogger) {
             $this->getCommunicatorLoggerHelper()->logException(
                 $this->communicatorLogger,
@@ -436,8 +479,10 @@ class DefaultConnection implements Connection
         }
     }
 
-    /** @return CommunicatorLoggerHelper */
-    protected function getCommunicatorLoggerHelper()
+    /**
+     * @return CommunicatorLoggerHelper
+     */
+    protected function getCommunicatorLoggerHelper(): CommunicatorLoggerHelper
     {
         if (is_null($this->communicatorLoggerHelper)) {
             $this->communicatorLoggerHelper = new CommunicatorLoggerHelper;
@@ -447,16 +492,20 @@ class DefaultConnection implements Connection
 
     /**
      * @param BodyObfuscator $bodyObfuscator
+     *
+     * @return void
      */
-    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator)
+    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator): void
     {
         $this->getCommunicatorLoggerHelper()->setBodyObfuscator($bodyObfuscator);
     }
 
     /**
      * @param HeaderObfuscator $headerObfuscator
+     *
+     * @return void
      */
-    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator)
+    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator): void
     {
         $this->getCommunicatorLoggerHelper()->setHeaderObfuscator($headerObfuscator);
     }

@@ -10,11 +10,15 @@ use Worldline\Connect\Sdk\CommunicatorConfiguration;
  */
 class V1HMACAuthenticator implements Authenticator
 {
-    /** @var string */
-    private $apiKeyId;
+    /**
+     * @var string
+     */
+    private string $apiKeyId;
 
-    /** @var string */
-    private $apiSecret;
+    /**
+     * @var string
+     */
+    private string $apiSecret;
 
     /**
      * @param CommunicatorConfiguration $communicatorConfiguration
@@ -26,12 +30,13 @@ class V1HMACAuthenticator implements Authenticator
     }
 
     /**
-     * @param string $httpMethod
-     * @param string $uriPath
-     * @param string[] $requestHeaders
+     * @param string                $httpMethod
+     * @param string                $uriPath
+     * @param array<string, string> $requestHeaders
+     *
      * @return string
      */
-    public function getAuthorization($httpMethod, $uriPath, $requestHeaders)
+    public function getAuthorization(string $httpMethod, string $uriPath, array $requestHeaders): string
     {
         $signature = base64_encode(
             hash_hmac(
@@ -45,10 +50,13 @@ class V1HMACAuthenticator implements Authenticator
     }
 
     /**
-     * @param string[] $requestHeaders
+     * @param string                $httpMethod
+     * @param string                $uriPath
+     * @param array<string, string> $requestHeaders
+     *
      * @return string
      */
-    private function getSignData($httpMethod, $uriPath, $requestHeaders)
+    private function getSignData(string $httpMethod, string $uriPath, array $requestHeaders): string
     {
         $signData = $httpMethod . "\n";
         if (isset($requestHeaders['Content-Type'])) {
@@ -61,15 +69,16 @@ class V1HMACAuthenticator implements Authenticator
         } else {
             $signData .= "\n";
         }
-        $gcsHeaders = array();
-        foreach ($requestHeaders as $headerKey => $headerValue) {
-            if (preg_match('/X-GCS/i', $headerKey)) {
-                $gcsHeaders[$headerKey] = $headerValue;
-            }
-        }
+        $gcsHeaders = array_filter(
+            $requestHeaders,
+            function ($headerKey) {
+                return preg_match('/X-GCS/i', $headerKey);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
         ksort($gcsHeaders);
         foreach ($gcsHeaders as $gcsHeaderKey => $gcsHeaderValue) {
-            $gcsEncodedHeaderValue = trim(preg_replace('/\r?\n[\h]*/', ' ', $gcsHeaderValue));
+            $gcsEncodedHeaderValue = trim(preg_replace('/\r?\n\h*/', ' ', $gcsHeaderValue));
 
             $signData .= strtolower($gcsHeaderKey) . ':' . $gcsEncodedHeaderValue . "\n";
         }

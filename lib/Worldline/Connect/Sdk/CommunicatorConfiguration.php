@@ -14,57 +14,61 @@ class CommunicatorConfiguration
     /**
      * @var string
      */
-    private $authorizationId;
+    private string $authorizationId;
 
     /**
      * @var string
      */
-    private $authorizationSecret;
+    private string $authorizationSecret;
 
     /**
      * @var string
      */
-    private $apiEndpoint;
+    private string $apiEndpoint;
 
-    /** @var int */
-    private $connectTimeout;
+    /**
+     * @var int
+     */
+    private int $connectTimeout;
 
-    /** @var int */
-    private $readTimeout;
+    /**
+     * @var int
+     */
+    private int $readTimeout;
 
     /**
      * @var ProxyConfiguration|null
      */
-    private $proxyConfiguration;
+    private ?ProxyConfiguration $proxyConfiguration;
 
     /**
      * @var string
      */
-    private $integrator;
+    private string $integrator;
 
     /**
      * @var ShoppingCartExtension|null
      */
-    private $shoppingCartExtension = null;
+    private ?ShoppingCartExtension $shoppingCartExtension = null;
 
     /**
-     * @param string $authorizationId
-     * @param string $authorizationSecret
-     * @param string $apiEndpoint
-     * @param string $integrator
+     * @param string                  $authorizationId
+     * @param string                  $authorizationSecret
+     * @param string                  $apiEndpoint
+     * @param string                  $integrator
      * @param ProxyConfiguration|null $proxyConfiguration
-     * @param int $connectTimeout
-     * @param int $readTimeout
+     * @param int                     $connectTimeout
+     * @param int                     $readTimeout
      */
     public function __construct(
-        $authorizationId,
-        $authorizationSecret,
-        $apiEndpoint,
-        $integrator,
-        ProxyConfiguration $proxyConfiguration = null,
-        $connectTimeout = -1,
-        $readTimeout = -1)
-    {
+        string              $authorizationId,
+        string              $authorizationSecret,
+        string              $apiEndpoint,
+        string              $integrator,
+        ?ProxyConfiguration $proxyConfiguration = null,
+        int                 $connectTimeout = -1,
+        int                 $readTimeout = -1
+    ) {
         $this->validateApiEndpoint($apiEndpoint);
         $this->validateIntegrator($integrator);
         $this->authorizationId = $authorizationId;
@@ -76,7 +80,7 @@ class CommunicatorConfiguration
         $this->readTimeout = $readTimeout;
     }
 
-    private function validateApiEndpoint($apiEndpoint)
+    private function validateApiEndpoint(string $apiEndpoint): void
     {
         $url = parse_url($apiEndpoint);
         if ($url === false) {
@@ -88,9 +92,9 @@ class CommunicatorConfiguration
         }
     }
 
-    private function validateIntegrator($integrator)
+    private function validateIntegrator(string $integrator): void
     {
-        if (is_null($integrator) || strlen(trim($integrator)) == 0) {
+        if (strlen(trim($integrator)) == 0) {
             throw new UnexpectedValueException("integrator is required");
         }
     }
@@ -98,15 +102,17 @@ class CommunicatorConfiguration
     /**
      * @return string An id used for authorization. This can be the identifier for a secret API key, or something else.
      */
-    public function getAuthorizationId()
+    public function getAuthorizationId(): string
     {
         return $this->authorizationId;
     }
 
     /**
      * @param string $authorizationId
+     *
+     * @return void
      */
-    public function setAuthorizationId($authorizationId)
+    public function setAuthorizationId(string $authorizationId): void
     {
         $this->authorizationId = $authorizationId;
     }
@@ -114,51 +120,61 @@ class CommunicatorConfiguration
     /**
      * @return string A secret used for authorization. This can be a secret API key, or something else.
      */
-    public function getAuthorizationSecret()
+    public function getAuthorizationSecret(): string
     {
         return $this->authorizationSecret;
     }
 
     /**
      * @param string $authorizationSecret
+     *
+     * @return void
      */
-    public function setAuthorizationSecret($authorizationSecret)
+    public function setAuthorizationSecret(string $authorizationSecret): void
     {
         $this->authorizationSecret = $authorizationSecret;
     }
 
     /**
      * This method is an alias for getAuthorizationId.
+     *
      * @return string
      */
-    public function getApiKeyId()
+    public function getApiKeyId(): string
     {
         return $this->getAuthorizationId();
     }
 
     /**
      * This method is an alias for setAuthorizationId.
+     *
      * @param string $apiKeyId
+     *
+     * @return void
      */
-    public function setApiKeyId($apiKeyId)
+    public function setApiKeyId(string $apiKeyId): void
     {
         $this->setAuthorizationId($apiKeyId);
     }
 
     /**
      * This method is an alias for getAuthorizationSecret.
+     *
      * @return string
      */
-    public function getApiSecret()
+    public function getApiSecret(): string
     {
         return $this->getAuthorizationSecret();
     }
 
     /**
      * This method is an alias for setAuthorizationSecret.
+     *
      * @param string $apiSecret
+     *
+     * @return void
      */
-    public function setApiSecret($apiSecret)
+    public function setApiSecret(string $apiSecret): void
     {
         $this->setAuthorizationSecret($apiSecret);
     }
@@ -166,15 +182,17 @@ class CommunicatorConfiguration
     /**
      * @return string
      */
-    public function getApiEndpoint()
+    public function getApiEndpoint(): string
     {
         return $this->apiEndpoint;
     }
 
     /**
      * @param string $apiEndpoint
+     *
+     * @return void
      */
-    public function setApiEndpoint($apiEndpoint)
+    public function setApiEndpoint(string $apiEndpoint): void
     {
         $this->validateApiEndpoint($apiEndpoint);
         $this->apiEndpoint = $apiEndpoint;
@@ -183,15 +201,17 @@ class CommunicatorConfiguration
     /**
      * @return ProxyConfiguration|null
      */
-    public function getProxyConfiguration()
+    public function getProxyConfiguration(): ?ProxyConfiguration
     {
         return $this->proxyConfiguration;
     }
 
     /**
      * @param ProxyConfiguration|null $proxyConfiguration
+     *
+     * @return void
      */
-    public function setProxyConfiguration(ProxyConfiguration $proxyConfiguration = null)
+    public function setProxyConfiguration(?ProxyConfiguration $proxyConfiguration = null): void
     {
         $this->proxyConfiguration = $proxyConfiguration;
     }
@@ -199,15 +219,17 @@ class CommunicatorConfiguration
     /**
      * @return int
      */
-    public function getConnectTimeout()
+    public function getConnectTimeout(): int
     {
         return $this->connectTimeout;
     }
 
     /**
      * @param int $connectTimeout
+     *
+     * @return void
      */
-    public function setConnectTimeout($connectTimeout)
+    public function setConnectTimeout(int $connectTimeout): void
     {
         $this->connectTimeout = $connectTimeout;
     }
@@ -215,15 +237,17 @@ class CommunicatorConfiguration
     /**
      * @return int
      */
-    public function getReadTimeout()
+    public function getReadTimeout(): int
     {
         return $this->readTimeout;
     }
 
     /**
      * @param int $readTimeout
+     *
+     * @return void
      */
-    public function setReadTimeout($readTimeout)
+    public function setReadTimeout(int $readTimeout): void
     {
         $this->readTimeout = $readTimeout;
     }
@@ -231,15 +255,17 @@ class CommunicatorConfiguration
     /**
      * @return string
      */
-    public function getIntegrator()
+    public function getIntegrator(): string
     {
         return $this->integrator;
     }
 
     /**
      * @param string $integrator
+     *
+     * @return void
      */
-    public function setIntegrator($integrator)
+    public function setIntegrator(string $integrator): void
     {
         $this->validateIntegrator($integrator);
         $this->integrator = $integrator;
@@ -248,15 +274,17 @@ class CommunicatorConfiguration
     /**
      * @return ShoppingCartExtension|null
      */
-    public function getShoppingCartExtension()
+    public function getShoppingCartExtension(): ?ShoppingCartExtension
     {
         return $this->shoppingCartExtension;
     }
 
     /**
      * @param ShoppingCartExtension|null $shoppingCartExtension
+     *
+     * @return void
      */
-    public function setShoppingCartExtension(ShoppingCartExtension $shoppingCartExtension = null)
+    public function setShoppingCartExtension(?ShoppingCartExtension $shoppingCartExtension = null): void
     {
         $this->shoppingCartExtension = $shoppingCartExtension;
     }

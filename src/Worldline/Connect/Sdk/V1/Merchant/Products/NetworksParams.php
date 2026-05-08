@@ -11,27 +11,27 @@ use Worldline\Connect\Sdk\Communication\RequestObject;
  * Query parameters for Get payment product networks
  *
  * @package Worldline\Connect\Sdk\V1\Merchant\Products
- * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/networks.html Get payment product networks
+ * @link    https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/networks.html Get payment product networks
  */
 class NetworksParams extends RequestObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode;
+    public ?string $countryCode;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $currencyCode;
+    public ?string $currencyCode;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $amount;
+    public ?int $amount;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring;
+    public ?bool $isRecurring;
 }

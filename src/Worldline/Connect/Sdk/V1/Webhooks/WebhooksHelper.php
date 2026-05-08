@@ -21,11 +21,15 @@ use Worldline\Connect\Sdk\Webhooks\SignatureValidator;
  */
 class WebhooksHelper
 {
-    /** @var SignatureValidator */
-    private $signatureValidator;
+    /**
+     * @var SignatureValidator
+     */
+    private SignatureValidator $signatureValidator;
 
-    /** @var ResponseFactory|null */
-    private $responseFactory = null;
+    /**
+     * @var ResponseFactory|null
+     */
+    private ?ResponseFactory $responseFactory = null;
 
     /**
      * @param SecretKeyStore $secretKeyStore
@@ -35,8 +39,10 @@ class WebhooksHelper
         $this->signatureValidator = new SignatureValidator($secretKeyStore);
     }
 
-    /** @return ResponseFactory */
-    protected function getResponseFactory()
+    /**
+     * @return ResponseFactory
+     */
+    protected function getResponseFactory(): ResponseFactory
     {
         if (is_null($this->responseFactory)) {
             $this->responseFactory = new ResponseFactory();
@@ -47,13 +53,15 @@ class WebhooksHelper
     /**
      * Unmarshals the given input stream that contains the body,
      * while also validating its contents using the given request headers.
+     *
      * @param string $body
-     * @param array $requestHeaders
+     * @param array  $requestHeaders
+     *
      * @return WebhooksEvent
      * @throws SignatureValidationException
      * @throws ApiVersionMismatchException
      */
-    public function unmarshal($body, $requestHeaders)
+    public function unmarshal(string $body, array $requestHeaders): WebhooksEvent
     {
         $this->signatureValidator->validate($body, $requestHeaders);
 
@@ -61,12 +69,15 @@ class WebhooksHelper
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->addResponseClassName(200, '\Worldline\Connect\Sdk\V1\Domain\WebhooksEvent');
 
+        /**
+         * @var WebhooksEvent $event
+         */
         $event = $this->getResponseFactory()->createResponse($response, $responseClassMap);
         $this->validateApiVersion($event);
         return $event;
     }
 
-    private function validateApiVersion($event)
+    private function validateApiVersion(WebhooksEvent $event): void
     {
         if ('v1' !== $event->apiVersion) {
             throw new ApiVersionMismatchException($event->apiVersion, 'v1');

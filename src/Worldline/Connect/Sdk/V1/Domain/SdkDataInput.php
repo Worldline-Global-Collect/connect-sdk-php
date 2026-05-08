@@ -14,44 +14,44 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class SdkDataInput extends DataObject
 {
     /**
-     * @var DeviceRenderOptions
+     * @var DeviceRenderOptions|null
      */
-    public $deviceRenderOptions = null;
+    public ?DeviceRenderOptions $deviceRenderOptions = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $sdkAppId = null;
+    public ?string $sdkAppId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $sdkEncryptedData = null;
+    public ?string $sdkEncryptedData = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $sdkEphemeralPublicKey = null;
+    public ?string $sdkEphemeralPublicKey = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $sdkMaxTimeout = null;
+    public ?string $sdkMaxTimeout = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $sdkReferenceNumber = null;
+    public ?string $sdkReferenceNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $sdkTransactionId = null;
+    public ?string $sdkTransactionId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->deviceRenderOptions)) {
@@ -80,10 +80,11 @@ class SdkDataInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): SdkDataInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'deviceRenderOptions')) {

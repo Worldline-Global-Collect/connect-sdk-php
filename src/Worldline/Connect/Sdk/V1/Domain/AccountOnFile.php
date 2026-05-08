@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AccountOnFile extends DataObject
 {
     /**
-     * @var AccountOnFileAttribute[]
+     * @var AccountOnFileAttribute[]|null
      */
-    public $attributes = null;
+    public ?array $attributes = null;
 
     /**
-     * @var AccountOnFileDisplayHints
+     * @var AccountOnFileDisplayHints|null
      */
-    public $displayHints = null;
+    public ?AccountOnFileDisplayHints $displayHints = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $id = null;
+    public ?int $id = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $paymentProductId = null;
+    public ?int $paymentProductId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->attributes)) {
@@ -61,10 +61,11 @@ class AccountOnFile extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AccountOnFile
     {
         parent::fromObject($object);
         if (property_exists($object, 'attributes')) {

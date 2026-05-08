@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RecurringPaymentsData extends DataObject
 {
     /**
-     * @var PaymentProduct302SpecificInput
+     * @var PaymentProduct302SpecificInput|null
      */
-    public $paymentProduct302SpecificInput = null;
+    public ?PaymentProduct302SpecificInput $paymentProduct302SpecificInput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $recurringEndDate = null;
+    public ?string $recurringEndDate = null;
 
     /**
-     * @var Frequency
+     * @var Frequency|null
      */
-    public $recurringInterval = null;
+    public ?Frequency $recurringInterval = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $recurringStartDate = null;
+    public ?string $recurringStartDate = null;
 
     /**
-     * @var TrialInformation
+     * @var TrialInformation|null
      */
-    public $trialInformation = null;
+    public ?TrialInformation $trialInformation = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProduct302SpecificInput)) {
@@ -64,10 +64,11 @@ class RecurringPaymentsData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RecurringPaymentsData
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProduct302SpecificInput')) {

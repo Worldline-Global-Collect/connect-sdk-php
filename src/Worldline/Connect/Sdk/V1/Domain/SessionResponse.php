@@ -14,39 +14,39 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class SessionResponse extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $assetUrl = null;
+    public ?string $assetUrl = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $clientApiUrl = null;
+    public ?string $clientApiUrl = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $clientSessionId = null;
+    public ?string $clientSessionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerId = null;
+    public ?string $customerId = null;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $invalidTokens = null;
+    public ?array $invalidTokens = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $region = null;
+    public ?string $region = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->assetUrl)) {
@@ -77,10 +77,11 @@ class SessionResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): SessionResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'assetUrl')) {

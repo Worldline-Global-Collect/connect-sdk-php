@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MobilePaymentProduct320SpecificInputHostedCheckout extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantName = null;
+    public ?string $merchantName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantOrigin = null;
+    public ?string $merchantOrigin = null;
 
     /**
-     * @var GPayThreeDSecure
+     * @var GPayThreeDSecure|null
      */
-    public $threeDSecure = null;
+    public ?GPayThreeDSecure $threeDSecure = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->merchantName)) {
@@ -48,10 +48,11 @@ class MobilePaymentProduct320SpecificInputHostedCheckout extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MobilePaymentProduct320SpecificInputHostedCheckout
     {
         parent::fromObject($object);
         if (property_exists($object, 'merchantName')) {

@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class GPayThreeDSecure extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $challengeCanvasSize = null;
+    public ?string $challengeCanvasSize = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $challengeIndicator = null;
+    public ?string $challengeIndicator = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $exemptionRequest = null;
+    public ?string $exemptionRequest = null;
 
     /**
-     * @var RedirectionData
+     * @var RedirectionData|null
      */
-    public $redirectionData = null;
+    public ?RedirectionData $redirectionData = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $skipAuthentication = null;
+    public ?bool $skipAuthentication = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->challengeCanvasSize)) {
@@ -64,10 +64,11 @@ class GPayThreeDSecure extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): GPayThreeDSecure
     {
         parent::fromObject($object);
         if (property_exists($object, 'challengeCanvasSize')) {

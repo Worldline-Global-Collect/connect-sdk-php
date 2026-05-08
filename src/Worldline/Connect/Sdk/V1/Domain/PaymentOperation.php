@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentOperation extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $status = null;
+    public ?string $status = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $timestamp = null;
+    public ?string $timestamp = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $type = null;
+    public ?string $type = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoney)) {
@@ -64,10 +64,11 @@ class PaymentOperation extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentOperation
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {

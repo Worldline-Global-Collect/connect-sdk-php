@@ -23,19 +23,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Risk assessments client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Riskassessments
  */
 class RiskassessmentsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/riskassessments/bankaccounts - Risk-assess bankaccount
      *
      * @param RiskAssessmentBankAccount $body
-     * @param CallContext $callContext
-     * @return RiskAssessmentResponse
+     * @param CallContext|null          $callContext
      *
+     * @return RiskAssessmentResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -43,9 +47,9 @@ class RiskassessmentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/riskassessments/bankaccounts.html Risk-assess bankaccount
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/riskassessments/bankaccounts.html Risk-assess bankaccount
      */
-    public function bankaccounts(RiskAssessmentBankAccount $body, CallContext $callContext = null)
+    public function bankaccounts(RiskAssessmentBankAccount $body, ?CallContext $callContext = null): RiskAssessmentResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\RiskAssessmentResponse';
@@ -72,9 +76,9 @@ class RiskassessmentsClient extends ApiResource
      * Resource /{merchantId}/riskassessments/cards - Risk-assess card
      *
      * @param RiskAssessmentCard $body
-     * @param CallContext $callContext
-     * @return RiskAssessmentResponse
+     * @param CallContext|null   $callContext
      *
+     * @return RiskAssessmentResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -82,9 +86,9 @@ class RiskassessmentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/riskassessments/cards.html Risk-assess card
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/riskassessments/cards.html Risk-assess card
      */
-    public function cards(RiskAssessmentCard $body, CallContext $callContext = null)
+    public function cards(RiskAssessmentCard $body, ?CallContext $callContext = null): RiskAssessmentResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\RiskAssessmentResponse';
@@ -107,8 +111,10 @@ class RiskassessmentsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

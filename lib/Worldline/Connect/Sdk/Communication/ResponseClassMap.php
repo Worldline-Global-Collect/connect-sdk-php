@@ -8,21 +8,28 @@ namespace Worldline\Connect\Sdk\Communication;
  */
 class ResponseClassMap
 {
-    /** @var string */
-    public $defaultSuccessResponseClassName = '';
-
-    /** @var string */
-    public $defaultErrorResponseClassName = '';
-
-    /** @var string[]  */
-    private $responseClassNamesByHttpStatusCode = array();
+    /**
+     * @var string
+     */
+    public string $defaultSuccessResponseClassName = '';
 
     /**
-     * @param int $httpStatusCode
+     * @var string
+     */
+    public string $defaultErrorResponseClassName = '';
+
+    /**
+     * @var string[]
+     */
+    private array $responseClassNamesByHttpStatusCode = array();
+
+    /**
+     * @param int    $httpStatusCode
      * @param string $responseClassName
+     *
      * @return $this
      */
-    public function addResponseClassName($httpStatusCode, $responseClassName)
+    public function addResponseClassName(int $httpStatusCode, string $responseClassName): ResponseClassMap
     {
         $this->responseClassNamesByHttpStatusCode[$httpStatusCode] = $responseClassName;
         return $this;
@@ -30,9 +37,10 @@ class ResponseClassMap
 
     /**
      * @param int $httpStatusCode
+     *
      * @return string
      */
-    public function getResponseClassName($httpStatusCode)
+    public function getResponseClassName(int $httpStatusCode): string
     {
         if (array_key_exists($httpStatusCode, $this->responseClassNamesByHttpStatusCode)) {
             return $this->responseClassNamesByHttpStatusCode[$httpStatusCode];

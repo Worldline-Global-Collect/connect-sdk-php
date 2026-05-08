@@ -13,16 +13,16 @@ use Worldline\Connect\Sdk\Domain\UploadableFile;
  * Multipart/form-data parameters for Upload File
  *
  * @package Worldline\Connect\Sdk\V1\Merchant\Disputes
- * @link https://apireference.connect.worldline-solutions.com/fileserviceapi/v1/en_US/php/disputes/uploadFile.html Upload File
+ * @link    https://apireference.connect.worldline-solutions.com/fileserviceapi/v1/en_US/php/disputes/uploadFile.html Upload File
  */
 class UploadFileRequest extends MultipartDataObject
 {
     /**
-     * @var UploadableFile
+     * @var UploadableFile|null
      */
-    public $file;
+    public ?UploadableFile $file;
 
-    public function toMultipartFormDataObject()
+    public function toMultipartFormDataObject(): MultipartFormDataObject
     {
         $result = new MultipartFormDataObject();
         if (!is_null($this->file)) {

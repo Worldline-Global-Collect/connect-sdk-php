@@ -13,49 +13,49 @@ use UnexpectedValueException;
 class SepaDirectDebitPaymentMethodSpecificInput extends AbstractSepaDirectDebitPaymentMethodSpecificInput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $dateCollect = null;
+    public ?string $dateCollect = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $directDebitText = null;
+    public ?string $directDebitText = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
-     * @var SepaDirectDebitPaymentProduct771SpecificInput
+     * @var SepaDirectDebitPaymentProduct771SpecificInput|null
      */
-    public $paymentProduct771SpecificInput = null;
+    public ?SepaDirectDebitPaymentProduct771SpecificInput $paymentProduct771SpecificInput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $recurringPaymentSequenceIndicator = null;
+    public ?string $recurringPaymentSequenceIndicator = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $requiresApproval = null;
+    public ?bool $requiresApproval = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $tokenize = null;
+    public ?bool $tokenize = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->dateCollect)) {
@@ -87,10 +87,11 @@ class SepaDirectDebitPaymentMethodSpecificInput extends AbstractSepaDirectDebitP
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): SepaDirectDebitPaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'dateCollect')) {

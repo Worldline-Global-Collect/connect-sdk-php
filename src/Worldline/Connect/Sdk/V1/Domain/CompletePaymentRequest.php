@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CompletePaymentRequest extends DataObject
 {
     /**
-     * @var CompletePaymentCardPaymentMethodSpecificInput
+     * @var CompletePaymentCardPaymentMethodSpecificInput|null
      */
-    public $cardPaymentMethodSpecificInput = null;
+    public ?CompletePaymentCardPaymentMethodSpecificInput $cardPaymentMethodSpecificInput = null;
 
     /**
-     * @var Merchant
+     * @var Merchant|null
      */
-    public $merchant = null;
+    public ?Merchant $merchant = null;
 
     /**
-     * @var Order
+     * @var Order|null
      */
-    public $order = null;
+    public ?Order $order = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->cardPaymentMethodSpecificInput)) {
@@ -48,10 +48,11 @@ class CompletePaymentRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CompletePaymentRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'cardPaymentMethodSpecificInput')) {

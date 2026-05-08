@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class DisplayedData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $displayedDataType = null;
+    public ?string $displayedDataType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $renderingData = null;
+    public ?string $renderingData = null;
 
     /**
-     * @var KeyValuePair[]
+     * @var KeyValuePair[]|null
      */
-    public $showData = null;
+    public ?array $showData = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayedDataType)) {
@@ -53,10 +53,11 @@ class DisplayedData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DisplayedData
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayedDataType')) {

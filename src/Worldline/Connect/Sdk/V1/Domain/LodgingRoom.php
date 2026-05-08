@@ -14,54 +14,54 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class LodgingRoom extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $dailyRoomRate = null;
+    public ?string $dailyRoomRate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $dailyRoomRateCurrencyCode = null;
+    public ?string $dailyRoomRateCurrencyCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $dailyRoomTaxAmount = null;
+    public ?string $dailyRoomTaxAmount = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $dailyRoomTaxAmountCurrencyCode = null;
+    public ?string $dailyRoomTaxAmountCurrencyCode = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfNightsAtRoomRate = null;
+    public ?int $numberOfNightsAtRoomRate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $roomLocation = null;
+    public ?string $roomLocation = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $roomNumber = null;
+    public ?string $roomNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $typeOfBed = null;
+    public ?string $typeOfBed = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $typeOfRoom = null;
+    public ?string $typeOfRoom = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->dailyRoomRate)) {
@@ -96,10 +96,11 @@ class LodgingRoom extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): LodgingRoom
     {
         parent::fromObject($object);
         if (property_exists($object, 'dailyRoomRate')) {

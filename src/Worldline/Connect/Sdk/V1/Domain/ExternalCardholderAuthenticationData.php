@@ -14,65 +14,66 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ExternalCardholderAuthenticationData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $acsTransactionId = null;
+    public ?string $acsTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $appliedExemption = null;
+    public ?string $appliedExemption = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $cavv = null;
+    public ?string $cavv = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $cavvAlgorithm = null;
+    public ?string $cavvAlgorithm = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $directoryServerTransactionId = null;
+    public ?string $directoryServerTransactionId = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $eci = null;
+    public ?int $eci = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $schemeRiskScore = null;
+    public ?int $schemeRiskScore = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $threeDSecureVersion = null;
+    public ?string $threeDSecureVersion = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated No replacement
      */
-    public $threeDServerTransactionId = null;
+    public ?string $threeDServerTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $validationResult = null;
+    public ?string $validationResult = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $xid = null;
+    public ?string $xid = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->acsTransactionId)) {
@@ -113,10 +114,11 @@ class ExternalCardholderAuthenticationData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ExternalCardholderAuthenticationData
     {
         parent::fromObject($object);
         if (property_exists($object, 'acsTransactionId')) {

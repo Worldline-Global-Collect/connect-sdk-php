@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class RefundMobileMethodSpecificOutput extends RefundMethodSpecificOutput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $network = null;
+    public ?string $network = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->network)) {
@@ -31,10 +31,11 @@ class RefundMobileMethodSpecificOutput extends RefundMethodSpecificOutput
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundMobileMethodSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'network')) {

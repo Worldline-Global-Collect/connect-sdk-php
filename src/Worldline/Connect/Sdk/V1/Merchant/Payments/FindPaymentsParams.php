@@ -11,32 +11,32 @@ use Worldline\Connect\Sdk\Communication\RequestObject;
  * Query parameters for Find payments
  *
  * @package Worldline\Connect\Sdk\V1\Merchant\Payments
- * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/find.html Find payments
+ * @link    https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/find.html Find payments
  */
 class FindPaymentsParams extends RequestObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $hostedCheckoutId;
+    public ?string $hostedCheckoutId;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantReference;
+    public ?string $merchantReference;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $merchantOrderId;
+    public ?int $merchantOrderId;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $offset;
+    public ?int $offset;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $limit;
+    public ?int $limit;
 }

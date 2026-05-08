@@ -14,44 +14,44 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MerchantAction extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $actionType = null;
+    public ?string $actionType = null;
 
     /**
-     * @var PaymentProductField[]
+     * @var PaymentProductField[]|null
      */
-    public $formFields = null;
+    public ?array $formFields = null;
 
     /**
-     * @var MobileThreeDSecureChallengeParameters
+     * @var MobileThreeDSecureChallengeParameters|null
      */
-    public $mobileThreeDSecureChallengeParameters = null;
+    public ?MobileThreeDSecureChallengeParameters $mobileThreeDSecureChallengeParameters = null;
 
     /**
-     * @var RedirectData
+     * @var RedirectData|null
      */
-    public $redirectData = null;
+    public ?RedirectData $redirectData = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $renderingData = null;
+    public ?string $renderingData = null;
 
     /**
-     * @var KeyValuePair[]
+     * @var KeyValuePair[]|null
      */
-    public $showData = null;
+    public ?array $showData = null;
 
     /**
-     * @var ThirdPartyData
+     * @var ThirdPartyData|null
      */
-    public $thirdPartyData = null;
+    public ?ThirdPartyData $thirdPartyData = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->actionType)) {
@@ -90,10 +90,11 @@ class MerchantAction extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MerchantAction
     {
         parent::fromObject($object);
         if (property_exists($object, 'actionType')) {

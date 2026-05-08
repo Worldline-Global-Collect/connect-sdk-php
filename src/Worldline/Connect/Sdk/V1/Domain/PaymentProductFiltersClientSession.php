@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductFiltersClientSession extends DataObject
 {
     /**
-     * @var PaymentProductFilter
+     * @var PaymentProductFilter|null
      */
-    public $exclude = null;
+    public ?PaymentProductFilter $exclude = null;
 
     /**
-     * @var PaymentProductFilter
+     * @var PaymentProductFilter|null
      */
-    public $restrictTo = null;
+    public ?PaymentProductFilter $restrictTo = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->exclude)) {
@@ -40,10 +40,11 @@ class PaymentProductFiltersClientSession extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductFiltersClientSession
     {
         parent::fromObject($object);
         if (property_exists($object, 'exclude')) {

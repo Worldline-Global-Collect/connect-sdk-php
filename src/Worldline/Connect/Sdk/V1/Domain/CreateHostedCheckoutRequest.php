@@ -14,64 +14,64 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreateHostedCheckoutRequest extends DataObject
 {
     /**
-     * @var BankTransferPaymentMethodSpecificInputBase
+     * @var BankTransferPaymentMethodSpecificInputBase|null
      */
-    public $bankTransferPaymentMethodSpecificInput = null;
+    public ?BankTransferPaymentMethodSpecificInputBase $bankTransferPaymentMethodSpecificInput = null;
 
     /**
-     * @var CardPaymentMethodSpecificInputBase
+     * @var CardPaymentMethodSpecificInputBase|null
      */
-    public $cardPaymentMethodSpecificInput = null;
+    public ?CardPaymentMethodSpecificInputBase $cardPaymentMethodSpecificInput = null;
 
     /**
-     * @var CashPaymentMethodSpecificInputBase
+     * @var CashPaymentMethodSpecificInputBase|null
      */
-    public $cashPaymentMethodSpecificInput = null;
+    public ?CashPaymentMethodSpecificInputBase $cashPaymentMethodSpecificInput = null;
 
     /**
-     * @var EInvoicePaymentMethodSpecificInputBase
+     * @var EInvoicePaymentMethodSpecificInputBase|null
      */
-    public $eInvoicePaymentMethodSpecificInput = null;
+    public ?EInvoicePaymentMethodSpecificInputBase $eInvoicePaymentMethodSpecificInput = null;
 
     /**
-     * @var FraudFields
+     * @var FraudFields|null
      */
-    public $fraudFields = null;
+    public ?FraudFields $fraudFields = null;
 
     /**
-     * @var HostedCheckoutSpecificInput
+     * @var HostedCheckoutSpecificInput|null
      */
-    public $hostedCheckoutSpecificInput = null;
+    public ?HostedCheckoutSpecificInput $hostedCheckoutSpecificInput = null;
 
     /**
-     * @var Merchant
+     * @var Merchant|null
      */
-    public $merchant = null;
+    public ?Merchant $merchant = null;
 
     /**
-     * @var MobilePaymentMethodSpecificInputHostedCheckout
+     * @var MobilePaymentMethodSpecificInputHostedCheckout|null
      */
-    public $mobilePaymentMethodSpecificInput = null;
+    public ?MobilePaymentMethodSpecificInputHostedCheckout $mobilePaymentMethodSpecificInput = null;
 
     /**
-     * @var Order
+     * @var Order|null
      */
-    public $order = null;
+    public ?Order $order = null;
 
     /**
-     * @var RedirectPaymentMethodSpecificInputBase
+     * @var RedirectPaymentMethodSpecificInputBase|null
      */
-    public $redirectPaymentMethodSpecificInput = null;
+    public ?RedirectPaymentMethodSpecificInputBase $redirectPaymentMethodSpecificInput = null;
 
     /**
-     * @var SepaDirectDebitPaymentMethodSpecificInputBase
+     * @var SepaDirectDebitPaymentMethodSpecificInputBase|null
      */
-    public $sepaDirectDebitPaymentMethodSpecificInput = null;
+    public ?SepaDirectDebitPaymentMethodSpecificInputBase $sepaDirectDebitPaymentMethodSpecificInput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankTransferPaymentMethodSpecificInput)) {
@@ -112,10 +112,11 @@ class CreateHostedCheckoutRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreateHostedCheckoutRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankTransferPaymentMethodSpecificInput')) {

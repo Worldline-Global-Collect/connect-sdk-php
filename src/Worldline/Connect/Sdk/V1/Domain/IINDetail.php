@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class IINDetail extends DataObject
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isAllowedInContext = null;
+    public ?bool $isAllowedInContext = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $paymentProductId = null;
+    public ?int $paymentProductId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->isAllowedInContext)) {
@@ -40,10 +40,11 @@ class IINDetail extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): IINDetail
     {
         parent::fromObject($object);
         if (property_exists($object, 'isAllowedInContext')) {

@@ -13,11 +13,15 @@ class HttpObfuscator
 {
     const HTTP_VERSION = 'HTTP/1.1';
 
-    /** @var HeaderObfuscator */
-    protected $headerObfuscator;
+    /**
+     * @var HeaderObfuscator
+     */
+    protected HeaderObfuscator $headerObfuscator;
 
-    /** @var BodyObfuscator */
-    protected $bodyObfuscator;
+    /**
+     * @var BodyObfuscator
+     */
+    protected BodyObfuscator $bodyObfuscator;
 
     public function __construct()
     {
@@ -27,16 +31,20 @@ class HttpObfuscator
 
     /**
      * @param BodyObfuscator $bodyObfuscator
+     *
+     * @return void
      */
-    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator)
+    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator): void
     {
         $this->bodyObfuscator = $bodyObfuscator;
     }
 
     /**
      * @param HeaderObfuscator $headerObfuscator
+     *
+     * @return void
      */
-    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator)
+    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator): void
     {
         $this->headerObfuscator = $headerObfuscator;
     }
@@ -44,22 +52,23 @@ class HttpObfuscator
     /**
      * @param string $requestMethod
      * @param string $relativeRequestUri
-     * @param array $requestHeaders
+     * @param array  $requestHeaders
      * @param string $requestBody
+     *
      * @return string
      */
     public function getRawObfuscatedRequest(
-        $requestMethod,
-        $relativeRequestUri,
-        array $requestHeaders,
-        $requestBody = ''
-    )
-    {
+        string $requestMethod,
+        string $relativeRequestUri,
+        array  $requestHeaders,
+        string $requestBody = ''
+    ): string {
         $rawObfuscatedRequest = $requestMethod . ' ' . $relativeRequestUri . ' ' . static::HTTP_VERSION;
         if ($requestHeaders) {
-            $rawObfuscatedRequest .= PHP_EOL . implode(PHP_EOL, HttpHeaderHelper::generateRawHeaders(
-                $this->headerObfuscator->obfuscateHeaders($requestHeaders)
-            ));
+            $rawObfuscatedRequest .= PHP_EOL . implode(
+                PHP_EOL,
+                HttpHeaderHelper::generateRawHeaders($this->headerObfuscator->obfuscateHeaders($requestHeaders))
+            );
         }
         if (strlen($requestBody) > 0) {
             $rawObfuscatedRequest .= PHP_EOL . PHP_EOL . $this->bodyObfuscator->obfuscateBody(
@@ -72,16 +81,18 @@ class HttpObfuscator
 
     /**
      * @param ConnectionResponse $response
+     *
      * @return string
      */
-    public function getRawObfuscatedResponse(ConnectionResponse $response)
+    public function getRawObfuscatedResponse(ConnectionResponse $response): string
     {
         $rawObfuscatedResponse = '';
         $responseHeaders = $response->getHeaders();
         if ($responseHeaders) {
-            $rawObfuscatedResponse .= implode(PHP_EOL, HttpHeaderHelper::generateRawHeaders(
-                $this->headerObfuscator->obfuscateHeaders($responseHeaders)
-            ));
+            $rawObfuscatedResponse .= implode(
+                PHP_EOL,
+                HttpHeaderHelper::generateRawHeaders($this->headerObfuscator->obfuscateHeaders($responseHeaders))
+            );
         }
         $responseBody = $response->getBody();
         if (strlen($responseBody) > 0) {

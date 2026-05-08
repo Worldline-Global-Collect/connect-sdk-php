@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class CardPaymentMethodSpecificInputBase extends AbstractCardPaymentMethodSpecificInput
 {
     /**
-     * @var ThreeDSecureBase
+     * @var ThreeDSecureBase|null
      */
-    public $threeDSecure = null;
+    public ?ThreeDSecureBase $threeDSecure = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->threeDSecure)) {
@@ -31,10 +31,11 @@ class CardPaymentMethodSpecificInputBase extends AbstractCardPaymentMethodSpecif
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CardPaymentMethodSpecificInputBase
     {
         parent::fromObject($object);
         if (property_exists($object, 'threeDSecure')) {

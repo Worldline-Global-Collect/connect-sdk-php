@@ -15,9 +15,9 @@ use Worldline\Connect\Sdk\TestCase;
 class DefaultConnectionTest extends TestCase
 {
     /** @var DefaultConnection */
-    protected $connection;
+    protected DefaultConnection $connection;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $this->connection = new DefaultConnection();
@@ -104,7 +104,7 @@ class DefaultConnectionTest extends TestCase
                 $expectedErrorMessage2 .= ' (' . curl_strerror(CURLE_COULDNT_CONNECT) . ')';
             }
             $expectedErrorMessagePattern = '/' . preg_quote($expectedErrorMessage1) . '|' . preg_quote($expectedErrorMessage2) . '/';
-            $this->assertRegExp($expectedErrorMessagePattern, $e->getMessage());
+            $this->assertMatchesRegularExpression($expectedErrorMessagePattern, $e->getMessage());
             $this->assertTrue($endTime - $startTime <= 2, 'Connect timeout should occur within 2 seconds');
         }
     }
@@ -134,7 +134,7 @@ class DefaultConnectionTest extends TestCase
      * @param int $timeout
      * @param int $delay
      */
-    public function testReadTimeoutNotExceeded($timeout, $delay)
+    public function testReadTimeoutNotExceeded(int $timeout, int $delay)
     {
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
         $communicatorConfiguration->setConnectTimeout(-1);
@@ -149,7 +149,8 @@ class DefaultConnectionTest extends TestCase
         $this->assertEquals(200, $responseBuilder->getResponse()->getHttpStatusCode());
     }
 
-    public function timeoutAndDelayProvider() {
+    public function timeoutAndDelayProvider(): array
+    {
         print "Returning timeouts and delays";
         return array(
             array(-1, 1), // no timeout
@@ -158,7 +159,8 @@ class DefaultConnectionTest extends TestCase
         );
     }
 
-    private function getRequestHeaders($httpMethod, $relativeUri, $contentType = '') {
+    private function getRequestHeaders(string $httpMethod, string $relativeUri, string $contentType = '')
+    {
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
         $communicator = new Communicator($communicatorConfiguration);
         $method = new ReflectionMethod($communicator, 'getRequestHeaders');

@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class FraugsterResults extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $fraudInvestigationPoints = null;
+    public ?string $fraudInvestigationPoints = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $fraudScore = null;
+    public ?int $fraudScore = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->fraudInvestigationPoints)) {
@@ -40,10 +40,11 @@ class FraugsterResults extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): FraugsterResults
     {
         parent::fromObject($object);
         if (property_exists($object, 'fraudInvestigationPoints')) {

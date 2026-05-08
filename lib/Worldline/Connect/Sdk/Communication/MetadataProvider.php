@@ -12,18 +12,23 @@ use Worldline\Connect\Sdk\Domain\ShoppingCartExtension;
  */
 class MetadataProvider
 {
-    const SDK_VERSION = '8.7.0';
+    const SDK_VERSION = '9.0.0';
 
-    /** @var string */
-    private $integrator;
+    /**
+     * @var string
+     */
+    private string $integrator;
 
-    /** @var ShoppingCartExtension */
-    private $shoppingCartExtension;
+    /**
+     * @var ShoppingCartExtension|null
+     */
+    private ?ShoppingCartExtension $shoppingCartExtension;
 
     /**
      * @param CommunicatorConfiguration $communicatorConfiguration
      */
-    public function __construct(CommunicatorConfiguration $communicatorConfiguration) {
+    public function __construct(CommunicatorConfiguration $communicatorConfiguration)
+    {
         $this->integrator = $communicatorConfiguration->getIntegrator();
         $this->shoppingCartExtension = $communicatorConfiguration->getShoppingCartExtension();
     }
@@ -31,7 +36,7 @@ class MetadataProvider
     /**
      * @return string
      */
-    public function getServerMetaInfoValue()
+    public function getServerMetaInfoValue(): string
     {
         // use a stdClass instead of specific class to keep out null properties
         $serverMetaInfo = new stdClass();

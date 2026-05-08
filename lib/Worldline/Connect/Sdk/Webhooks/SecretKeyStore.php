@@ -11,8 +11,9 @@ interface SecretKeyStore
 {
     /**
      * @param string $keyId
+     *
      * @return string The secret key for the given key id.
      * @throws SecretKeyNotAvailableException If the secret key for the given key id is not available.
      */
-    public function getSecretKey($keyId);
+    public function getSecretKey(string $keyId): string;
 }

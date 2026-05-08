@@ -13,49 +13,49 @@ use UnexpectedValueException;
 class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $authorisationCode = null;
+    public ?string $authorisationCode = null;
 
     /**
-     * @var CardFraudResults
+     * @var CardFraudResults|null
      */
-    public $fraudResults = null;
+    public ?CardFraudResults $fraudResults = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $initialSchemeTransactionId = null;
+    public ?string $initialSchemeTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $network = null;
+    public ?string $network = null;
 
     /**
-     * @var MobilePaymentData
+     * @var MobilePaymentData|null
      */
-    public $paymentData = null;
+    public ?MobilePaymentData $paymentData = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $schemeTransactionId = null;
+    public ?string $schemeTransactionId = null;
 
     /**
-     * @var ThreeDSecureResults
+     * @var ThreeDSecureResults|null
      */
-    public $threeDSecureResults = null;
+    public ?ThreeDSecureResults $threeDSecureResults = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->authorisationCode)) {
@@ -87,10 +87,11 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MobilePaymentMethodSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'authorisationCode')) {

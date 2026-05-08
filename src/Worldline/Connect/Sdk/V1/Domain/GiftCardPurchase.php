@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class GiftCardPurchase extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfGiftCards = null;
+    public ?int $numberOfGiftCards = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoney)) {
@@ -40,10 +40,11 @@ class GiftCardPurchase extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): GiftCardPurchase
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {

@@ -13,99 +13,99 @@ use UnexpectedValueException;
 class PaymentOutput extends OrderOutput
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountCaptureRequested = null;
+    public ?int $amountCaptureRequested = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountCaptured = null;
+    public ?int $amountCaptured = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountPaid = null;
+    public ?int $amountPaid = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountRefundRequested = null;
+    public ?int $amountRefundRequested = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountRefunded = null;
+    public ?int $amountRefunded = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountReversed = null;
+    public ?int $amountReversed = null;
 
     /**
-     * @var BankTransferPaymentMethodSpecificOutput
+     * @var BankTransferPaymentMethodSpecificOutput|null
      */
-    public $bankTransferPaymentMethodSpecificOutput = null;
+    public ?BankTransferPaymentMethodSpecificOutput $bankTransferPaymentMethodSpecificOutput = null;
 
     /**
-     * @var CardPaymentMethodSpecificOutput
+     * @var CardPaymentMethodSpecificOutput|null
      */
-    public $cardPaymentMethodSpecificOutput = null;
+    public ?CardPaymentMethodSpecificOutput $cardPaymentMethodSpecificOutput = null;
 
     /**
-     * @var CashPaymentMethodSpecificOutput
+     * @var CashPaymentMethodSpecificOutput|null
      */
-    public $cashPaymentMethodSpecificOutput = null;
+    public ?CashPaymentMethodSpecificOutput $cashPaymentMethodSpecificOutput = null;
 
     /**
-     * @var NonSepaDirectDebitPaymentMethodSpecificOutput
+     * @var NonSepaDirectDebitPaymentMethodSpecificOutput|null
      */
-    public $directDebitPaymentMethodSpecificOutput = null;
+    public ?NonSepaDirectDebitPaymentMethodSpecificOutput $directDebitPaymentMethodSpecificOutput = null;
 
     /**
-     * @var EInvoicePaymentMethodSpecificOutput
+     * @var EInvoicePaymentMethodSpecificOutput|null
      */
-    public $eInvoicePaymentMethodSpecificOutput = null;
+    public ?EInvoicePaymentMethodSpecificOutput $eInvoicePaymentMethodSpecificOutput = null;
 
     /**
-     * @var InvoicePaymentMethodSpecificOutput
+     * @var InvoicePaymentMethodSpecificOutput|null
      */
-    public $invoicePaymentMethodSpecificOutput = null;
+    public ?InvoicePaymentMethodSpecificOutput $invoicePaymentMethodSpecificOutput = null;
 
     /**
-     * @var MobilePaymentMethodSpecificOutput
+     * @var MobilePaymentMethodSpecificOutput|null
      */
-    public $mobilePaymentMethodSpecificOutput = null;
+    public ?MobilePaymentMethodSpecificOutput $mobilePaymentMethodSpecificOutput = null;
 
     /**
-     * @var PaymentOperation[]
+     * @var PaymentOperation[]|null
      */
-    public $operations = null;
+    public ?array $operations = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentMethod = null;
+    public ?string $paymentMethod = null;
 
     /**
-     * @var RedirectPaymentMethodSpecificOutput
+     * @var RedirectPaymentMethodSpecificOutput|null
      */
-    public $redirectPaymentMethodSpecificOutput = null;
+    public ?RedirectPaymentMethodSpecificOutput $redirectPaymentMethodSpecificOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $reversalReason = null;
+    public ?string $reversalReason = null;
 
     /**
-     * @var SepaDirectDebitPaymentMethodSpecificOutput
+     * @var SepaDirectDebitPaymentMethodSpecificOutput|null
      */
-    public $sepaDirectDebitPaymentMethodSpecificOutput = null;
+    public ?SepaDirectDebitPaymentMethodSpecificOutput $sepaDirectDebitPaymentMethodSpecificOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountCaptureRequested)) {
@@ -172,10 +172,11 @@ class PaymentOutput extends OrderOutput
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountCaptureRequested')) {

@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class TokenCardData extends DataObject
 {
     /**
-     * @var CardWithoutCvv
+     * @var CardWithoutCvv|null
      */
-    public $cardWithoutCvv = null;
+    public ?CardWithoutCvv $cardWithoutCvv = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $firstTransactionDate = null;
+    public ?string $firstTransactionDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $providerReference = null;
+    public ?string $providerReference = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->cardWithoutCvv)) {
@@ -48,10 +48,11 @@ class TokenCardData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): TokenCardData
     {
         parent::fromObject($object);
         if (property_exists($object, 'cardWithoutCvv')) {

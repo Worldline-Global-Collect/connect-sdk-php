@@ -13,20 +13,21 @@ use UnexpectedValueException;
 class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProduct840SpecificInput
 {
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use Order.references.descriptor instead
      */
-    public $custom = null;
+    public ?string $custom = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isShortcut = null;
+    public ?bool $isShortcut = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->custom)) {
@@ -40,10 +41,11 @@ class RedirectPaymentProduct840SpecificInput extends AbstractRedirectPaymentProd
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RedirectPaymentProduct840SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'custom')) {

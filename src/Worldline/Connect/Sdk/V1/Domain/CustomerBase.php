@@ -14,25 +14,26 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CustomerBase extends DataObject
 {
     /**
-     * @var CompanyInformation
+     * @var CompanyInformation|null
      */
-    public $companyInformation = null;
+    public ?CompanyInformation $companyInformation = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantCustomerId = null;
+    public ?string $merchantCustomerId = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use companyInformation.vatNumber instead
      */
-    public $vatNumber = null;
+    public ?string $vatNumber = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->companyInformation)) {
@@ -49,10 +50,11 @@ class CustomerBase extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CustomerBase
     {
         parent::fromObject($object);
         if (property_exists($object, 'companyInformation')) {

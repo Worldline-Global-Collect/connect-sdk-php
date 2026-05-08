@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ExemptionOutput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $exemptionRaised = null;
+    public ?string $exemptionRaised = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $exemptionRejectionReason = null;
+    public ?string $exemptionRejectionReason = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $exemptionRequest = null;
+    public ?string $exemptionRequest = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->exemptionRaised)) {
@@ -48,10 +48,11 @@ class ExemptionOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ExemptionOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'exemptionRaised')) {

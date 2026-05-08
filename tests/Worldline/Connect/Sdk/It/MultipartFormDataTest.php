@@ -207,10 +207,10 @@ class MultipartFormDataTest extends TestCase
 
 class HttpBinResponse extends DataObject
 {
-    public $form;
-    public $files;
+    public ?object $form;
+    public ?object $files;
 
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->form)) {
@@ -222,7 +222,7 @@ class HttpBinResponse extends DataObject
         return $object;
     }
 
-    public function fromObject($object)
+    public function fromObject(object $object): HttpBinResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'form')) {
@@ -237,14 +237,14 @@ class HttpBinResponse extends DataObject
 
 class MultipartFormDataWrapper extends MultipartDataObject
 {
-    private $multipart;
+    private MultipartFormDataObject $multipart;
 
-    public function __construct($multipart)
+    public function __construct(MultipartFormDataObject $multipart)
     {
         $this->multipart = $multipart;
     }
 
-    public function toMultipartFormDataObject()
+    public function toMultipartFormDataObject(): MultipartFormDataObject
     {
         return $this->multipart;
     }

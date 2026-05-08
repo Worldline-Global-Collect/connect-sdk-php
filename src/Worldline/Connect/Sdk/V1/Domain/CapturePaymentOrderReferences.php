@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CapturePaymentOrderReferences extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantCaptureReference = null;
+    public ?string $merchantCaptureReference = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->merchantCaptureReference)) {
@@ -32,10 +32,11 @@ class CapturePaymentOrderReferences extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CapturePaymentOrderReferences
     {
         parent::fromObject($object);
         if (property_exists($object, 'merchantCaptureReference')) {

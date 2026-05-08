@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreateHostedMandateManagementRequest extends DataObject
 {
     /**
-     * @var HostedMandateInfo
+     * @var HostedMandateInfo|null
      */
-    public $createMandateInfo = null;
+    public ?HostedMandateInfo $createMandateInfo = null;
 
     /**
-     * @var HostedMandateManagementSpecificInput
+     * @var HostedMandateManagementSpecificInput|null
      */
-    public $hostedMandateManagementSpecificInput = null;
+    public ?HostedMandateManagementSpecificInput $hostedMandateManagementSpecificInput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->createMandateInfo)) {
@@ -40,10 +40,11 @@ class CreateHostedMandateManagementRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreateHostedMandateManagementRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'createMandateInfo')) {

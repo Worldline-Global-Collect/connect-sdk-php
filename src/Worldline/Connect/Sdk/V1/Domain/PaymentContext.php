@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentContext extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode = null;
+    public ?string $countryCode = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isInstallments = null;
+    public ?bool $isInstallments = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoney)) {
@@ -56,10 +56,11 @@ class PaymentContext extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentContext
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {

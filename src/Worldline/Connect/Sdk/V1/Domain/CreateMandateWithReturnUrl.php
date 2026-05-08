@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class CreateMandateWithReturnUrl extends CreateMandateBase
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $returnUrl = null;
+    public ?string $returnUrl = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->returnUrl)) {
@@ -31,10 +31,11 @@ class CreateMandateWithReturnUrl extends CreateMandateBase
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreateMandateWithReturnUrl
     {
         parent::fromObject($object);
         if (property_exists($object, 'returnUrl')) {

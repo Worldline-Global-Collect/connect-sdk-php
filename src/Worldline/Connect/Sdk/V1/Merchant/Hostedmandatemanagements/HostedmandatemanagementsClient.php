@@ -23,19 +23,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Hosted Mandate Management client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Hostedmandatemanagements
  */
 class HostedmandatemanagementsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/hostedmandatemanagements - Create hosted mandate management
      *
      * @param CreateHostedMandateManagementRequest $body
-     * @param CallContext $callContext
-     * @return CreateHostedMandateManagementResponse
+     * @param CallContext|null                     $callContext
      *
+     * @return CreateHostedMandateManagementResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -43,9 +47,9 @@ class HostedmandatemanagementsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedmandatemanagements/create.html Create hosted mandate management
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedmandatemanagements/create.html Create hosted mandate management
      */
-    public function create(CreateHostedMandateManagementRequest $body, CallContext $callContext = null)
+    public function create(CreateHostedMandateManagementRequest $body, ?CallContext $callContext = null): CreateHostedMandateManagementResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\CreateHostedMandateManagementResponse';
@@ -71,10 +75,10 @@ class HostedmandatemanagementsClient extends ApiResource
     /**
      * Resource /{merchantId}/hostedmandatemanagements/{hostedMandateManagementId} - Get hosted mandate management status
      *
-     * @param string $hostedMandateManagementId
-     * @param CallContext $callContext
-     * @return GetHostedMandateManagementResponse
+     * @param string           $hostedMandateManagementId
+     * @param CallContext|null $callContext
      *
+     * @return GetHostedMandateManagementResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -82,9 +86,9 @@ class HostedmandatemanagementsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedmandatemanagements/get.html Get hosted mandate management status
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedmandatemanagements/get.html Get hosted mandate management status
      */
-    public function get($hostedMandateManagementId, CallContext $callContext = null)
+    public function get(string $hostedMandateManagementId, ?CallContext $callContext = null): GetHostedMandateManagementResponse
     {
         $this->context['hostedMandateManagementId'] = $hostedMandateManagementId;
         $responseClassMap = new ResponseClassMap();
@@ -107,8 +111,10 @@ class HostedmandatemanagementsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class EInvoicePaymentProduct9000SpecificInput extends DataObject
 {
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $installmentId = null;
+    public ?string $installmentId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountIban)) {
@@ -40,10 +40,11 @@ class EInvoicePaymentProduct9000SpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): EInvoicePaymentProduct9000SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountIban')) {

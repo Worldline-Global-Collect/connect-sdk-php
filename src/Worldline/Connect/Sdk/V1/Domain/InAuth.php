@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class InAuth extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $deviceCategory = null;
+    public ?string $deviceCategory = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $deviceId = null;
+    public ?string $deviceId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $riskScore = null;
+    public ?string $riskScore = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $trueIpAddress = null;
+    public ?string $trueIpAddress = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $trueIpAddressCountry = null;
+    public ?string $trueIpAddressCountry = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->deviceCategory)) {
@@ -64,10 +64,11 @@ class InAuth extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): InAuth
     {
         parent::fromObject($object);
         if (property_exists($object, 'deviceCategory')) {

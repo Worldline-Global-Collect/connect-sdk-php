@@ -13,39 +13,39 @@ use UnexpectedValueException;
 class BankAccountBban extends BankAccount
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $accountNumber = null;
+    public ?string $accountNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $bankCode = null;
+    public ?string $bankCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $bankName = null;
+    public ?string $bankName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $branchCode = null;
+    public ?string $branchCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $checkDigit = null;
+    public ?string $checkDigit = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode = null;
+    public ?string $countryCode = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->accountNumber)) {
@@ -71,10 +71,11 @@ class BankAccountBban extends BankAccount
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BankAccountBban
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountNumber')) {

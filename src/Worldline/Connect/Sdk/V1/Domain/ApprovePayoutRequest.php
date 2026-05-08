@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ApprovePayoutRequest extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $datePayout = null;
+    public ?string $datePayout = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->datePayout)) {
@@ -32,10 +32,11 @@ class ApprovePayoutRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ApprovePayoutRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'datePayout')) {

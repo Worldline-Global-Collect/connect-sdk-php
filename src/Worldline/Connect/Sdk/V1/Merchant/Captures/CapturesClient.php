@@ -27,19 +27,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Captures client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Captures
  */
 class CapturesClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/captures/{captureId} - Get capture
      *
-     * @param string $captureId
-     * @param CallContext $callContext
-     * @return CaptureResponse
+     * @param string           $captureId
+     * @param CallContext|null $callContext
      *
+     * @return CaptureResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -47,9 +51,9 @@ class CapturesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/get.html Get capture
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/get.html Get capture
      */
-    public function get($captureId, CallContext $callContext = null)
+    public function get(string $captureId, ?CallContext $callContext = null): CaptureResponse
     {
         $this->context['captureId'] = $captureId;
         $responseClassMap = new ResponseClassMap();
@@ -75,11 +79,11 @@ class CapturesClient extends ApiResource
     /**
      * Resource /{merchantId}/captures/{captureId}/refund - Create Refund
      *
-     * @param string $captureId
-     * @param RefundRequest $body
-     * @param CallContext $callContext
-     * @return RefundResponse
+     * @param string           $captureId
+     * @param RefundRequest    $body
+     * @param CallContext|null $callContext
      *
+     * @return RefundResponse
      * @throws DeclinedRefundException
      * @throws IdempotenceException
      * @throws ValidationException
@@ -88,9 +92,9 @@ class CapturesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/refund.html Create Refund
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/refund.html Create Refund
      */
-    public function refund($captureId, RefundRequest $body, CallContext $callContext = null)
+    public function refund(string $captureId, RefundRequest $body, ?CallContext $callContext = null): RefundResponse
     {
         $this->context['captureId'] = $captureId;
         $responseClassMap = new ResponseClassMap();
@@ -117,10 +121,10 @@ class CapturesClient extends ApiResource
     /**
      * Resource /{merchantId}/captures/{captureId}/disputes - Get disputes
      *
-     * @param string $captureId
-     * @param CallContext $callContext
-     * @return DisputesResponse
+     * @param string           $captureId
+     * @param CallContext|null $callContext
      *
+     * @return DisputesResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -128,9 +132,9 @@ class CapturesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/disputes.html Get disputes
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/disputes.html Get disputes
      */
-    public function disputes($captureId, CallContext $callContext = null)
+    public function disputes(string $captureId, ?CallContext $callContext = null): DisputesResponse
     {
         $this->context['captureId'] = $captureId;
         $responseClassMap = new ResponseClassMap();
@@ -156,11 +160,11 @@ class CapturesClient extends ApiResource
     /**
      * Resource /{merchantId}/captures/{captureId}/dispute - Create dispute
      *
-     * @param string $captureId
+     * @param string               $captureId
      * @param CreateDisputeRequest $body
-     * @param CallContext $callContext
-     * @return DisputeResponse
+     * @param CallContext|null     $callContext
      *
+     * @return DisputeResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -168,9 +172,9 @@ class CapturesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/dispute.html Create dispute
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/captures/dispute.html Create dispute
      */
-    public function dispute($captureId, CreateDisputeRequest $body, CallContext $callContext = null)
+    public function dispute(string $captureId, CreateDisputeRequest $body, ?CallContext $callContext = null): DisputeResponse
     {
         $this->context['captureId'] = $captureId;
         $responseClassMap = new ResponseClassMap();
@@ -194,8 +198,10 @@ class CapturesClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

@@ -13,29 +13,29 @@ use UnexpectedValueException;
 class PaymentCreationOutput extends PaymentCreationReferences
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isCheckedRememberMe = null;
+    public ?bool $isCheckedRememberMe = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isNewToken = null;
+    public ?bool $isNewToken = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $tokenizationSucceeded = null;
+    public ?bool $tokenizationSucceeded = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->isCheckedRememberMe)) {
@@ -55,10 +55,11 @@ class PaymentCreationOutput extends PaymentCreationReferences
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentCreationOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'isCheckedRememberMe')) {

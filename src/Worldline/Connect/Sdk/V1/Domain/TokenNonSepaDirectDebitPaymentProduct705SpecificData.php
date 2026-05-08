@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class TokenNonSepaDirectDebitPaymentProduct705SpecificData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $authorisationId = null;
+    public ?string $authorisationId = null;
 
     /**
-     * @var BankAccountBban
+     * @var BankAccountBban|null
      */
-    public $bankAccountBban = null;
+    public ?BankAccountBban $bankAccountBban = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->authorisationId)) {
@@ -40,10 +40,11 @@ class TokenNonSepaDirectDebitPaymentProduct705SpecificData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): TokenNonSepaDirectDebitPaymentProduct705SpecificData
     {
         parent::fromObject($object);
         if (property_exists($object, 'authorisationId')) {

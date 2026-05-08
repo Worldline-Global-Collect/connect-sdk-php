@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PayoutCustomer extends DataObject
 {
     /**
-     * @var Address
+     * @var Address|null
      */
-    public $address = null;
+    public ?Address $address = null;
 
     /**
-     * @var CompanyInformation
+     * @var CompanyInformation|null
      */
-    public $companyInformation = null;
+    public ?CompanyInformation $companyInformation = null;
 
     /**
-     * @var ContactDetailsBase
+     * @var ContactDetailsBase|null
      */
-    public $contactDetails = null;
+    public ?ContactDetailsBase $contactDetails = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantCustomerId = null;
+    public ?string $merchantCustomerId = null;
 
     /**
-     * @var PersonalName
+     * @var PersonalName|null
      */
-    public $name = null;
+    public ?PersonalName $name = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->address)) {
@@ -64,10 +64,11 @@ class PayoutCustomer extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PayoutCustomer
     {
         parent::fromObject($object);
         if (property_exists($object, 'address')) {

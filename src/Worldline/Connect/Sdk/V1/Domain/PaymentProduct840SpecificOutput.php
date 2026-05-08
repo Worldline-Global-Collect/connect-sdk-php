@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProduct840SpecificOutput extends DataObject
 {
     /**
-     * @var Address
+     * @var Address|null
      */
-    public $billingAddress = null;
+    public ?Address $billingAddress = null;
 
     /**
-     * @var PaymentProduct840CustomerAccount
+     * @var PaymentProduct840CustomerAccount|null
      */
-    public $customerAccount = null;
+    public ?PaymentProduct840CustomerAccount $customerAccount = null;
 
     /**
-     * @var Address
+     * @var Address|null
      */
-    public $customerAddress = null;
+    public ?Address $customerAddress = null;
 
     /**
-     * @var ProtectionEligibility
+     * @var ProtectionEligibility|null
      */
-    public $protectionEligibility = null;
+    public ?ProtectionEligibility $protectionEligibility = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->billingAddress)) {
@@ -56,10 +56,11 @@ class PaymentProduct840SpecificOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProduct840SpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'billingAddress')) {

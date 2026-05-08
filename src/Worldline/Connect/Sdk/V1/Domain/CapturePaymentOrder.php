@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CapturePaymentOrder extends DataObject
 {
     /**
-     * @var CapturePaymentOrderAdditionalInput
+     * @var CapturePaymentOrderAdditionalInput|null
      */
-    public $additionalInput = null;
+    public ?CapturePaymentOrderAdditionalInput $additionalInput = null;
 
     /**
-     * @var CapturePaymentOrderReferences
+     * @var CapturePaymentOrderReferences|null
      */
-    public $references = null;
+    public ?CapturePaymentOrderReferences $references = null;
 
     /**
-     * @var Shipping
+     * @var Shipping|null
      */
-    public $shipping = null;
+    public ?Shipping $shipping = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalInput)) {
@@ -48,10 +48,11 @@ class CapturePaymentOrder extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CapturePaymentOrder
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalInput')) {

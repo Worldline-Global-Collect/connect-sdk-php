@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class NonSepaDirectDebitPaymentProduct730SpecificInput extends DataObject
 {
     /**
-     * @var BankAccountBban
+     * @var BankAccountBban|null
      */
-    public $bankAccountBban = null;
+    public ?BankAccountBban $bankAccountBban = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountBban)) {
@@ -32,10 +32,11 @@ class NonSepaDirectDebitPaymentProduct730SpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): NonSepaDirectDebitPaymentProduct730SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountBban')) {

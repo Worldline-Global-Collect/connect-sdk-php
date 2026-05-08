@@ -24,19 +24,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Product Groups client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Productgroups
  */
 class ProductgroupsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/productgroups - Get payment product groups
      *
      * @param FindProductgroupsParams $query
-     * @param CallContext $callContext
-     * @return PaymentProductGroups
+     * @param CallContext|null        $callContext
      *
+     * @return PaymentProductGroups
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -44,9 +48,9 @@ class ProductgroupsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/productgroups/find.html Get payment product groups
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/productgroups/find.html Get payment product groups
      */
-    public function find(FindProductgroupsParams $query, CallContext $callContext = null)
+    public function find(FindProductgroupsParams $query, ?CallContext $callContext = null): PaymentProductGroups
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\PaymentProductGroups';
@@ -71,11 +75,11 @@ class ProductgroupsClient extends ApiResource
     /**
      * Resource /{merchantId}/productgroups/{paymentProductGroupId} - Get payment product group
      *
-     * @param string $paymentProductGroupId
+     * @param string                $paymentProductGroupId
      * @param GetProductgroupParams $query
-     * @param CallContext $callContext
-     * @return PaymentProductGroupResponse
+     * @param CallContext|null      $callContext
      *
+     * @return PaymentProductGroupResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -83,9 +87,9 @@ class ProductgroupsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/productgroups/get.html Get payment product group
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/productgroups/get.html Get payment product group
      */
-    public function get($paymentProductGroupId, GetProductgroupParams $query, CallContext $callContext = null)
+    public function get(string $paymentProductGroupId, GetProductgroupParams $query, ?CallContext $callContext = null): PaymentProductGroupResponse
     {
         $this->context['paymentProductGroupId'] = $paymentProductGroupId;
         $responseClassMap = new ResponseClassMap();
@@ -111,11 +115,11 @@ class ProductgroupsClient extends ApiResource
     /**
      * Resource /{merchantId}/productgroups/{paymentProductGroupId}/deviceFingerprint - Get device fingerprint
      *
-     * @param string $paymentProductGroupId
+     * @param string                   $paymentProductGroupId
      * @param DeviceFingerprintRequest $body
-     * @param CallContext $callContext
-     * @return DeviceFingerprintResponse
+     * @param CallContext|null         $callContext
      *
+     * @return DeviceFingerprintResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -123,9 +127,9 @@ class ProductgroupsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/productgroups/deviceFingerprint.html Get device fingerprint
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/productgroups/deviceFingerprint.html Get device fingerprint
      */
-    public function deviceFingerprint($paymentProductGroupId, DeviceFingerprintRequest $body, CallContext $callContext = null)
+    public function deviceFingerprint(string $paymentProductGroupId, DeviceFingerprintRequest $body, ?CallContext $callContext = null): DeviceFingerprintResponse
     {
         $this->context['paymentProductGroupId'] = $paymentProductGroupId;
         $responseClassMap = new ResponseClassMap();
@@ -149,8 +153,10 @@ class ProductgroupsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

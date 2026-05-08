@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class TrialPeriod extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $duration = null;
+    public ?int $duration = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $interval = null;
+    public ?string $interval = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->duration)) {
@@ -40,10 +40,11 @@ class TrialPeriod extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): TrialPeriod
     {
         parent::fromObject($object);
         if (property_exists($object, 'duration')) {

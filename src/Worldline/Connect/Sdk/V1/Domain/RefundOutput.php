@@ -13,49 +13,49 @@ use UnexpectedValueException;
 class RefundOutput extends OrderOutput
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountPaid = null;
+    public ?int $amountPaid = null;
 
     /**
-     * @var RefundBankMethodSpecificOutput
+     * @var RefundBankMethodSpecificOutput|null
      */
-    public $bankRefundMethodSpecificOutput = null;
+    public ?RefundBankMethodSpecificOutput $bankRefundMethodSpecificOutput = null;
 
     /**
-     * @var RefundCardMethodSpecificOutput
+     * @var RefundCardMethodSpecificOutput|null
      */
-    public $cardRefundMethodSpecificOutput = null;
+    public ?RefundCardMethodSpecificOutput $cardRefundMethodSpecificOutput = null;
 
     /**
-     * @var RefundCashMethodSpecificOutput
+     * @var RefundCashMethodSpecificOutput|null
      */
-    public $cashRefundMethodSpecificOutput = null;
+    public ?RefundCashMethodSpecificOutput $cashRefundMethodSpecificOutput = null;
 
     /**
-     * @var RefundEInvoiceMethodSpecificOutput
+     * @var RefundEInvoiceMethodSpecificOutput|null
      */
-    public $eInvoiceRefundMethodSpecificOutput = null;
+    public ?RefundEInvoiceMethodSpecificOutput $eInvoiceRefundMethodSpecificOutput = null;
 
     /**
-     * @var RefundEWalletMethodSpecificOutput
+     * @var RefundEWalletMethodSpecificOutput|null
      */
-    public $eWalletRefundMethodSpecificOutput = null;
+    public ?RefundEWalletMethodSpecificOutput $eWalletRefundMethodSpecificOutput = null;
 
     /**
-     * @var RefundMobileMethodSpecificOutput
+     * @var RefundMobileMethodSpecificOutput|null
      */
-    public $mobileRefundMethodSpecificOutput = null;
+    public ?RefundMobileMethodSpecificOutput $mobileRefundMethodSpecificOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentMethod = null;
+    public ?string $paymentMethod = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountPaid)) {
@@ -87,10 +87,11 @@ class RefundOutput extends OrderOutput
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountPaid')) {

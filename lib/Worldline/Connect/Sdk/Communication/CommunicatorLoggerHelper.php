@@ -13,72 +13,96 @@ use Worldline\Connect\Sdk\Logging\HeaderObfuscator;
  */
 class CommunicatorLoggerHelper
 {
-    /** @var HttpObfuscator|null */
-    private $httpObfuscator = null;
+    /**
+     * @var HttpObfuscator|null
+     */
+    private ?HttpObfuscator $httpObfuscator = null;
 
     /**
      * @param CommunicatorLogger $communicatorLogger
-     * @param string $requestId
-     * @param string $requestMethod
-     * @param string $requestUri
-     * @param array $requestHeaders
-     * @param string $requestBody
+     * @param string             $requestId
+     * @param string             $requestMethod
+     * @param string             $requestUri
+     * @param array              $requestHeaders
+     * @param string             $requestBody
+     *
+     * @return void
      */
     public function logRequest(
         CommunicatorLogger $communicatorLogger,
-        $requestId,
-        $requestMethod,
-        $requestUri,
-        array $requestHeaders,
-        $requestBody = ''
-    )
-    {
-        $communicatorLogger->log(sprintf(
-            "Outgoing request to %s (requestId='%s')\n%s",
-            $this->getEndpoint($requestUri),
-            $requestId,
-            $this->getHttpObfuscator()->getRawObfuscatedRequest(
-                $requestMethod,
-                $this->getRelativeUriPathWithRequestParameters($requestUri),
-                $requestHeaders,
-                $requestBody
+        string             $requestId,
+        string             $requestMethod,
+        string             $requestUri,
+        array              $requestHeaders,
+        string             $requestBody = ''
+    ): void {
+        $communicatorLogger->log(
+            sprintf(
+                "Outgoing request to %s (requestId='%s')\n%s",
+                $this->getEndpoint($requestUri),
+                $requestId,
+                $this->getHttpObfuscator()->getRawObfuscatedRequest(
+                    $requestMethod,
+                    $this->getRelativeUriPathWithRequestParameters($requestUri),
+                    $requestHeaders,
+                    $requestBody
+                )
             )
-        ));
+        );
     }
 
     /**
      * @param CommunicatorLogger $communicatorLogger
-     * @param string $requestId
-     * @param string $requestUri
+     * @param string             $requestId
+     * @param string             $requestUri
      * @param ConnectionResponse $response
+     *
+     * @return void
      */
-    public function logResponse(CommunicatorLogger $communicatorLogger, $requestId, $requestUri, ConnectionResponse $response)
-    {
-        $communicatorLogger->log(sprintf(
-            "Incoming response from %s (requestId='%s')\n%s",
-            $this->getEndpoint($requestUri),
-            $requestId,
-            $this->getHttpObfuscator()->getRawObfuscatedResponse($response)
-        ));
+    public function logResponse(
+        CommunicatorLogger $communicatorLogger,
+        string             $requestId,
+        string             $requestUri,
+        ConnectionResponse $response
+    ): void {
+        $communicatorLogger->log(
+            sprintf(
+                "Incoming response from %s (requestId='%s')\n%s",
+                $this->getEndpoint($requestUri),
+                $requestId,
+                $this->getHttpObfuscator()->getRawObfuscatedResponse($response)
+            )
+        );
     }
 
     /**
      * @param CommunicatorLogger $communicatorLogger
-     * @param string $requestId
-     * @param string $requestUri
-     * @param Exception $exception
+     * @param string             $requestId
+     * @param string             $requestUri
+     * @param Exception          $exception
+     *
+     * @return void
      */
-    public function logException(CommunicatorLogger $communicatorLogger, $requestId, $requestUri, Exception $exception)
-    {
-        $communicatorLogger->logException(sprintf(
-            "Error occurred while executing request to %s (requestId='%s')",
-            $this->getEndpoint($requestUri),
-            $requestId
-        ), $exception);
+    public function logException(
+        CommunicatorLogger $communicatorLogger,
+        string             $requestId,
+        string             $requestUri,
+        Exception          $exception
+    ): void {
+        $communicatorLogger->logException(
+            sprintf(
+                "Error occurred while executing request to %s (requestId='%s')",
+                $this->getEndpoint($requestUri),
+                $requestId
+            ),
+            $exception
+        );
     }
 
-    /** @return HttpObfuscator */
-    protected function getHttpObfuscator()
+    /**
+     * @return HttpObfuscator
+     */
+    protected function getHttpObfuscator(): HttpObfuscator
     {
         if (is_null($this->httpObfuscator)) {
             $this->httpObfuscator = new HttpObfuscator();
@@ -88,25 +112,30 @@ class CommunicatorLoggerHelper
 
     /**
      * @param BodyObfuscator $bodyObfuscator
+     *
+     * @return void
      */
-    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator)
+    public function setBodyObfuscator(BodyObfuscator $bodyObfuscator): void
     {
         $this->getHttpObfuscator()->setBodyObfuscator($bodyObfuscator);
     }
 
     /**
      * @param HeaderObfuscator $headerObfuscator
+     *
+     * @return void
      */
-    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator)
+    public function setHeaderObfuscator(HeaderObfuscator $headerObfuscator): void
     {
         $this->getHttpObfuscator()->setHeaderObfuscator($headerObfuscator);
     }
 
     /**
      * @param string $requestUri
+     *
      * @return string
      */
-    public function getEndpoint($requestUri)
+    public function getEndpoint(string $requestUri): string
     {
         $index = strpos($requestUri, '://');
         if ($index !== false) {
@@ -121,9 +150,10 @@ class CommunicatorLoggerHelper
 
     /**
      * @param string $requestUri
+     *
      * @return string
      */
-    public function getRelativeUriPathWithRequestParameters($requestUri)
+    public function getRelativeUriPathWithRequestParameters(string $requestUri): string
     {
         $index = strpos($requestUri, '://');
         if ($index !== false) {

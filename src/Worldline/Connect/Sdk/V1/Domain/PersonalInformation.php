@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PersonalInformation extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $dateOfBirth = null;
+    public ?string $dateOfBirth = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $gender = null;
+    public ?string $gender = null;
 
     /**
-     * @var PersonalIdentification
+     * @var PersonalIdentification|null
      */
-    public $identification = null;
+    public ?PersonalIdentification $identification = null;
 
     /**
-     * @var PersonalName
+     * @var PersonalName|null
      */
-    public $name = null;
+    public ?PersonalName $name = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->dateOfBirth)) {
@@ -56,10 +56,11 @@ class PersonalInformation extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PersonalInformation
     {
         parent::fromObject($object);
         if (property_exists($object, 'dateOfBirth')) {

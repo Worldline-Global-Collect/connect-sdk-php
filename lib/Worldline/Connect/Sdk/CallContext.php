@@ -8,24 +8,30 @@ namespace Worldline\Connect\Sdk;
  */
 class CallContext
 {
-    /** @var string */
-    private $idempotenceKey = '';
+    /**
+     * @var string
+     */
+    private string $idempotenceKey = '';
 
-    /** @var string */
-    private $idempotenceRequestTimestamp = '';
+    /**
+     * @var string
+     */
+    private string $idempotenceRequestTimestamp = '';
 
     /**
      * @return string
      */
-    public function getIdempotenceKey()
+    public function getIdempotenceKey(): string
     {
         return $this->idempotenceKey;
     }
 
     /**
      * @param string $idempotenceKey
+     *
+     * @return void
      */
-    public function setIdempotenceKey($idempotenceKey)
+    public function setIdempotenceKey(string $idempotenceKey): void
     {
         $this->idempotenceKey = $idempotenceKey;
     }
@@ -33,15 +39,17 @@ class CallContext
     /**
      * @return string
      */
-    public function getIdempotenceRequestTimestamp()
+    public function getIdempotenceRequestTimestamp(): string
     {
         return $this->idempotenceRequestTimestamp;
     }
 
     /**
      * @param string $idempotenceRequestTimestamp
+     *
+     * @return void
      */
-    public function setIdempotenceRequestTimestamp($idempotenceRequestTimestamp)
+    public function setIdempotenceRequestTimestamp(string $idempotenceRequestTimestamp): void
     {
         $this->idempotenceRequestTimestamp = $idempotenceRequestTimestamp;
     }

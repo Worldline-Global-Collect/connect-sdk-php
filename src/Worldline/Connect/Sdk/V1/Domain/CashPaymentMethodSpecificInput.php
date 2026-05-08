@@ -13,65 +13,66 @@ use UnexpectedValueException;
 class CashPaymentMethodSpecificInput extends AbstractCashPaymentMethodSpecificInput
 {
     /**
-     * @var CashPaymentProduct1502SpecificInput
+     * @var CashPaymentProduct1502SpecificInput|null
      */
-    public $paymentProduct1502SpecificInput = null;
+    public ?CashPaymentProduct1502SpecificInput $paymentProduct1502SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1503SpecificInput
+     * @var CashPaymentProduct1503SpecificInput|null
+     *
      * @deprecated No replacement
      */
-    public $paymentProduct1503SpecificInput = null;
+    public ?CashPaymentProduct1503SpecificInput $paymentProduct1503SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1504SpecificInput
+     * @var CashPaymentProduct1504SpecificInput|null
      */
-    public $paymentProduct1504SpecificInput = null;
+    public ?CashPaymentProduct1504SpecificInput $paymentProduct1504SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1506SpecificInput
+     * @var CashPaymentProduct1506SpecificInput|null
      */
-    public $paymentProduct1506SpecificInput = null;
+    public ?CashPaymentProduct1506SpecificInput $paymentProduct1506SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1508SpecificInput
+     * @var CashPaymentProduct1508SpecificInput|null
      */
-    public $paymentProduct1508SpecificInput = null;
+    public ?CashPaymentProduct1508SpecificInput $paymentProduct1508SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1521SpecificInput
+     * @var CashPaymentProduct1521SpecificInput|null
      */
-    public $paymentProduct1521SpecificInput = null;
+    public ?CashPaymentProduct1521SpecificInput $paymentProduct1521SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1522SpecificInput
+     * @var CashPaymentProduct1522SpecificInput|null
      */
-    public $paymentProduct1522SpecificInput = null;
+    public ?CashPaymentProduct1522SpecificInput $paymentProduct1522SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1523SpecificInput
+     * @var CashPaymentProduct1523SpecificInput|null
      */
-    public $paymentProduct1523SpecificInput = null;
+    public ?CashPaymentProduct1523SpecificInput $paymentProduct1523SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1524SpecificInput
+     * @var CashPaymentProduct1524SpecificInput|null
      */
-    public $paymentProduct1524SpecificInput = null;
+    public ?CashPaymentProduct1524SpecificInput $paymentProduct1524SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1525SpecificInput
+     * @var CashPaymentProduct1525SpecificInput|null
      */
-    public $paymentProduct1525SpecificInput = null;
+    public ?CashPaymentProduct1525SpecificInput $paymentProduct1525SpecificInput = null;
 
     /**
-     * @var CashPaymentProduct1526SpecificInput
+     * @var CashPaymentProduct1526SpecificInput|null
      */
-    public $paymentProduct1526SpecificInput = null;
+    public ?CashPaymentProduct1526SpecificInput $paymentProduct1526SpecificInput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProduct1502SpecificInput)) {
@@ -112,10 +113,11 @@ class CashPaymentMethodSpecificInput extends AbstractCashPaymentMethodSpecificIn
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CashPaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProduct1502SpecificInput')) {

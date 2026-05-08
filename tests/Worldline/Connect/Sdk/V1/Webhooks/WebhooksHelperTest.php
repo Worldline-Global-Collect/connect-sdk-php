@@ -5,6 +5,7 @@ use PHPUnit\Framework\TestCase;
 use Worldline\Connect\Sdk\Communication\ConnectionResponse;
 use Worldline\Connect\Sdk\Communication\ResponseClassMap;
 use Worldline\Connect\Sdk\Communication\ResponseFactory;
+use Worldline\Connect\Sdk\Domain\DataObject;
 use Worldline\Connect\Sdk\V1\Domain\WebhooksEvent;
 use Worldline\Connect\Sdk\Webhooks\ApiVersionMismatchException;
 use Worldline\Connect\Sdk\Webhooks\InMemorySecretKeyStore;
@@ -93,9 +94,9 @@ EOD;
 }
 EOD;
     // the above constants may contain \r but the body from which the signature was created doesn't
-    private $validBody;
+    private string $validBody;
 
-    private $invalidBody;
+    private string $invalidBody;
 
     public function __construct()
     {
@@ -104,7 +105,7 @@ EOD;
         $this->invalidBody = preg_replace("/\r\n/", "\n", self::INVALID_BODY_WITHOUT_LINEBREAK_FIX);
     }
 
-    function testUnmarshalApiVersionMismatch()
+    public function testUnmarshalApiVersionMismatch()
     {
         $secretKeyStore = new InMemorySecretKeyStore(array(self::KEY_ID => self::SECRET_KEY));
         $helper = new ApiVersionMismatchTestingWebhooksHelper($secretKeyStore);
@@ -120,7 +121,7 @@ EOD;
         $this->fail('an expected exception has not been raised');
     }
 
-    function testUnmarshalNoSecretKeyAvailable()
+    public function testUnmarshalNoSecretKeyAvailable()
     {
         $secretKeyStore = new InMemorySecretKeyStore();
         $helper = $this->createHelper($secretKeyStore);
@@ -136,7 +137,7 @@ EOD;
         $this->fail('an expected exception has not been raised');
     }
 
-    function testUnmarshalMissingHeaders()
+    public function testUnmarshalMissingHeaders()
     {
         $secretKeyStore = new InMemorySecretKeyStore(array(self::KEY_ID => self::SECRET_KEY));
         $helper = $this->createHelper($secretKeyStore);
@@ -145,12 +146,13 @@ EOD;
         try {
             $helper->unmarshal($this->validBody, $requestHeaders);
         } catch (SignatureValidationException $e) {
+            $this->assertEquals("could not find header '" . static::SIGNATURE_HEADER . "'", $e->getMessage());
             return;
         }
         $this->fail('an expected exception has not been raised');
     }
 
-    function testUnmarshalBytesSuccess()
+    public function testUnmarshalSuccess()
     {
         $secretKeyStore = new InMemorySecretKeyStore(array(self::KEY_ID => self::SECRET_KEY));
         $helper = $this->createHelper($secretKeyStore);
@@ -190,14 +192,14 @@ EOD;
 
         $this->assertEquals('PAID', $event->payment->status);
         $this->assertNotNull($event->payment->statusOutput);
-        $this->assertEquals(false, $event->payment->statusOutput->isCancellable);
+        $this->assertFalse($event->payment->statusOutput->isCancellable);
         $this->assertEquals('COMPLETED', $event->payment->statusOutput->statusCategory);
         $this->assertEquals(1000, $event->payment->statusOutput->statusCode);
         $this->assertEquals('20170202112414', $event->payment->statusOutput->statusCodeChangeDateTime);
-        $this->assertEquals(true, $event->payment->statusOutput->isAuthorized);
+        $this->assertTrue($event->payment->statusOutput->isAuthorized);
     }
 
-    function testUnmarshalBytesInvalidBody()
+    public function testUnmarshalInvalidBody()
     {
         $secretKeyStore = new InMemorySecretKeyStore(array(self::KEY_ID => self::SECRET_KEY));
         $helper = $this->createHelper($secretKeyStore);
@@ -206,12 +208,13 @@ EOD;
         try {
             $helper->unmarshal($this->invalidBody, $requestHeaders);
         } catch (SignatureValidationException $e) {
+            $this->assertStringStartsWith('failed to validate signature', $e->getMessage());
             return;
         }
         $this->fail('an expected exception has not been raised');
     }
 
-    function testUnmarshalBytesInvalidSecretKey()
+    public function testUnmarshalInvalidSecretKey()
     {
         $invalidSecretKey = '1' . self::SECRET_KEY;
         $secretKeyStore = new InMemorySecretKeyStore(array(self::KEY_ID => $invalidSecretKey));
@@ -221,12 +224,13 @@ EOD;
         try {
             $helper->unmarshal($this->validBody, $requestHeaders);
         } catch (SignatureValidationException $e) {
+            $this->assertStringStartsWith('failed to validate signature', $e->getMessage());
             return;
         }
         $this->fail('an expected exception has not been raised');
     }
 
-    function testUnmarshalBytesInvalidSignature()
+    public function testUnmarshalInvalidSignature()
     {
         $secretKeyStore = new InMemorySecretKeyStore(array(self::KEY_ID => self::SECRET_KEY));
         $helper = $this->createHelper($secretKeyStore);
@@ -235,6 +239,7 @@ EOD;
         try {
             $helper->unmarshal($this->validBody, $requestHeaders);
         } catch (SignatureValidationException $e) {
+            $this->assertStringStartsWith('failed to validate signature', $e->getMessage());
             return;
         }
         $this->fail('an expected exception has not been raised');
@@ -244,7 +249,7 @@ EOD;
      * @param SecretKeyStore $secretKeyStore
      * @return WebhooksHelper
      */
-    protected function createHelper($secretKeyStore)
+    protected function createHelper(SecretKeyStore $secretKeyStore): WebhooksHelper
     {
         return new WebhooksHelper($secretKeyStore);
     }
@@ -252,7 +257,7 @@ EOD;
 
 class ApiVersionMismatchTestingWebhooksHelper extends WebhooksHelper
 {
-    protected function getResponseFactory()
+    protected function getResponseFactory(): ResponseFactory
     {
         return new ApiVersionMismatchTestingResponseFactory();
     }
@@ -263,8 +268,7 @@ class ApiVersionMismatchTestingResponseFactory extends ResponseFactory
     public function createResponse(
         ConnectionResponse $response,
         ResponseClassMap $responseClassMap
-    )
-    {
+    ): DataObject {
         /** @var WebhooksEvent $event */
         $event = parent::createResponse($response, $responseClassMap);
         $event->apiVersion = 'v0';

@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class InvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $additionalReference = null;
+    public ?string $additionalReference = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalReference)) {
@@ -31,10 +31,11 @@ class InvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInp
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): InvoicePaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalReference')) {

@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreateDisputeRequest extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $contactPerson = null;
+    public ?string $contactPerson = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $emailAddress = null;
+    public ?string $emailAddress = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $replyTo = null;
+    public ?string $replyTo = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $requestMessage = null;
+    public ?string $requestMessage = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoney)) {
@@ -64,10 +64,11 @@ class CreateDisputeRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreateDisputeRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {

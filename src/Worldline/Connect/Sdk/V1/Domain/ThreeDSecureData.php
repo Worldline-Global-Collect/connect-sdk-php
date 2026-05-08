@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ThreeDSecureData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $acsTransactionId = null;
+    public ?string $acsTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $method = null;
+    public ?string $method = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $utcTimestamp = null;
+    public ?string $utcTimestamp = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->acsTransactionId)) {
@@ -48,10 +48,11 @@ class ThreeDSecureData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ThreeDSecureData
     {
         parent::fromObject($object);
         if (property_exists($object, 'acsTransactionId')) {

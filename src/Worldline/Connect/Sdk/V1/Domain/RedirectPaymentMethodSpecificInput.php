@@ -13,65 +13,66 @@ use UnexpectedValueException;
 class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSpecificInput
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
-     * @var RedirectPaymentProduct4101SpecificInput
+     * @var RedirectPaymentProduct4101SpecificInput|null
      */
-    public $paymentProduct4101SpecificInput = null;
+    public ?RedirectPaymentProduct4101SpecificInput $paymentProduct4101SpecificInput = null;
 
     /**
-     * @var RedirectPaymentProduct809SpecificInput
+     * @var RedirectPaymentProduct809SpecificInput|null
      */
-    public $paymentProduct809SpecificInput = null;
+    public ?RedirectPaymentProduct809SpecificInput $paymentProduct809SpecificInput = null;
 
     /**
-     * @var RedirectPaymentProduct838SpecificInput
+     * @var RedirectPaymentProduct838SpecificInput|null
      */
-    public $paymentProduct838SpecificInput = null;
+    public ?RedirectPaymentProduct838SpecificInput $paymentProduct838SpecificInput = null;
 
     /**
-     * @var RedirectPaymentProduct840SpecificInput
+     * @var RedirectPaymentProduct840SpecificInput|null
      */
-    public $paymentProduct840SpecificInput = null;
+    public ?RedirectPaymentProduct840SpecificInput $paymentProduct840SpecificInput = null;
 
     /**
-     * @var RedirectPaymentProduct861SpecificInput
+     * @var RedirectPaymentProduct861SpecificInput|null
      */
-    public $paymentProduct861SpecificInput = null;
+    public ?RedirectPaymentProduct861SpecificInput $paymentProduct861SpecificInput = null;
 
     /**
-     * @var RedirectPaymentProduct863SpecificInput
+     * @var RedirectPaymentProduct863SpecificInput|null
      */
-    public $paymentProduct863SpecificInput = null;
+    public ?RedirectPaymentProduct863SpecificInput $paymentProduct863SpecificInput = null;
 
     /**
-     * @var RedirectPaymentProduct869SpecificInput
+     * @var RedirectPaymentProduct869SpecificInput|null
      */
-    public $paymentProduct869SpecificInput = null;
+    public ?RedirectPaymentProduct869SpecificInput $paymentProduct869SpecificInput = null;
 
     /**
-     * @var RedirectPaymentProduct882SpecificInput
+     * @var RedirectPaymentProduct882SpecificInput|null
      */
-    public $paymentProduct882SpecificInput = null;
+    public ?RedirectPaymentProduct882SpecificInput $paymentProduct882SpecificInput = null;
 
     /**
-     * @var RedirectionData
+     * @var RedirectionData|null
      */
-    public $redirectionData = null;
+    public ?RedirectionData $redirectionData = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use redirectionData.returnUrl instead
      */
-    public $returnUrl = null;
+    public ?string $returnUrl = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->isRecurring)) {
@@ -112,10 +113,11 @@ class RedirectPaymentMethodSpecificInput extends AbstractRedirectPaymentMethodSp
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RedirectPaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'isRecurring')) {

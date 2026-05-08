@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class MandateSepaDirectDebitWithMandateId extends MandateSepaDirectDebitWithoutCreditor
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $mandateId = null;
+    public ?string $mandateId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->mandateId)) {
@@ -31,10 +31,11 @@ class MandateSepaDirectDebitWithMandateId extends MandateSepaDirectDebitWithoutC
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MandateSepaDirectDebitWithMandateId
     {
         parent::fromObject($object);
         if (property_exists($object, 'mandateId')) {

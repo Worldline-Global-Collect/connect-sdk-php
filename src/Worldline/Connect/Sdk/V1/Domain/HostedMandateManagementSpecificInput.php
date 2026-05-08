@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class HostedMandateManagementSpecificInput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $locale = null;
+    public ?string $locale = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $returnUrl = null;
+    public ?string $returnUrl = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $showResultPage = null;
+    public ?bool $showResultPage = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $variant = null;
+    public ?string $variant = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->locale)) {
@@ -56,10 +56,11 @@ class HostedMandateManagementSpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): HostedMandateManagementSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'locale')) {

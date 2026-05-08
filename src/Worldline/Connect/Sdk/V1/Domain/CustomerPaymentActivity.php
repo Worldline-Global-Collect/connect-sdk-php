@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CustomerPaymentActivity extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfPaymentAttemptsLast24Hours = null;
+    public ?int $numberOfPaymentAttemptsLast24Hours = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfPaymentAttemptsLastYear = null;
+    public ?int $numberOfPaymentAttemptsLastYear = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfPurchasesLast6Months = null;
+    public ?int $numberOfPurchasesLast6Months = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->numberOfPaymentAttemptsLast24Hours)) {
@@ -48,10 +48,11 @@ class CustomerPaymentActivity extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CustomerPaymentActivity
     {
         parent::fromObject($object);
         if (property_exists($object, 'numberOfPaymentAttemptsLast24Hours')) {

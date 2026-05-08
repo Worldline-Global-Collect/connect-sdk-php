@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class LodgingCharge extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $chargeAmount = null;
+    public ?int $chargeAmount = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $chargeAmountCurrencyCode = null;
+    public ?string $chargeAmountCurrencyCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $chargeType = null;
+    public ?string $chargeType = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->chargeAmount)) {
@@ -48,10 +48,11 @@ class LodgingCharge extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): LodgingCharge
     {
         parent::fromObject($object);
         if (property_exists($object, 'chargeAmount')) {

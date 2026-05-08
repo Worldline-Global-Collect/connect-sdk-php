@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CashPaymentProductWithRedirectSpecificInputBase extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $returnUrl = null;
+    public ?string $returnUrl = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->returnUrl)) {
@@ -32,10 +32,11 @@ class CashPaymentProductWithRedirectSpecificInputBase extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CashPaymentProductWithRedirectSpecificInputBase
     {
         parent::fromObject($object);
         if (property_exists($object, 'returnUrl')) {

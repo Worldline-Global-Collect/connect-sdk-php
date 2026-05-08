@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class OrderTypeInformation extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $fundingType = null;
+    public ?string $fundingType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentCode = null;
+    public ?string $paymentCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $purchaseType = null;
+    public ?string $purchaseType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $transactionType = null;
+    public ?string $transactionType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $usageType = null;
+    public ?string $usageType = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->fundingType)) {
@@ -64,10 +64,11 @@ class OrderTypeInformation extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): OrderTypeInformation
     {
         parent::fromObject($object);
         if (property_exists($object, 'fundingType')) {

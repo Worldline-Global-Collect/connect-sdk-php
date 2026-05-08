@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class AddressPersonal extends Address
 {
     /**
-     * @var PersonalName
+     * @var PersonalName|null
      */
-    public $name = null;
+    public ?PersonalName $name = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->name)) {
@@ -31,10 +31,11 @@ class AddressPersonal extends Address
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AddressPersonal
     {
         parent::fromObject($object);
         if (property_exists($object, 'name')) {

@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RedirectDataBase extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $RETURNMAC = null;
+    public ?string $RETURNMAC = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $redirectURL = null;
+    public ?string $redirectURL = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->RETURNMAC)) {
@@ -40,10 +40,11 @@ class RedirectDataBase extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RedirectDataBase
     {
         parent::fromObject($object);
         if (property_exists($object, 'RETURNMAC')) {

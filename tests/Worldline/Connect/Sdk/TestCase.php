@@ -11,17 +11,17 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @var string
      */
-    private $configFilePath;
+    private string $configFilePath;
 
     /**
      * @var JsonValuesStore|null
      */
-    private $jsonValuesStore = null;
+    private ?JsonValuesStore $jsonValuesStore = null;
 
     /**
      *
      */
-    public function __construct($name = null, array $data = array(), $dataName = '')
+    public function __construct(?string $name = null, array $data = array(), $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
         $this->configFilePath = dirname(__FILE__) . '/../../../config.json';
@@ -31,7 +31,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getMerchantId()
+    protected function getMerchantId(): string
     {
         return $this->getJsonValuesStore()->getValue('merchant_id');
     }
@@ -40,7 +40,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getApiKey()
+    protected function getApiKey(): string
     {
         return $this->getJsonValuesStore()->getValue('api_key');
     }
@@ -49,7 +49,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getApiSecret()
+    protected function getApiSecret(): string
     {
         return $this->getJsonValuesStore()->getValue('api_secret');
     }
@@ -58,7 +58,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getApiEndpoint()
+    protected function getApiEndpoint(): string
     {
         return $this->getJsonValuesStore()->getValue('api_endpoint');
     }
@@ -67,7 +67,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getProxyHost()
+    protected function getProxyHost(): string
     {
         return $this->getJsonValuesStore()->getValue('proxy_host', false);
     }
@@ -76,7 +76,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getProxyPort()
+    protected function getProxyPort(): string
     {
         return $this->getJsonValuesStore()->getValue('proxy_port', false);
     }
@@ -85,7 +85,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getProxyUsername()
+    protected function getProxyUsername(): string
     {
         return $this->getJsonValuesStore()->getValue('proxy_username', false);
     }
@@ -94,7 +94,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getProxyPassword()
+    protected function getProxyPassword(): string
     {
         return $this->getJsonValuesStore()->getValue('proxy_password', false);
     }
@@ -103,7 +103,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
      * @return string
      * @throws Exception
      */
-    protected function getHttpBinUrl()
+    protected function getHttpBinUrl(): string
     {
         $httpBinUrl = $this->getJsonValuesStore()->getValue('httpbin_url', false);
         if (!$httpBinUrl) {
@@ -115,7 +115,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @return JsonValuesStore
      */
-    protected function getJsonValuesStore()
+    protected function getJsonValuesStore(): JsonValuesStore
     {
         if (is_null($this->jsonValuesStore)) {
             $this->jsonValuesStore = new JsonValuesStore($this->configFilePath);
@@ -126,7 +126,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     /**
      * @return CommunicatorConfiguration
      */
-    protected function getCommunicatorConfiguration()
+    protected function getCommunicatorConfiguration(): CommunicatorConfiguration
     {
         return new CommunicatorConfiguration(
             $this->getApiKey(),

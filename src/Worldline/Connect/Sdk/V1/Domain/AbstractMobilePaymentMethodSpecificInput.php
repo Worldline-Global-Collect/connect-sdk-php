@@ -13,59 +13,59 @@ use UnexpectedValueException;
 class AbstractMobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $authorizationMode = null;
+    public ?string $authorizationMode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerReference = null;
+    public ?string $customerReference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $initialSchemeTransactionId = null;
+    public ?string $initialSchemeTransactionId = null;
 
     /**
-     * @var CardRecurrenceDetails
+     * @var CardRecurrenceDetails|null
      */
-    public $recurring = null;
+    public ?CardRecurrenceDetails $recurring = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $requiresApproval = null;
+    public ?bool $requiresApproval = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $skipFraudService = null;
+    public ?bool $skipFraudService = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $tokenize = null;
+    public ?bool $tokenize = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $unscheduledCardOnFileRequestor = null;
+    public ?string $unscheduledCardOnFileRequestor = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $unscheduledCardOnFileSequenceIndicator = null;
+    public ?string $unscheduledCardOnFileSequenceIndicator = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->authorizationMode)) {
@@ -103,10 +103,11 @@ class AbstractMobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpec
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractMobilePaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'authorizationMode')) {

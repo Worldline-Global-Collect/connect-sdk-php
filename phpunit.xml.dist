@@ -1,13 +1,11 @@
 <phpunit bootstrap="tests/bootstrap.php">
     <testsuites>
-        <testsuite>
+        <testsuite name="unit">
             <directory>tests/Worldline/Connect/Sdk</directory>
+            <exclude>tests/Worldline/Connect/Sdk/It</exclude>
+        </testsuite>
+        <testsuite name="integration">
+            <directory>tests/Worldline/Connect/Sdk/It</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">src</directory>
-            <directory suffix=".php">lib</directory>
-        </whitelist>
-    </filter>
 </phpunit>

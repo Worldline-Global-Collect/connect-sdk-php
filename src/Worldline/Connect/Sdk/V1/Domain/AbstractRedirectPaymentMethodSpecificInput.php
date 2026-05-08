@@ -13,34 +13,34 @@ use UnexpectedValueException;
 class AbstractRedirectPaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $expirationPeriod = null;
+    public ?int $expirationPeriod = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $recurringPaymentSequenceIndicator = null;
+    public ?string $recurringPaymentSequenceIndicator = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $requiresApproval = null;
+    public ?bool $requiresApproval = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $tokenize = null;
+    public ?bool $tokenize = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->expirationPeriod)) {
@@ -63,10 +63,11 @@ class AbstractRedirectPaymentMethodSpecificInput extends AbstractPaymentMethodSp
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractRedirectPaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'expirationPeriod')) {

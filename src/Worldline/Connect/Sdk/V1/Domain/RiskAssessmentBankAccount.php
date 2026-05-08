@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class RiskAssessmentBankAccount extends RiskAssessment
 {
     /**
-     * @var BankAccountBban
+     * @var BankAccountBban|null
      */
-    public $bankAccountBban = null;
+    public ?BankAccountBban $bankAccountBban = null;
 
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountBban)) {
@@ -39,10 +39,11 @@ class RiskAssessmentBankAccount extends RiskAssessment
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RiskAssessmentBankAccount
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountBban')) {

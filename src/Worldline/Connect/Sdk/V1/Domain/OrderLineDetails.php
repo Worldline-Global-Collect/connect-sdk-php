@@ -14,84 +14,84 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class OrderLineDetails extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $discountAmount = null;
+    public ?int $discountAmount = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $googleProductCategoryId = null;
+    public ?int $googleProductCategoryId = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $lineAmountTotal = null;
+    public ?int $lineAmountTotal = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $naicsCommodityCode = null;
+    public ?string $naicsCommodityCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $productCategory = null;
+    public ?string $productCategory = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $productCode = null;
+    public ?string $productCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $productImageUrl = null;
+    public ?string $productImageUrl = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $productName = null;
+    public ?string $productName = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $productPrice = null;
+    public ?int $productPrice = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $productSku = null;
+    public ?string $productSku = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $productType = null;
+    public ?string $productType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $productUrl = null;
+    public ?string $productUrl = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $quantity = null;
+    public ?int $quantity = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $taxAmount = null;
+    public ?int $taxAmount = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $unit = null;
+    public ?string $unit = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->discountAmount)) {
@@ -144,10 +144,11 @@ class OrderLineDetails extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): OrderLineDetails
     {
         parent::fromObject($object);
         if (property_exists($object, 'discountAmount')) {

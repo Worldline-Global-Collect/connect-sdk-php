@@ -15,10 +15,11 @@ class ResponseFactory
 
     /**
      * @param ConnectionResponse $response
-     * @param ResponseClassMap $responseClassMap
+     * @param ResponseClassMap   $responseClassMap
+     *
      * @return DataObject|null
      */
-    public function createResponse(ConnectionResponse $response, ResponseClassMap $responseClassMap)
+    public function createResponse(ConnectionResponse $response, ResponseClassMap $responseClassMap): ?DataObject
     {
         try {
             return $this->getResponseObject($response, $responseClassMap);
@@ -29,10 +30,11 @@ class ResponseFactory
 
     /**
      * @param ConnectionResponse $response
-     * @param ResponseClassMap $responseClassMap
+     * @param ResponseClassMap   $responseClassMap
+     *
      * @return DataObject|null
      */
-    protected function getResponseObject(ConnectionResponse $response, ResponseClassMap $responseClassMap)
+    protected function getResponseObject(ConnectionResponse $response, ResponseClassMap $responseClassMap): ?DataObject
     {
         $httpStatusCode = $response->getHttpStatusCode();
         if (!$httpStatusCode) {
@@ -64,7 +66,8 @@ class ResponseFactory
         return $responseObject->fromJson($response->getBody());
     }
 
-    private function isJsonContentType($contentType) {
+    private function isJsonContentType(string $contentType): bool
+    {
         return $contentType === static::MIME_APPLICATION_JSON
             || substr($contentType, 0, strlen(static::MIME_APPLICATION_JSON)) === static::MIME_APPLICATION_JSON;
     }

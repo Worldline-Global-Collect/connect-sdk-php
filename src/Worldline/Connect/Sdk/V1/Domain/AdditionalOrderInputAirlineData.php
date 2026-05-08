@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AdditionalOrderInputAirlineData extends DataObject
 {
     /**
-     * @var AirlineData
+     * @var AirlineData|null
      */
-    public $airlineData = null;
+    public ?AirlineData $airlineData = null;
 
     /**
-     * @var LodgingData
+     * @var LodgingData|null
      */
-    public $lodgingData = null;
+    public ?LodgingData $lodgingData = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->airlineData)) {
@@ -40,10 +40,11 @@ class AdditionalOrderInputAirlineData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AdditionalOrderInputAirlineData
     {
         parent::fromObject($object);
         if (property_exists($object, 'airlineData')) {

@@ -14,13 +14,13 @@ use Worldline\Connect\Sdk\V1\Merchant\Products\FindProductsParams;
 class CommunicatorTest extends TestCase
 {
 
-    /** @var Communicator */
-    protected $defaultCommunicator = null;
+    /** @var Communicator|null */
+    protected ?Communicator $defaultCommunicator = null;
 
-    /** @var ResponseClassMap */
-    protected $defaultResponseClassMap = null;
+    /** @var ResponseClassMap|null */
+    protected ?ResponseClassMap $defaultResponseClassMap = null;
 
-    public function setUp()
+    public function setUp(): void
     {
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
         $this->defaultCommunicator = new Communicator($communicatorConfiguration);
@@ -28,12 +28,15 @@ class CommunicatorTest extends TestCase
         $this->defaultResponseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
     }
 
-    public function tearDown()
+    public function tearDown(): void
     {
     }
 
     public function testApiRequestGet()
     {
+        // This method just tests that calling get doesn't fail
+        $this->expectNotToPerformAssertions();
+
         $relativeUri = sprintf('/v1/%s/products', $this->getMerchantId());
         $findParams = new FindProductsParams();
         $findParams->countryCode = 'NL';
@@ -57,35 +60,26 @@ class CommunicatorTest extends TestCase
 
     public function testApiRequestPost()
     {
-        try {
-            $relativeUri = sprintf('/v1/%s/payments/1/tokenize', $this->getMerchantId());
-            $this->defaultCommunicator->post($this->defaultResponseClassMap, $relativeUri);
-        } catch (ErrorResponseException $e) {
-            return;
-        }
-        $this->fail();
+        $this->expectException(ErrorResponseException::class);
+
+        $relativeUri = sprintf('/v1/%s/payments/1/tokenize', $this->getMerchantId());
+        $this->defaultCommunicator->post($this->defaultResponseClassMap, $relativeUri);
     }
 
     public function testApiRequestPut()
     {
-        try {
-            $relativeUri = sprintf('/v1/%s/tokens/1', $this->getMerchantId());
-            $this->defaultCommunicator->put($this->defaultResponseClassMap, $relativeUri);
-        } catch (InvalidResponseException $e) {
-            return;
-        }
-        $this->fail();
+        $this->expectException(InvalidResponseException::class);
+
+        $relativeUri = sprintf('/v1/%s/tokens/1', $this->getMerchantId());
+        $this->defaultCommunicator->put($this->defaultResponseClassMap, $relativeUri);
     }
 
     public function testApiRequestDelete()
     {
-        try {
-            $relativeUri = sprintf('/v1/%s/tokens/1', $this->getMerchantId());
-            $this->defaultCommunicator->delete($this->defaultResponseClassMap, $relativeUri);
-        } catch (ErrorResponseException $e) {
-            return;
-        }
-        $this->fail();
+        $this->expectException(ErrorResponseException::class);
+
+        $relativeUri = sprintf('/v1/%s/tokens/1', $this->getMerchantId());
+        $this->defaultCommunicator->delete($this->defaultResponseClassMap, $relativeUri);
     }
 
     public function testApiRequestGetWithBinaryResponse()
@@ -96,7 +90,13 @@ class CommunicatorTest extends TestCase
         $findParams->countryCode = 'NL';
         $findParams->currencyCode = 'EUR';
         $clientMetaInfo = '';
-        $this->defaultCommunicator->getWithBinaryResponse(array($bodyHandler, 'handleBodyPart'), $this->defaultResponseClassMap, $relativeUri, $clientMetaInfo, $findParams);
+        $this->defaultCommunicator->getWithBinaryResponse(
+            array($bodyHandler, 'handleBodyPart'),
+            $this->defaultResponseClassMap,
+            $relativeUri,
+            $clientMetaInfo,
+            $findParams
+        );
         $this->assertNotEquals('', $bodyHandler->getBody());
         $this->assertStringStartsWith('{', $bodyHandler->getBody());
         $this->assertStringEndsWith('}', $bodyHandler->getBody());

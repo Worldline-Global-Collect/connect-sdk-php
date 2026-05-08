@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class HostedFile extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $fileName = null;
+    public ?string $fileName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fileSize = null;
+    public ?string $fileSize = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fileType = null;
+    public ?string $fileType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->fileName)) {
@@ -56,10 +56,11 @@ class HostedFile extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): HostedFile
     {
         parent::fromObject($object);
         if (property_exists($object, 'fileName')) {

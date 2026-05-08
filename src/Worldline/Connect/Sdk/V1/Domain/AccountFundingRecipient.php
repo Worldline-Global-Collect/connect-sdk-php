@@ -14,39 +14,39 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AccountFundingRecipient extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $accountNumber = null;
+    public ?string $accountNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $accountNumberType = null;
+    public ?string $accountNumberType = null;
 
     /**
-     * @var Address
+     * @var Address|null
      */
-    public $address = null;
+    public ?Address $address = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $dateOfBirth = null;
+    public ?string $dateOfBirth = null;
 
     /**
-     * @var AfrName
+     * @var AfrName|null
      */
-    public $name = null;
+    public ?AfrName $name = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $partialPan = null;
+    public ?string $partialPan = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->accountNumber)) {
@@ -72,10 +72,11 @@ class AccountFundingRecipient extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AccountFundingRecipient
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountNumber')) {

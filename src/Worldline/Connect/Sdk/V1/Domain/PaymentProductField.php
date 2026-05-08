@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductField extends DataObject
 {
     /**
-     * @var PaymentProductFieldDataRestrictions
+     * @var PaymentProductFieldDataRestrictions|null
      */
-    public $dataRestrictions = null;
+    public ?PaymentProductFieldDataRestrictions $dataRestrictions = null;
 
     /**
-     * @var PaymentProductFieldDisplayHints
+     * @var PaymentProductFieldDisplayHints|null
      */
-    public $displayHints = null;
+    public ?PaymentProductFieldDisplayHints $displayHints = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $type = null;
+    public ?string $type = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $usedForLookup = null;
+    public ?bool $usedForLookup = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->dataRestrictions)) {
@@ -64,10 +64,11 @@ class PaymentProductField extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductField
     {
         parent::fromObject($object);
         if (property_exists($object, 'dataRestrictions')) {

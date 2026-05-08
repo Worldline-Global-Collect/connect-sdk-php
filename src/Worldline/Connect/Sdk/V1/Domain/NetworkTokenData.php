@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class NetworkTokenData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $networkToken = null;
+    public ?string $networkToken = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $tokenExpiryDate = null;
+    public ?string $tokenExpiryDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $tokenReferenceId = null;
+    public ?string $tokenReferenceId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->networkToken)) {
@@ -48,10 +48,11 @@ class NetworkTokenData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): NetworkTokenData
     {
         parent::fromObject($object);
         if (property_exists($object, 'networkToken')) {

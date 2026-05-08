@@ -14,64 +14,64 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Shipping extends DataObject
 {
     /**
-     * @var AddressPersonal
+     * @var AddressPersonal|null
      */
-    public $address = null;
+    public ?AddressPersonal $address = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $addressIndicator = null;
+    public ?string $addressIndicator = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $carrier = null;
+    public ?string $carrier = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $comments = null;
+    public ?string $comments = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $emailAddress = null;
+    public ?string $emailAddress = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $firstUsageDate = null;
+    public ?string $firstUsageDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $instructions = null;
+    public ?string $instructions = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isFirstUsage = null;
+    public ?bool $isFirstUsage = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $shippedFromZip = null;
+    public ?string $shippedFromZip = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $trackingNumber = null;
+    public ?string $trackingNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $type = null;
+    public ?string $type = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->address)) {
@@ -112,10 +112,11 @@ class Shipping extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Shipping
     {
         parent::fromObject($object);
         if (property_exists($object, 'address')) {

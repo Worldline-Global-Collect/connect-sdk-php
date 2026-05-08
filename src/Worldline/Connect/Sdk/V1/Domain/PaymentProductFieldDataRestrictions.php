@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductFieldDataRestrictions extends DataObject
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRequired = null;
+    public ?bool $isRequired = null;
 
     /**
-     * @var PaymentProductFieldValidators
+     * @var PaymentProductFieldValidators|null
      */
-    public $validators = null;
+    public ?PaymentProductFieldValidators $validators = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->isRequired)) {
@@ -40,10 +40,11 @@ class PaymentProductFieldDataRestrictions extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductFieldDataRestrictions
     {
         parent::fromObject($object);
         if (property_exists($object, 'isRequired')) {

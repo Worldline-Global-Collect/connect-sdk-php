@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class DisputeReference extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantOrderId = null;
+    public ?string $merchantOrderId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantReference = null;
+    public ?string $merchantReference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentReference = null;
+    public ?string $paymentReference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $providerId = null;
+    public ?string $providerId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $providerReference = null;
+    public ?string $providerReference = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->merchantOrderId)) {
@@ -64,10 +64,11 @@ class DisputeReference extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DisputeReference
     {
         parent::fromObject($object);
         if (property_exists($object, 'merchantOrderId')) {

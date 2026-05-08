@@ -15,7 +15,7 @@ class RefundCashMethodSpecificOutput extends RefundMethodSpecificOutput
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         return $object;
@@ -23,10 +23,11 @@ class RefundCashMethodSpecificOutput extends RefundMethodSpecificOutput
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundCashMethodSpecificOutput
     {
         parent::fromObject($object);
         return $this;

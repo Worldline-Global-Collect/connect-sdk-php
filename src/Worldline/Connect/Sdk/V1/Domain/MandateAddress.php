@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MandateAddress extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $city = null;
+    public ?string $city = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode = null;
+    public ?string $countryCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $houseNumber = null;
+    public ?string $houseNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $street = null;
+    public ?string $street = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $zip = null;
+    public ?string $zip = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->city)) {
@@ -64,10 +64,11 @@ class MandateAddress extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MandateAddress
     {
         parent::fromObject($object);
         if (property_exists($object, 'city')) {

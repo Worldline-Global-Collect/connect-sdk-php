@@ -13,34 +13,34 @@ use UnexpectedValueException;
 class MobilePaymentMethodSpecificInput extends AbstractMobilePaymentMethodSpecificInput
 {
     /**
-     * @var DecryptedPaymentData
+     * @var DecryptedPaymentData|null
      */
-    public $decryptedPaymentData = null;
+    public ?DecryptedPaymentData $decryptedPaymentData = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $encryptedPaymentData = null;
+    public ?string $encryptedPaymentData = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantInitiatedReasonIndicator = null;
+    public ?string $merchantInitiatedReasonIndicator = null;
 
     /**
-     * @var MobilePaymentProduct320SpecificInput
+     * @var MobilePaymentProduct320SpecificInput|null
      */
-    public $paymentProduct320SpecificInput = null;
+    public ?MobilePaymentProduct320SpecificInput $paymentProduct320SpecificInput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->decryptedPaymentData)) {
@@ -63,10 +63,11 @@ class MobilePaymentMethodSpecificInput extends AbstractMobilePaymentMethodSpecif
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MobilePaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'decryptedPaymentData')) {

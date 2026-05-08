@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class Card extends CardWithoutCvv
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $cvv = null;
+    public ?string $cvv = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $partialPin = null;
+    public ?string $partialPin = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->cvv)) {
@@ -39,10 +39,11 @@ class Card extends CardWithoutCvv
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Card
     {
         parent::fromObject($object);
         if (property_exists($object, 'cvv')) {

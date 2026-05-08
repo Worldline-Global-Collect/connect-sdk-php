@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreatePaymentResult extends DataObject
 {
     /**
-     * @var PaymentCreationOutput
+     * @var PaymentCreationOutput|null
      */
-    public $creationOutput = null;
+    public ?PaymentCreationOutput $creationOutput = null;
 
     /**
-     * @var MerchantAction
+     * @var MerchantAction|null
      */
-    public $merchantAction = null;
+    public ?MerchantAction $merchantAction = null;
 
     /**
-     * @var Payment
+     * @var Payment|null
      */
-    public $payment = null;
+    public ?Payment $payment = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->creationOutput)) {
@@ -48,10 +48,11 @@ class CreatePaymentResult extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreatePaymentResult
     {
         parent::fromObject($object);
         if (property_exists($object, 'creationOutput')) {

@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class OrderRiskAssessment extends DataObject
 {
     /**
-     * @var AdditionalOrderInputAirlineData
+     * @var AdditionalOrderInputAirlineData|null
      */
-    public $additionalInput = null;
+    public ?AdditionalOrderInputAirlineData $additionalInput = null;
 
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var CustomerRiskAssessment
+     * @var CustomerRiskAssessment|null
      */
-    public $customer = null;
+    public ?CustomerRiskAssessment $customer = null;
 
     /**
-     * @var ShippingRiskAssessment
+     * @var ShippingRiskAssessment|null
      */
-    public $shipping = null;
+    public ?ShippingRiskAssessment $shipping = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalInput)) {
@@ -56,10 +56,11 @@ class OrderRiskAssessment extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): OrderRiskAssessment
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalInput')) {

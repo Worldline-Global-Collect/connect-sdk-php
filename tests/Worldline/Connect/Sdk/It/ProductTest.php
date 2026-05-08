@@ -15,8 +15,8 @@ use Worldline\Connect\Sdk\V1\Merchant\Products\FindProductsParams;
 class ProductTest extends ClientTestCase
 {
     /**
-     * @throws ApiException
      * @return PaymentProducts
+     * @throws ApiException
      */
     public function testRetrievePaymentProducts()
     {
@@ -28,13 +28,13 @@ class ProductTest extends ClientTestCase
         $findParams->countryCode = "NL";
 
         $paymentProducts = $client->v1()->merchant($merchantId)->products()->find($findParams);
-        $this->assertTrue(count($paymentProducts->paymentProducts) > 0);
+        $this->assertNotEmpty($paymentProducts->paymentProducts);
         return $paymentProducts;
     }
 
     /**
-     * @throws ApiException
      * @return Directory
+     * @throws ApiException
      */
     public function testRetrievePaymentProductDirectory()
     {
@@ -46,7 +46,7 @@ class ProductTest extends ClientTestCase
         $directoryParams->countryCode = "NL";
 
         $productDirectory = $client->v1()->merchant($merchantId)->products()->directory(809, $directoryParams);
-        $this->assertTrue(count($productDirectory->entries) > 0);
+        $this->assertNotEmpty($productDirectory->entries);
         return $productDirectory;
     }
 }

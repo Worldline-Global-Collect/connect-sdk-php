@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class TokenNonSepaDirectDebit extends AbstractToken
 {
     /**
-     * @var CustomerToken
+     * @var CustomerToken|null
      */
-    public $customer = null;
+    public ?CustomerToken $customer = null;
 
     /**
-     * @var MandateNonSepaDirectDebit
+     * @var MandateNonSepaDirectDebit|null
      */
-    public $mandate = null;
+    public ?MandateNonSepaDirectDebit $mandate = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->customer)) {
@@ -39,10 +39,11 @@ class TokenNonSepaDirectDebit extends AbstractToken
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): TokenNonSepaDirectDebit
     {
         parent::fromObject($object);
         if (property_exists($object, 'customer')) {

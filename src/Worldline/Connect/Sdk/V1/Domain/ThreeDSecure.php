@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class ThreeDSecure extends AbstractThreeDSecure
 {
     /**
-     * @var ExternalCardholderAuthenticationData
+     * @var ExternalCardholderAuthenticationData|null
      */
-    public $externalCardholderAuthenticationData = null;
+    public ?ExternalCardholderAuthenticationData $externalCardholderAuthenticationData = null;
 
     /**
-     * @var RedirectionData
+     * @var RedirectionData|null
      */
-    public $redirectionData = null;
+    public ?RedirectionData $redirectionData = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->externalCardholderAuthenticationData)) {
@@ -39,10 +39,11 @@ class ThreeDSecure extends AbstractThreeDSecure
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ThreeDSecure
     {
         parent::fromObject($object);
         if (property_exists($object, 'externalCardholderAuthenticationData')) {

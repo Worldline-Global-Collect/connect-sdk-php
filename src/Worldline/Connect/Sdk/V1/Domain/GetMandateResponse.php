@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class GetMandateResponse extends DataObject
 {
     /**
-     * @var MandateResponse
+     * @var MandateResponse|null
      */
-    public $mandate = null;
+    public ?MandateResponse $mandate = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->mandate)) {
@@ -32,10 +32,11 @@ class GetMandateResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): GetMandateResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'mandate')) {

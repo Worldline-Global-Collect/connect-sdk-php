@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class InstallmentDisplayHints extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $displayOrder = null;
+    public ?int $displayOrder = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $label = null;
+    public ?string $label = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $logo = null;
+    public ?string $logo = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayOrder)) {
@@ -48,10 +48,11 @@ class InstallmentDisplayHints extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): InstallmentDisplayHints
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayOrder')) {

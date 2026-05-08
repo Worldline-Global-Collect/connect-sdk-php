@@ -15,11 +15,11 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ReferenceException extends ResponseException
 {
     /**
-     * @param int $httpStatusCode
-     * @param DataObject $response
-     * @param string $message
+     * @param int         $httpStatusCode
+     * @param DataObject  $response
+     * @param string|null $message
      */
-    public function __construct($httpStatusCode, DataObject $response, $message = null)
+    public function __construct(int $httpStatusCode, DataObject $response, ?string $message = null)
     {
         if (is_null($message)) {
             $message = 'the Worldline Global Collect platform returned a reference error response';

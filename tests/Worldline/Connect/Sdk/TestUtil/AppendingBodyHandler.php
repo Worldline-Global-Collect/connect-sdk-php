@@ -6,19 +6,19 @@ use Worldline\Connect\Sdk\BodyHandler;
 class AppendingBodyHandler extends BodyHandler
 {
     /** @var string */
-    private $body;
+    private string $body = '';
 
-    protected function initialize($headers)
+    protected function initialize(array $headers): void
     {
         $this->body = '';
     }
 
-    protected function doHandleBodyPart($bodyPart)
+    protected function doHandleBodyPart(string $bodyPart): void
     {
         $this->body .= $bodyPart;
     }
 
-    public function getBody()
+    public function getBody(): string
     {
         return $this->body;
     }

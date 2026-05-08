@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Directory extends DataObject
 {
     /**
-     * @var DirectoryEntry[]
+     * @var DirectoryEntry[]|null
      */
-    public $entries = null;
+    public ?array $entries = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->entries)) {
@@ -37,10 +37,11 @@ class Directory extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Directory
     {
         parent::fromObject($object);
         if (property_exists($object, 'entries')) {

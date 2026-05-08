@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class EInvoicePaymentProduct9000SpecificOutput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $installmentId = null;
+    public ?string $installmentId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->installmentId)) {
@@ -32,10 +32,11 @@ class EInvoicePaymentProduct9000SpecificOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): EInvoicePaymentProduct9000SpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'installmentId')) {

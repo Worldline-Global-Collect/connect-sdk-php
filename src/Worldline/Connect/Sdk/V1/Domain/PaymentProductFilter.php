@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductFilter extends DataObject
 {
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $groups = null;
+    public ?array $groups = null;
 
     /**
-     * @var int[]
+     * @var int[]|null
      */
-    public $products = null;
+    public ?array $products = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->groups)) {
@@ -50,10 +50,11 @@ class PaymentProductFilter extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductFilter
     {
         parent::fromObject($object);
         if (property_exists($object, 'groups')) {

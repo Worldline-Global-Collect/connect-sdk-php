@@ -16,7 +16,7 @@ class AbstractPayoutMethodSpecificInput extends DataObject
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         return $object;
@@ -24,10 +24,11 @@ class AbstractPayoutMethodSpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractPayoutMethodSpecificInput
     {
         parent::fromObject($object);
         return $this;

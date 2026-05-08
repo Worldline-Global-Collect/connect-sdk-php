@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ValidationBankAccountCheck extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $code = null;
+    public ?string $code = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $description = null;
+    public ?string $description = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $result = null;
+    public ?string $result = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->code)) {
@@ -48,10 +48,11 @@ class ValidationBankAccountCheck extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ValidationBankAccountCheck
     {
         parent::fromObject($object);
         if (property_exists($object, 'code')) {

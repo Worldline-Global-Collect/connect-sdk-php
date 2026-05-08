@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class EInvoicePaymentMethodSpecificInput extends AbstractEInvoicePaymentMethodSpecificInput
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $acceptedTermsAndConditions = null;
+    public ?bool $acceptedTermsAndConditions = null;
 
     /**
-     * @var EInvoicePaymentProduct9000SpecificInput
+     * @var EInvoicePaymentProduct9000SpecificInput|null
      */
-    public $paymentProduct9000SpecificInput = null;
+    public ?EInvoicePaymentProduct9000SpecificInput $paymentProduct9000SpecificInput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->acceptedTermsAndConditions)) {
@@ -39,10 +39,11 @@ class EInvoicePaymentMethodSpecificInput extends AbstractEInvoicePaymentMethodSp
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): EInvoicePaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'acceptedTermsAndConditions')) {

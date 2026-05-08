@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class CardWithoutCvv extends CardEssentials
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $issueNumber = null;
+    public ?string $issueNumber = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->issueNumber)) {
@@ -31,10 +31,11 @@ class CardWithoutCvv extends CardEssentials
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CardWithoutCvv
     {
         parent::fromObject($object);
         if (property_exists($object, 'issueNumber')) {

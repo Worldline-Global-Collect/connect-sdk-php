@@ -9,10 +9,11 @@ namespace Worldline\Connect\Sdk\Authentication;
 interface Authenticator
 {
     /**
-     * @param string $httpMethod
-     * @param string $uriPath
-     * @param string[] $requestHeaders
+     * @param string                $httpMethod
+     * @param string                $uriPath
+     * @param array<string, string> $requestHeaders
+     *
      * @return string The full value for the Authorization header
      */
-    public function getAuthorization($httpMethod, $uriPath, $requestHeaders);
+    public function getAuthorization(string $httpMethod, string $uriPath, array $requestHeaders): string;
 }

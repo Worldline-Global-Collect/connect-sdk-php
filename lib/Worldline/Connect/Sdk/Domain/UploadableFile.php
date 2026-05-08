@@ -10,34 +10,42 @@ use UnexpectedValueException;
  */
 class UploadableFile
 {
-    /** @var string */
-    private $fileName;
-
-    /** @var resource|string|callable */
-    private $content;
-
-    /** @var string */
-    private $contentType;
-
-    /** @var int */
-    private $contentLength;
+    /**
+     * @var string
+     */
+    private string $fileName;
 
     /**
-     * @param string $fileName
-     * @param resource|string|callable $content
-     *        If it's a callable it should take a length argument and return a string that is not larger than the input.
-     * @param string $contentType
-     * @param int $contentLength
+     * @var resource|string|callable
      */
-    public function __construct($fileName, $content, $contentType, $contentLength = -1)
+    private $content;
+
+    /**
+     * @var string
+     */
+    private string $contentType;
+
+    /**
+     * @var int
+     */
+    private int $contentLength;
+
+    /**
+     * @param string                   $fileName
+     * @param resource|string|callable $content       If it's a callable it should take a length argument
+     *                                                and return a string that is not larger than the input.
+     * @param string                   $contentType
+     * @param int                      $contentLength
+     */
+    public function __construct(string $fileName, $content, string $contentType, int $contentLength = -1)
     {
-        if (is_null($fileName) || strlen(trim($fileName)) == 0) {
+        if (strlen(trim($fileName)) == 0) {
             throw new UnexpectedValueException("fileName is required");
         }
         if (!is_resource($content) && !is_string($content) && !is_callable($content)) {
             throw new UnexpectedValueException('content is required as resource, string or callable');
         }
-        if (is_null($contentType) || strlen(trim($contentType)) == 0) {
+        if (strlen(trim($contentType)) == 0) {
             throw new UnexpectedValueException("contentType is required");
         }
         $this->fileName = $fileName;
@@ -52,14 +60,14 @@ class UploadableFile
     /**
      * @return string The name of the file.
      */
-    public function getFileName()
+    public function getFileName(): string
     {
         return $this->fileName;
     }
 
     /**
      * @return resource|string|callable A resource, string or callable with the file's content.
-     *         If it's a callable it should take a length argument and return a string that is not larger than the input.
+     *                                  If it's a callable it should take a length argument and return a string that is not larger than the input.
      */
     public function getContent()
     {
@@ -69,7 +77,7 @@ class UploadableFile
     /**
      * @return string The file's content type.
      */
-    public function getContentType()
+    public function getContentType(): string
     {
         return $this->contentType;
     }
@@ -77,7 +85,7 @@ class UploadableFile
     /**
      * @return int The file's content length, or -1 if not known.
      */
-    public function getContentLength()
+    public function getContentLength(): int
     {
         return $this->contentLength;
     }

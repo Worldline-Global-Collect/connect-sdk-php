@@ -15,7 +15,7 @@ class PaymentResponse extends Payment
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         return $object;
@@ -23,10 +23,11 @@ class PaymentResponse extends Payment
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentResponse
     {
         parent::fromObject($object);
         return $this;

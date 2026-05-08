@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class LabelTemplateElement extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $attributeKey = null;
+    public ?string $attributeKey = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $mask = null;
+    public ?string $mask = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->attributeKey)) {
@@ -40,10 +40,11 @@ class LabelTemplateElement extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): LabelTemplateElement
     {
         parent::fromObject($object);
         if (property_exists($object, 'attributeKey')) {

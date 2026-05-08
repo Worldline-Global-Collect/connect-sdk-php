@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreatePaymentProductSessionResponse extends DataObject
 {
     /**
-     * @var MobilePaymentProductSession302SpecificOutput
+     * @var MobilePaymentProductSession302SpecificOutput|null
      */
-    public $paymentProductSession302SpecificOutput = null;
+    public ?MobilePaymentProductSession302SpecificOutput $paymentProductSession302SpecificOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProductSession302SpecificOutput)) {
@@ -32,10 +32,11 @@ class CreatePaymentProductSessionResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreatePaymentProductSessionResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProductSession302SpecificOutput')) {

@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ClickToPayConfiguration extends DataObject
 {
     /**
-     * @var ClickToPayDisplayHints
+     * @var ClickToPayDisplayHints|null
      */
-    public $displayHints = null;
+    public ?ClickToPayDisplayHints $displayHints = null;
 
     /**
-     * @var ClickToPayConfigurationMastercard
+     * @var ClickToPayConfigurationMastercard|null
      */
-    public $mastercard = null;
+    public ?ClickToPayConfigurationMastercard $mastercard = null;
 
     /**
-     * @var ClickToPayConfigurationVisa
+     * @var ClickToPayConfigurationVisa|null
      */
-    public $visa = null;
+    public ?ClickToPayConfigurationVisa $visa = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayHints)) {
@@ -48,10 +48,11 @@ class ClickToPayConfiguration extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ClickToPayConfiguration
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayHints')) {

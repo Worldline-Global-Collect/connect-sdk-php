@@ -14,44 +14,44 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProduct863ThirdPartyData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $appId = null;
+    public ?string $appId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $nonceStr = null;
+    public ?string $nonceStr = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $packageSign = null;
+    public ?string $packageSign = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paySign = null;
+    public ?string $paySign = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $prepayId = null;
+    public ?string $prepayId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $signType = null;
+    public ?string $signType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $timeStamp = null;
+    public ?string $timeStamp = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->appId)) {
@@ -80,10 +80,11 @@ class PaymentProduct863ThirdPartyData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProduct863ThirdPartyData
     {
         parent::fromObject($object);
         if (property_exists($object, 'appId')) {

@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductFieldFormElement extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $type = null;
+    public ?string $type = null;
 
     /**
-     * @var ValueMappingElement[]
+     * @var ValueMappingElement[]|null
      */
-    public $valueMapping = null;
+    public ?array $valueMapping = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->type)) {
@@ -45,10 +45,11 @@ class PaymentProductFieldFormElement extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductFieldFormElement
     {
         parent::fromObject($object);
         if (property_exists($object, 'type')) {

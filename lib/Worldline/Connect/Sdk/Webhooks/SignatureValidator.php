@@ -8,8 +8,10 @@ namespace Worldline\Connect\Sdk\Webhooks;
  */
 class SignatureValidator
 {
-    /** @var SecretKeyStore */
-    private $secretKeyStore;
+    /**
+     * @var SecretKeyStore
+     */
+    private SecretKeyStore $secretKeyStore;
 
     /**
      * @param SecretKeyStore $secretKeyStore
@@ -21,18 +23,21 @@ class SignatureValidator
 
     /**
      * Validates the given body using the given request headers.
+     *
      * @param string $body
-     * @param array $requestHeaders
+     * @param array  $requestHeaders
+     *
+     * @return void
      * @throws SignatureValidationException
      */
-    public function validate($body, $requestHeaders)
+    public function validate(string $body, array $requestHeaders): void
     {
         $this->validateBody($body, $requestHeaders);
     }
 
     // utility methods
 
-    private function validateBody($body, $requestHeaders)
+    private function validateBody(string $body, array $requestHeaders): void
     {
         $signature = $this->getHeaderValue($requestHeaders, 'X-GCS-Signature');
         $keyId = $this->getHeaderValue($requestHeaders, 'X-GCS-KeyId');
@@ -40,32 +45,16 @@ class SignatureValidator
 
         $expectedSignature = base64_encode(hash_hmac("sha256", $body, $secretKey, true));
 
-        $isValid = $this->areEqualSignatures($signature, $expectedSignature);
+        $isValid = hash_equals($signature, $expectedSignature);
         if (!$isValid) {
             throw new SignatureValidationException("failed to validate signature '$signature'");
         }
     }
 
-    private function areEqualSignatures($signature, $expectedSignature) {
-        if (function_exists('hash_equals')) {
-            return hash_equals($expectedSignature, $signature);
-        } else {
-            // copied from http://php.net/manual/en/function.hash-equals.php#115635
-            if (strlen($expectedSignature) != strlen($signature)) {
-                return false;
-            } else {
-                $res = $expectedSignature ^ $signature;
-                $ret = 0;
-                // @phpstan-ignore-next-line
-                for ($i = strlen($res) - 1; $i >= 0; $i--) $ret |= ord($res[$i]);
-                return !$ret;
-            }
-        }
-    }
-
     // general utility methods
 
-    private function getHeaderValue($requestHeaders, $headerName) {
+    private function getHeaderValue(array $requestHeaders, string $headerName): string
+    {
         $lowerCaseHeaderName = strtolower($headerName);
         foreach ($requestHeaders as $name => $value) {
             if ($lowerCaseHeaderName === strtolower($name)) {

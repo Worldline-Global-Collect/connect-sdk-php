@@ -45,19 +45,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Payments client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Payments
  */
 class PaymentsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/payments - Create payment
      *
      * @param CreatePaymentRequest $body
-     * @param CallContext $callContext
-     * @return CreatePaymentResponse
+     * @param CallContext|null     $callContext
      *
+     * @return CreatePaymentResponse
      * @throws DeclinedPaymentException
      * @throws IdempotenceException
      * @throws ValidationException
@@ -66,9 +70,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/create.html Create payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/create.html Create payment
      */
-    public function create(CreatePaymentRequest $body, CallContext $callContext = null)
+    public function create(CreatePaymentRequest $body, ?CallContext $callContext = null): CreatePaymentResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\CreatePaymentResponse';
@@ -95,9 +99,9 @@ class PaymentsClient extends ApiResource
      * Resource /{merchantId}/payments - Find payments
      *
      * @param FindPaymentsParams $query
-     * @param CallContext $callContext
-     * @return FindPaymentsResponse
+     * @param CallContext|null   $callContext
      *
+     * @return FindPaymentsResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -105,9 +109,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/find.html Find payments
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/find.html Find payments
      */
-    public function find(FindPaymentsParams $query, CallContext $callContext = null)
+    public function find(FindPaymentsParams $query, ?CallContext $callContext = null): FindPaymentsResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\FindPaymentsResponse';
@@ -132,11 +136,11 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId} - Get payment
      *
-     * @param string $paymentId
+     * @param string           $paymentId
      * @param GetPaymentParams $query
-     * @param CallContext $callContext
-     * @return PaymentResponse
+     * @param CallContext|null $callContext
      *
+     * @return PaymentResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -144,9 +148,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/get.html Get payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/get.html Get payment
      */
-    public function get($paymentId, GetPaymentParams $query, CallContext $callContext = null)
+    public function get(string $paymentId, GetPaymentParams $query, ?CallContext $callContext = null): PaymentResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -172,11 +176,11 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/complete - Complete payment
      *
-     * @param string $paymentId
+     * @param string                 $paymentId
      * @param CompletePaymentRequest $body
-     * @param CallContext $callContext
-     * @return CompletePaymentResponse
+     * @param CallContext|null       $callContext
      *
+     * @return CompletePaymentResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -184,9 +188,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/complete.html Complete payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/complete.html Complete payment
      */
-    public function complete($paymentId, CompletePaymentRequest $body, CallContext $callContext = null)
+    public function complete(string $paymentId, CompletePaymentRequest $body, ?CallContext $callContext = null): CompletePaymentResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -213,10 +217,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/thirdpartystatus - Third party status poll
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return ThirdPartyStatusResponse
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return ThirdPartyStatusResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -224,9 +228,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/thirdPartyStatus.html Third party status poll
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/thirdPartyStatus.html Third party status poll
      */
-    public function thirdPartyStatus($paymentId, CallContext $callContext = null)
+    public function thirdPartyStatus(string $paymentId, ?CallContext $callContext = null): ThirdPartyStatusResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -252,11 +256,11 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/tokenize - Create a token from payment
      *
-     * @param string $paymentId
+     * @param string                 $paymentId
      * @param TokenizePaymentRequest $body
-     * @param CallContext $callContext
-     * @return CreateTokenResponse
+     * @param CallContext|null       $callContext
      *
+     * @return CreateTokenResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -264,9 +268,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/tokenize.html Create a token from payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/tokenize.html Create a token from payment
      */
-    public function tokenize($paymentId, TokenizePaymentRequest $body, CallContext $callContext = null)
+    public function tokenize(string $paymentId, TokenizePaymentRequest $body, ?CallContext $callContext = null): CreateTokenResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -293,10 +297,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/processchallenged - Approves challenged payment
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return PaymentResponse
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return PaymentResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -304,9 +308,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/processchallenged.html Approves challenged payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/processchallenged.html Approves challenged payment
      */
-    public function processchallenged($paymentId, CallContext $callContext = null)
+    public function processchallenged(string $paymentId, ?CallContext $callContext = null): PaymentResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -333,11 +337,11 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/approve - Approve payment
      *
-     * @param string $paymentId
+     * @param string                $paymentId
      * @param ApprovePaymentRequest $body
-     * @param CallContext $callContext
-     * @return PaymentApprovalResponse
+     * @param CallContext|null      $callContext
      *
+     * @return PaymentApprovalResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -345,9 +349,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/approve.html Approve payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/approve.html Approve payment
      */
-    public function approve($paymentId, ApprovePaymentRequest $body, CallContext $callContext = null)
+    public function approve(string $paymentId, ApprovePaymentRequest $body, ?CallContext $callContext = null): PaymentApprovalResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -374,11 +378,11 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/capture - Capture payment
      *
-     * @param string $paymentId
+     * @param string                $paymentId
      * @param CapturePaymentRequest $body
-     * @param CallContext $callContext
-     * @return CaptureResponse
+     * @param CallContext|null      $callContext
      *
+     * @return CaptureResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -386,9 +390,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/capture.html Capture payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/capture.html Capture payment
      */
-    public function capture($paymentId, CapturePaymentRequest $body, CallContext $callContext = null)
+    public function capture(string $paymentId, CapturePaymentRequest $body, ?CallContext $callContext = null): CaptureResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -415,10 +419,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/finalizecapture - Finalize capture
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return PaymentResponse
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return PaymentResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -426,9 +430,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/finalizecapture.html Finalize capture
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/finalizecapture.html Finalize capture
      */
-    public function finalizecapture($paymentId, CallContext $callContext = null)
+    public function finalizecapture(string $paymentId, ?CallContext $callContext = null): PaymentResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -455,10 +459,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/cancelapproval - Undo capture payment
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return CancelApprovalPaymentResponse
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return CancelApprovalPaymentResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -466,9 +470,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/cancelapproval.html Undo capture payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/cancelapproval.html Undo capture payment
      */
-    public function cancelapproval($paymentId, CallContext $callContext = null)
+    public function cancelapproval(string $paymentId, ?CallContext $callContext = null): CancelApprovalPaymentResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -495,10 +499,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/captures - Get captures of payment
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return CapturesResponse
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return CapturesResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -506,9 +510,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/captures.html Get captures of payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/captures.html Get captures of payment
      */
-    public function captures($paymentId, CallContext $callContext = null)
+    public function captures(string $paymentId, ?CallContext $callContext = null): CapturesResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -534,11 +538,11 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/refund - Create refund
      *
-     * @param string $paymentId
-     * @param RefundRequest $body
-     * @param CallContext $callContext
-     * @return RefundResponse
+     * @param string           $paymentId
+     * @param RefundRequest    $body
+     * @param CallContext|null $callContext
      *
+     * @return RefundResponse
      * @throws DeclinedRefundException
      * @throws IdempotenceException
      * @throws ValidationException
@@ -547,9 +551,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/refund.html Create refund
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/refund.html Create refund
      */
-    public function refund($paymentId, RefundRequest $body, CallContext $callContext = null)
+    public function refund(string $paymentId, RefundRequest $body, ?CallContext $callContext = null): RefundResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -576,10 +580,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/refunds - Get refunds of payment
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return RefundsResponse
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return RefundsResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -587,9 +591,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/refunds.html Get refunds of payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/refunds.html Get refunds of payment
      */
-    public function refunds($paymentId, CallContext $callContext = null)
+    public function refunds(string $paymentId, ?CallContext $callContext = null): RefundsResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -615,10 +619,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/cancel - Cancel payment
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return CancelPaymentResponse
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return CancelPaymentResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -626,9 +630,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/cancel.html Cancel payment
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/cancel.html Cancel payment
      */
-    public function cancel($paymentId, CallContext $callContext = null)
+    public function cancel(string $paymentId, ?CallContext $callContext = null): CancelPaymentResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -655,11 +659,11 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/dispute - Create dispute
      *
-     * @param string $paymentId
+     * @param string               $paymentId
      * @param CreateDisputeRequest $body
-     * @param CallContext $callContext
-     * @return DisputeResponse
+     * @param CallContext|null     $callContext
      *
+     * @return DisputeResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -667,9 +671,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/dispute.html Create dispute
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/dispute.html Create dispute
      */
-    public function dispute($paymentId, CreateDisputeRequest $body, CallContext $callContext = null)
+    public function dispute(string $paymentId, CreateDisputeRequest $body, ?CallContext $callContext = null): DisputeResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -696,10 +700,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/disputes - Get disputes
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return DisputesResponse
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return DisputesResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -707,9 +711,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/disputes.html Get disputes
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/disputes.html Get disputes
      */
-    public function disputes($paymentId, CallContext $callContext = null)
+    public function disputes(string $paymentId, ?CallContext $callContext = null): DisputesResponse
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -735,10 +739,10 @@ class PaymentsClient extends ApiResource
     /**
      * Resource /{merchantId}/payments/{paymentId}/devicefingerprint - Get Device Fingerprint details
      *
-     * @param string $paymentId
-     * @param CallContext $callContext
-     * @return DeviceFingerprintDetails
+     * @param string           $paymentId
+     * @param CallContext|null $callContext
      *
+     * @return DeviceFingerprintDetails
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -746,9 +750,9 @@ class PaymentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/devicefingerprint.html Get Device Fingerprint details
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payments/devicefingerprint.html Get Device Fingerprint details
      */
-    public function devicefingerprint($paymentId, CallContext $callContext = null)
+    public function devicefingerprint(string $paymentId, ?CallContext $callContext = null): DeviceFingerprintDetails
     {
         $this->context['paymentId'] = $paymentId;
         $responseClassMap = new ResponseClassMap();
@@ -771,8 +775,10 @@ class PaymentsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

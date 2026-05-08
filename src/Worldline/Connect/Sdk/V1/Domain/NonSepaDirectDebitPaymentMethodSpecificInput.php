@@ -13,54 +13,54 @@ use UnexpectedValueException;
 class NonSepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $dateCollect = null;
+    public ?string $dateCollect = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $directDebitText = null;
+    public ?string $directDebitText = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
-     * @var NonSepaDirectDebitPaymentProduct705SpecificInput
+     * @var NonSepaDirectDebitPaymentProduct705SpecificInput|null
      */
-    public $paymentProduct705SpecificInput = null;
+    public ?NonSepaDirectDebitPaymentProduct705SpecificInput $paymentProduct705SpecificInput = null;
 
     /**
-     * @var NonSepaDirectDebitPaymentProduct730SpecificInput
+     * @var NonSepaDirectDebitPaymentProduct730SpecificInput|null
      */
-    public $paymentProduct730SpecificInput = null;
+    public ?NonSepaDirectDebitPaymentProduct730SpecificInput $paymentProduct730SpecificInput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $recurringPaymentSequenceIndicator = null;
+    public ?string $recurringPaymentSequenceIndicator = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $requiresApproval = null;
+    public ?bool $requiresApproval = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $tokenize = null;
+    public ?bool $tokenize = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->dateCollect)) {
@@ -95,10 +95,11 @@ class NonSepaDirectDebitPaymentMethodSpecificInput extends AbstractPaymentMethod
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): NonSepaDirectDebitPaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'dateCollect')) {

@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ContactDetailsRiskAssessment extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $emailAddress = null;
+    public ?string $emailAddress = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->emailAddress)) {
@@ -32,10 +32,11 @@ class ContactDetailsRiskAssessment extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ContactDetailsRiskAssessment
     {
         parent::fromObject($object);
         if (property_exists($object, 'emailAddress')) {

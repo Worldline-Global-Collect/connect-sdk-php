@@ -22,19 +22,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Installments client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Installments
  */
 class InstallmentsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/installments/getInstallmentsInfo - Get installment information
      *
      * @param GetInstallmentRequest $body
-     * @param CallContext $callContext
-     * @return InstallmentOptionsResponse
+     * @param CallContext|null      $callContext
      *
+     * @return InstallmentOptionsResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -42,9 +46,9 @@ class InstallmentsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/installments/getInstallmentsInfo.html Get installment information
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/installments/getInstallmentsInfo.html Get installment information
      */
-    public function getInstallmentsInfo(GetInstallmentRequest $body, CallContext $callContext = null)
+    public function getInstallmentsInfo(GetInstallmentRequest $body, ?CallContext $callContext = null): InstallmentOptionsResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\InstallmentOptionsResponse';
@@ -67,8 +71,10 @@ class InstallmentsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

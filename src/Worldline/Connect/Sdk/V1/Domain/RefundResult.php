@@ -13,24 +13,24 @@ use UnexpectedValueException;
 class RefundResult extends AbstractOrderStatus
 {
     /**
-     * @var RefundOutput
+     * @var RefundOutput|null
      */
-    public $refundOutput = null;
+    public ?RefundOutput $refundOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $status = null;
+    public ?string $status = null;
 
     /**
-     * @var OrderStatusOutput
+     * @var OrderStatusOutput|null
      */
-    public $statusOutput = null;
+    public ?OrderStatusOutput $statusOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->refundOutput)) {
@@ -47,10 +47,11 @@ class RefundResult extends AbstractOrderStatus
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundResult
     {
         parent::fromObject($object);
         if (property_exists($object, 'refundOutput')) {

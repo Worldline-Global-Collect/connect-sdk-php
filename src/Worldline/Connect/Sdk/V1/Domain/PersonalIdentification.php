@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PersonalIdentification extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $idIssuingCountryCode = null;
+    public ?string $idIssuingCountryCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $idType = null;
+    public ?string $idType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $idValue = null;
+    public ?string $idValue = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->idIssuingCountryCode)) {
@@ -48,10 +48,11 @@ class PersonalIdentification extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PersonalIdentification
     {
         parent::fromObject($object);
         if (property_exists($object, 'idIssuingCountryCode')) {

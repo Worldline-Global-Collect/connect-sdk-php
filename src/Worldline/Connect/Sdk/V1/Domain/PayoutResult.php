@@ -13,24 +13,24 @@ use UnexpectedValueException;
 class PayoutResult extends AbstractOrderStatus
 {
     /**
-     * @var OrderOutput
+     * @var OrderOutput|null
      */
-    public $payoutOutput = null;
+    public ?OrderOutput $payoutOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $status = null;
+    public ?string $status = null;
 
     /**
-     * @var OrderStatusOutput
+     * @var OrderStatusOutput|null
      */
-    public $statusOutput = null;
+    public ?OrderStatusOutput $statusOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->payoutOutput)) {
@@ -47,10 +47,11 @@ class PayoutResult extends AbstractOrderStatus
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PayoutResult
     {
         parent::fromObject($object);
         if (property_exists($object, 'payoutOutput')) {

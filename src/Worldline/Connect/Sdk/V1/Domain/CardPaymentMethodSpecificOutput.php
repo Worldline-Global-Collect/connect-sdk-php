@@ -13,64 +13,64 @@ use UnexpectedValueException;
 class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $authorisationCode = null;
+    public ?string $authorisationCode = null;
 
     /**
-     * @var CardEssentials
+     * @var CardEssentials|null
      */
-    public $card = null;
+    public ?CardEssentials $card = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $clickToPayUsed = null;
+    public ?bool $clickToPayUsed = null;
 
     /**
-     * @var CardFraudResults
+     * @var CardFraudResults|null
      */
-    public $fraudResults = null;
+    public ?CardFraudResults $fraudResults = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $initialSchemeTransactionId = null;
+    public ?string $initialSchemeTransactionId = null;
 
     /**
-     * @var NetworkTokenData
+     * @var NetworkTokenData|null
      */
-    public $networkTokenData = null;
+    public ?NetworkTokenData $networkTokenData = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $networkTokenUsed = null;
+    public ?bool $networkTokenUsed = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentAccountReference = null;
+    public ?string $paymentAccountReference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $schemeTransactionId = null;
+    public ?string $schemeTransactionId = null;
 
     /**
-     * @var ThreeDSecureResults
+     * @var ThreeDSecureResults|null
      */
-    public $threeDSecureResults = null;
+    public ?ThreeDSecureResults $threeDSecureResults = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $token = null;
+    public ?string $token = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->authorisationCode)) {
@@ -111,10 +111,11 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CardPaymentMethodSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'authorisationCode')) {

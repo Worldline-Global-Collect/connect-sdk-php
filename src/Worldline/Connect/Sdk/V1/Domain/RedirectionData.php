@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RedirectionData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $returnUrl = null;
+    public ?string $returnUrl = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $variant = null;
+    public ?string $variant = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->returnUrl)) {
@@ -40,10 +40,11 @@ class RedirectionData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RedirectionData
     {
         parent::fromObject($object);
         if (property_exists($object, 'returnUrl')) {

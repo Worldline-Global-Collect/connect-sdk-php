@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AbstractToken extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $alias = null;
+    public ?string $alias = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->alias)) {
@@ -32,10 +32,11 @@ class AbstractToken extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractToken
     {
         parent::fromObject($object);
         if (property_exists($object, 'alias')) {

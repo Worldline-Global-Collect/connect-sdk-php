@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ResultDoRiskAssessment extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $category = null;
+    public ?string $category = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $result = null;
+    public ?string $result = null;
 
     /**
-     * @var RetailDecisionsCCFraudCheckOutput
+     * @var RetailDecisionsCCFraudCheckOutput|null
      */
-    public $retaildecisionsCCFraudCheckOutput = null;
+    public ?RetailDecisionsCCFraudCheckOutput $retaildecisionsCCFraudCheckOutput = null;
 
     /**
-     * @var ValidationBankAccountOutput
+     * @var ValidationBankAccountOutput|null
      */
-    public $validationBankAccountOutput = null;
+    public ?ValidationBankAccountOutput $validationBankAccountOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->category)) {
@@ -56,10 +56,11 @@ class ResultDoRiskAssessment extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ResultDoRiskAssessment
     {
         parent::fromObject($object);
         if (property_exists($object, 'category')) {

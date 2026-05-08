@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreateHostedMandateManagementResponse extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $RETURNMAC = null;
+    public ?string $RETURNMAC = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $hostedMandateManagementId = null;
+    public ?string $hostedMandateManagementId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $partialRedirectUrl = null;
+    public ?string $partialRedirectUrl = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->RETURNMAC)) {
@@ -48,10 +48,11 @@ class CreateHostedMandateManagementResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreateHostedMandateManagementResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'RETURNMAC')) {

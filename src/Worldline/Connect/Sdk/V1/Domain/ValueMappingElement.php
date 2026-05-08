@@ -14,25 +14,26 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ValueMappingElement extends DataObject
 {
     /**
-     * @var PaymentProductFieldDisplayElement[]
+     * @var PaymentProductFieldDisplayElement[]|null
      */
-    public $displayElements = null;
+    public ?array $displayElements = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use displayElements instead with ID 'displayName'
      */
-    public $displayName = null;
+    public ?string $displayName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $value = null;
+    public ?string $value = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayElements)) {
@@ -54,10 +55,11 @@ class ValueMappingElement extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ValueMappingElement
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayElements')) {

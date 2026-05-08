@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class HostedCheckoutSpecificOutput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $hostedCheckoutId = null;
+    public ?string $hostedCheckoutId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $variant = null;
+    public ?string $variant = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->hostedCheckoutId)) {
@@ -40,10 +40,11 @@ class HostedCheckoutSpecificOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): HostedCheckoutSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'hostedCheckoutId')) {

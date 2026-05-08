@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class InvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutput
 {
     /**
-     * @var FraudResults
+     * @var FraudResults|null
      */
-    public $fraudResults = null;
+    public ?FraudResults $fraudResults = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->fraudResults)) {
@@ -31,10 +31,11 @@ class InvoicePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOu
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): InvoicePaymentMethodSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'fraudResults')) {

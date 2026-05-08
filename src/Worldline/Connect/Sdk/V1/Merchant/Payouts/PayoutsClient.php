@@ -25,19 +25,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Payouts client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Payouts
  */
 class PayoutsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/payouts - Create payout
      *
      * @param CreatePayoutRequest $body
-     * @param CallContext $callContext
-     * @return PayoutResponse
+     * @param CallContext|null    $callContext
      *
+     * @return PayoutResponse
      * @throws DeclinedPayoutException
      * @throws IdempotenceException
      * @throws ValidationException
@@ -46,9 +50,9 @@ class PayoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/create.html Create payout
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/create.html Create payout
      */
-    public function create(CreatePayoutRequest $body, CallContext $callContext = null)
+    public function create(CreatePayoutRequest $body, ?CallContext $callContext = null): PayoutResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\PayoutResponse';
@@ -75,9 +79,9 @@ class PayoutsClient extends ApiResource
      * Resource /{merchantId}/payouts - Find payouts
      *
      * @param FindPayoutsParams $query
-     * @param CallContext $callContext
-     * @return FindPayoutsResponse
+     * @param CallContext|null  $callContext
      *
+     * @return FindPayoutsResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -85,9 +89,9 @@ class PayoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/find.html Find payouts
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/find.html Find payouts
      */
-    public function find(FindPayoutsParams $query, CallContext $callContext = null)
+    public function find(FindPayoutsParams $query, ?CallContext $callContext = null): FindPayoutsResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\FindPayoutsResponse';
@@ -112,10 +116,10 @@ class PayoutsClient extends ApiResource
     /**
      * Resource /{merchantId}/payouts/{payoutId} - Get payout
      *
-     * @param string $payoutId
-     * @param CallContext $callContext
-     * @return PayoutResponse
+     * @param string           $payoutId
+     * @param CallContext|null $callContext
      *
+     * @return PayoutResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -123,9 +127,9 @@ class PayoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/get.html Get payout
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/get.html Get payout
      */
-    public function get($payoutId, CallContext $callContext = null)
+    public function get(string $payoutId, ?CallContext $callContext = null): PayoutResponse
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
@@ -151,11 +155,11 @@ class PayoutsClient extends ApiResource
     /**
      * Resource /{merchantId}/payouts/{payoutId}/approve - Approve payout
      *
-     * @param string $payoutId
+     * @param string               $payoutId
      * @param ApprovePayoutRequest $body
-     * @param CallContext $callContext
-     * @return PayoutResponse
+     * @param CallContext|null     $callContext
      *
+     * @return PayoutResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -163,9 +167,9 @@ class PayoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/approve.html Approve payout
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/approve.html Approve payout
      */
-    public function approve($payoutId, ApprovePayoutRequest $body, CallContext $callContext = null)
+    public function approve(string $payoutId, ApprovePayoutRequest $body, ?CallContext $callContext = null): PayoutResponse
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
@@ -192,10 +196,10 @@ class PayoutsClient extends ApiResource
     /**
      * Resource /{merchantId}/payouts/{payoutId}/cancel - Cancel payout
      *
-     * @param string $payoutId
-     * @param CallContext $callContext
-     * @return null
+     * @param string           $payoutId
+     * @param CallContext|null $callContext
      *
+     * @return void
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -203,15 +207,15 @@ class PayoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/cancel.html Cancel payout
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/cancel.html Cancel payout
      */
-    public function cancel($payoutId, CallContext $callContext = null)
+    public function cancel(string $payoutId, ?CallContext $callContext = null): void
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
         try {
-            return $this->getCommunicator()->post(
+            $this->getCommunicator()->post(
                 $responseClassMap,
                 $this->instantiateUri('/v1/{merchantId}/payouts/{payoutId}/cancel'),
                 $this->getClientMetaInfo(),
@@ -231,10 +235,10 @@ class PayoutsClient extends ApiResource
     /**
      * Resource /{merchantId}/payouts/{payoutId}/cancelapproval - Undo approve payout
      *
-     * @param string $payoutId
-     * @param CallContext $callContext
-     * @return null
+     * @param string           $payoutId
+     * @param CallContext|null $callContext
      *
+     * @return void
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -242,15 +246,15 @@ class PayoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/cancelapproval.html Undo approve payout
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/payouts/cancelapproval.html Undo approve payout
      */
-    public function cancelapproval($payoutId, CallContext $callContext = null)
+    public function cancelapproval(string $payoutId, ?CallContext $callContext = null): void
     {
         $this->context['payoutId'] = $payoutId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
         try {
-            return $this->getCommunicator()->post(
+            $this->getCommunicator()->post(
                 $responseClassMap,
                 $this->instantiateUri('/v1/{merchantId}/payouts/{payoutId}/cancelapproval'),
                 $this->getClientMetaInfo(),
@@ -267,8 +271,10 @@ class PayoutsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

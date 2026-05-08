@@ -15,10 +15,12 @@ class HttpHeaderHelper
     /**
      * Parses a raw array of HTTP headers into an associative array with the same structure as the output
      * of the get_headers method using the $format = 1 parameter
+     *
      * @param string[] $rawHeaders
+     *
      * @return array
      */
-    public static function parseRawHeaders(array $rawHeaders)
+    public static function parseRawHeaders(array $rawHeaders): array
     {
         $headers = array();
         $key = '';
@@ -53,10 +55,12 @@ class HttpHeaderHelper
     /**
      * Generates an array of raw headers from an associative array of headers with the same structure as the output
      * of the get_headers method using the $format = 1 parameter
+     *
      * @param array $headers
+     *
      * @return string[]
      */
-    public static function generateRawHeaders(array $headers)
+    public static function generateRawHeaders(array $headers): array
     {
         $rawHeaders = array();
         foreach ($headers as $key => $values) {

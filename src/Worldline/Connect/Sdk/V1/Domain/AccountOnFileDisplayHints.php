@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AccountOnFileDisplayHints extends DataObject
 {
     /**
-     * @var LabelTemplateElement[]
+     * @var LabelTemplateElement[]|null
      */
-    public $labelTemplate = null;
+    public ?array $labelTemplate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $logo = null;
+    public ?string $logo = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->labelTemplate)) {
@@ -45,10 +45,11 @@ class AccountOnFileDisplayHints extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AccountOnFileDisplayHints
     {
         parent::fromObject($object);
         if (property_exists($object, 'labelTemplate')) {

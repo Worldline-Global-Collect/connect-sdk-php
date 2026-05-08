@@ -23,19 +23,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Refunds client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Refunds
  */
 class RefundsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/refunds - Find refunds
      *
      * @param FindRefundsParams $query
-     * @param CallContext $callContext
-     * @return FindRefundsResponse
+     * @param CallContext|null  $callContext
      *
+     * @return FindRefundsResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -43,9 +47,9 @@ class RefundsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/find.html Find refunds
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/find.html Find refunds
      */
-    public function find(FindRefundsParams $query, CallContext $callContext = null)
+    public function find(FindRefundsParams $query, ?CallContext $callContext = null): FindRefundsResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\FindRefundsResponse';
@@ -70,10 +74,10 @@ class RefundsClient extends ApiResource
     /**
      * Resource /{merchantId}/refunds/{refundId} - Get refund
      *
-     * @param string $refundId
-     * @param CallContext $callContext
-     * @return RefundResponse
+     * @param string           $refundId
+     * @param CallContext|null $callContext
      *
+     * @return RefundResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -81,9 +85,9 @@ class RefundsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/get.html Get refund
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/get.html Get refund
      */
-    public function get($refundId, CallContext $callContext = null)
+    public function get(string $refundId, ?CallContext $callContext = null): RefundResponse
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
@@ -109,11 +113,11 @@ class RefundsClient extends ApiResource
     /**
      * Resource /{merchantId}/refunds/{refundId}/approve - Approve refund
      *
-     * @param string $refundId
+     * @param string               $refundId
      * @param ApproveRefundRequest $body
-     * @param CallContext $callContext
-     * @return null
+     * @param CallContext|null     $callContext
      *
+     * @return void
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -121,15 +125,15 @@ class RefundsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/approve.html Approve refund
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/approve.html Approve refund
      */
-    public function approve($refundId, ApproveRefundRequest $body, CallContext $callContext = null)
+    public function approve(string $refundId, ApproveRefundRequest $body, ?CallContext $callContext = null): void
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
         try {
-            return $this->getCommunicator()->post(
+            $this->getCommunicator()->post(
                 $responseClassMap,
                 $this->instantiateUri('/v1/{merchantId}/refunds/{refundId}/approve'),
                 $this->getClientMetaInfo(),
@@ -149,10 +153,10 @@ class RefundsClient extends ApiResource
     /**
      * Resource /{merchantId}/refunds/{refundId}/cancel - Cancel refund
      *
-     * @param string $refundId
-     * @param CallContext $callContext
-     * @return null
+     * @param string           $refundId
+     * @param CallContext|null $callContext
      *
+     * @return void
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -160,15 +164,15 @@ class RefundsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/cancel.html Cancel refund
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/cancel.html Cancel refund
      */
-    public function cancel($refundId, CallContext $callContext = null)
+    public function cancel(string $refundId, ?CallContext $callContext = null): void
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
         try {
-            return $this->getCommunicator()->post(
+            $this->getCommunicator()->post(
                 $responseClassMap,
                 $this->instantiateUri('/v1/{merchantId}/refunds/{refundId}/cancel'),
                 $this->getClientMetaInfo(),
@@ -188,10 +192,10 @@ class RefundsClient extends ApiResource
     /**
      * Resource /{merchantId}/refunds/{refundId}/cancelapproval - Undo approve refund
      *
-     * @param string $refundId
-     * @param CallContext $callContext
-     * @return null
+     * @param string           $refundId
+     * @param CallContext|null $callContext
      *
+     * @return void
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -199,15 +203,15 @@ class RefundsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/cancelapproval.html Undo approve refund
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/refunds/cancelapproval.html Undo approve refund
      */
-    public function cancelapproval($refundId, CallContext $callContext = null)
+    public function cancelapproval(string $refundId, ?CallContext $callContext = null): void
     {
         $this->context['refundId'] = $refundId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
         try {
-            return $this->getCommunicator()->post(
+            $this->getCommunicator()->post(
                 $responseClassMap,
                 $this->instantiateUri('/v1/{merchantId}/refunds/{refundId}/cancelapproval'),
                 $this->getClientMetaInfo(),
@@ -224,8 +228,10 @@ class RefundsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

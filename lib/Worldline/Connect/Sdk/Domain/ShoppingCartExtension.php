@@ -11,26 +11,32 @@ use UnexpectedValueException;
 class ShoppingCartExtension extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $creator = null;
+    public ?string $creator = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $name = null;
+    public ?string $name = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $version = null;
+    public ?string $version = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $extensionId = null;
+    public ?string $extensionId = null;
 
-    public function __construct($creator, $name, $version, $extensionId = null)
+    /**
+     * @param string      $creator
+     * @param string      $name
+     * @param string      $version
+     * @param string|null $extensionId
+     */
+    public function __construct(string $creator, string $name, string $version, ?string $extensionId = null)
     {
         $this->creator = $creator;
         $this->name = $name;
@@ -41,7 +47,7 @@ class ShoppingCartExtension extends DataObject
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->creator)) {
@@ -61,10 +67,11 @@ class ShoppingCartExtension extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ShoppingCartExtension
     {
         parent::fromObject($object);
         if (property_exists($object, 'creator')) {

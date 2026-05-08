@@ -14,30 +14,31 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class LineItem extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var LineItemInvoiceData
+     * @var LineItemInvoiceData|null
      */
-    public $invoiceData = null;
+    public ?LineItemInvoiceData $invoiceData = null;
 
     /**
-     * @var LineItemLevel3InterchangeInformation
+     * @var LineItemLevel3InterchangeInformation|null
+     *
      * @deprecated Use orderLineDetails instead
      */
-    public $level3InterchangeInformation = null;
+    public ?LineItemLevel3InterchangeInformation $level3InterchangeInformation = null;
 
     /**
-     * @var OrderLineDetails
+     * @var OrderLineDetails|null
      */
-    public $orderLineDetails = null;
+    public ?OrderLineDetails $orderLineDetails = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoney)) {
@@ -57,10 +58,11 @@ class LineItem extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): LineItem
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {

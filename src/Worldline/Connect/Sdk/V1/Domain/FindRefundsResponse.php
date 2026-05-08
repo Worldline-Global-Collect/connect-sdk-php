@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class FindRefundsResponse extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $limit = null;
+    public ?int $limit = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $offset = null;
+    public ?int $offset = null;
 
     /**
-     * @var RefundResult[]
+     * @var RefundResult[]|null
      */
-    public $refunds = null;
+    public ?array $refunds = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $totalCount = null;
+    public ?int $totalCount = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->limit)) {
@@ -61,10 +61,11 @@ class FindRefundsResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): FindRefundsResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'limit')) {

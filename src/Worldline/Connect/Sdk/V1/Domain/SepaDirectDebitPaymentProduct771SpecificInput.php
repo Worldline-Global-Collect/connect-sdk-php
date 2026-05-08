@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class SepaDirectDebitPaymentProduct771SpecificInput extends AbstractSepaDirectDebitPaymentProduct771SpecificInput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $existingUniqueMandateReference = null;
+    public ?string $existingUniqueMandateReference = null;
 
     /**
-     * @var CreateMandateWithReturnUrl
+     * @var CreateMandateWithReturnUrl|null
      */
-    public $mandate = null;
+    public ?CreateMandateWithReturnUrl $mandate = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->existingUniqueMandateReference)) {
@@ -39,10 +39,11 @@ class SepaDirectDebitPaymentProduct771SpecificInput extends AbstractSepaDirectDe
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): SepaDirectDebitPaymentProduct771SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'existingUniqueMandateReference')) {

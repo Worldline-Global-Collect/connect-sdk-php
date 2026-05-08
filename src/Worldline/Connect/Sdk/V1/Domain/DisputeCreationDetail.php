@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class DisputeCreationDetail extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $disputeCreationDate = null;
+    public ?string $disputeCreationDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $disputeOriginator = null;
+    public ?string $disputeOriginator = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $userName = null;
+    public ?string $userName = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->disputeCreationDate)) {
@@ -48,10 +48,11 @@ class DisputeCreationDetail extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DisputeCreationDetail
     {
         parent::fromObject($object);
         if (property_exists($object, 'disputeCreationDate')) {

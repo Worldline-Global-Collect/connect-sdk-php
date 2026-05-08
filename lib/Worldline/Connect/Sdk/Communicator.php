@@ -28,75 +28,84 @@ class Communicator
 {
     const MIME_APPLICATION_JSON = 'application/json';
 
-    /** @var string */
-    private $apiEndpoint;
+    /**
+     * @var string
+     */
+    private string $apiEndpoint;
 
-    /** @var Connection */
-    private $connection;
+    /**
+     * @var Authenticator
+     */
+    private Authenticator $authenticator;
 
-    /** @var Authenticator */
-    private $authenticator;
+    /**
+     * @var Connection
+     */
+    private Connection $connection;
 
-    /** @var MetadataProvider */
-    private $metadataProvider;
+    /**
+     * @var MetadataProvider
+     */
+    private MetadataProvider $metadataProvider;
 
-    /** @var ResponseFactory|null */
-    private $responseFactory = null;
+    /**
+     * @var ResponseFactory|null
+     */
+    private ?ResponseFactory $responseFactory = null;
 
     /**
      * @param CommunicatorConfiguration $communicatorConfiguration
-     * @param Connection|null $connection
-     * @param Authenticator|null $authenticator
+     * @param Authenticator|null        $authenticator
+     * @param Connection|null           $connection
      */
     public function __construct(
         CommunicatorConfiguration $communicatorConfiguration,
-        Authenticator $authenticator = null,
-        Connection $connection = null
-    )
-    {
+        ?Authenticator            $authenticator = null,
+        ?Connection               $connection = null
+    ) {
         $this->apiEndpoint = $communicatorConfiguration->getApiEndpoint();
-        $this->connection = $connection != null ? $connection : new DefaultConnection($communicatorConfiguration);
         $this->authenticator = $authenticator != null ? $authenticator : new V1HMACAuthenticator($communicatorConfiguration);
+        $this->connection = $connection != null ? $connection : new DefaultConnection($communicatorConfiguration);
         $this->metadataProvider = new MetadataProvider($communicatorConfiguration);
     }
 
     /**
      * @param CommunicatorLogger $communicatorLogger
+     *
+     * @return void
      */
-    public function enableLogging(CommunicatorLogger $communicatorLogger)
+    public function enableLogging(CommunicatorLogger $communicatorLogger): void
     {
         $this->connection->enableLogging($communicatorLogger);
     }
 
     /**
-     *
+     * @return void
      */
-    public function disableLogging()
+    public function disableLogging(): void
     {
         $this->connection->disableLogging();
     }
 
     /**
-     * @param ResponseClassMap $responseClassMap
-     * @param string $relativeUriPath
-     * @param string $clientMetaInfo
+     * @param ResponseClassMap   $responseClassMap
+     * @param string             $relativeUriPath
+     * @param string             $clientMetaInfo
      * @param RequestObject|null $requestParameters
-     * @param CallContext $callContext
-     * @return DataObject
+     * @param CallContext|null   $callContext
+     *
+     * @return DataObject|null
      * @throws Exception
      */
     public function get(
         ResponseClassMap $responseClassMap,
-        $relativeUriPath,
-        $clientMetaInfo = '',
-        RequestObject $requestParameters = null,
-        CallContext $callContext = null
-    )
-    {
-        $relativeUriPathWithRequestParameters =
-            $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
-        $requestHeaders =
-            $this->getRequestHeaders('GET', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
+        string           $relativeUriPath,
+        string           $clientMetaInfo = '',
+        ?RequestObject   $requestParameters = null,
+        ?CallContext     $callContext = null
+    ): ?DataObject {
+        $relativeUriPathWithRequestParameters = $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
+        $requestHeaders = $this->getRequestHeaders('GET', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder) {
@@ -121,27 +130,26 @@ class Communicator
     }
 
     /**
-     * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
-     * @param ResponseClassMap $responseClassMap Used for error handling
-     * @param string $relativeUriPath
-     * @param string $clientMetaInfo
+     * @param callable           $bodyHandler       Callable accepting a response body chunk and the response headers
+     * @param ResponseClassMap   $responseClassMap  Used for error handling
+     * @param string             $relativeUriPath
+     * @param string             $clientMetaInfo
      * @param RequestObject|null $requestParameters
-     * @param CallContext $callContext
+     * @param CallContext|null   $callContext
+     *
+     * @return void
      * @throws Exception
      */
     public function getWithBinaryResponse(
-        callable $bodyHandler,
+        callable         $bodyHandler,
         ResponseClassMap $responseClassMap,
-        $relativeUriPath,
-        $clientMetaInfo = '',
-        RequestObject $requestParameters = null,
-        CallContext $callContext = null
-    )
-    {
-        $relativeUriPathWithRequestParameters =
-            $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
-        $requestHeaders =
-            $this->getRequestHeaders('GET', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
+        string           $relativeUriPath,
+        string           $clientMetaInfo = '',
+        ?RequestObject   $requestParameters = null,
+        ?CallContext     $callContext = null
+    ): void {
+        $relativeUriPathWithRequestParameters = $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
+        $requestHeaders = $this->getRequestHeaders('GET', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder, $bodyHandler) {
@@ -169,26 +177,24 @@ class Communicator
     }
 
     /**
-     * @param ResponseClassMap $responseClassMap
-     * @param string $relativeUriPath
-     * @param string $clientMetaInfo
+     * @param ResponseClassMap   $responseClassMap
+     * @param string             $relativeUriPath
+     * @param string             $clientMetaInfo
      * @param RequestObject|null $requestParameters
-     * @param CallContext $callContext
-     * @return DataObject
+     * @param CallContext|null   $callContext
+     *
+     * @return DataObject|null
      * @throws Exception
      */
     public function delete(
         ResponseClassMap $responseClassMap,
-        $relativeUriPath,
-        $clientMetaInfo = '',
-        RequestObject $requestParameters = null,
-        CallContext $callContext = null
-    )
-    {
-        $relativeUriPathWithRequestParameters =
-            $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
-        $requestHeaders =
-            $this->getRequestHeaders('DELETE', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
+        string           $relativeUriPath,
+        string           $clientMetaInfo = '',
+        ?RequestObject   $requestParameters = null,
+        ?CallContext     $callContext = null
+    ): ?DataObject {
+        $relativeUriPathWithRequestParameters = $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
+        $requestHeaders = $this->getRequestHeaders('DELETE', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder) {
@@ -213,27 +219,26 @@ class Communicator
     }
 
     /**
-     * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
-     * @param ResponseClassMap $responseClassMap Used for error handling
-     * @param string $relativeUriPath
-     * @param string $clientMetaInfo
+     * @param callable           $bodyHandler       Callable accepting a response body chunk and the response headers
+     * @param ResponseClassMap   $responseClassMap  Used for error handling
+     * @param string             $relativeUriPath
+     * @param string             $clientMetaInfo
      * @param RequestObject|null $requestParameters
-     * @param CallContext $callContext
+     * @param CallContext|null   $callContext
+     *
+     * @return void
      * @throws Exception
      */
     public function deleteWithBinaryResponse(
-        callable $bodyHandler,
+        callable         $bodyHandler,
         ResponseClassMap $responseClassMap,
-        $relativeUriPath,
-        $clientMetaInfo = '',
-        RequestObject $requestParameters = null,
-        CallContext $callContext = null
-    )
-    {
-        $relativeUriPathWithRequestParameters =
-            $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
-        $requestHeaders =
-            $this->getRequestHeaders('DELETE', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
+        string           $relativeUriPath,
+        string           $clientMetaInfo = '',
+        ?RequestObject   $requestParameters = null,
+        ?CallContext     $callContext = null
+    ): void {
+        $relativeUriPathWithRequestParameters = $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
+        $requestHeaders = $this->getRequestHeaders('DELETE', $relativeUriPathWithRequestParameters, null, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder, $bodyHandler) {
@@ -261,26 +266,25 @@ class Communicator
     }
 
     /**
-     * @param ResponseClassMap $responseClassMap
-     * @param string $relativeUriPath
-     * @param string $clientMetaInfo
+     * @param ResponseClassMap                                            $responseClassMap
+     * @param string                                                      $relativeUriPath
+     * @param string                                                      $clientMetaInfo
      * @param DataObject|MultipartDataObject|MultipartFormDataObject|null $requestBodyObject
-     * @param RequestObject|null $requestParameters
-     * @param CallContext $callContext
-     * @return DataObject
+     * @param RequestObject|null                                          $requestParameters
+     * @param CallContext|null                                            $callContext
+     *
+     * @return DataObject|null
      * @throws Exception
      */
     public function post(
         ResponseClassMap $responseClassMap,
-        $relativeUriPath,
-        $clientMetaInfo = '',
+        string           $relativeUriPath,
+        string           $clientMetaInfo = '',
         $requestBodyObject = null,
-        RequestObject $requestParameters = null,
-        CallContext $callContext = null
-    )
-    {
-        $relativeUriPathWithRequestParameters =
-            $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
+        ?RequestObject   $requestParameters = null,
+        ?CallContext     $callContext = null
+    ): ?DataObject {
+        $relativeUriPathWithRequestParameters = $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         if ($requestBodyObject instanceof MultipartFormDataObject) {
             $contentType = $requestBodyObject->getContentType();
             $requestBody = $requestBodyObject;
@@ -294,8 +298,7 @@ class Communicator
         } else {
             throw new UnexpectedValueException('Unsupported request body');
         }
-        $requestHeaders =
-            $this->getRequestHeaders('POST', $relativeUriPathWithRequestParameters, $contentType, $clientMetaInfo, $callContext);
+        $requestHeaders = $this->getRequestHeaders('POST', $relativeUriPathWithRequestParameters, $contentType, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder) {
@@ -321,27 +324,28 @@ class Communicator
     }
 
     /**
-     * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
-     * @param ResponseClassMap $responseClassMap Used for error handling
-     * @param string $relativeUriPath
-     * @param string $clientMetaInfo
+     * @param callable                                                    $bodyHandler       Callable accepting a response body chunk
+     *                                                                                       and the response headers
+     * @param ResponseClassMap                                            $responseClassMap  Used for error handling
+     * @param string                                                      $relativeUriPath
+     * @param string                                                      $clientMetaInfo
      * @param DataObject|MultipartDataObject|MultipartFormDataObject|null $requestBodyObject
-     * @param RequestObject|null $requestParameters
-     * @param CallContext $callContext
+     * @param RequestObject|null                                          $requestParameters
+     * @param CallContext|null                                            $callContext
+     *
+     * @return void
      * @throws Exception
      */
     public function postWithBinaryResponse(
-        callable $bodyHandler,
+        callable         $bodyHandler,
         ResponseClassMap $responseClassMap,
-        $relativeUriPath,
-        $clientMetaInfo = '',
+        string           $relativeUriPath,
+        string           $clientMetaInfo = '',
         $requestBodyObject = null,
-        RequestObject $requestParameters = null,
-        CallContext $callContext = null
-    )
-    {
-        $relativeUriPathWithRequestParameters =
-            $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
+        ?RequestObject   $requestParameters = null,
+        ?CallContext     $callContext = null
+    ): void {
+        $relativeUriPathWithRequestParameters = $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         if ($requestBodyObject instanceof MultipartFormDataObject) {
             $contentType = $requestBodyObject->getContentType();
             $requestBody = $requestBodyObject;
@@ -355,8 +359,7 @@ class Communicator
         } else {
             throw new UnexpectedValueException('Unsupported request body');
         }
-        $requestHeaders =
-            $this->getRequestHeaders('POST', $relativeUriPathWithRequestParameters, $contentType, $clientMetaInfo, $callContext);
+        $requestHeaders = $this->getRequestHeaders('POST', $relativeUriPathWithRequestParameters, $contentType, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder, $bodyHandler) {
@@ -385,26 +388,25 @@ class Communicator
     }
 
     /**
-     * @param ResponseClassMap $responseClassMap
-     * @param string $relativeUriPath
-     * @param string $clientMetaInfo
+     * @param ResponseClassMap                                            $responseClassMap
+     * @param string                                                      $relativeUriPath
+     * @param string                                                      $clientMetaInfo
      * @param DataObject|MultipartDataObject|MultipartFormDataObject|null $requestBodyObject
-     * @param RequestObject|null $requestParameters
-     * @param CallContext $callContext
-     * @return DataObject
+     * @param RequestObject|null                                          $requestParameters
+     * @param CallContext|null                                            $callContext
+     *
+     * @return DataObject|null
      * @throws Exception
      */
     public function put(
         ResponseClassMap $responseClassMap,
-        $relativeUriPath,
-        $clientMetaInfo = '',
+        string           $relativeUriPath,
+        string           $clientMetaInfo = '',
         $requestBodyObject = null,
-        RequestObject $requestParameters = null,
-        CallContext $callContext = null
-    )
-    {
-        $relativeUriPathWithRequestParameters =
-            $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
+        ?RequestObject   $requestParameters = null,
+        ?CallContext     $callContext = null
+    ): ?DataObject {
+        $relativeUriPathWithRequestParameters = $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         if ($requestBodyObject instanceof MultipartFormDataObject) {
             $contentType = $requestBodyObject->getContentType();
             $requestBody = $requestBodyObject;
@@ -418,8 +420,7 @@ class Communicator
         } else {
             throw new UnexpectedValueException('Unsupported request body');
         }
-        $requestHeaders =
-            $this->getRequestHeaders('PUT', $relativeUriPathWithRequestParameters, $contentType, $clientMetaInfo, $callContext);
+        $requestHeaders = $this->getRequestHeaders('PUT', $relativeUriPathWithRequestParameters, $contentType, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder) {
@@ -445,27 +446,28 @@ class Communicator
     }
 
     /**
-     * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
-     * @param ResponseClassMap $responseClassMap Used for error handling
-     * @param string $relativeUriPath
-     * @param string $clientMetaInfo
+     * @param callable                                                    $bodyHandler       Callable accepting a response body chunk
+     *                                                                                       and the response headers
+     * @param ResponseClassMap                                            $responseClassMap  Used for error handling
+     * @param string                                                      $relativeUriPath
+     * @param string                                                      $clientMetaInfo
      * @param DataObject|MultipartDataObject|MultipartFormDataObject|null $requestBodyObject
-     * @param RequestObject|null $requestParameters
-     * @param CallContext $callContext
+     * @param RequestObject|null                                          $requestParameters
+     * @param CallContext|null                                            $callContext
+     *
+     * @return void
      * @throws Exception
      */
     public function putWithBinaryResponse(
-        callable $bodyHandler,
+        callable         $bodyHandler,
         ResponseClassMap $responseClassMap,
-        $relativeUriPath,
-        $clientMetaInfo = '',
+        string           $relativeUriPath,
+        string           $clientMetaInfo = '',
         $requestBodyObject = null,
-        RequestObject $requestParameters = null,
-        CallContext $callContext = null
-    )
-    {
-        $relativeUriPathWithRequestParameters =
-            $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
+        ?RequestObject   $requestParameters = null,
+        ?CallContext     $callContext = null
+    ): void {
+        $relativeUriPathWithRequestParameters = $this->getRelativeUriPathWithRequestParameters($relativeUriPath, $requestParameters);
         if ($requestBodyObject instanceof MultipartFormDataObject) {
             $contentType = $requestBodyObject->getContentType();
             $requestBody = $requestBodyObject;
@@ -479,8 +481,7 @@ class Communicator
         } else {
             throw new UnexpectedValueException('Unsupported request body');
         }
-        $requestHeaders =
-            $this->getRequestHeaders('PUT', $relativeUriPathWithRequestParameters, $contentType, $clientMetaInfo, $callContext);
+        $requestHeaders = $this->getRequestHeaders('PUT', $relativeUriPathWithRequestParameters, $contentType, $clientMetaInfo, $callContext);
 
         $responseBuilder = new ResponseBuilder();
         $responseHandler = function ($httpStatusCode, $data, $headers) use ($responseBuilder, $bodyHandler) {
@@ -510,9 +511,11 @@ class Communicator
 
     /**
      * @param ConnectionResponse $response
-     * @param CallContext $callContext
+     * @param CallContext|null   $callContext
+     *
+     * @return void
      */
-    protected function updateCallContext(ConnectionResponse $response, CallContext $callContext = null)
+    protected function updateCallContext(ConnectionResponse $response, ?CallContext $callContext = null): void
     {
         if ($callContext) {
             $callContext->setIdempotenceRequestTimestamp(
@@ -522,12 +525,13 @@ class Communicator
     }
 
     /**
-     * @param $relativeUriPath
+     * @param string             $relativeUriPath
      * @param RequestObject|null $requestParameters
+     *
      * @return string
      * @throws Exception
      */
-    protected function getRequestUri($relativeUriPath, RequestObject $requestParameters = null)
+    protected function getRequestUri(string $relativeUriPath, ?RequestObject $requestParameters = null): string
     {
         return
             $this->apiEndpoint .
@@ -535,21 +539,21 @@ class Communicator
     }
 
     /**
-     * @param string $httpMethod
-     * @param string $relativeUriPathWithRequestParameters
-     * @param string|null $contentType
-     * @param string $clientMetaInfo
-     * @param CallContext $callContext
+     * @param string           $httpMethod
+     * @param string           $relativeUriPathWithRequestParameters
+     * @param string|null      $contentType
+     * @param string           $clientMetaInfo
+     * @param CallContext|null $callContext
+     *
      * @return string[]
      */
     protected function getRequestHeaders(
-        $httpMethod,
-        $relativeUriPathWithRequestParameters,
-        $contentType,
-        $clientMetaInfo = '',
-        CallContext $callContext = null
-    )
-    {
+        string       $httpMethod,
+        string       $relativeUriPathWithRequestParameters,
+        ?string      $contentType,
+        string       $clientMetaInfo = '',
+        ?CallContext $callContext = null
+    ): array {
         $rfc2616Date = self::getRfc161Date();
         $requestHeaders = array();
         if ($contentType) {
@@ -563,28 +567,32 @@ class Communicator
         if ($callContext && strlen($callContext->getIdempotenceKey()) > 0) {
             $requestHeaders['X-GCS-Idempotence-Key'] = $callContext->getIdempotenceKey();
         }
-        $requestHeaders['Authorization'] = $this->authenticator->getAuthorization($httpMethod, $relativeUriPathWithRequestParameters, $requestHeaders);
+        $requestHeaders['Authorization'] = $this->authenticator->getAuthorization(
+            $httpMethod,
+            $relativeUriPathWithRequestParameters,
+            $requestHeaders
+        );
         return $requestHeaders;
     }
 
     /**
      * @return string
      */
-    protected static function getRfc161Date()
+    protected static function getRfc161Date(): string
     {
         return gmdate('D, d M Y H:i:s T');
     }
 
     /**
-     * @param $relativeUriPath
+     * @param string             $relativeUriPath
      * @param RequestObject|null $requestParameters
+     *
      * @return string
      */
     protected function getRelativeUriPathWithRequestParameters(
-        $relativeUriPath,
-        RequestObject $requestParameters = null
-    )
-    {
+        string         $relativeUriPath,
+        ?RequestObject $requestParameters = null
+    ): string {
         if (is_null($requestParameters)) {
             return $relativeUriPath;
         }
@@ -597,12 +605,14 @@ class Communicator
             return $relativeUriPath;
         }
         // remove [0], [1] etc. that are added if properties are arrays
-        $httpQuery = preg_replace('/%5B[0-9]+%5D/simU', '', $httpQuery);
+        $httpQuery = preg_replace('/%5B\d+%5D/imU', '', $httpQuery);
         return $relativeUriPath . '?' . $httpQuery;
     }
 
-    /** @return ResponseFactory */
-    protected function getResponseFactory()
+    /**
+     * @return ResponseFactory
+     */
+    protected function getResponseFactory(): ResponseFactory
     {
         if (is_null($this->responseFactory)) {
             $this->responseFactory = new ResponseFactory();

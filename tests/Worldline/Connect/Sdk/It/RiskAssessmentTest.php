@@ -23,6 +23,7 @@ class RiskAssessmentTest extends ClientTestCase
     {
         $this->markTestSkipped("Risk assessments are not available for pre-prod sandbox accounts");
 
+        // @phpstan-ignore deadCode.unreachable
         $client = $this->getClient();
         $merchantId = $this->getMerchantId();
 
@@ -51,7 +52,7 @@ class RiskAssessmentTest extends ClientTestCase
         $riskAssessmentBankAccount->order = $riskAssessmentOrder;
 
         $response = $client->v1()->merchant($merchantId)->riskassessments()->bankaccounts($riskAssessmentBankAccount);
-        $this->assertTrue(count($response->results) > 0);
+        $this->assertNotEmpty($response->results);
 
         return $response;
     }

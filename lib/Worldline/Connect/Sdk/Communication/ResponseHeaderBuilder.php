@@ -8,19 +8,27 @@ namespace Worldline\Connect\Sdk\Communication;
  */
 class ResponseHeaderBuilder
 {
-    /** @var string */
-    private $headerString = '';
+    /**
+     * @var string
+     */
+    private string $headerString = '';
 
-    /** @var array|null */
-    private $headers = null;
+    /**
+     * @var array|null
+     */
+    private ?array $headers = null;
 
-    /** @var string|null */
-    private $contentType = null;
+    /**
+     * @var string|null
+     */
+    private ?string $contentType = null;
 
     /**
      * @param string $data
+     *
+     * @return void
      */
-    public function append($data)
+    public function append(string $data): void
     {
         $this->headerString .= $data;
         $this->headers = null;
@@ -29,7 +37,7 @@ class ResponseHeaderBuilder
     /**
      * @return array
      */
-    public function getHeaders()
+    public function getHeaders(): array
     {
         if (is_null($this->headers)) {
             $this->headers = HttpHeaderHelper::parseRawHeaders(explode("\r\n", $this->headerString));
@@ -40,7 +48,7 @@ class ResponseHeaderBuilder
     /**
      * @return string|null
      */
-    public function getContentType()
+    public function getContentType(): ?string
     {
         if (is_null($this->contentType)) {
             $headers = $this->getHeaders();

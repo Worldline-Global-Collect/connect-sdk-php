@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class SepaDirectDebitPaymentMethodSpecificInputBase extends AbstractSepaDirectDebitPaymentMethodSpecificInput
 {
     /**
-     * @var SepaDirectDebitPaymentProduct771SpecificInputBase
+     * @var SepaDirectDebitPaymentProduct771SpecificInputBase|null
      */
-    public $paymentProduct771SpecificInput = null;
+    public ?SepaDirectDebitPaymentProduct771SpecificInputBase $paymentProduct771SpecificInput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProduct771SpecificInput)) {
@@ -31,10 +31,11 @@ class SepaDirectDebitPaymentMethodSpecificInputBase extends AbstractSepaDirectDe
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): SepaDirectDebitPaymentMethodSpecificInputBase
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProduct771SpecificInput')) {

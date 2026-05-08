@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class MobilePaymentMethodSpecificInputHostedCheckout extends AbstractMobilePaymentMethodSpecificInput
 {
     /**
-     * @var MobilePaymentProduct302SpecificInputHostedCheckout
+     * @var MobilePaymentProduct302SpecificInputHostedCheckout|null
      */
-    public $paymentProduct302SpecificInput = null;
+    public ?MobilePaymentProduct302SpecificInputHostedCheckout $paymentProduct302SpecificInput = null;
 
     /**
-     * @var MobilePaymentProduct320SpecificInputHostedCheckout
+     * @var MobilePaymentProduct320SpecificInputHostedCheckout|null
      */
-    public $paymentProduct320SpecificInput = null;
+    public ?MobilePaymentProduct320SpecificInputHostedCheckout $paymentProduct320SpecificInput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProduct302SpecificInput)) {
@@ -39,10 +39,11 @@ class MobilePaymentMethodSpecificInputHostedCheckout extends AbstractMobilePayme
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MobilePaymentMethodSpecificInputHostedCheckout
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProduct302SpecificInput')) {

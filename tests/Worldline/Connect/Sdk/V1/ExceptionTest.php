@@ -65,6 +65,8 @@ EOD;
 
     public function testValidationException()
     {
+        $this->expectException(ValidationException::class);
+
         $errorResponseJsonString = <<<'EOD'
 {
     "errorId": "8a41a5dd-7366-4026-a41b-e98c56808edd",
@@ -86,13 +88,8 @@ EOD;
         $communicatorConfiguration = $this->getCommunicatorConfiguration();
         $communicator = new Communicator($communicatorConfiguration, null, new TestingConnection($connectionResponse));
         $client = new Client($communicator);
-        try {
-            $emptyBody = new GetIINDetailsRequest();
-            $client->v1()->merchant($this->getMerchantId())->services()->getIINdetails($emptyBody);
-        } catch (ValidationException $e) {
-            return;
-        }
-        $this->fail('An expected exception has not been raised.');
+        $emptyBody = new GetIINDetailsRequest();
+        $client->v1()->merchant($this->getMerchantId())->services()->getIINdetails($emptyBody);
     }
 
     public function testDeclinedPaymentException()

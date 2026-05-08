@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RedirectPaymentProduct4101SpecificInput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $displayName = null;
+    public ?string $displayName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $integrationType = null;
+    public ?string $integrationType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $virtualPaymentAddress = null;
+    public ?string $virtualPaymentAddress = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayName)) {
@@ -48,10 +48,11 @@ class RedirectPaymentProduct4101SpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RedirectPaymentProduct4101SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayName')) {

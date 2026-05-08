@@ -14,7 +14,7 @@ class CommunicatorLoggerHelperTest extends TestCase
      * @param string $endpoint
      * @param string $relativeUriPathWithRequestParameters
      */
-    public function testUriSplitting($requestUri, $endpoint, $relativeUriPathWithRequestParameters)
+    public function testUriSplitting(string $requestUri, string $endpoint, string $relativeUriPathWithRequestParameters)
     {
         $communicatorLoggingHelper = new CommunicatorLoggerHelper();
         $this->assertEquals($endpoint, $communicatorLoggingHelper->getEndpoint($requestUri));
@@ -28,7 +28,7 @@ class CommunicatorLoggerHelperTest extends TestCase
     /**
      * @return array
      */
-    public function uriProvider()
+    public function uriProvider(): array
     {
         return array(
             array(

@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class BankDetailsResponse extends DataObject
 {
     /**
-     * @var BankAccountBban
+     * @var BankAccountBban|null
      */
-    public $bankAccountBban = null;
+    public ?BankAccountBban $bankAccountBban = null;
 
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
-     * @var BankData
+     * @var BankData|null
      */
-    public $bankData = null;
+    public ?BankData $bankData = null;
 
     /**
-     * @var Swift
+     * @var Swift|null
      */
-    public $swift = null;
+    public ?Swift $swift = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountBban)) {
@@ -56,10 +56,11 @@ class BankDetailsResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BankDetailsResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountBban')) {

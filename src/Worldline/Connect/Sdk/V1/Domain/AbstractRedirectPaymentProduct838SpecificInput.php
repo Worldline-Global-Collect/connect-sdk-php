@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AbstractRedirectPaymentProduct838SpecificInput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $interoperabilityData = null;
+    public ?string $interoperabilityData = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $interoperabilityToken = null;
+    public ?string $interoperabilityToken = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->interoperabilityData)) {
@@ -40,10 +40,11 @@ class AbstractRedirectPaymentProduct838SpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractRedirectPaymentProduct838SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'interoperabilityData')) {

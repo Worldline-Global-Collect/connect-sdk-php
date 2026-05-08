@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class RedirectPaymentProduct4101SpecificInputBase extends AbstractRedirectPaymentProduct4101SpecificInput
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $displayName = null;
+    public ?string $displayName = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->displayName)) {
@@ -31,10 +31,11 @@ class RedirectPaymentProduct4101SpecificInputBase extends AbstractRedirectPaymen
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RedirectPaymentProduct4101SpecificInputBase
     {
         parent::fromObject($object);
         if (property_exists($object, 'displayName')) {

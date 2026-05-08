@@ -13,24 +13,24 @@ use UnexpectedValueException;
 class BankAccountBbanRefund extends BankAccountBban
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $bankCity = null;
+    public ?string $bankCity = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $patronymicName = null;
+    public ?string $patronymicName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $swiftCode = null;
+    public ?string $swiftCode = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankCity)) {
@@ -47,10 +47,11 @@ class BankAccountBbanRefund extends BankAccountBban
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BankAccountBbanRefund
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankCity')) {

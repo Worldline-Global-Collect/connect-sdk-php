@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class BankRefundMethodSpecificInput extends DataObject
 {
     /**
-     * @var BankAccountBbanRefund
+     * @var BankAccountBbanRefund|null
      */
-    public $bankAccountBban = null;
+    public ?BankAccountBbanRefund $bankAccountBban = null;
 
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode = null;
+    public ?string $countryCode = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountBban)) {
@@ -48,10 +48,11 @@ class BankRefundMethodSpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BankRefundMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountBban')) {

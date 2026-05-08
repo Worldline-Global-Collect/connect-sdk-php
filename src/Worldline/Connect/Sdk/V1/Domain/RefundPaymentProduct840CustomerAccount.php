@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RefundPaymentProduct840CustomerAccount extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerAccountStatus = null;
+    public ?string $customerAccountStatus = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerAddressStatus = null;
+    public ?string $customerAddressStatus = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $payerId = null;
+    public ?string $payerId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->customerAccountStatus)) {
@@ -48,10 +48,11 @@ class RefundPaymentProduct840CustomerAccount extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundPaymentProduct840CustomerAccount
     {
         parent::fromObject($object);
         if (property_exists($object, 'customerAccountStatus')) {

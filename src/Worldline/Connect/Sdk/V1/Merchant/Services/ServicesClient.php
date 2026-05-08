@@ -27,19 +27,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Services client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Services
  */
 class ServicesClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/services/convert/amount - Convert amount
      *
      * @param ConvertAmountParams $query
-     * @param CallContext $callContext
-     * @return ConvertAmount
+     * @param CallContext|null    $callContext
      *
+     * @return ConvertAmount
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -47,9 +51,9 @@ class ServicesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/convertAmount.html Convert amount
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/convertAmount.html Convert amount
      */
-    public function convertAmount(ConvertAmountParams $query, CallContext $callContext = null)
+    public function convertAmount(ConvertAmountParams $query, ?CallContext $callContext = null): ConvertAmount
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ConvertAmount';
@@ -75,9 +79,9 @@ class ServicesClient extends ApiResource
      * Resource /{merchantId}/services/convert/bankaccount - Convert bankaccount
      *
      * @param BankDetailsRequest $body
-     * @param CallContext $callContext
-     * @return BankDetailsResponse
+     * @param CallContext|null   $callContext
      *
+     * @return BankDetailsResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -85,9 +89,9 @@ class ServicesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/bankaccount.html Convert bankaccount
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/bankaccount.html Convert bankaccount
      */
-    public function bankaccount(BankDetailsRequest $body, CallContext $callContext = null)
+    public function bankaccount(BankDetailsRequest $body, ?CallContext $callContext = null): BankDetailsResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\BankDetailsResponse';
@@ -114,9 +118,9 @@ class ServicesClient extends ApiResource
      * Resource /{merchantId}/services/getIINdetails - Get IIN details
      *
      * @param GetIINDetailsRequest $body
-     * @param CallContext $callContext
-     * @return GetIINDetailsResponse
+     * @param CallContext|null     $callContext
      *
+     * @return GetIINDetailsResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -124,9 +128,9 @@ class ServicesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/getIINdetails.html Get IIN details
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/getIINdetails.html Get IIN details
      */
-    public function getIINdetails(GetIINDetailsRequest $body, CallContext $callContext = null)
+    public function getIINdetails(GetIINDetailsRequest $body, ?CallContext $callContext = null): GetIINDetailsResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\GetIINDetailsResponse';
@@ -153,9 +157,9 @@ class ServicesClient extends ApiResource
      * Resource /{merchantId}/services/privacypolicy - Get privacy policy
      *
      * @param PrivacypolicyParams $query
-     * @param CallContext $callContext
-     * @return GetPrivacyPolicyResponse
+     * @param CallContext|null    $callContext
      *
+     * @return GetPrivacyPolicyResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -163,9 +167,9 @@ class ServicesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/privacypolicy.html Get privacy policy
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/privacypolicy.html Get privacy policy
      */
-    public function privacypolicy(PrivacypolicyParams $query, CallContext $callContext = null)
+    public function privacypolicy(PrivacypolicyParams $query, ?CallContext $callContext = null): GetPrivacyPolicyResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\GetPrivacyPolicyResponse';
@@ -190,9 +194,9 @@ class ServicesClient extends ApiResource
     /**
      * Resource /{merchantId}/services/testconnection - Test connection
      *
-     * @param CallContext $callContext
-     * @return TestConnection
+     * @param CallContext|null $callContext
      *
+     * @return TestConnection
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -200,9 +204,9 @@ class ServicesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/testconnection.html Test connection
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/services/testconnection.html Test connection
      */
-    public function testconnection(CallContext $callContext = null)
+    public function testconnection(?CallContext $callContext = null): TestConnection
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\TestConnection';
@@ -224,8 +228,10 @@ class ServicesClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

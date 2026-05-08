@@ -14,59 +14,59 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductFieldDisplayHints extends DataObject
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $alwaysShow = null;
+    public ?bool $alwaysShow = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $displayOrder = null;
+    public ?int $displayOrder = null;
 
     /**
-     * @var PaymentProductFieldFormElement
+     * @var PaymentProductFieldFormElement|null
      */
-    public $formElement = null;
+    public ?PaymentProductFieldFormElement $formElement = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $label = null;
+    public ?string $label = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $link = null;
+    public ?string $link = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $mask = null;
+    public ?string $mask = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $obfuscate = null;
+    public ?bool $obfuscate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $placeholderLabel = null;
+    public ?string $placeholderLabel = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $preferredInputType = null;
+    public ?string $preferredInputType = null;
 
     /**
-     * @var PaymentProductFieldTooltip
+     * @var PaymentProductFieldTooltip|null
      */
-    public $tooltip = null;
+    public ?PaymentProductFieldTooltip $tooltip = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->alwaysShow)) {
@@ -104,10 +104,11 @@ class PaymentProductFieldDisplayHints extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductFieldDisplayHints
     {
         parent::fromObject($object);
         if (property_exists($object, 'alwaysShow')) {

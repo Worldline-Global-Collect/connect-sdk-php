@@ -14,34 +14,34 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreateHostedCheckoutResponse extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $RETURNMAC = null;
+    public ?string $RETURNMAC = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $hostedCheckoutId = null;
+    public ?string $hostedCheckoutId = null;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $invalidTokens = null;
+    public ?array $invalidTokens = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantReference = null;
+    public ?string $merchantReference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $partialRedirectUrl = null;
+    public ?string $partialRedirectUrl = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->RETURNMAC)) {
@@ -69,10 +69,11 @@ class CreateHostedCheckoutResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreateHostedCheckoutResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'RETURNMAC')) {

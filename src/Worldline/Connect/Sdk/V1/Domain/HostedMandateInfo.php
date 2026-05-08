@@ -14,39 +14,39 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class HostedMandateInfo extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $alias = null;
+    public ?string $alias = null;
 
     /**
-     * @var MandateCustomer
+     * @var MandateCustomer|null
      */
-    public $customer = null;
+    public ?MandateCustomer $customer = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerReference = null;
+    public ?string $customerReference = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $recurrenceType = null;
+    public ?string $recurrenceType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $signatureType = null;
+    public ?string $signatureType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $uniqueMandateReference = null;
+    public ?string $uniqueMandateReference = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->alias)) {
@@ -72,10 +72,11 @@ class HostedMandateInfo extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): HostedMandateInfo
     {
         parent::fromObject($object);
         if (property_exists($object, 'alias')) {

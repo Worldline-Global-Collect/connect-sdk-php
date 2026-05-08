@@ -14,49 +14,49 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Address extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $additionalInfo = null;
+    public ?string $additionalInfo = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $city = null;
+    public ?string $city = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode = null;
+    public ?string $countryCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $houseNumber = null;
+    public ?string $houseNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $state = null;
+    public ?string $state = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $stateCode = null;
+    public ?string $stateCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $street = null;
+    public ?string $street = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $zip = null;
+    public ?string $zip = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalInfo)) {
@@ -88,10 +88,11 @@ class Address extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Address
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalInfo')) {

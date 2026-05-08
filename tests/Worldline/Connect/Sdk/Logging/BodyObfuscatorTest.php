@@ -13,7 +13,7 @@ class BodyObfuscatorTest extends TestCase
      * @param string $jsonBody
      * @param string $obfuscatedJsonBody
      */
-    public function testJsonObfuscation($jsonBody, $obfuscatedJsonBody)
+    public function testJsonObfuscation(string $jsonBody, string $obfuscatedJsonBody)
     {
         $bodyObfuscator = new BodyObfuscator();
         $this->assertEquals(
@@ -27,7 +27,7 @@ class BodyObfuscatorTest extends TestCase
      * @param string $jsonBody
      * @param string $obfuscatedJsonBody
      */
-    public function testJsonObfuscationUTF8($jsonBody, $obfuscatedJsonBody)
+    public function testJsonObfuscationUTF8(string $jsonBody, string $obfuscatedJsonBody)
     {
         $bodyObfuscator = new BodyObfuscator();
         $this->assertEquals(
@@ -39,7 +39,7 @@ class BodyObfuscatorTest extends TestCase
     /**
      * @return array
      */
-    public function jsonObfuscationProvider()
+    public function jsonObfuscationProvider(): array
     {
         $testObjects = array(
             array(
@@ -115,11 +115,17 @@ class BodyObfuscatorTest extends TestCase
                 array('fields' => array(array('name' => 'foo'), array('value' => '***')))
             )
         );
-        return array_map(function (array $testObjectValues) {
-            return array_map(function ($testObjectValue) {
-                return json_encode($testObjectValue, JSON_PRETTY_PRINT);
-            }, $testObjectValues);
-        }, $testObjects);
+        return array_map(
+            function (array $testObjectValues) {
+                return array_map(
+                    function ($testObjectValue) {
+                        return json_encode($testObjectValue, JSON_PRETTY_PRINT);
+                    },
+                    $testObjectValues
+                );
+            },
+            $testObjects
+        );
     }
 
     /**
@@ -127,7 +133,7 @@ class BodyObfuscatorTest extends TestCase
      * @param string $contentType
      * @param string $value
      */
-    public function testSkipObfuscation($contentType, $value)
+    public function testSkipObfuscation(string $contentType, string $value)
     {
         $bodyObfuscator = new BodyObfuscator();
         $this->assertEquals($value, $bodyObfuscator->obfuscateBody($contentType, $value));
@@ -136,7 +142,7 @@ class BodyObfuscatorTest extends TestCase
     /**
      * @return array
      */
-    public function skipObfuscationProvider()
+    public function skipObfuscationProvider(): array
     {
         return array(
             array(BodyObfuscator::MIME_APPLICATION_JSON, 'foo'),
@@ -153,16 +159,22 @@ class BodyObfuscatorTest extends TestCase
      * @param string $jsonBody
      * @param string $obfuscatedJsonBody
      */
-    public function testJsonCustomObfuscation($jsonBody, $obfuscatedJsonBody)
+    public function testJsonCustomObfuscation(string $jsonBody, string $obfuscatedJsonBody)
     {
         $bodyObfuscator = new BodyObfuscator();
-        $bodyObfuscator->setCustomRule('cardnumber', function ($value) {
-            return mb_substr($value, 0, 6) . str_repeat('*', 6) .
-                mb_substr($value, mb_strlen($value, 'UTF-8') - 4);
-        });
-        $bodyObfuscator->setCustomRule('iban', function ($value, $valueObfuscator) {
-            return $valueObfuscator->obfuscateAll($value);
-        });
+        $bodyObfuscator->setCustomRule(
+            'cardnumber',
+            function ($value) {
+                return mb_substr($value, 0, 6) . str_repeat('*', 6) .
+                    mb_substr($value, mb_strlen($value, 'UTF-8') - 4);
+            }
+        );
+        $bodyObfuscator->setCustomRule(
+            'iban',
+            function ($value, $valueObfuscator) {
+                return $valueObfuscator->obfuscateAll($value);
+            }
+        );
         $this->assertEquals(
             $obfuscatedJsonBody,
             $bodyObfuscator->obfuscateBody(BodyObfuscator::MIME_APPLICATION_JSON, $jsonBody)
@@ -172,7 +184,7 @@ class BodyObfuscatorTest extends TestCase
     /**
      * @return array
      */
-    public function jsonCustomObfuscationProvider()
+    public function jsonCustomObfuscationProvider(): array
     {
         $testObjects = array(
             array(
@@ -248,10 +260,16 @@ class BodyObfuscatorTest extends TestCase
                 array('fields' => array(array('name' => 'foo'), array('value' => '***')))
             )
         );
-        return array_map(function (array $testObjectValues) {
-            return array_map(function ($testObjectValue) {
-                return json_encode($testObjectValue, JSON_PRETTY_PRINT);
-            }, $testObjectValues);
-        }, $testObjects);
+        return array_map(
+            function (array $testObjectValues) {
+                return array_map(
+                    function ($testObjectValue) {
+                        return json_encode($testObjectValue, JSON_PRETTY_PRINT);
+                    },
+                    $testObjectValues
+                );
+            },
+            $testObjects
+        );
     }
 }

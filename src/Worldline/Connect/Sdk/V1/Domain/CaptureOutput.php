@@ -13,54 +13,54 @@ use UnexpectedValueException;
 class CaptureOutput extends OrderOutput
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountPaid = null;
+    public ?int $amountPaid = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $amountReversed = null;
+    public ?int $amountReversed = null;
 
     /**
-     * @var BankTransferPaymentMethodSpecificOutput
+     * @var BankTransferPaymentMethodSpecificOutput|null
      */
-    public $bankTransferPaymentMethodSpecificOutput = null;
+    public ?BankTransferPaymentMethodSpecificOutput $bankTransferPaymentMethodSpecificOutput = null;
 
     /**
-     * @var CardPaymentMethodSpecificOutput
+     * @var CardPaymentMethodSpecificOutput|null
      */
-    public $cardPaymentMethodSpecificOutput = null;
+    public ?CardPaymentMethodSpecificOutput $cardPaymentMethodSpecificOutput = null;
 
     /**
-     * @var CashPaymentMethodSpecificOutput
+     * @var CashPaymentMethodSpecificOutput|null
      */
-    public $cashPaymentMethodSpecificOutput = null;
+    public ?CashPaymentMethodSpecificOutput $cashPaymentMethodSpecificOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentMethod = null;
+    public ?string $paymentMethod = null;
 
     /**
-     * @var RedirectPaymentMethodSpecificOutput
+     * @var RedirectPaymentMethodSpecificOutput|null
      */
-    public $redirectPaymentMethodSpecificOutput = null;
+    public ?RedirectPaymentMethodSpecificOutput $redirectPaymentMethodSpecificOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $reversalReason = null;
+    public ?string $reversalReason = null;
 
     /**
-     * @var SepaDirectDebitPaymentMethodSpecificOutput
+     * @var SepaDirectDebitPaymentMethodSpecificOutput|null
      */
-    public $sepaDirectDebitPaymentMethodSpecificOutput = null;
+    public ?SepaDirectDebitPaymentMethodSpecificOutput $sepaDirectDebitPaymentMethodSpecificOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountPaid)) {
@@ -95,10 +95,11 @@ class CaptureOutput extends OrderOutput
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CaptureOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountPaid')) {

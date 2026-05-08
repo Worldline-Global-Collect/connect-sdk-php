@@ -2,7 +2,7 @@
 namespace Worldline\Connect\Sdk;
 
 use Exception;
-use StdClass;
+use stdClass;
 
 /**
  * Class JsonValuesStore
@@ -10,19 +10,19 @@ use StdClass;
 class JsonValuesStore
 {
     /**
-     * @var null|string
+     * @var string
      */
-    private $valuesFilePath;
+    private string $valuesFilePath;
 
     /**
-     * @var null|StdClass
+     * @var stdClass|null
      */
-    private $valuesObject = null;
+    private ?stdClass $valuesObject = null;
 
     /**
-     * @param $valuesFilePath
+     * @param string $valuesFilePath
      */
-    public function __construct($valuesFilePath)
+    public function __construct(string $valuesFilePath)
     {
         $this->valuesFilePath = $valuesFilePath;
     }
@@ -33,7 +33,7 @@ class JsonValuesStore
      * @return mixed
      * @throws Exception
      */
-    public function getValue($key, $isRequired = true)
+    public function getValue(string $key, bool $isRequired = true)
     {
         $valuesObject = $this->getValuesObject();
         $value = null;
@@ -47,10 +47,10 @@ class JsonValuesStore
     }
 
     /**
-     * @return StdClass
+     * @return stdClass
      * @throws Exception
      */
-    protected function getValuesObject()
+    protected function getValuesObject(): stdClass
     {
         if (is_null($this->valuesObject)) {
             if (!file_exists($this->valuesFilePath)) {

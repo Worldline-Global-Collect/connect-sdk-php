@@ -1,22 +1,22 @@
 <?php
 namespace Worldline\Connect\Sdk;
 
-class ClientTestCase extends TestCase
+abstract class ClientTestCase extends TestCase
 {
     /**
      * @var Client|null
      */
-    protected $client = null;
+    protected ?Client $client = null;
 
     /**
      * @var Client|null
      */
-    protected $proxyClient = null;
+    protected ?Client $proxyClient = null;
 
     /**
      * @return Client
      */
-    protected function getClient()
+    protected function getClient(): Client
     {
         if (is_null($this->client)) {
             $communicatorConfiguration = $this->getCommunicatorConfiguration();
@@ -29,16 +29,18 @@ class ClientTestCase extends TestCase
     /**
      * @return Client
      */
-    protected function getProxyClient()
+    protected function getProxyClient(): Client
     {
         if (is_null($this->proxyClient)) {
             $communicatorConfiguration = $this->getCommunicatorConfiguration();
-            $communicatorConfiguration->setProxyConfiguration(new ProxyConfiguration(
-                $this->getProxyHost(),
-                $this->getProxyPort(),
-                $this->getProxyUsername(),
-                $this->getProxyPassword()
-            ));
+            $communicatorConfiguration->setProxyConfiguration(
+                new ProxyConfiguration(
+                    $this->getProxyHost(),
+                    $this->getProxyPort(),
+                    $this->getProxyUsername(),
+                    $this->getProxyPassword()
+                )
+            );
             $communicator = new Communicator($communicatorConfiguration);
             $this->proxyClient = new Client($communicator);
         }

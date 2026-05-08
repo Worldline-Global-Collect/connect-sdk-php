@@ -14,49 +14,49 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MicrosoftFraudResults extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $clauseName = null;
+    public ?string $clauseName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $deviceCountryCode = null;
+    public ?string $deviceCountryCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $deviceId = null;
+    public ?string $deviceId = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $fraudScore = null;
+    public ?int $fraudScore = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $policyApplied = null;
+    public ?string $policyApplied = null;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $reasonCodes = null;
+    public ?array $reasonCodes = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $trueIpAddress = null;
+    public ?string $trueIpAddress = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $userDeviceType = null;
+    public ?string $userDeviceType = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->clauseName)) {
@@ -93,10 +93,11 @@ class MicrosoftFraudResults extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MicrosoftFraudResults
     {
         parent::fromObject($object);
         if (property_exists($object, 'clauseName')) {

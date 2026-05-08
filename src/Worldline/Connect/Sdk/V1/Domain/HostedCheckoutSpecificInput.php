@@ -14,64 +14,64 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class HostedCheckoutSpecificInput extends DataObject
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $allowClickToPay = null;
+    public ?bool $allowClickToPay = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $locale = null;
+    public ?string $locale = null;
 
     /**
-     * @var PaymentProductFiltersHostedCheckout
+     * @var PaymentProductFiltersHostedCheckout|null
      */
-    public $paymentProductFilters = null;
+    public ?PaymentProductFiltersHostedCheckout $paymentProductFilters = null;
 
     /**
-     * @var RecurringPaymentsData
+     * @var RecurringPaymentsData|null
      */
-    public $recurringPaymentsData = null;
+    public ?RecurringPaymentsData $recurringPaymentsData = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $returnCancelState = null;
+    public ?bool $returnCancelState = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $returnUrl = null;
+    public ?string $returnUrl = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $showResultPage = null;
+    public ?bool $showResultPage = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $tokens = null;
+    public ?string $tokens = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $validateShoppingCart = null;
+    public ?bool $validateShoppingCart = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $variant = null;
+    public ?string $variant = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->allowClickToPay)) {
@@ -112,10 +112,11 @@ class HostedCheckoutSpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): HostedCheckoutSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'allowClickToPay')) {

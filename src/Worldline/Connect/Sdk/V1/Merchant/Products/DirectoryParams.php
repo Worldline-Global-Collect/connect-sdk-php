@@ -11,17 +11,17 @@ use Worldline\Connect\Sdk\Communication\RequestObject;
  * Query parameters for Get payment product directory
  *
  * @package Worldline\Connect\Sdk\V1\Merchant\Products
- * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/directory.html Get payment product directory
+ * @link    https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/directory.html Get payment product directory
  */
 class DirectoryParams extends RequestObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode;
+    public ?string $countryCode;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $currencyCode;
+    public ?string $currencyCode;
 }

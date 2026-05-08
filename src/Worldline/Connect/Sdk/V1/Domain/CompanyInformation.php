@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CompanyInformation extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $dateOfIncorporation = null;
+    public ?string $dateOfIncorporation = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $name = null;
+    public ?string $name = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $vatNumber = null;
+    public ?string $vatNumber = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->dateOfIncorporation)) {
@@ -48,10 +48,11 @@ class CompanyInformation extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CompanyInformation
     {
         parent::fromObject($object);
         if (property_exists($object, 'dateOfIncorporation')) {

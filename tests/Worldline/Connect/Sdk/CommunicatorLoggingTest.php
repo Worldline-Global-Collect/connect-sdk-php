@@ -31,15 +31,17 @@ class CommunicatorLoggingTest extends TestCase
             null,
             $connection
         );
-        $logger = $this->getMock('\Worldline\Connect\Sdk\Logging\CommunicatorLogger');
+        $logger = $this->getMockBuilder('\Worldline\Connect\Sdk\Logging\CommunicatorLogger')->getMock();
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) {
-                $messageParts = explode("\n", $message);
-                $this->assertGreaterThanOrEqual(2, count($messageParts));
-                if (strpos($messageParts[0], 'Outgoing request') === 0) {
-                    $this->assertContains('/bar', $messageParts[1]);
+            $this->returnCallback(
+                function ($message) {
+                    $messageParts = explode("\n", $message);
+                    $this->assertGreaterThanOrEqual(2, count($messageParts));
+                    if (strpos($messageParts[0], 'Outgoing request') === 0) {
+                        $this->assertStringContainsString('/bar', $messageParts[1]);
+                    }
                 }
-            })
+            )
         );
         $logger->expects($this->never())->method('logException');
         $responseClassMap = new ResponseClassMap();
@@ -62,8 +64,7 @@ class CommunicatorLoggingTest extends TestCase
             $connection
         );
         $relativeRequestUriWithRequestParameters = $relativeRequestUri;
-        $requestHeaders =
-            $this->getCommunicatorRequestHeaders($communicator, 'POST', $relativeRequestUriWithRequestParameters);
+        $requestHeaders = $this->getCommunicatorRequestHeaders($communicator, 'POST', $relativeRequestUriWithRequestParameters);
         $requestBody = $this->getMockRequestDataObject();
         $httpObfuscator = new HttpObfuscator();
         $rawObfuscatedRequest = $httpObfuscator->getRawObfuscatedRequest(
@@ -72,14 +73,16 @@ class CommunicatorLoggingTest extends TestCase
             $requestHeaders,
             $requestBody->toJson()
         );
-        $logger = $this->getMock('\Worldline\Connect\Sdk\Logging\CommunicatorLogger');
+        $logger = $this->getMockBuilder('\Worldline\Connect\Sdk\Logging\CommunicatorLogger')->getMock();
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) use ($rawObfuscatedRequest) {
-                $messageHeader = strstr($message, "\n", true);
-                if (strpos($messageHeader, 'Outgoing request') === 0) {
-                    $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedRequest);
+            $this->returnCallback(
+                function ($message) use ($rawObfuscatedRequest) {
+                    $messageHeader = strstr($message, "\n", true);
+                    if (strpos($messageHeader, 'Outgoing request') === 0) {
+                        $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedRequest);
+                    }
                 }
-            })
+            )
         );
         $logger->expects($this->never())->method('logException');
         $communicator->enableLogging($logger);
@@ -99,8 +102,7 @@ class CommunicatorLoggingTest extends TestCase
             $connection
         );
         $relativeRequestUriWithRequestParameters = $relativeRequestUri;
-        $requestHeaders =
-            $this->getCommunicatorRequestHeaders($communicator, 'POST', $relativeRequestUriWithRequestParameters);
+        $requestHeaders = $this->getCommunicatorRequestHeaders($communicator, 'POST', $relativeRequestUriWithRequestParameters);
         $requestBody = $this->getMockRequestDataObject();
         $httpObfuscator = new HttpObfuscator();
         $rawObfuscatedRequest = $httpObfuscator->getRawObfuscatedRequest(
@@ -109,14 +111,16 @@ class CommunicatorLoggingTest extends TestCase
             $requestHeaders,
             $requestBody->toJson()
         );
-        $logger = $this->getMock('\Worldline\Connect\Sdk\Logging\CommunicatorLogger');
+        $logger = $this->getMockBuilder('\Worldline\Connect\Sdk\Logging\CommunicatorLogger')->getMock();
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) use ($rawObfuscatedRequest) {
-                $messageHeader = strstr($message, "\n", true);
-                if (strpos($messageHeader, 'Outgoing request') === 0) {
-                    $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedRequest);
+            $this->returnCallback(
+                function ($message) use ($rawObfuscatedRequest) {
+                    $messageHeader = strstr($message, "\n", true);
+                    if (strpos($messageHeader, 'Outgoing request') === 0) {
+                        $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedRequest);
+                    }
                 }
-            })
+            )
         );
         $logger->expects($this->never())->method('logException');
         $communicator->enableLogging($logger);
@@ -138,14 +142,16 @@ class CommunicatorLoggingTest extends TestCase
         );
         $httpObfuscator = new HttpObfuscator();
         $rawObfuscatedResponse = $httpObfuscator->getRawObfuscatedResponse($connectionResponse);
-        $logger = $this->getMock('\Worldline\Connect\Sdk\Logging\CommunicatorLogger');
+        $logger = $this->getMockBuilder('\Worldline\Connect\Sdk\Logging\CommunicatorLogger')->getMock();
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) use ($rawObfuscatedResponse) {
-                $messageHeader = strstr($message, "\n", true);
-                if (strpos($messageHeader, 'Incoming response') === 0) {
-                    $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedResponse);
+            $this->returnCallback(
+                function ($message) use ($rawObfuscatedResponse) {
+                    $messageHeader = strstr($message, "\n", true);
+                    if (strpos($messageHeader, 'Incoming response') === 0) {
+                        $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedResponse);
+                    }
                 }
-            })
+            )
         );
         $logger->expects($this->never())->method('logException');
         $communicator->enableLogging($logger);
@@ -173,14 +179,16 @@ class CommunicatorLoggingTest extends TestCase
         );
         $httpObfuscator = new HttpObfuscator();
         $rawObfuscatedResponse = $httpObfuscator->getRawObfuscatedResponse($connectionResponse);
-        $logger = $this->getMock('\Worldline\Connect\Sdk\Logging\CommunicatorLogger');
+        $logger = $this->getMockBuilder('\Worldline\Connect\Sdk\Logging\CommunicatorLogger')->getMock();
         $logger->expects($this->exactly(2))->method('log')->will(
-            $this->returnCallback(function ($message) use ($rawObfuscatedResponse) {
-                $messageHeader = strstr($message, "\n", true);
-                if (strpos($messageHeader, 'Incoming response') === 0) {
-                    $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedResponse);
+            $this->returnCallback(
+                function ($message) use ($rawObfuscatedResponse) {
+                    $messageHeader = strstr($message, "\n", true);
+                    if (strpos($messageHeader, 'Incoming response') === 0) {
+                        $this->assertEquals(trim(strstr($message, "\n")), $rawObfuscatedResponse);
+                    }
                 }
-            })
+            )
         );
         $logger->expects($this->never())->method('logException');
         $communicator->enableLogging($logger);
@@ -206,18 +214,22 @@ class CommunicatorLoggingTest extends TestCase
             null,
             $connection
         );
-        $logger = $this->getMock('\Worldline\Connect\Sdk\Logging\CommunicatorLogger');
+        $logger = $this->getMockBuilder('\Worldline\Connect\Sdk\Logging\CommunicatorLogger')->getMock();
         $logger->expects($this->once())->method('log')->will(
-            $this->returnCallback(function ($message) {
-                $messageHeader = strstr($message, "\n", true);
-                $this->assertContains('Outgoing request', $messageHeader);
-            })
+            $this->returnCallback(
+                function ($message) {
+                    $messageHeader = strstr($message, "\n", true);
+                    $this->assertStringContainsString('Outgoing request', $messageHeader);
+                }
+            )
         );
         $logger->expects($this->once())->method('logException')->will(
-            $this->returnCallback(function ($message, $exception) use ($errorException) {
-                $this->assertNotContains("\n", $message);
-                $this->assertEquals($errorException, $exception);
-            })
+            $this->returnCallback(
+                function ($message, $exception) use ($errorException) {
+                    $this->assertStringNotContainsString("\n", $message);
+                    $this->assertEquals($errorException, $exception);
+                }
+            )
         );
         $communicator->enableLogging($logger);
         $responseClassMap = new ResponseClassMap();
@@ -232,9 +244,9 @@ class CommunicatorLoggingTest extends TestCase
     /**
      * @return DataObject
      */
-    protected function getMockRequestDataObject()
+    protected function getMockRequestDataObject(): DataObject
     {
-        $requestDataObject = $this->getMock('\Worldline\Connect\Sdk\Domain\DataObject');
+        $requestDataObject = $this->getMockBuilder('\Worldline\Connect\Sdk\Domain\DataObject')->getMock();
         $convertedDataObject = new stdClass();
         $convertedDataObject->customer = new stdClass();
         $convertedDataObject->customer->firstName = 'John';
@@ -248,7 +260,7 @@ class CommunicatorLoggingTest extends TestCase
     /**
      * @return DataObject
      */
-    protected function getErrorResponseDataObject()
+    protected function getErrorResponseDataObject(): DataObject
     {
         $errorResponse = new ErrorResponse();
         $errorResponse->errorId = '123;';
@@ -266,7 +278,7 @@ class CommunicatorLoggingTest extends TestCase
      * @param Connection $connection
      * @return CommunicatorLoggerHelper
      */
-    protected function getCommunicatorLoggerHelper(Connection $connection)
+    protected function getCommunicatorLoggerHelper(Connection $connection): CommunicatorLoggerHelper
     {
         $method = new ReflectionMethod($connection, 'getCommunicatorLoggerHelper');
         $method->setAccessible(true);
@@ -275,20 +287,19 @@ class CommunicatorLoggingTest extends TestCase
 
     /**
      * @param Communicator $communicator
-     * @param $httpMethod
-     * @param $relativeUriPathWithRequestParameters
+     * @param string $httpMethod
+     * @param string $relativeUriPathWithRequestParameters
      * @param string $clientMetaInfo
      * @param CallContext|null $callContext
      * @return string[]
      */
     protected function getCommunicatorRequestHeaders(
         Communicator $communicator,
-        $httpMethod,
-        $relativeUriPathWithRequestParameters,
-        $clientMetaInfo = '',
-        CallContext $callContext = null
-    )
-    {
+        string       $httpMethod,
+        string       $relativeUriPathWithRequestParameters,
+        string       $clientMetaInfo = '',
+        ?CallContext $callContext = null
+    ): array {
         $method = new ReflectionMethod($communicator, 'getRequestHeaders');
         $method->setAccessible(true);
         return $method->invoke(

@@ -13,19 +13,19 @@ use UnexpectedValueException;
 class CustomerToken extends CustomerBase
 {
     /**
-     * @var Address
+     * @var Address|null
      */
-    public $billingAddress = null;
+    public ?Address $billingAddress = null;
 
     /**
-     * @var PersonalInformationToken
+     * @var PersonalInformationToken|null
      */
-    public $personalInformation = null;
+    public ?PersonalInformationToken $personalInformation = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->billingAddress)) {
@@ -39,10 +39,11 @@ class CustomerToken extends CustomerBase
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CustomerToken
     {
         parent::fromObject($object);
         if (property_exists($object, 'billingAddress')) {

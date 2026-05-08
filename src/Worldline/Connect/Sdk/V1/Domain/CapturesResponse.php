@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CapturesResponse extends DataObject
 {
     /**
-     * @var Capture[]
+     * @var Capture[]|null
      */
-    public $captures = null;
+    public ?array $captures = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->captures)) {
@@ -37,10 +37,11 @@ class CapturesResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CapturesResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'captures')) {

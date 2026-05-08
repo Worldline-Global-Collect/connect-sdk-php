@@ -22,19 +22,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Disputes client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Disputes
  */
 class DisputesClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/disputes/{disputeId} - Get dispute
      *
-     * @param string $disputeId
-     * @param CallContext $callContext
-     * @return DisputeResponse
+     * @param string           $disputeId
+     * @param CallContext|null $callContext
      *
+     * @return DisputeResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -42,9 +46,9 @@ class DisputesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/disputes/get.html Get dispute
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/disputes/get.html Get dispute
      */
-    public function get($disputeId, CallContext $callContext = null)
+    public function get(string $disputeId, ?CallContext $callContext = null): DisputeResponse
     {
         $this->context['disputeId'] = $disputeId;
         $responseClassMap = new ResponseClassMap();
@@ -70,10 +74,10 @@ class DisputesClient extends ApiResource
     /**
      * Resource /{merchantId}/disputes/{disputeId}/submit - Submit dispute
      *
-     * @param string $disputeId
-     * @param CallContext $callContext
-     * @return DisputeResponse
+     * @param string           $disputeId
+     * @param CallContext|null $callContext
      *
+     * @return DisputeResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -81,9 +85,9 @@ class DisputesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/disputes/submit.html Submit dispute
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/disputes/submit.html Submit dispute
      */
-    public function submit($disputeId, CallContext $callContext = null)
+    public function submit(string $disputeId, ?CallContext $callContext = null): DisputeResponse
     {
         $this->context['disputeId'] = $disputeId;
         $responseClassMap = new ResponseClassMap();
@@ -110,10 +114,10 @@ class DisputesClient extends ApiResource
     /**
      * Resource /{merchantId}/disputes/{disputeId}/cancel - Cancel dispute
      *
-     * @param string $disputeId
-     * @param CallContext $callContext
-     * @return DisputeResponse
+     * @param string           $disputeId
+     * @param CallContext|null $callContext
      *
+     * @return DisputeResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -121,9 +125,9 @@ class DisputesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/disputes/cancel.html Cancel dispute
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/disputes/cancel.html Cancel dispute
      */
-    public function cancel($disputeId, CallContext $callContext = null)
+    public function cancel(string $disputeId, ?CallContext $callContext = null): DisputeResponse
     {
         $this->context['disputeId'] = $disputeId;
         $responseClassMap = new ResponseClassMap();
@@ -150,11 +154,11 @@ class DisputesClient extends ApiResource
     /**
      * Resource /{merchantId}/disputes/{disputeId} - Upload File
      *
-     * @param string $disputeId
+     * @param string            $disputeId
      * @param UploadFileRequest $body
-     * @param CallContext $callContext
-     * @return UploadDisputeFileResponse
+     * @param CallContext|null  $callContext
      *
+     * @return UploadDisputeFileResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -162,9 +166,9 @@ class DisputesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/fileserviceapi/v1/en_US/php/disputes/uploadFile.html Upload File
+     * @link   https://apireference.connect.worldline-solutions.com/fileserviceapi/v1/en_US/php/disputes/uploadFile.html Upload File
      */
-    public function uploadFile($disputeId, UploadFileRequest $body, CallContext $callContext = null)
+    public function uploadFile(string $disputeId, UploadFileRequest $body, ?CallContext $callContext = null): UploadDisputeFileResponse
     {
         $this->context['disputeId'] = $disputeId;
         $responseClassMap = new ResponseClassMap();
@@ -188,8 +192,10 @@ class DisputesClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

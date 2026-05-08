@@ -13,65 +13,66 @@ use UnexpectedValueException;
 class Customer extends CustomerBase
 {
     /**
-     * @var CustomerAccount
+     * @var CustomerAccount|null
      */
-    public $account = null;
+    public ?CustomerAccount $account = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $accountType = null;
+    public ?string $accountType = null;
 
     /**
-     * @var Address
+     * @var Address|null
      */
-    public $billingAddress = null;
+    public ?Address $billingAddress = null;
 
     /**
-     * @var ContactDetails
+     * @var ContactDetails|null
      */
-    public $contactDetails = null;
+    public ?ContactDetails $contactDetails = null;
 
     /**
-     * @var CustomerDevice
+     * @var CustomerDevice|null
      */
-    public $device = null;
+    public ?CustomerDevice $device = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fiscalNumber = null;
+    public ?string $fiscalNumber = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isCompany = null;
+    public ?bool $isCompany = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isPreviousCustomer = null;
+    public ?bool $isPreviousCustomer = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $locale = null;
+    public ?string $locale = null;
 
     /**
-     * @var PersonalInformation
+     * @var PersonalInformation|null
      */
-    public $personalInformation = null;
+    public ?PersonalInformation $personalInformation = null;
 
     /**
-     * @var AddressPersonal
+     * @var AddressPersonal|null
+     *
      * @deprecated Use Order.shipping.address instead
      */
-    public $shippingAddress = null;
+    public ?AddressPersonal $shippingAddress = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->account)) {
@@ -112,10 +113,11 @@ class Customer extends CustomerBase
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Customer
     {
         parent::fromObject($object);
         if (property_exists($object, 'account')) {

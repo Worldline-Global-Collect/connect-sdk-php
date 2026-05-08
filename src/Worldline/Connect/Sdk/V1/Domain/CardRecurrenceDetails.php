@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CardRecurrenceDetails extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $endDate = null;
+    public ?string $endDate = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $minFrequency = null;
+    public ?int $minFrequency = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $recurringPaymentSequenceIndicator = null;
+    public ?string $recurringPaymentSequenceIndicator = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->endDate)) {
@@ -48,10 +48,11 @@ class CardRecurrenceDetails extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CardRecurrenceDetails
     {
         parent::fromObject($object);
         if (property_exists($object, 'endDate')) {

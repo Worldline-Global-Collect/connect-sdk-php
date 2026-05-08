@@ -23,6 +23,9 @@ use Worldline\Connect\Sdk\V1\Merchant\Services\ServicesClient;
 use Worldline\Connect\Sdk\V1\Merchant\Sessions\SessionsClient;
 use Worldline\Connect\Sdk\V1\Merchant\Tokens\TokensClient;
 
+/**
+ * @package Worldline\Connect\Sdk\V1\Merchant
+ */
 class MerchantClient extends ApiResource
 {
     /**
@@ -30,7 +33,7 @@ class MerchantClient extends ApiResource
      *
      * @return HostedcheckoutsClient
      */
-    public function hostedcheckouts()
+    public function hostedcheckouts(): HostedcheckoutsClient
     {
         return new HostedcheckoutsClient($this, $this->context);
     }
@@ -40,7 +43,7 @@ class MerchantClient extends ApiResource
      *
      * @return HostedmandatemanagementsClient
      */
-    public function hostedmandatemanagements()
+    public function hostedmandatemanagements(): HostedmandatemanagementsClient
     {
         return new HostedmandatemanagementsClient($this, $this->context);
     }
@@ -50,7 +53,7 @@ class MerchantClient extends ApiResource
      *
      * @return PaymentsClient
      */
-    public function payments()
+    public function payments(): PaymentsClient
     {
         return new PaymentsClient($this, $this->context);
     }
@@ -60,7 +63,7 @@ class MerchantClient extends ApiResource
      *
      * @return CapturesClient
      */
-    public function captures()
+    public function captures(): CapturesClient
     {
         return new CapturesClient($this, $this->context);
     }
@@ -70,7 +73,7 @@ class MerchantClient extends ApiResource
      *
      * @return RefundsClient
      */
-    public function refunds()
+    public function refunds(): RefundsClient
     {
         return new RefundsClient($this, $this->context);
     }
@@ -80,7 +83,7 @@ class MerchantClient extends ApiResource
      *
      * @return DisputesClient
      */
-    public function disputes()
+    public function disputes(): DisputesClient
     {
         return new DisputesClient($this, $this->context);
     }
@@ -90,7 +93,7 @@ class MerchantClient extends ApiResource
      *
      * @return PayoutsClient
      */
-    public function payouts()
+    public function payouts(): PayoutsClient
     {
         return new PayoutsClient($this, $this->context);
     }
@@ -100,7 +103,7 @@ class MerchantClient extends ApiResource
      *
      * @return ProductgroupsClient
      */
-    public function productgroups()
+    public function productgroups(): ProductgroupsClient
     {
         return new ProductgroupsClient($this, $this->context);
     }
@@ -110,7 +113,7 @@ class MerchantClient extends ApiResource
      *
      * @return ProductsClient
      */
-    public function products()
+    public function products(): ProductsClient
     {
         return new ProductsClient($this, $this->context);
     }
@@ -120,7 +123,7 @@ class MerchantClient extends ApiResource
      *
      * @return RiskassessmentsClient
      */
-    public function riskassessments()
+    public function riskassessments(): RiskassessmentsClient
     {
         return new RiskassessmentsClient($this, $this->context);
     }
@@ -130,7 +133,7 @@ class MerchantClient extends ApiResource
      *
      * @return ServicesClient
      */
-    public function services()
+    public function services(): ServicesClient
     {
         return new ServicesClient($this, $this->context);
     }
@@ -140,7 +143,7 @@ class MerchantClient extends ApiResource
      *
      * @return TokensClient
      */
-    public function tokens()
+    public function tokens(): TokensClient
     {
         return new TokensClient($this, $this->context);
     }
@@ -150,7 +153,7 @@ class MerchantClient extends ApiResource
      *
      * @return MandatesClient
      */
-    public function mandates()
+    public function mandates(): MandatesClient
     {
         return new MandatesClient($this, $this->context);
     }
@@ -160,7 +163,7 @@ class MerchantClient extends ApiResource
      *
      * @return SessionsClient
      */
-    public function sessions()
+    public function sessions(): SessionsClient
     {
         return new SessionsClient($this, $this->context);
     }
@@ -170,7 +173,7 @@ class MerchantClient extends ApiResource
      *
      * @return InstallmentsClient
      */
-    public function installments()
+    public function installments(): InstallmentsClient
     {
         return new InstallmentsClient($this, $this->context);
     }
@@ -180,7 +183,7 @@ class MerchantClient extends ApiResource
      *
      * @return FilesClient
      */
-    public function files()
+    public function files(): FilesClient
     {
         return new FilesClient($this, $this->context);
     }

@@ -14,50 +14,51 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class DecryptedPaymentData extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use decryptedPaymentData.paymentMethod instead
      */
-    public $authMethod = null;
+    public ?string $authMethod = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $cardholderName = null;
+    public ?string $cardholderName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $cryptogram = null;
+    public ?string $cryptogram = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $dpan = null;
+    public ?string $dpan = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $eci = null;
+    public ?int $eci = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $expiryDate = null;
+    public ?string $expiryDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $pan = null;
+    public ?string $pan = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentMethod = null;
+    public ?string $paymentMethod = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->authMethod)) {
@@ -89,10 +90,11 @@ class DecryptedPaymentData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DecryptedPaymentData
     {
         parent::fromObject($object);
         if (property_exists($object, 'authMethod')) {

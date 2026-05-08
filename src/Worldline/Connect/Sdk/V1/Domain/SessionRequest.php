@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class SessionRequest extends DataObject
 {
     /**
-     * @var PaymentProductFiltersClientSession
+     * @var PaymentProductFiltersClientSession|null
      */
-    public $paymentProductFilters = null;
+    public ?PaymentProductFiltersClientSession $paymentProductFilters = null;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $tokens = null;
+    public ?array $tokens = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProductFilters)) {
@@ -45,10 +45,11 @@ class SessionRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): SessionRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProductFilters')) {

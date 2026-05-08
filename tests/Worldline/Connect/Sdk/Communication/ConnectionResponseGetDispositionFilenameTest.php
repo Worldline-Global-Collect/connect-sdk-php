@@ -12,13 +12,13 @@ class ConnectionResponseGetDispositionFilenameTest extends TestCase
     /**
      * @dataProvider dispositionFilenameProvider
      */
-    public function testGetDispositionFilename($headerValue, $expected)
+    public function testGetDispositionFilename(string $headerValue, ?string $expected)
     {
         $headers = array('Content-Disposition' => $headerValue);
         $this->assertEquals($expected, ConnectionResponse::getDispositionFilename($headers));
     }
 
-    public function  dispositionFilenameProvider()
+    public function dispositionFilenameProvider(): array
     {
         return array(
             array('attachment; filename=testfile',   'testfile'),

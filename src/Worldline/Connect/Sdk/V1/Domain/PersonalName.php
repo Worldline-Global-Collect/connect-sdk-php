@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class PersonalName extends PersonalNameBase
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $title = null;
+    public ?string $title = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->title)) {
@@ -31,10 +31,11 @@ class PersonalName extends PersonalNameBase
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PersonalName
     {
         parent::fromObject($object);
         if (property_exists($object, 'title')) {

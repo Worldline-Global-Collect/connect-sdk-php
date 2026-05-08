@@ -14,69 +14,69 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CustomerAccount extends DataObject
 {
     /**
-     * @var CustomerAccountAuthentication
+     * @var CustomerAccountAuthentication|null
      */
-    public $authentication = null;
+    public ?CustomerAccountAuthentication $authentication = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $changeDate = null;
+    public ?string $changeDate = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $changedDuringCheckout = null;
+    public ?bool $changedDuringCheckout = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $createDate = null;
+    public ?string $createDate = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $hadSuspiciousActivity = null;
+    public ?bool $hadSuspiciousActivity = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $hasForgottenPassword = null;
+    public ?bool $hasForgottenPassword = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $hasPassword = null;
+    public ?bool $hasPassword = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $passwordChangeDate = null;
+    public ?string $passwordChangeDate = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $passwordChangedDuringCheckout = null;
+    public ?bool $passwordChangedDuringCheckout = null;
 
     /**
-     * @var PaymentAccountOnFile
+     * @var PaymentAccountOnFile|null
      */
-    public $paymentAccountOnFile = null;
+    public ?PaymentAccountOnFile $paymentAccountOnFile = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentAccountOnFileType = null;
+    public ?string $paymentAccountOnFileType = null;
 
     /**
-     * @var CustomerPaymentActivity
+     * @var CustomerPaymentActivity|null
      */
-    public $paymentActivity = null;
+    public ?CustomerPaymentActivity $paymentActivity = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->authentication)) {
@@ -120,10 +120,11 @@ class CustomerAccount extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CustomerAccount
     {
         parent::fromObject($object);
         if (property_exists($object, 'authentication')) {

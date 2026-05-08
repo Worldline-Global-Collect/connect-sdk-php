@@ -10,32 +10,36 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 
 /**
  * @package Worldline\Connect\Sdk\V1\Domain
+ *
  * @deprecated Use ShoppingCart.amountBreakdown instead
  */
 class Level3SummaryData extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
+     *
      * @deprecated Use ShoppingCart.amountBreakdown with type DISCOUNT instead
      */
-    public $discountAmount = null;
+    public ?int $discountAmount = null;
 
     /**
-     * @var int
+     * @var int|null
+     *
      * @deprecated Use ShoppingCart.amountBreakdown with type DUTY instead
      */
-    public $dutyAmount = null;
+    public ?int $dutyAmount = null;
 
     /**
-     * @var int
+     * @var int|null
+     *
      * @deprecated Use ShoppingCart.amountBreakdown with type SHIPPING instead
      */
-    public $shippingAmount = null;
+    public ?int $shippingAmount = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->discountAmount)) {
@@ -52,10 +56,11 @@ class Level3SummaryData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Level3SummaryData
     {
         parent::fromObject($object);
         if (property_exists($object, 'discountAmount')) {

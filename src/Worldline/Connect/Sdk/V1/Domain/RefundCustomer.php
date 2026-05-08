@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RefundCustomer extends DataObject
 {
     /**
-     * @var AddressPersonal
+     * @var AddressPersonal|null
      */
-    public $address = null;
+    public ?AddressPersonal $address = null;
 
     /**
-     * @var CompanyInformation
+     * @var CompanyInformation|null
      */
-    public $companyInformation = null;
+    public ?CompanyInformation $companyInformation = null;
 
     /**
-     * @var ContactDetailsBase
+     * @var ContactDetailsBase|null
      */
-    public $contactDetails = null;
+    public ?ContactDetailsBase $contactDetails = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $fiscalNumber = null;
+    public ?string $fiscalNumber = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->address)) {
@@ -56,10 +56,11 @@ class RefundCustomer extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundCustomer
     {
         parent::fromObject($object);
         if (property_exists($object, 'address')) {

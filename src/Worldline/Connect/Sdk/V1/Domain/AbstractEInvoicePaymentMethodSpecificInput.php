@@ -13,14 +13,14 @@ use UnexpectedValueException;
 class AbstractEInvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSpecificInput
 {
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $requiresApproval = null;
+    public ?bool $requiresApproval = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->requiresApproval)) {
@@ -31,10 +31,11 @@ class AbstractEInvoicePaymentMethodSpecificInput extends AbstractPaymentMethodSp
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AbstractEInvoicePaymentMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'requiresApproval')) {

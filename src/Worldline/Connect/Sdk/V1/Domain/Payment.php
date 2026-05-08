@@ -13,29 +13,29 @@ use UnexpectedValueException;
 class Payment extends AbstractOrderStatus
 {
     /**
-     * @var HostedCheckoutSpecificOutput
+     * @var HostedCheckoutSpecificOutput|null
      */
-    public $hostedCheckoutSpecificOutput = null;
+    public ?HostedCheckoutSpecificOutput $hostedCheckoutSpecificOutput = null;
 
     /**
-     * @var PaymentOutput
+     * @var PaymentOutput|null
      */
-    public $paymentOutput = null;
+    public ?PaymentOutput $paymentOutput = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $status = null;
+    public ?string $status = null;
 
     /**
-     * @var PaymentStatusOutput
+     * @var PaymentStatusOutput|null
      */
-    public $statusOutput = null;
+    public ?PaymentStatusOutput $statusOutput = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->hostedCheckoutSpecificOutput)) {
@@ -55,10 +55,11 @@ class Payment extends AbstractOrderStatus
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Payment
     {
         parent::fromObject($object);
         if (property_exists($object, 'hostedCheckoutSpecificOutput')) {

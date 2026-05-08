@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RefundsResponse extends DataObject
 {
     /**
-     * @var RefundResult[]
+     * @var RefundResult[]|null
      */
-    public $refunds = null;
+    public ?array $refunds = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->refunds)) {
@@ -37,10 +37,11 @@ class RefundsResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundsResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'refunds')) {

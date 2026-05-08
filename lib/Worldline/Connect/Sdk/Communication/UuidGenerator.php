@@ -13,8 +13,10 @@ class UuidGenerator
     {
     }
 
-    /** @return string */
-    public static function generatedUuid()
+    /**
+     * @return string
+     */
+    public static function generatedUuid(): string
     {
         return sprintf(
             '%04x%04x-%04x-%04x-%04x-%04x%04x%04x',

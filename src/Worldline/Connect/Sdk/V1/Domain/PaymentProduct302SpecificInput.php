@@ -14,49 +14,49 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProduct302SpecificInput extends DataObject
 {
     /**
-     * @var AutomaticReloadBillingDetails
+     * @var AutomaticReloadBillingDetails|null
      */
-    public $automaticReloadBilling = null;
+    public ?AutomaticReloadBillingDetails $automaticReloadBilling = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $billingAgreement = null;
+    public ?string $billingAgreement = null;
 
     /**
-     * @var DeferredBillingDetails
+     * @var DeferredBillingDetails|null
      */
-    public $deferredBilling = null;
+    public ?DeferredBillingDetails $deferredBilling = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $managementUrl = null;
+    public ?string $managementUrl = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $paymentDescription = null;
+    public ?string $paymentDescription = null;
 
     /**
-     * @var RecurringBillingDetails
+     * @var RecurringBillingDetails|null
      */
-    public $regularBilling = null;
+    public ?RecurringBillingDetails $regularBilling = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $tokenNotificationUrl = null;
+    public ?string $tokenNotificationUrl = null;
 
     /**
-     * @var RecurringBillingDetails
+     * @var RecurringBillingDetails|null
      */
-    public $trialBilling = null;
+    public ?RecurringBillingDetails $trialBilling = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->automaticReloadBilling)) {
@@ -88,10 +88,11 @@ class PaymentProduct302SpecificInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProduct302SpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'automaticReloadBilling')) {

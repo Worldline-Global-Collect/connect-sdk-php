@@ -13,40 +13,41 @@ use UnexpectedValueException;
 class BankTransferPayoutMethodSpecificInput extends AbstractPayoutMethodSpecificInput
 {
     /**
-     * @var BankAccountBban
+     * @var BankAccountBban|null
      */
-    public $bankAccountBban = null;
+    public ?BankAccountBban $bankAccountBban = null;
 
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
-     * @var PayoutCustomer
+     * @var PayoutCustomer|null
+     *
      * @deprecated Moved to PayoutDetails
      */
-    public $customer = null;
+    public ?PayoutCustomer $customer = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $payoutDate = null;
+    public ?string $payoutDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $payoutText = null;
+    public ?string $payoutText = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $swiftCode = null;
+    public ?string $swiftCode = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountBban)) {
@@ -72,10 +73,11 @@ class BankTransferPayoutMethodSpecificInput extends AbstractPayoutMethodSpecific
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BankTransferPayoutMethodSpecificInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountBban')) {

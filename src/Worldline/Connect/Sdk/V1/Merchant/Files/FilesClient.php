@@ -20,19 +20,24 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Files client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Files
  */
 class FilesClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/files/{fileId} - Retrieve File
      *
-     * @param string $fileId
-     * @param callable $bodyHandler Callable accepting a response body chunk and the response headers
-     * @param CallContext $callContext
+     * @param string           $fileId
+     * @param callable         $bodyHandler Callable accepting a response body chunk and the response headers
+     * @param CallContext|null $callContext
      *
+     * @return void
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -40,9 +45,9 @@ class FilesClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/fileserviceapi/v1/en_US/php/files/getFile.html Retrieve File
+     * @link   https://apireference.connect.worldline-solutions.com/fileserviceapi/v1/en_US/php/files/getFile.html Retrieve File
      */
-    public function getFile($fileId, callable $bodyHandler, CallContext $callContext = null)
+    public function getFile(string $fileId, callable $bodyHandler, ?CallContext $callContext = null): void
     {
         $this->context['fileId'] = $fileId;
         $responseClassMap = new ResponseClassMap();
@@ -65,8 +70,10 @@ class FilesClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

@@ -30,19 +30,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Products client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Products
  */
 class ProductsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/products - Get payment products
      *
      * @param FindProductsParams $query
-     * @param CallContext $callContext
-     * @return PaymentProducts
+     * @param CallContext|null   $callContext
      *
+     * @return PaymentProducts
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -50,9 +54,9 @@ class ProductsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/find.html Get payment products
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/find.html Get payment products
      */
-    public function find(FindProductsParams $query, CallContext $callContext = null)
+    public function find(FindProductsParams $query, ?CallContext $callContext = null): PaymentProducts
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\PaymentProducts';
@@ -77,11 +81,11 @@ class ProductsClient extends ApiResource
     /**
      * Resource /{merchantId}/products/{paymentProductId} - Get payment product
      *
-     * @param int $paymentProductId
+     * @param int              $paymentProductId
      * @param GetProductParams $query
-     * @param CallContext $callContext
-     * @return PaymentProductResponse
+     * @param CallContext|null $callContext
      *
+     * @return PaymentProductResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -89,9 +93,9 @@ class ProductsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/get.html Get payment product
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/get.html Get payment product
      */
-    public function get($paymentProductId, GetProductParams $query, CallContext $callContext = null)
+    public function get(int $paymentProductId, GetProductParams $query, ?CallContext $callContext = null): PaymentProductResponse
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
@@ -117,11 +121,11 @@ class ProductsClient extends ApiResource
     /**
      * Resource /{merchantId}/products/{paymentProductId}/directory - Get payment product directory
      *
-     * @param int $paymentProductId
-     * @param DirectoryParams $query
-     * @param CallContext $callContext
-     * @return Directory
+     * @param int              $paymentProductId
+     * @param DirectoryParams  $query
+     * @param CallContext|null $callContext
      *
+     * @return Directory
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -129,9 +133,9 @@ class ProductsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/directory.html Get payment product directory
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/directory.html Get payment product directory
      */
-    public function directory($paymentProductId, DirectoryParams $query, CallContext $callContext = null)
+    public function directory(int $paymentProductId, DirectoryParams $query, ?CallContext $callContext = null): Directory
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
@@ -157,11 +161,11 @@ class ProductsClient extends ApiResource
     /**
      * Resource /{merchantId}/products/{paymentProductId}/customerDetails - Get customer details
      *
-     * @param int $paymentProductId
+     * @param int                       $paymentProductId
      * @param GetCustomerDetailsRequest $body
-     * @param CallContext $callContext
-     * @return GetCustomerDetailsResponse
+     * @param CallContext|null          $callContext
      *
+     * @return GetCustomerDetailsResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -169,9 +173,9 @@ class ProductsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/customerDetails.html Get customer details
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/customerDetails.html Get customer details
      */
-    public function customerDetails($paymentProductId, GetCustomerDetailsRequest $body, CallContext $callContext = null)
+    public function customerDetails(int $paymentProductId, GetCustomerDetailsRequest $body, ?CallContext $callContext = null): GetCustomerDetailsResponse
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
@@ -198,11 +202,11 @@ class ProductsClient extends ApiResource
     /**
      * Resource /{merchantId}/products/{paymentProductId}/deviceFingerprint - Get device fingerprint
      *
-     * @param int $paymentProductId
+     * @param int                      $paymentProductId
      * @param DeviceFingerprintRequest $body
-     * @param CallContext $callContext
-     * @return DeviceFingerprintResponse
+     * @param CallContext|null         $callContext
      *
+     * @return DeviceFingerprintResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -210,9 +214,9 @@ class ProductsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/deviceFingerprint.html Get device fingerprint
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/deviceFingerprint.html Get device fingerprint
      */
-    public function deviceFingerprint($paymentProductId, DeviceFingerprintRequest $body, CallContext $callContext = null)
+    public function deviceFingerprint(int $paymentProductId, DeviceFingerprintRequest $body, ?CallContext $callContext = null): DeviceFingerprintResponse
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
@@ -239,11 +243,11 @@ class ProductsClient extends ApiResource
     /**
      * Resource /{merchantId}/products/{paymentProductId}/networks - Get payment product networks
      *
-     * @param int $paymentProductId
-     * @param NetworksParams $query
-     * @param CallContext $callContext
-     * @return PaymentProductNetworksResponse
+     * @param int              $paymentProductId
+     * @param NetworksParams   $query
+     * @param CallContext|null $callContext
      *
+     * @return PaymentProductNetworksResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -251,9 +255,9 @@ class ProductsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/networks.html Get payment product networks
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/networks.html Get payment product networks
      */
-    public function networks($paymentProductId, NetworksParams $query, CallContext $callContext = null)
+    public function networks(int $paymentProductId, NetworksParams $query, ?CallContext $callContext = null): PaymentProductNetworksResponse
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
@@ -279,11 +283,11 @@ class ProductsClient extends ApiResource
     /**
      * Resource /{merchantId}/products/{paymentProductId}/sessions - Create session for payment product
      *
-     * @param int $paymentProductId
+     * @param int                                $paymentProductId
      * @param CreatePaymentProductSessionRequest $body
-     * @param CallContext $callContext
-     * @return CreatePaymentProductSessionResponse
+     * @param CallContext|null                   $callContext
      *
+     * @return CreatePaymentProductSessionResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -291,9 +295,9 @@ class ProductsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/sessions.html Create session for payment product
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/sessions.html Create session for payment product
      */
-    public function sessions($paymentProductId, CreatePaymentProductSessionRequest $body, CallContext $callContext = null)
+    public function sessions(int $paymentProductId, CreatePaymentProductSessionRequest $body, ?CallContext $callContext = null): CreatePaymentProductSessionResponse
     {
         $this->context['paymentProductId'] = $paymentProductId;
         $responseClassMap = new ResponseClassMap();
@@ -317,8 +321,10 @@ class ProductsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

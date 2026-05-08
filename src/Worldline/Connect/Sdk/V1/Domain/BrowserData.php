@@ -14,44 +14,44 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class BrowserData extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $colorDepth = null;
+    public ?int $colorDepth = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $innerHeight = null;
+    public ?string $innerHeight = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $innerWidth = null;
+    public ?string $innerWidth = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $javaEnabled = null;
+    public ?bool $javaEnabled = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $javaScriptEnabled = null;
+    public ?bool $javaScriptEnabled = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $screenHeight = null;
+    public ?string $screenHeight = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $screenWidth = null;
+    public ?string $screenWidth = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->colorDepth)) {
@@ -80,10 +80,11 @@ class BrowserData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): BrowserData
     {
         parent::fromObject($object);
         if (property_exists($object, 'colorDepth')) {

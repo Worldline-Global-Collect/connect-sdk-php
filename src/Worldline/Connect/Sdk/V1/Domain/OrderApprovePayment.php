@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class OrderApprovePayment extends DataObject
 {
     /**
-     * @var AdditionalOrderInputAirlineData
+     * @var AdditionalOrderInputAirlineData|null
      */
-    public $additionalInput = null;
+    public ?AdditionalOrderInputAirlineData $additionalInput = null;
 
     /**
-     * @var CustomerApprovePayment
+     * @var CustomerApprovePayment|null
      */
-    public $customer = null;
+    public ?CustomerApprovePayment $customer = null;
 
     /**
-     * @var OrderReferencesApprovePayment
+     * @var OrderReferencesApprovePayment|null
      */
-    public $references = null;
+    public ?OrderReferencesApprovePayment $references = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalInput)) {
@@ -48,10 +48,11 @@ class OrderApprovePayment extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): OrderApprovePayment
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalInput')) {

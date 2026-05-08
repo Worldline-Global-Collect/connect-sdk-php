@@ -10,44 +10,50 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 
 /**
  * @package Worldline\Connect\Sdk\V1\Domain
+ *
  * @deprecated No replacement
  */
 class LoanRecipient extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated No replacement
      */
-    public $accountNumber = null;
+    public ?string $accountNumber = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated No replacement
      */
-    public $dateOfBirth = null;
+    public ?string $dateOfBirth = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated No replacement
      */
-    public $partialPan = null;
+    public ?string $partialPan = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated No replacement
      */
-    public $surname = null;
+    public ?string $surname = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated No replacement
      */
-    public $zip = null;
+    public ?string $zip = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->accountNumber)) {
@@ -70,10 +76,11 @@ class LoanRecipient extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): LoanRecipient
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountNumber')) {

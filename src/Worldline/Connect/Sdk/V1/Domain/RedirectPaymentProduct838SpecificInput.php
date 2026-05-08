@@ -15,7 +15,7 @@ class RedirectPaymentProduct838SpecificInput extends AbstractRedirectPaymentProd
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         return $object;
@@ -23,10 +23,11 @@ class RedirectPaymentProduct838SpecificInput extends AbstractRedirectPaymentProd
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RedirectPaymentProduct838SpecificInput
     {
         parent::fromObject($object);
         return $this;

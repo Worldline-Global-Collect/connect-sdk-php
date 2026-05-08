@@ -14,51 +14,53 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Order extends DataObject
 {
     /**
-     * @var AdditionalOrderInput
+     * @var AdditionalOrderInput|null
      */
-    public $additionalInput = null;
+    public ?AdditionalOrderInput $additionalInput = null;
 
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var Customer
+     * @var Customer|null
      */
-    public $customer = null;
+    public ?Customer $customer = null;
 
     /**
-     * @var LineItem[]
+     * @var LineItem[]|null
+     *
      * @deprecated Use shoppingCart.items instead
      */
-    public $items = null;
+    public ?array $items = null;
 
     /**
-     * @var OrderReferences
+     * @var OrderReferences|null
      */
-    public $references = null;
+    public ?OrderReferences $references = null;
 
     /**
-     * @var Seller
+     * @var Seller|null
+     *
      * @deprecated Use Merchant.seller instead
      */
-    public $seller = null;
+    public ?Seller $seller = null;
 
     /**
-     * @var Shipping
+     * @var Shipping|null
      */
-    public $shipping = null;
+    public ?Shipping $shipping = null;
 
     /**
-     * @var ShoppingCart
+     * @var ShoppingCart|null
      */
-    public $shoppingCart = null;
+    public ?ShoppingCart $shoppingCart = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->additionalInput)) {
@@ -95,10 +97,11 @@ class Order extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Order
     {
         parent::fromObject($object);
         if (property_exists($object, 'additionalInput')) {

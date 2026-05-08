@@ -13,29 +13,29 @@ use UnexpectedValueException;
 class DeferredBillingDetails extends BaseBillingDetails
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $deferredPaymentAmount = null;
+    public ?int $deferredPaymentAmount = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $deferredPaymentDate = null;
+    public ?string $deferredPaymentDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $freeCancellationDate = null;
+    public ?string $freeCancellationDate = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $freeCancellationDateTimeZone = null;
+    public ?string $freeCancellationDateTimeZone = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->deferredPaymentAmount)) {
@@ -55,10 +55,11 @@ class DeferredBillingDetails extends BaseBillingDetails
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): DeferredBillingDetails
     {
         parent::fromObject($object);
         if (property_exists($object, 'deferredPaymentAmount')) {

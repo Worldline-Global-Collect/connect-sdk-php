@@ -10,15 +10,20 @@ namespace Worldline\Connect\Sdk;
  */
 class BodyHandler
 {
-    /** @var bool */
-    private $initialized = false;
+    /**
+     * @var bool
+     */
+    private bool $initialized = false;
 
     /**
      * Initializes this body handler if not done yet, then calls doHandleBodyPart.
+     *
      * @param string $bodyPart
-     * @param array $headers
+     * @param array  $headers
+     *
+     * @return void
      */
-    final public function handleBodyPart($bodyPart, $headers)
+    final public function handleBodyPart(string $bodyPart, array $headers): void
     {
         if (!$this->initialized) {
             $this->initialize($headers);
@@ -30,8 +35,10 @@ class BodyHandler
     /**
      * Calls doCleanup, then marks this body handler as not initialized.
      * Afterwards this instance can be reused again.
+     *
+     * @return void
      */
-    final public function close()
+    final public function close(): void
     {
         $this->doCleanup();
         $this->initialized = false;
@@ -40,26 +47,34 @@ class BodyHandler
     /**
      * Can be used to initialize this body handler based on the given headers.
      * The default implementation does nothing.
+     *
      * @param array $headers
+     *
+     * @return void
      */
-    protected function initialize($headers)
+    protected function initialize(array $headers): void
     {
     }
 
     /**
      * Can be used to handle a single body part.
      * The default implementation does nothing.
+     *
      * @param string $bodyPart
+     *
+     * @return void
      */
-    protected function doHandleBodyPart($bodyPart)
+    protected function doHandleBodyPart(string $bodyPart): void
     {
     }
 
     /**
      * Can be used to do cleanup resources allocated by this body handler.
      * The default implementation does nothing.
+     *
+     * @return void
      */
-    protected function doCleanup()
+    protected function doCleanup(): void
     {
     }
 }

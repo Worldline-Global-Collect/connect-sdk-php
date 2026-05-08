@@ -14,57 +14,60 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class AdditionalOrderInput extends DataObject
 {
     /**
-     * @var AccountFundingRecipient
+     * @var AccountFundingRecipient|null
      */
-    public $accountFundingRecipient = null;
+    public ?AccountFundingRecipient $accountFundingRecipient = null;
 
     /**
-     * @var AirlineData
+     * @var AirlineData|null
      */
-    public $airlineData = null;
+    public ?AirlineData $airlineData = null;
 
     /**
-     * @var Installments
+     * @var Installments|null
      */
-    public $installments = null;
+    public ?Installments $installments = null;
 
     /**
-     * @var Level3SummaryData
+     * @var Level3SummaryData|null
+     *
      * @deprecated Use Order.shoppingCart.amountBreakdown instead
      */
-    public $level3SummaryData = null;
+    public ?Level3SummaryData $level3SummaryData = null;
 
     /**
-     * @var LoanRecipient
+     * @var LoanRecipient|null
+     *
      * @deprecated No replacement
      */
-    public $loanRecipient = null;
+    public ?LoanRecipient $loanRecipient = null;
 
     /**
-     * @var LodgingData
+     * @var LodgingData|null
      */
-    public $lodgingData = null;
+    public ?LodgingData $lodgingData = null;
 
     /**
-     * @var int
+     * @var int|null
+     *
      * @deprecated Use installments.numberOfInstallments instead
      */
-    public $numberOfInstallments = null;
+    public ?int $numberOfInstallments = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $orderDate = null;
+    public ?string $orderDate = null;
 
     /**
-     * @var OrderTypeInformation
+     * @var OrderTypeInformation|null
      */
-    public $typeInformation = null;
+    public ?OrderTypeInformation $typeInformation = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->accountFundingRecipient)) {
@@ -99,10 +102,11 @@ class AdditionalOrderInput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): AdditionalOrderInput
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountFundingRecipient')) {

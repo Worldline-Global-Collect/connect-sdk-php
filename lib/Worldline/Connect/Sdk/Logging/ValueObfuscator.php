@@ -8,15 +8,15 @@ namespace Worldline\Connect\Sdk\Logging;
  */
 class ValueObfuscator
 {
-    /** */
     const MASK_CHARACTER = '*';
 
     /**
      * @param string $value
-     * @param int $numberOfCharactersToKeep
+     * @param int    $numberOfCharactersToKeep
+     *
      * @return string
      */
-    public function obfuscateAllKeepEnd($value, $numberOfCharactersToKeep)
+    public function obfuscateAllKeepEnd(string $value, int $numberOfCharactersToKeep): string
     {
         if ($numberOfCharactersToKeep <= 0) {
             return $this->obfuscateAll($value);
@@ -26,16 +26,16 @@ class ValueObfuscator
         }
         return
             str_repeat(static::MASK_CHARACTER, mb_strlen($value, 'UTF-8') - $numberOfCharactersToKeep) .
-            mb_substr($value, mb_strlen($value, 'UTF-8') - $numberOfCharactersToKeep, null, 'UTF-8')
-            ;
+            mb_substr($value, mb_strlen($value, 'UTF-8') - $numberOfCharactersToKeep, null, 'UTF-8');
     }
 
     /**
      * @param string $value
-     * @param int $numberOfCharactersToKeep
+     * @param int    $numberOfCharactersToKeep
+     *
      * @return string
      */
-    public function obfuscateAllKeepStart($value, $numberOfCharactersToKeep)
+    public function obfuscateAllKeepStart(string $value, int $numberOfCharactersToKeep): string
     {
         if ($numberOfCharactersToKeep <= 0) {
             return $this->obfuscateAll($value);
@@ -45,24 +45,25 @@ class ValueObfuscator
         }
         return
             mb_substr($value, 0, $numberOfCharactersToKeep, 'UTF-8') .
-            str_repeat(static::MASK_CHARACTER, mb_strlen($value, 'UTF-8') - $numberOfCharactersToKeep)
-            ;
+            str_repeat(static::MASK_CHARACTER, mb_strlen($value, 'UTF-8') - $numberOfCharactersToKeep);
     }
 
     /**
      * @param string $value
+     *
      * @return string
      */
-    public function obfuscateAll($value)
+    public function obfuscateAll(string $value): string
     {
         return str_repeat(static::MASK_CHARACTER, mb_strlen($value, 'UTF-8'));
     }
 
     /**
      * @param int $length
+     *
      * @return string
      */
-    public function obfuscateFixedLength($length)
+    public function obfuscateFixedLength(int $length): string
     {
         if ($length <= 0) {
             return '';

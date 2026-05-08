@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RiskAssessment extends DataObject
 {
     /**
-     * @var FraudFields
+     * @var FraudFields|null
      */
-    public $fraudFields = null;
+    public ?FraudFields $fraudFields = null;
 
     /**
-     * @var MerchantRiskAssessment
+     * @var MerchantRiskAssessment|null
      */
-    public $merchant = null;
+    public ?MerchantRiskAssessment $merchant = null;
 
     /**
-     * @var OrderRiskAssessment
+     * @var OrderRiskAssessment|null
      */
-    public $order = null;
+    public ?OrderRiskAssessment $order = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $paymentProductId = null;
+    public ?int $paymentProductId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->fraudFields)) {
@@ -56,10 +56,11 @@ class RiskAssessment extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RiskAssessment
     {
         parent::fromObject($object);
         if (property_exists($object, 'fraudFields')) {

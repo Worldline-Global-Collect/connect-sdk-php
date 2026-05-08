@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class TrustlyBankAccount extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $accountLastDigits = null;
+    public ?string $accountLastDigits = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $bankName = null;
+    public ?string $bankName = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $clearinghouse = null;
+    public ?string $clearinghouse = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $personIdentificationNumber = null;
+    public ?string $personIdentificationNumber = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->accountLastDigits)) {
@@ -56,10 +56,11 @@ class TrustlyBankAccount extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): TrustlyBankAccount
     {
         parent::fromObject($object);
         if (property_exists($object, 'accountLastDigits')) {

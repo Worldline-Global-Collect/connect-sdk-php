@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RiskAssessmentResponse extends DataObject
 {
     /**
-     * @var ResultDoRiskAssessment[]
+     * @var ResultDoRiskAssessment[]|null
      */
-    public $results = null;
+    public ?array $results = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->results)) {
@@ -37,10 +37,11 @@ class RiskAssessmentResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RiskAssessmentResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'results')) {

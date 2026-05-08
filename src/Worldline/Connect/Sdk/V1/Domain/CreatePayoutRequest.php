@@ -14,77 +14,85 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class CreatePayoutRequest extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
+     *
      * @deprecated Moved to PayoutDetails
      */
-    public $amountOfMoney = null;
+    public ?AmountOfMoney $amountOfMoney = null;
 
     /**
-     * @var BankAccountBban
+     * @var BankAccountBban|null
+     *
      * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
-    public $bankAccountBban = null;
+    public ?BankAccountBban $bankAccountBban = null;
 
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
+     *
      * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
-     * @var BankTransferPayoutMethodSpecificInput
+     * @var BankTransferPayoutMethodSpecificInput|null
      */
-    public $bankTransferPayoutMethodSpecificInput = null;
+    public ?BankTransferPayoutMethodSpecificInput $bankTransferPayoutMethodSpecificInput = null;
 
     /**
-     * @var CardPayoutMethodSpecificInput
+     * @var CardPayoutMethodSpecificInput|null
      */
-    public $cardPayoutMethodSpecificInput = null;
+    public ?CardPayoutMethodSpecificInput $cardPayoutMethodSpecificInput = null;
 
     /**
-     * @var PayoutCustomer
+     * @var PayoutCustomer|null
+     *
      * @deprecated Moved to PayoutDetails
      */
-    public $customer = null;
+    public ?PayoutCustomer $customer = null;
 
     /**
-     * @var PayoutMerchant
+     * @var PayoutMerchant|null
      */
-    public $merchant = null;
+    public ?PayoutMerchant $merchant = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
-    public $payoutDate = null;
+    public ?string $payoutDate = null;
 
     /**
-     * @var PayoutDetails
+     * @var PayoutDetails|null
      */
-    public $payoutDetails = null;
+    public ?PayoutDetails $payoutDetails = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
-    public $payoutText = null;
+    public ?string $payoutText = null;
 
     /**
-     * @var PayoutReferences
+     * @var PayoutReferences|null
+     *
      * @deprecated Moved to PayoutDetails
      */
-    public $references = null;
+    public ?PayoutReferences $references = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Moved to BankTransferPayoutMethodSpecificInput
      */
-    public $swiftCode = null;
+    public ?string $swiftCode = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoney)) {
@@ -128,10 +136,11 @@ class CreatePayoutRequest extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CreatePayoutRequest
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoney')) {

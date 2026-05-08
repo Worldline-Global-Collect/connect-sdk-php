@@ -14,39 +14,39 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MandateSepaDirectDebitWithoutCreditor extends DataObject
 {
     /**
-     * @var BankAccountIban
+     * @var BankAccountIban|null
      */
-    public $bankAccountIban = null;
+    public ?BankAccountIban $bankAccountIban = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerContractIdentifier = null;
+    public ?string $customerContractIdentifier = null;
 
     /**
-     * @var Debtor
+     * @var Debtor|null
      */
-    public $debtor = null;
+    public ?Debtor $debtor = null;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring = null;
+    public ?bool $isRecurring = null;
 
     /**
-     * @var MandateApproval
+     * @var MandateApproval|null
      */
-    public $mandateApproval = null;
+    public ?MandateApproval $mandateApproval = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $preNotification = null;
+    public ?string $preNotification = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->bankAccountIban)) {
@@ -72,10 +72,11 @@ class MandateSepaDirectDebitWithoutCreditor extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MandateSepaDirectDebitWithoutCreditor
     {
         parent::fromObject($object);
         if (property_exists($object, 'bankAccountIban')) {

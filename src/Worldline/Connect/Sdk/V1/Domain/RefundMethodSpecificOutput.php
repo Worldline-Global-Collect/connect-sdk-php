@@ -14,24 +14,24 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RefundMethodSpecificOutput extends DataObject
 {
     /**
-     * @var int
+     * @var int|null
      */
-    public $refundProductId = null;
+    public ?int $refundProductId = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $totalAmountPaid = null;
+    public ?int $totalAmountPaid = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $totalAmountRefunded = null;
+    public ?int $totalAmountRefunded = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->refundProductId)) {
@@ -48,10 +48,11 @@ class RefundMethodSpecificOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundMethodSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'refundProductId')) {

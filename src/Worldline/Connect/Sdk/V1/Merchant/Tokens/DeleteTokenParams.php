@@ -11,12 +11,12 @@ use Worldline\Connect\Sdk\Communication\RequestObject;
  * Query parameters for Delete token
  *
  * @package Worldline\Connect\Sdk\V1\Merchant\Tokens
- * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/tokens/delete.html Delete token
+ * @link    https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/tokens/delete.html Delete token
  */
 class DeleteTokenParams extends RequestObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $mandateCancelDate;
+    public ?string $mandateCancelDate;
 }

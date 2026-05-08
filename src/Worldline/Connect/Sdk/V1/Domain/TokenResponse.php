@@ -14,44 +14,44 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class TokenResponse extends DataObject
 {
     /**
-     * @var TokenCard
+     * @var TokenCard|null
      */
-    public $card = null;
+    public ?TokenCard $card = null;
 
     /**
-     * @var TokenEWallet
+     * @var TokenEWallet|null
      */
-    public $eWallet = null;
+    public ?TokenEWallet $eWallet = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $id = null;
+    public ?string $id = null;
 
     /**
-     * @var TokenNonSepaDirectDebit
+     * @var TokenNonSepaDirectDebit|null
      */
-    public $nonSepaDirectDebit = null;
+    public ?TokenNonSepaDirectDebit $nonSepaDirectDebit = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $originalPaymentId = null;
+    public ?string $originalPaymentId = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $paymentProductId = null;
+    public ?int $paymentProductId = null;
 
     /**
-     * @var TokenSepaDirectDebit
+     * @var TokenSepaDirectDebit|null
      */
-    public $sepaDirectDebit = null;
+    public ?TokenSepaDirectDebit $sepaDirectDebit = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->card)) {
@@ -80,10 +80,11 @@ class TokenResponse extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): TokenResponse
     {
         parent::fromObject($object);
         if (property_exists($object, 'card')) {

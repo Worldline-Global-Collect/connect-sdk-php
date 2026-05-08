@@ -23,19 +23,23 @@ use Worldline\Connect\Sdk\V1\ValidationException;
 
 /**
  * Hosted Checkouts client.
+ *
+ * @package Worldline\Connect\Sdk\V1\Merchant\Hostedcheckouts
  */
 class HostedcheckoutsClient extends ApiResource
 {
-    /** @var ExceptionFactory|null */
-    private $responseExceptionFactory = null;
+    /**
+     * @var ExceptionFactory|null
+     */
+    private ?ExceptionFactory $responseExceptionFactory = null;
 
     /**
      * Resource /{merchantId}/hostedcheckouts - Create hosted checkout
      *
      * @param CreateHostedCheckoutRequest $body
-     * @param CallContext $callContext
-     * @return CreateHostedCheckoutResponse
+     * @param CallContext|null            $callContext
      *
+     * @return CreateHostedCheckoutResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -43,9 +47,9 @@ class HostedcheckoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedcheckouts/create.html Create hosted checkout
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedcheckouts/create.html Create hosted checkout
      */
-    public function create(CreateHostedCheckoutRequest $body, CallContext $callContext = null)
+    public function create(CreateHostedCheckoutRequest $body, ?CallContext $callContext = null): CreateHostedCheckoutResponse
     {
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultSuccessResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\CreateHostedCheckoutResponse';
@@ -71,10 +75,10 @@ class HostedcheckoutsClient extends ApiResource
     /**
      * Resource /{merchantId}/hostedcheckouts/{hostedCheckoutId} - Get hosted checkout status
      *
-     * @param string $hostedCheckoutId
-     * @param CallContext $callContext
-     * @return GetHostedCheckoutResponse
+     * @param string           $hostedCheckoutId
+     * @param CallContext|null $callContext
      *
+     * @return GetHostedCheckoutResponse
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -82,9 +86,9 @@ class HostedcheckoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedcheckouts/get.html Get hosted checkout status
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedcheckouts/get.html Get hosted checkout status
      */
-    public function get($hostedCheckoutId, CallContext $callContext = null)
+    public function get(string $hostedCheckoutId, ?CallContext $callContext = null): GetHostedCheckoutResponse
     {
         $this->context['hostedCheckoutId'] = $hostedCheckoutId;
         $responseClassMap = new ResponseClassMap();
@@ -110,10 +114,10 @@ class HostedcheckoutsClient extends ApiResource
     /**
      * Resource /{merchantId}/hostedcheckouts/{hostedCheckoutId} - Delete hosted checkout
      *
-     * @param string $hostedCheckoutId
-     * @param CallContext $callContext
-     * @return null
+     * @param string           $hostedCheckoutId
+     * @param CallContext|null $callContext
      *
+     * @return void
      * @throws IdempotenceException
      * @throws ValidationException
      * @throws AuthorizationException
@@ -121,15 +125,15 @@ class HostedcheckoutsClient extends ApiResource
      * @throws PlatformException
      * @throws ApiException
      * @throws InvalidResponseException
-     * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedcheckouts/delete.html Delete hosted checkout
+     * @link   https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/hostedcheckouts/delete.html Delete hosted checkout
      */
-    public function delete($hostedCheckoutId, CallContext $callContext = null)
+    public function delete(string $hostedCheckoutId, ?CallContext $callContext = null): void
     {
         $this->context['hostedCheckoutId'] = $hostedCheckoutId;
         $responseClassMap = new ResponseClassMap();
         $responseClassMap->defaultErrorResponseClassName = '\Worldline\Connect\Sdk\V1\Domain\ErrorResponse';
         try {
-            return $this->getCommunicator()->delete(
+            $this->getCommunicator()->delete(
                 $responseClassMap,
                 $this->instantiateUri('/v1/{merchantId}/hostedcheckouts/{hostedCheckoutId}'),
                 $this->getClientMetaInfo(),
@@ -145,8 +149,10 @@ class HostedcheckoutsClient extends ApiResource
         }
     }
 
-    /** @return ExceptionFactory */
-    private function getResponseExceptionFactory()
+    /**
+     * @return ExceptionFactory
+     */
+    private function getResponseExceptionFactory(): ExceptionFactory
     {
         if (is_null($this->responseExceptionFactory)) {
             $this->responseExceptionFactory = new ExceptionFactory();

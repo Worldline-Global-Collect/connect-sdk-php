@@ -14,39 +14,39 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class Installments extends DataObject
 {
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoneyPerInstallment = null;
+    public ?AmountOfMoney $amountOfMoneyPerInstallment = null;
 
     /**
-     * @var AmountOfMoney
+     * @var AmountOfMoney|null
      */
-    public $amountOfMoneyTotal = null;
+    public ?AmountOfMoney $amountOfMoneyTotal = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $frequencyOfInstallments = null;
+    public ?string $frequencyOfInstallments = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $installmentPlanCode = null;
+    public ?int $installmentPlanCode = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $interestRate = null;
+    public ?string $interestRate = null;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $numberOfInstallments = null;
+    public ?int $numberOfInstallments = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->amountOfMoneyPerInstallment)) {
@@ -72,10 +72,11 @@ class Installments extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): Installments
     {
         parent::fromObject($object);
         if (property_exists($object, 'amountOfMoneyPerInstallment')) {

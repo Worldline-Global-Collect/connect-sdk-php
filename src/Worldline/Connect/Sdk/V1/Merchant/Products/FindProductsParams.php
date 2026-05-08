@@ -11,42 +11,42 @@ use Worldline\Connect\Sdk\Communication\RequestObject;
  * Query parameters for Get payment products
  *
  * @package Worldline\Connect\Sdk\V1\Merchant\Products
- * @link https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/find.html Get payment products
+ * @link    https://apireference.connect.worldline-solutions.com/s2sapi/v1/en_US/php/products/find.html Get payment products
  */
 class FindProductsParams extends RequestObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $countryCode;
+    public ?string $countryCode;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $currencyCode;
+    public ?string $currencyCode;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $locale;
+    public ?string $locale;
 
     /**
-     * @var int
+     * @var int|null
      */
-    public $amount;
+    public ?int $amount;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isRecurring;
+    public ?bool $isRecurring;
 
     /**
-     * @var bool
+     * @var bool|null
      */
-    public $isInstallments;
+    public ?bool $isInstallments;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $hide;
+    public ?array $hide;
 }

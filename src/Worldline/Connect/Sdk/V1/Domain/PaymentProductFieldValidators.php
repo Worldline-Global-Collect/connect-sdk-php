@@ -14,64 +14,64 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class PaymentProductFieldValidators extends DataObject
 {
     /**
-     * @var BoletoBancarioRequirednessValidator
+     * @var BoletoBancarioRequirednessValidator|null
      */
-    public $boletoBancarioRequiredness = null;
+    public ?BoletoBancarioRequirednessValidator $boletoBancarioRequiredness = null;
 
     /**
-     * @var EmptyValidator
+     * @var EmptyValidator|null
      */
-    public $emailAddress = null;
+    public ?EmptyValidator $emailAddress = null;
 
     /**
-     * @var EmptyValidator
+     * @var EmptyValidator|null
      */
-    public $expirationDate = null;
+    public ?EmptyValidator $expirationDate = null;
 
     /**
-     * @var FixedListValidator
+     * @var FixedListValidator|null
      */
-    public $fixedList = null;
+    public ?FixedListValidator $fixedList = null;
 
     /**
-     * @var EmptyValidator
+     * @var EmptyValidator|null
      */
-    public $iban = null;
+    public ?EmptyValidator $iban = null;
 
     /**
-     * @var LengthValidator
+     * @var LengthValidator|null
      */
-    public $length = null;
+    public ?LengthValidator $length = null;
 
     /**
-     * @var EmptyValidator
+     * @var EmptyValidator|null
      */
-    public $luhn = null;
+    public ?EmptyValidator $luhn = null;
 
     /**
-     * @var RangeValidator
+     * @var RangeValidator|null
      */
-    public $range = null;
+    public ?RangeValidator $range = null;
 
     /**
-     * @var RegularExpressionValidator
+     * @var RegularExpressionValidator|null
      */
-    public $regularExpression = null;
+    public ?RegularExpressionValidator $regularExpression = null;
 
     /**
-     * @var EmptyValidator
+     * @var EmptyValidator|null
      */
-    public $residentIdNumber = null;
+    public ?EmptyValidator $residentIdNumber = null;
 
     /**
-     * @var EmptyValidator
+     * @var EmptyValidator|null
      */
-    public $termsAndConditions = null;
+    public ?EmptyValidator $termsAndConditions = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->boletoBancarioRequiredness)) {
@@ -112,10 +112,11 @@ class PaymentProductFieldValidators extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): PaymentProductFieldValidators
     {
         parent::fromObject($object);
         if (property_exists($object, 'boletoBancarioRequiredness')) {

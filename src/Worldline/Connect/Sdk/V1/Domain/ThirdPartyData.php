@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ThirdPartyData extends DataObject
 {
     /**
-     * @var PaymentProduct863ThirdPartyData
+     * @var PaymentProduct863ThirdPartyData|null
      */
-    public $paymentProduct863 = null;
+    public ?PaymentProduct863ThirdPartyData $paymentProduct863 = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->paymentProduct863)) {
@@ -32,10 +32,11 @@ class ThirdPartyData extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ThirdPartyData
     {
         parent::fromObject($object);
         if (property_exists($object, 'paymentProduct863')) {

@@ -14,19 +14,19 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class RefundReferences extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $descriptor = null;
+    public ?string $descriptor = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $merchantReference = null;
+    public ?string $merchantReference = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->descriptor)) {
@@ -40,10 +40,11 @@ class RefundReferences extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): RefundReferences
     {
         parent::fromObject($object);
         if (property_exists($object, 'descriptor')) {

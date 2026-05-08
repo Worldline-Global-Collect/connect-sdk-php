@@ -10,32 +10,36 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 
 /**
  * @package Worldline\Connect\Sdk\V1\Domain
+ *
  * @deprecated No replacement
  */
 class FraudFieldsShippingDetails extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated No replacement
      */
-    public $methodDetails = null;
+    public ?string $methodDetails = null;
 
     /**
-     * @var int
+     * @var int|null
+     *
      * @deprecated No replacement
      */
-    public $methodSpeed = null;
+    public ?int $methodSpeed = null;
 
     /**
-     * @var int
+     * @var int|null
+     *
      * @deprecated No replacement
      */
-    public $methodType = null;
+    public ?int $methodType = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->methodDetails)) {
@@ -52,10 +56,11 @@ class FraudFieldsShippingDetails extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): FraudFieldsShippingDetails
     {
         parent::fromObject($object);
         if (property_exists($object, 'methodDetails')) {

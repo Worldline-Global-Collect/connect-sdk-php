@@ -15,7 +15,7 @@ class CashPaymentProduct1522SpecificInput extends CashPaymentProductWithRedirect
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         return $object;
@@ -23,10 +23,11 @@ class CashPaymentProduct1522SpecificInput extends CashPaymentProductWithRedirect
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): CashPaymentProduct1522SpecificInput
     {
         parent::fromObject($object);
         return $this;

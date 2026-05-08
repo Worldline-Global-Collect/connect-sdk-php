@@ -14,111 +14,123 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class FraudFields extends DataObject
 {
     /**
-     * @var bool
+     * @var bool|null
+     *
      * @deprecated For risk assessments there is no replacement. For other calls, use Order.shipping.addressIndicator instead
      */
-    public $addressesAreIdentical = null;
+    public ?bool $addressesAreIdentical = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $blackListData = null;
+    public ?string $blackListData = null;
 
     /**
-     * @var Address
+     * @var Address|null
+     *
      * @deprecated This should be the same as Order.customer.billingAddress
      */
-    public $cardOwnerAddress = null;
+    public ?Address $cardOwnerAddress = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $customerIpAddress = null;
+    public ?string $customerIpAddress = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use Order.customer.device.defaultFormFill instead
      */
-    public $defaultFormFill = null;
+    public ?string $defaultFormFill = null;
 
     /**
-     * @var bool
+     * @var bool|null
+     *
      * @deprecated No replacement
      */
-    public $deviceFingerprintActivated = null;
+    public ?bool $deviceFingerprintActivated = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use Order.customer.device.deviceFingerprintTransactionId instead
      */
-    public $deviceFingerprintTransactionId = null;
+    public ?string $deviceFingerprintTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $giftCardType = null;
+    public ?string $giftCardType = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $giftMessage = null;
+    public ?string $giftMessage = null;
 
     /**
-     * @var bool
+     * @var bool|null
+     *
      * @deprecated Use Order.customer.account.hasForgottenPassword instead
      */
-    public $hasForgottenPwd = null;
+    public ?bool $hasForgottenPwd = null;
 
     /**
-     * @var bool
+     * @var bool|null
+     *
      * @deprecated Use Order.customer.account.hasPassword instead
      */
-    public $hasPassword = null;
+    public ?bool $hasPassword = null;
 
     /**
-     * @var bool
+     * @var bool|null
+     *
      * @deprecated Use Order.customer.isPreviousCustomer instead
      */
-    public $isPreviousCustomer = null;
+    public ?bool $isPreviousCustomer = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $orderTimezone = null;
+    public ?string $orderTimezone = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use Order.shipping.comments instead
      */
-    public $shipComments = null;
+    public ?string $shipComments = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use Order.shipping.trackingNumber instead
      */
-    public $shipmentTrackingNumber = null;
+    public ?string $shipmentTrackingNumber = null;
 
     /**
-     * @var FraudFieldsShippingDetails
+     * @var FraudFieldsShippingDetails|null
+     *
      * @deprecated No replacement
      */
-    public $shippingDetails = null;
+    public ?FraudFieldsShippingDetails $shippingDetails = null;
 
     /**
-     * @var string[]
+     * @var string[]|null
      */
-    public $userData = null;
+    public ?array $userData = null;
 
     /**
-     * @var string
+     * @var string|null
+     *
      * @deprecated Use Merchant.websiteUrl instead
      */
-    public $website = null;
+    public ?string $website = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->addressesAreIdentical)) {
@@ -185,10 +197,11 @@ class FraudFields extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): FraudFields
     {
         parent::fromObject($object);
         if (property_exists($object, 'addressesAreIdentical')) {

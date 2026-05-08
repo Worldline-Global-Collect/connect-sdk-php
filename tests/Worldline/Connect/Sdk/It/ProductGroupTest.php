@@ -13,8 +13,8 @@ use Worldline\Connect\Sdk\V1\Merchant\Productgroups\GetProductgroupParams;
 class ProductGroupTest extends ClientTestCase
 {
     /**
-     * @throws ApiException
      * @return PaymentProductGroupResponse
+     * @throws ApiException
      */
     public function testRetrievePaymentProductGroup()
     {

@@ -14,29 +14,29 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class MobileThreeDSecureChallengeParameters extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $acsReferenceNumber = null;
+    public ?string $acsReferenceNumber = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $acsSignedContent = null;
+    public ?string $acsSignedContent = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $acsTransactionId = null;
+    public ?string $acsTransactionId = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    public $threeDServerTransactionId = null;
+    public ?string $threeDServerTransactionId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->acsReferenceNumber)) {
@@ -56,10 +56,11 @@ class MobileThreeDSecureChallengeParameters extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): MobileThreeDSecureChallengeParameters
     {
         parent::fromObject($object);
         if (property_exists($object, 'acsReferenceNumber')) {

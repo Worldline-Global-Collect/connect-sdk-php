@@ -14,14 +14,14 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class ApprovePaymentCardPaymentMethodSpecificOutput extends DataObject
 {
     /**
-     * @var string
+     * @var string|null
      */
-    public $voidResponseId = null;
+    public ?string $voidResponseId = null;
 
     /**
      * @return object
      */
-    public function toObject()
+    public function toObject(): object
     {
         $object = parent::toObject();
         if (!is_null($this->voidResponseId)) {
@@ -32,10 +32,11 @@ class ApprovePaymentCardPaymentMethodSpecificOutput extends DataObject
 
     /**
      * @param object $object
+     *
      * @return $this
      * @throws UnexpectedValueException
      */
-    public function fromObject($object)
+    public function fromObject(object $object): ApprovePaymentCardPaymentMethodSpecificOutput
     {
         parent::fromObject($object);
         if (property_exists($object, 'voidResponseId')) {
