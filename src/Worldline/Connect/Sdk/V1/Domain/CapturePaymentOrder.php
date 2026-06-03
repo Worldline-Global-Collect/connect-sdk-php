@@ -24,9 +24,9 @@ class CapturePaymentOrder extends DataObject
     public ?CapturePaymentOrderReferences $references = null;
 
     /**
-     * @var Shipping|null
+     * @var CapturePaymentShipping|null
      */
-    public ?Shipping $shipping = null;
+    public ?CapturePaymentShipping $shipping = null;
 
     /**
      * @return object
@@ -73,7 +73,7 @@ class CapturePaymentOrder extends DataObject
             if (!is_object($object->shipping)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->shipping, true) . '\' is not an object');
             }
-            $value = new Shipping();
+            $value = new CapturePaymentShipping();
             $this->shipping = $value->fromObject($object->shipping);
         }
         return $this;
