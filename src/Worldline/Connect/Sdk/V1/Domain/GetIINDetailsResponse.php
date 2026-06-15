@@ -14,6 +14,11 @@ use Worldline\Connect\Sdk\Domain\DataObject;
 class GetIINDetailsResponse extends DataObject
 {
     /**
+     * @var string|null
+     */
+    public ?string $binProductType = null;
+
+    /**
      * @var IINDetail[]|null
      */
     public ?array $coBrands = null;
@@ -29,6 +34,11 @@ class GetIINDetailsResponse extends DataObject
     public ?bool $isAllowedInContext = null;
 
     /**
+     * @var string|null
+     */
+    public ?string $issuerName = null;
+
+    /**
      * @var int|null
      */
     public ?int $paymentProductId = null;
@@ -39,6 +49,9 @@ class GetIINDetailsResponse extends DataObject
     public function toObject(): object
     {
         $object = parent::toObject();
+        if (!is_null($this->binProductType)) {
+            $object->binProductType = $this->binProductType;
+        }
         if (!is_null($this->coBrands)) {
             $object->coBrands = [];
             foreach ($this->coBrands as $element) {
@@ -52,6 +65,9 @@ class GetIINDetailsResponse extends DataObject
         }
         if (!is_null($this->isAllowedInContext)) {
             $object->isAllowedInContext = $this->isAllowedInContext;
+        }
+        if (!is_null($this->issuerName)) {
+            $object->issuerName = $this->issuerName;
         }
         if (!is_null($this->paymentProductId)) {
             $object->paymentProductId = $this->paymentProductId;
@@ -68,6 +84,9 @@ class GetIINDetailsResponse extends DataObject
     public function fromObject(object $object): GetIINDetailsResponse
     {
         parent::fromObject($object);
+        if (property_exists($object, 'binProductType')) {
+            $this->binProductType = $object->binProductType;
+        }
         if (property_exists($object, 'coBrands')) {
             if (!is_array($object->coBrands) && !is_object($object->coBrands)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->coBrands, true) . '\' is not an array or object');
@@ -83,6 +102,9 @@ class GetIINDetailsResponse extends DataObject
         }
         if (property_exists($object, 'isAllowedInContext')) {
             $this->isAllowedInContext = $object->isAllowedInContext;
+        }
+        if (property_exists($object, 'issuerName')) {
+            $this->issuerName = $object->issuerName;
         }
         if (property_exists($object, 'paymentProductId')) {
             $this->paymentProductId = $object->paymentProductId;
