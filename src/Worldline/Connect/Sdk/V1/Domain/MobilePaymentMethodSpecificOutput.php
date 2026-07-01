@@ -33,6 +33,11 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
     public ?string $network = null;
 
     /**
+     * @var string|null
+     */
+    public ?string $originalTransactionLinkId = null;
+
+    /**
      * @var MobilePaymentData|null
      */
     public ?MobilePaymentData $paymentData = null;
@@ -53,6 +58,11 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
     public ?string $token = null;
 
     /**
+     * @var string|null
+     */
+    public ?string $transactionLinkId = null;
+
+    /**
      * @return object
      */
     public function toObject(): object
@@ -70,6 +80,9 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
         if (!is_null($this->network)) {
             $object->network = $this->network;
         }
+        if (!is_null($this->originalTransactionLinkId)) {
+            $object->originalTransactionLinkId = $this->originalTransactionLinkId;
+        }
         if (!is_null($this->paymentData)) {
             $object->paymentData = $this->paymentData->toObject();
         }
@@ -81,6 +94,9 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
         }
         if (!is_null($this->token)) {
             $object->token = $this->token;
+        }
+        if (!is_null($this->transactionLinkId)) {
+            $object->transactionLinkId = $this->transactionLinkId;
         }
         return $object;
     }
@@ -110,6 +126,9 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
         if (property_exists($object, 'network')) {
             $this->network = $object->network;
         }
+        if (property_exists($object, 'originalTransactionLinkId')) {
+            $this->originalTransactionLinkId = $object->originalTransactionLinkId;
+        }
         if (property_exists($object, 'paymentData')) {
             if (!is_object($object->paymentData)) {
                 throw new UnexpectedValueException('value \'' . print_r($object->paymentData, true) . '\' is not an object');
@@ -129,6 +148,9 @@ class MobilePaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOut
         }
         if (property_exists($object, 'token')) {
             $this->token = $object->token;
+        }
+        if (property_exists($object, 'transactionLinkId')) {
+            $this->transactionLinkId = $object->transactionLinkId;
         }
         return $this;
     }

@@ -28,6 +28,11 @@ class AbstractMobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpec
     public ?string $initialSchemeTransactionId = null;
 
     /**
+     * @var string|null
+     */
+    public ?string $originalTransactionLinkId = null;
+
+    /**
      * @var CardRecurrenceDetails|null
      */
     public ?CardRecurrenceDetails $recurring = null;
@@ -77,6 +82,9 @@ class AbstractMobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpec
         if (!is_null($this->initialSchemeTransactionId)) {
             $object->initialSchemeTransactionId = $this->initialSchemeTransactionId;
         }
+        if (!is_null($this->originalTransactionLinkId)) {
+            $object->originalTransactionLinkId = $this->originalTransactionLinkId;
+        }
         if (!is_null($this->recurring)) {
             $object->recurring = $this->recurring->toObject();
         }
@@ -118,6 +126,9 @@ class AbstractMobilePaymentMethodSpecificInput extends AbstractPaymentMethodSpec
         }
         if (property_exists($object, 'initialSchemeTransactionId')) {
             $this->initialSchemeTransactionId = $object->initialSchemeTransactionId;
+        }
+        if (property_exists($object, 'originalTransactionLinkId')) {
+            $this->originalTransactionLinkId = $object->originalTransactionLinkId;
         }
         if (property_exists($object, 'recurring')) {
             if (!is_object($object->recurring)) {

@@ -50,6 +50,11 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
     /**
      * @var string|null
      */
+    public ?string $originalTransactionLinkId = null;
+
+    /**
+     * @var string|null
+     */
     public ?string $paymentAccountReference = null;
 
     /**
@@ -66,6 +71,11 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
      * @var string|null
      */
     public ?string $token = null;
+
+    /**
+     * @var string|null
+     */
+    public ?string $transactionLinkId = null;
 
     /**
      * @return object
@@ -94,6 +104,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         if (!is_null($this->networkTokenUsed)) {
             $object->networkTokenUsed = $this->networkTokenUsed;
         }
+        if (!is_null($this->originalTransactionLinkId)) {
+            $object->originalTransactionLinkId = $this->originalTransactionLinkId;
+        }
         if (!is_null($this->paymentAccountReference)) {
             $object->paymentAccountReference = $this->paymentAccountReference;
         }
@@ -105,6 +118,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         }
         if (!is_null($this->token)) {
             $object->token = $this->token;
+        }
+        if (!is_null($this->transactionLinkId)) {
+            $object->transactionLinkId = $this->transactionLinkId;
         }
         return $object;
     }
@@ -151,6 +167,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         if (property_exists($object, 'networkTokenUsed')) {
             $this->networkTokenUsed = $object->networkTokenUsed;
         }
+        if (property_exists($object, 'originalTransactionLinkId')) {
+            $this->originalTransactionLinkId = $object->originalTransactionLinkId;
+        }
         if (property_exists($object, 'paymentAccountReference')) {
             $this->paymentAccountReference = $object->paymentAccountReference;
         }
@@ -166,6 +185,9 @@ class CardPaymentMethodSpecificOutput extends AbstractPaymentMethodSpecificOutpu
         }
         if (property_exists($object, 'token')) {
             $this->token = $object->token;
+        }
+        if (property_exists($object, 'transactionLinkId')) {
+            $this->transactionLinkId = $object->transactionLinkId;
         }
         return $this;
     }
