@@ -16,12 +16,12 @@ class AbstractRedirectPaymentProduct838SpecificInput extends DataObject
     /**
      * @var string|null
      */
-    public ?string $interoperabilityData = null;
+    public ?string $networkData = null;
 
     /**
      * @var string|null
      */
-    public ?string $interoperabilityToken = null;
+    public ?string $networkSessionToken = null;
 
     /**
      * @return object
@@ -29,11 +29,11 @@ class AbstractRedirectPaymentProduct838SpecificInput extends DataObject
     public function toObject(): object
     {
         $object = parent::toObject();
-        if (!is_null($this->interoperabilityData)) {
-            $object->interoperabilityData = $this->interoperabilityData;
+        if (!is_null($this->networkData)) {
+            $object->networkData = $this->networkData;
         }
-        if (!is_null($this->interoperabilityToken)) {
-            $object->interoperabilityToken = $this->interoperabilityToken;
+        if (!is_null($this->networkSessionToken)) {
+            $object->networkSessionToken = $this->networkSessionToken;
         }
         return $object;
     }
@@ -47,11 +47,11 @@ class AbstractRedirectPaymentProduct838SpecificInput extends DataObject
     public function fromObject(object $object): AbstractRedirectPaymentProduct838SpecificInput
     {
         parent::fromObject($object);
-        if (property_exists($object, 'interoperabilityData')) {
-            $this->interoperabilityData = $object->interoperabilityData;
+        if (property_exists($object, 'networkData')) {
+            $this->networkData = $object->networkData;
         }
-        if (property_exists($object, 'interoperabilityToken')) {
-            $this->interoperabilityToken = $object->interoperabilityToken;
+        if (property_exists($object, 'networkSessionToken')) {
+            $this->networkSessionToken = $object->networkSessionToken;
         }
         return $this;
     }
