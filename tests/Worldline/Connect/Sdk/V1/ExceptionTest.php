@@ -98,7 +98,7 @@ EOD;
         $declinedPaymentException = new DeclinedPaymentException(0, $paymentErrorResponse);
         $this->assertInstanceOf('\Worldline\Connect\Sdk\V1\Domain\CreatePaymentResult', $declinedPaymentException->getCreatePaymentResult());
         $paymentErrorResponse->paymentResult = new CreatePaymentResult();
-        $this->assertInstanceOf('\Worldline\Connect\Sdk\V1\Domain\CreatePaymentResult', $declinedPaymentException->getCreatePaymentResult());
+        $this->assertSame($paymentErrorResponse->paymentResult, $declinedPaymentException->getCreatePaymentResult());
     }
 
     public function testDeclinedPayoutException()
@@ -107,7 +107,7 @@ EOD;
         $declinedPayoutException = new DeclinedPayoutException(0, $payoutErrorResponse);
         $this->assertInstanceOf('\Worldline\Connect\Sdk\V1\Domain\PayoutResult', $declinedPayoutException->getPayoutResult());
         $payoutErrorResponse->payoutResult = new PayoutResult();
-        $this->assertInstanceOf('\Worldline\Connect\Sdk\V1\Domain\PayoutResult', $declinedPayoutException->getPayoutResult());
+        $this->assertSame($payoutErrorResponse->payoutResult, $declinedPayoutException->getPayoutResult());
     }
 
     public function testDeclinedRefundException()
@@ -116,6 +116,6 @@ EOD;
         $declinedRefundException = new DeclinedRefundException(0, $refundErrorResponse);
         $this->assertInstanceOf('\Worldline\Connect\Sdk\V1\Domain\RefundResult', $declinedRefundException->getRefundResult());
         $refundErrorResponse->refundResult = new RefundResult();
-        $this->assertInstanceOf('\Worldline\Connect\Sdk\V1\Domain\RefundResult', $declinedRefundException->getRefundResult());
+        $this->assertSame($refundErrorResponse->refundResult, $declinedRefundException->getRefundResult());
     }
 }

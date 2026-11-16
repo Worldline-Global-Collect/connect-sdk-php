@@ -19,6 +19,11 @@ class PaymentReferences extends DataObject
     public ?string $merchantCaptureReference = null;
 
     /**
+     * @var string|null
+     */
+    public ?string $merchantCustomerId = null;
+
+    /**
      * @var int|null
      */
     public ?int $merchantOrderId = null;
@@ -62,6 +67,9 @@ class PaymentReferences extends DataObject
         if (!is_null($this->merchantCaptureReference)) {
             $object->merchantCaptureReference = $this->merchantCaptureReference;
         }
+        if (!is_null($this->merchantCustomerId)) {
+            $object->merchantCustomerId = $this->merchantCustomerId;
+        }
         if (!is_null($this->merchantOrderId)) {
             $object->merchantOrderId = $this->merchantOrderId;
         }
@@ -97,6 +105,9 @@ class PaymentReferences extends DataObject
         parent::fromObject($object);
         if (property_exists($object, 'merchantCaptureReference')) {
             $this->merchantCaptureReference = $object->merchantCaptureReference;
+        }
+        if (property_exists($object, 'merchantCustomerId')) {
+            $this->merchantCustomerId = $object->merchantCustomerId;
         }
         if (property_exists($object, 'merchantOrderId')) {
             $this->merchantOrderId = $object->merchantOrderId;
